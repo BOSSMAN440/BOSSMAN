@@ -101,14 +101,31 @@
       100% { text-shadow: 0 0 5px #f39c12, 0 0 10px #f1c40f, 0 0 15px #e74c3c; }
     }
 
+    /* Kontener przycisków sklepu i regulaminu */
+    .top-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0;
+      position: relative;
+      z-index: 1;
+      flex-wrap: wrap;
+    }
+
     .button-shop {
       background: linear-gradient(90deg, #f39c12, #f1c40f, #e74c3c);
       color: white;
       font-weight: bold;
-      position: relative;
-      z-index: 1;
     }
     .button-shop:hover { opacity: 0.85; }
+
+    .button-regulamin {
+      background: linear-gradient(90deg, #3498db, #2980b9);
+      color: white;
+      font-weight: bold;
+    }
+    .button-regulamin:hover { opacity: 0.85; }
+
   </style>
 </head>
 <body>
@@ -131,9 +148,10 @@
     </a>
   </div>
 
-  <!-- Przycisk sklepu -->
-  <div style="margin: 20px 0;">
+  <!-- Przycisk sklepu i regulaminu obok siebie -->
+  <div class="top-buttons">
     <a href="https://yshop.pl/shop/boss" class="button button-shop" target="_blank">🛒 SKLEP SERVERA</a>
+    <a href="https://docs.google.com/document/d/1oNBwICgD2GQHxWO3LM2rPjL7VgWXYv0lsQL6ZVgHNks/edit?tab=t.0" class="button button-regulamin" target="_blank">📜 REGULAMIN SERVERA</a>
   </div>
 
   <h2 class="fancy-title">INFORMACJE O TRYBACH</h2>
@@ -157,11 +175,9 @@
       light.style.width = `${size}px`;
       light.style.height = `${size}px`;
 
-      // Losowe współrzędne startowe
       const x0 = Math.random() * w;
       const y0 = Math.random() * h;
 
-      // Losowe punkty ruchu
       light.style.setProperty('--x1', (Math.random() * w - x0));
       light.style.setProperty('--y1', (Math.random() * h - y0));
       light.style.setProperty('--x2', (Math.random() * w - x0));
