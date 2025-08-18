@@ -15,13 +15,20 @@
       position: relative;
       overflow-x: hidden;
     }
+
+    /* Neonowy nagłówek */
     h1 {
       font-size: 3em;
       margin-bottom: 20px;
-      background: linear-gradient(90deg, #f39c12, #f1c40f, #e74c3c);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #00f0ff;
+      text-shadow: 
+        0 0 5px #00f0ff,
+        0 0 10px #00f0ff,
+        0 0 20px #00f0ff,
+        0 0 40px #9b59b6,
+        0 0 80px #e74c3c;
     }
+
     .content {
       text-align: left;
       max-width: 800px;
@@ -29,6 +36,7 @@
       position: relative;
       z-index: 10;
     }
+
     h2 {
       font-size: 1.8em;
       color: #f39c12;
@@ -38,10 +46,12 @@
       display: inline-block;
       padding-bottom: 5px;
     }
+
     ul {
       list-style: none;
       padding: 0;
     }
+
     li {
       background: rgba(255, 255, 255, 0.05);
       margin: 8px 0;
@@ -50,11 +60,11 @@
       border-radius: 5px;
       transition: background 0.3s;
     }
+
     li:hover {
       background: rgba(255, 255, 255, 0.15);
     }
 
-    /* Przycisk powrotu */ 
     .back-button {
       display: block;
       width: max-content;
@@ -86,11 +96,13 @@
       animation: float linear infinite;
       z-index: 1;
     }
+
     @keyframes float {
       0% { transform: translateY(0) translateX(0); opacity: 0.8; }
       50% { opacity: 1; }
       100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
     }
+
     @media (max-width: 600px) {
       h1 { font-size: 2em; }
       h2 { font-size: 1.5em; }
@@ -99,6 +111,7 @@
 </head>
 <body>
   <h1>🏝️ ONE BLOCK</h1>
+
   <div class="content">
     <p>Rozpocznij przygodę na jednym małym bloku i rozwijaj ją w potężną bazę! Ten tryb oferuje mnóstwo atrakcji i możliwości dla każdego gracza – od pracy, przez walkę, po rozbudowane mechaniki automatyczne.</p>
 
@@ -122,7 +135,6 @@
 
   <a href="index.html" class="back-button">← Powrót</a>
 
-  <!-- Skrypt świetlnych kulek -->
   <script>
     const colors = ['#f39c12', '#f1c40f', '#e74c3c', '#9b59b6', '#1abc9c', '#3498db'];
     const numLights = 40;
