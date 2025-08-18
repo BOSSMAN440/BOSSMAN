@@ -3,266 +3,142 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STRONA SERVEROWA</title>
+  <title>BSCMC.PL</title>
   <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(120deg, #0a0a0a, #1a1a1a, #0a0a0a);
-      background-size: 400% 400%;
-      animation: gradientMove 15s ease infinite;
-      color: white;
-      margin: 0;
-      padding: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #0e0e0e;
+      color: #fff;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       overflow-x: hidden;
     }
 
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 50px 20px;
-      display: flex;
-      gap: 20px;
-    }
-
-    .main-content {
-      flex: 1;
-    }
-
-    /* Topka po prawej */
-    .sidebar {
-      width: 250px;
-      position: sticky;
-      top: 20px;
-      height: fit-content;
-      background: rgba(0,0,0,0.4);
-      padding: 20px;
-      border-radius: 15px;
-    }
-
-    .sidebar h3 {
-      font-size: 1.5em;
-      text-align: center;
-      margin-bottom: 15px;
-      background: linear-gradient(90deg, #f39c12, #f1c40f, #e74c3c, #9b59b6);
-      background-size: 200% 200%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: neonGlow 2s ease-in-out infinite alternate, neonGradient 3s ease infinite;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    @keyframes neonGlow {
-      0% { text-shadow: 0 0 5px #f39c12, 0 0 10px #f1c40f, 0 0 15px #e74c3c, 0 0 20px #9b59b6; }
-      50% { text-shadow: 0 0 10px #f39c12, 0 0 20px #f1c40f, 0 0 30px #e74c3c, 0 0 40px #9b59b6; }
-      100% { text-shadow: 0 0 5px #f39c12, 0 0 10px #f1c40f, 0 0 15px #e74c3c, 0 0 20px #9b59b6; }
-    }
-
-    @keyframes neonGradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .top-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      font-size: 1.1em;
-    }
-    .top-list li {
-      display: flex;
-      justify-content: space-between;
-      background: rgba(255,255,255,0.1);
-      margin: 8px 0;
-      padding: 8px 12px;
-      border-radius: 8px;
-      transition: all 0.3s;
-    }
-    .top-list li:hover {
-      background: rgba(255,255,255,0.2);
-      transform: scale(1.03);
-    }
-
+    /* Tytuł */
     h1 {
-      font-size: 3em;
-      text-align: center;
+      font-size: 4em;
+      text-transform: uppercase;
+      letter-spacing: 8px;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+      animation: pulse 2s infinite;
       margin-bottom: 10px;
     }
 
-    .subtitle {
-      font-size: 1.2em;
-      color: #ccc;
-      margin-bottom: 30px;
-      text-align: center;
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff; }
+      50% { text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px #00ffff; }
     }
 
+    .subtitle {
+      font-size: 1.3em;
+      color: #aaa;
+      margin-bottom: 40px;
+    }
+
+    /* Przyciski */
     .button {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       margin: 10px;
       padding: 15px 25px;
-      background-color: #5865F2;
-      color: white;
-      text-decoration: none;
-      border-radius: 10px;
+      border-radius: 12px;
       font-size: 1.2em;
+      text-decoration: none;
+      color: #fff;
       transition: all 0.3s;
       position: relative;
+      backdrop-filter: blur(6px);
     }
+
     .button:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 15px rgba(255,255,255,0.3);
-      opacity: 0.85;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
     }
-    .button.twitch { background-color: #9146FF; }
-    .button.tiktok { background-color: #25F4EE; color: #000; }
-    .button.youtube { background-color: #FF0000; }
+
+    .button.discord { background: #7289da; }
+    .button.twitch { background: #9146ff; }
+    .button.tiktok { background: #25f4ee; color: #000; }
+    .button.youtube { background: #ff0000; }
+
     .button img { width: 24px; height: 24px; margin-right: 10px; }
 
-    .top-buttons {
+    /* Sekcja trybów */
+    .mode-buttons {
       display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin: 20px 0;
-    }
-    .button-shop {
-      background: linear-gradient(90deg, #f39c12, #f1c40f, #e74c3c);
-      color: white;
-      font-weight: bold;
-    }
-    .button-regulamin {
-      background: linear-gradient(90deg, #3498db, #2980b9);
-      color: white;
-      font-weight: bold;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 30px;
     }
 
     .mode-buttons a {
-      display: block;
-      margin: 10px auto;
-      padding: 15px 25px;
-      background-color: #2ecc71;
-      color: white;
+      background: linear-gradient(135deg, #00ffff, #ff00ff);
+      padding: 15px 30px;
+      border-radius: 15px;
       text-decoration: none;
-      border-radius: 10px;
-      width: fit-content;
+      color: #fff;
       font-size: 1.2em;
       transition: all 0.3s;
-    }
-    .mode-buttons a:hover {
-      background: linear-gradient(90deg, #2ecc71, #27ae60, #16a085);
-      box-shadow: 0 0 20px rgba(46, 204, 113, 0.5);
-      transform: scale(1.05);
+      box-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff;
     }
 
-    /* Latające cząstki */
-    .light {
-      position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-      opacity: 0.7;
-      animation: float linear infinite;
+    .mode-buttons a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
     }
-    @keyframes float {
-      0% { transform: translate(0, 0); }
-      25% { transform: translate(calc(var(--x1) * 1px), calc(var(--y1) * 1px)); }
-      50% { transform: translate(calc(var(--x2) * 1px), calc(var(--y2) * 1px)); }
-      75% { transform: translate(calc(var(--x3) * 1px), calc(var(--y3) * 1px)); }
-      100% { transform: translate(calc(var(--x4) * 1px), calc(var(--y4) * 1px)); }
+
+    /* Top buttons */
+    .top-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
     }
+
+    .button-shop { background: linear-gradient(90deg, #f39c12, #e74c3c); }
+    .button-regulamin { background: linear-gradient(90deg, #3498db, #9b59b6); }
 
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="main-content">
-      <h1>BSCMC.PL</h1>
-      <div class="subtitle">IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3 +</strong></div>
 
-      <!-- Social media -->
-      <div>
-        <a href="https://discord.gg/9dt99b3NFG" class="button" target="_blank">
-          <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord"> Discord
-        </a>
-        <a href="https://www.twitch.tv/98bossman98" class="button twitch" target="_blank">
-          <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"> Twitch
-        </a>
-        <a href="https://www.tiktok.com/@bscmc.pl" class="button tiktok" target="_blank">
-          <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok"> TikTok
-        </a>
-        <a href="https://www.youtube.com/@BOSSCRAFTMCPL" class="button youtube" target="_blank">
-          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"> YouTube
-        </a>
-      </div>
+  <h1>BSCMC.PL</h1>
+  <div class="subtitle">IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3 +</strong></div>
 
-      <div class="top-buttons">
-        <a href="https://yshop.pl/shop/boss" class="button button-shop" target="_blank">🛒 SKLEP SERVERA</a>
-        <a href="https://docs.google.com/document/d/1oNBwICgD2GQHxWO3LM2rPjL7VgWXYv0lsQL6ZVgHNks/edit?tab=t.0" class="button button-regulamin" target="_blank">📜 REGULAMIN SERVERA</a>
-      </div>
-
-      <h2 class="fancy-title">INFORMACJE O TRYBACH</h2>
-      <div class="mode-buttons">
-        <a href="survival.html">🏡 SURVIVAL + DZIAŁKI</a>
-        <a href="oneblock.html">🧱 ONE BLOCK</a>
-      </div>
-    </div>
-
-    <div class="sidebar">
-      <h3>💰 Topka wydanej kasy</h3>
-      <ul class="top-list">
-        <li><span>Salatkaowocowa</span><span>120 zł</span></li>
-        <li><span>BloomFire000</span><span>104 zł</span></li>
-        <li><span>Michalek</span><span>80 zł</span></li>
-      </ul>
-    </div>
+  <div class="top-buttons">
+    <a href="https://yshop.pl/shop/boss" class="button button-shop" target="_blank">🛒 SKLEP SERVERA</a>
+    <a href="https://docs.google.com/document/d/1oNBwICgD2GQHxWO3LM2rPjL7VgWXYv0lsQL6ZVgHNks/edit?tab=t.0" class="button button-regulamin" target="_blank">📜 REGULAMIN SERVERA</a>
   </div>
 
-  <!-- Kolorowe światełka -->
-  <script>
-    const totalLights = 30;
-    const w = window.innerWidth;
-    const h = window.innerHeight;
+  <!-- Social Media -->
+  <div>
+    <a href="https://discord.gg/9dt99b3NFG" class="button discord" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord"> Discord
+    </a>
+    <a href="https://www.twitch.tv/98bossman98" class="button twitch" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"> Twitch
+    </a>
+    <a href="https://www.tiktok.com/@bscmc.pl" class="button tiktok" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok"> TikTok
+    </a>
+    <a href="https://www.youtube.com/@BOSSCRAFTMCPL" class="button youtube" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"> YouTube
+    </a>
+  </div>
 
-    for(let i = 0; i < totalLights; i++) {
-      const light = document.createElement('div');
-      light.classList.add('light');
+  <h2 class="subtitle">INFORMACJE O TRYBACH</h2>
+  <div class="mode-buttons">
+    <a href="survival.html">🏡 SURVIVAL + DZIAŁKI</a>
+    <a href="oneblock.html">🧱 ONE BLOCK</a>
+  </div>
 
-      const size = Math.random() * 6 + 4;
-      light.style.width = `${size}px`;
-      light.style.height = `${size}px`;
-
-      const x0 = Math.random() * w;
-      const y0 = Math.random() * h;
-
-      light.style.setProperty('--x1', (Math.random() * w - x0));
-      light.style.setProperty('--y1', (Math.random() * h - y0));
-      light.style.setProperty('--x2', (Math.random() * w - x0));
-      light.style.setProperty('--y2', (Math.random() * h - y0));
-      light.style.setProperty('--x3', (Math.random() * w - x0));
-      light.style.setProperty('--y3', (Math.random() * h - y0));
-      light.style.setProperty('--x4', (Math.random() * w - x0));
-      light.style.setProperty('--y4', (Math.random() * h - y0));
-
-      light.style.left = `${x0}px`;
-      light.style.top = `${y0}px`;
-
-      const r = Math.floor(Math.random() * 256);
-      const g = Math.floor(Math.random() * 256);
-      const b = Math.floor(Math.random() * 256);
-      light.style.background = `rgba(${r}, ${g}, ${b}, 0.7)`;
-
-      light.style.animationDuration = `${5 + Math.random() * 15}s`;
-      light.style.animationDelay = `${Math.random() * 10}s`;
-
-      document.body.appendChild(light);
-    }
-  </script>
 </body>
 </html>
