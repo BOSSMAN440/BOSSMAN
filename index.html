@@ -15,11 +15,10 @@
       position: relative;
     }
 
-    /* Latające światła */
+    /* Latające kolorowe światła */
     .light {
       position: absolute;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.8);
       pointer-events: none;
       opacity: 0.7;
       animation: float linear infinite;
@@ -101,7 +100,6 @@
       100% { text-shadow: 0 0 5px #f39c12, 0 0 10px #f1c40f, 0 0 15px #e74c3c; }
     }
 
-    /* Kontener przycisków sklepu i regulaminu */
     .top-buttons {
       display: flex;
       justify-content: center;
@@ -111,7 +109,6 @@
       z-index: 1;
       flex-wrap: wrap;
     }
-
     .button-shop {
       background: linear-gradient(90deg, #f39c12, #f1c40f, #e74c3c);
       color: white;
@@ -126,13 +123,44 @@
     }
     .button-regulamin:hover { opacity: 0.85; }
 
+    /* Muzyka w lewym dolnym rogu */
+    #music-player {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      background: rgba(30,30,30,0.8);
+      padding: 10px 15px;
+      border-radius: 10px;
+      color: white;
+      font-family: Arial, sans-serif;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      min-width: 200px;
+    }
+    #music-title {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    #music-player button {
+      padding: 5px 10px;
+      background: #5865F2;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin: 2px 0;
+      cursor: pointer;
+    }
+    #music-player button:hover {
+      opacity: 0.8;
+    }
   </style>
 </head>
 <body>
   <h1>BSCMC.PL</h1>
   <div class="subtitle">IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3 +</strong></div>
 
-  <!-- Social media -->
   <div>
     <a href="https://discord.gg/9dt99b3NFG" class="button" target="_blank">
       <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord"> Discord
@@ -148,7 +176,6 @@
     </a>
   </div>
 
-  <!-- Przycisk sklepu i regulaminu obok siebie -->
   <div class="top-buttons">
     <a href="https://yshop.pl/shop/boss" class="button button-shop" target="_blank">🛒 SKLEP SERVERA</a>
     <a href="https://docs.google.com/document/d/1oNBwICgD2GQHxWO3LM2rPjL7VgWXYv0lsQL6ZVgHNks/edit?tab=t.0" class="button button-regulamin" target="_blank">📜 REGULAMIN SERVERA</a>
@@ -161,11 +188,21 @@
     <a href="oneblock.html">🧱 ONE BLOCK</a>
   </div>
 
-  <!-- Generowanie światełek -->
+  <!-- Muzyka -->
+  <div id="music-player">
+    <div id="music-title">Ładowanie...</div>
+    <button id="prev">⏮ Poprzednia</button>
+    <button id="play">▶ Play</button>
+    <button id="next">⏭ Następna</button>
+  </div>
+
+  <!-- Latające światełka -->
   <script>
     const totalLights = 30;
     const w = window.innerWidth;
     const h = window.innerHeight;
+
+    const colors = ["#ff0000","#00ff00","#0000ff","#ffff00","#ff00ff","#00ffff","#ffffff"];
 
     for(let i=0; i<totalLights; i++){
       const light = document.createElement('div');
@@ -174,6 +211,7 @@
       const size = Math.random() * 6 + 4;
       light.style.width = `${size}px`;
       light.style.height = `${size}px`;
+      light.style.background = colors[Math.floor(Math.random()*colors.length)];
 
       const x0 = Math.random() * w;
       const y0 = Math.random() * h;
@@ -196,5 +234,70 @@
       document.body.appendChild(light);
     }
   </script>
+
+  <!-- YouTube API i sterowanie muzyką -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    const tracks = [
+      {url: "6TpyRE_juyA", title: "Utwór 1"},
+      {url: "JBD5_8OGoCo", title: "Utwór 2"},
+      {url: "5IrHb-DnuvA", title: "Utwór 3"},
+      {url: "IQsBEGvQY7U", title: "Utwór 4"},
+      {url: "S6jVzvfZLIA", title: "Utwór 5"},
+    ];
+
+    let currentTrack = 0;
+    let player;
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('ytplayer', {
+        height: '0',
+        width: '0',
+        videoId: tracks[currentTrack].url,
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      updateTitle();
+    }
+
+    function onPlayerStateChange(event) {
+      if(event.data === YT.PlayerState.ENDED) {
+        nextTrack();
+      }
+    }
+
+    function updateTitle() {
+      document.getElementById('music-title').innerText = tracks[currentTrack].title;
+    }
+
+    function playPause() {
+      if(player.getPlayerState() === YT.PlayerState.PLAYING) player.pauseVideo();
+      else player.playVideo();
+    }
+
+    function nextTrack() {
+      currentTrack = (currentTrack + 1) % tracks.length;
+      player.loadVideoById(tracks[currentTrack].url);
+      updateTitle();
+    }
+
+    function prevTrack() {
+      currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
+      player.loadVideoById(tracks[currentTrack].url);
+      updateTitle();
+    }
+
+    document.getElementById('play').addEventListener('click', playPause);
+    document.getElementById('next').addEventListener('click', nextTrack);
+    document.getElementById('prev').addEventListener('click', prevTrack);
+  </script>
+
+  <!-- Ukryty iframe YouTube -->
+  <div id="ytplayer"></div>
 </body>
 </html>
