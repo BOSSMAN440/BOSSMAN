@@ -13,7 +13,7 @@
       padding: 0;
       line-height: 1.6;
       position: relative;
-      overflow-x: hidden; /* scroll w pionie działa normalnie */
+      overflow-x: hidden;
     }
 
     .container {
@@ -21,7 +21,7 @@
       margin: 0 auto;
       padding: 40px 20px;
       position: relative;
-      z-index: 10; /* aby treść była nad świetlami */
+      z-index: 10;
     }
 
     h1 {
@@ -86,17 +86,28 @@
     }
 
     @keyframes float {
-      0% {
-        transform: translateY(0) translateX(0);
-        opacity: 0.8;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100vh) translateX(100px);
-        opacity: 0;
-      }
+      0% { transform: translateY(0) translateX(0); opacity: 0.8; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+    }
+
+    /* Przycisk powrotu */
+    .back-button {
+      display: block;
+      width: max-content;
+      margin: 40px auto;
+      padding: 10px 25px;
+      background: #f39c12;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.3s;
+      text-align: center;
+    }
+
+    .back-button:hover {
+      background: #e67e22;
     }
 
     @media (max-width: 600px) {
@@ -129,7 +140,7 @@
     <h1>🏡 SURVIVAL + DZIAŁKI</h1>
     <p>Odkryj niesamowite możliwości naszego trybu survivalowego z działkami i wieloma dodatkami! Poniżej znajdziesz wszystkie atrakcje i funkcje:</p>
 
-    <h2>SERVER POSIADAD</h2>
+    <h2>SERVER POSIADA</h2>
     <ul>
       <li>Customowe biomy zapewniające różnorodność terenów.</li>
       <li>Nocny Nether od 15:00 do 18:00, a End od 18:00 do 21:00.</li>
@@ -171,7 +182,9 @@
       <li>TNT Run – szybka i emocjonująca rozgrywka.</li>
       <li>Among Us – sprawdź swoją dedukcję i spryt wśród znajomych.</li>
     </ul>
+
+    <!-- Przycisk Powrót -->
+    <a href="index.html" class="back-button">← Powrót</a>
   </div>
 </body>
 </html>
-
