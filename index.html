@@ -3,53 +3,125 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BSCMC.PL - Serwer Minecraft</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <title>STRONA SERVEROWA</title>
   <style>
-    /* Reset i podstawy */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Roboto', sans-serif; overflow-x: hidden; background: #111; color: #fff; }
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(120deg, #1e1e1e, #2c2c2c, #1e1e1e);
+      background-size: 400% 400%;
+      animation: gradientMove 15s ease infinite;
+      color: white;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
 
-    /* Hero Section */
-    .hero {
-      height: 100vh;
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Pasek zakładek */
+    nav {
       display: flex;
-      flex-direction: column;
       justify-content: center;
-      align-items: center;
+      background: rgba(0,0,0,0.6);
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+    nav a {
+      margin: 0 20px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: #f1c40f; }
+
+    h1 {
+      font-size: 3em;
+      margin: 20px 0 10px 0;
       text-align: center;
       position: relative;
-      overflow: hidden;
+      z-index: 1;
+    }
+    .subtitle {
+      font-size: 1.2em;
+      color: #ccc;
+      margin-bottom: 30px;
+      text-align: center;
     }
 
-    /* Animowane tło cząsteczek */
-    #particles-js {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: 0;
+    /* Przyciski główne */
+    .button {
+      display: inline-flex;
+      align-items: center;
+      margin: 10px;
+      padding: 15px 25px;
+      background-color: #5865F2;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 1.2em;
+      transition: all 0.3s;
+      position: relative;
+    }
+    .button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255,255,255,0.3);
+      opacity: 0.85;
+    }
+    .button.twitch { background-color: #9146FF; }
+    .button.tiktok { background-color: #25F4EE; color: #000; }
+    .button.youtube { background-color: #FF0000; }
+    .button img { width: 24px; height: 24px; margin-right: 10px; }
+
+    .top-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+    .button-shop { background: linear-gradient(90deg, #f39c12, #f1c40f, #e74c3c); font-weight: bold; }
+    .button-regulamin { background: linear-gradient(90deg, #3498db, #2980b9); font-weight: bold; }
+
+    .mode-buttons { text-align: center; margin-top: 20px; }
+    .mode-buttons a {
+      display: inline-block;
+      margin: 10px;
+      padding: 15px 25px;
+      background-color: #2ecc71;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 1.2em;
+      transition: all 0.3s;
+    }
+    .mode-buttons a:hover {
+      background: linear-gradient(90deg, #2ecc71, #27ae60, #16a085);
+      box-shadow: 0 0 20px rgba(46, 204, 113, 0.5);
+      transform: scale(1.05);
     }
 
-    .hero h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 4em;
-      background: linear-gradient(90deg, #f39c12, #e74c3c, #9b59b6, #3498db);
+    /* Fancy Title */
+    .fancy-title {
+      font-size: 3em;
+      font-weight: bold;
+      background: linear-gradient(90deg, #f39c12, #f1c40f, #e74c3c, #9b59b6);
       background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: gradientText 5s ease infinite;
-      z-index: 1;
-      position: relative;
-    }
-
-    .hero p {
-      font-size: 1.5em;
-      margin-top: 10px;
-      color: #ccc;
-      z-index: 1;
-      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      display: inline-block;
+      animation: gradientText 3s ease infinite, glow 2s infinite alternate;
+      margin-bottom: 20px;
+      text-align: center;
     }
 
     @keyframes gradientText {
@@ -57,172 +129,110 @@
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
-    /* CTA Buttons */
-    .cta-buttons {
-      margin-top: 30px;
-      display: flex;
-      gap: 20px;
-      z-index: 1;
-      position: relative;
-      flex-wrap: wrap;
-      justify-content: center;
+    @keyframes glow {
+      0% { text-shadow: 0 0 5px #f39c12, 0 0 10px #f1c40f, 0 0 15px #e74c3c; }
+      50% { text-shadow: 0 0 10px #f39c12, 0 0 20px #f1c40f, 0 0 30px #e74c3c; }
+      100% { text-shadow: 0 0 5px #f39c12, 0 0 10px #f1c40f, 0 0 15px #e74c3c; }
     }
 
-    .cta-buttons a {
-      padding: 15px 30px;
-      text-decoration: none;
-      font-size: 1.2em;
-      font-weight: 500;
-      border-radius: 12px;
-      transition: 0.3s;
-      color: #fff;
-      box-shadow: 0 0 10px rgba(255,255,255,0.2);
-    }
-
-    .cta-buttons a.join { background: linear-gradient(90deg, #1abc9c, #16a085); }
-    .cta-buttons a.shop { background: linear-gradient(90deg, #f39c12, #e74c3c); }
-
-    .cta-buttons a:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(255,255,255,0.4);
-    }
-
-    /* Sekcja trybów */
-    .modes {
-      padding: 80px 20px;
-      display: flex;
-      gap: 40px;
-      flex-wrap: wrap;
-      justify-content: center;
-      background: #111;
-    }
-
-    .mode-card {
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 30px;
-      width: 250px;
-      text-align: center;
-      transition: 0.3s;
-      cursor: pointer;
-    }
-
-    .mode-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 25px rgba(255,255,255,0.3);
-    }
-
-    .mode-card h3 {
-      font-size: 1.5em;
-      margin-bottom: 10px;
-    }
-
-    .mode-card p {
-      color: #ccc;
-    }
-
-    /* Sekcja social media */
-    .social {
-      padding: 80px 20px;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      flex-wrap: wrap;
-    }
-
-    .social a {
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    /* Światełka */
+    .light {
+      position: absolute;
       border-radius: 50%;
-      transition: 0.3s;
+      pointer-events: none;
+      opacity: 0.7;
+      animation: float linear infinite;
     }
-
-    .social a img { width: 40px; height: 40px; }
-
-    .social a:hover { transform: scale(1.2); }
-
-    .social .discord { background: #7289da; }
-    .social .twitch { background: #9146ff; }
-    .social .youtube { background: #ff0000; }
-    .social .tiktok { background: #25f4ee; }
-
-    /* Footer */
-    footer {
-      padding: 40px 20px;
-      text-align: center;
-      background: #0a0a0a;
-      font-size: 0.9em;
-      color: #888;
+    @keyframes float {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(var(--x1), var(--y1)); }
+      50% { transform: translate(var(--x2), var(--y2)); }
+      75% { transform: translate(var(--x3), var(--y3)); }
+      100% { transform: translate(var(--x4), var(--y4)); }
     }
   </style>
 </head>
 <body>
-  <!-- Hero Section -->
-  <section class="hero">
-    <div id="particles-js"></div>
-    <h1>BSCMC.PL</h1>
-    <p>Wejdź do świata przygody, walki i kreatywności!</p>
-    <div class="cta-buttons">
-      <a href="#" class="join">Dołącz teraz!</a>
-      <a href="#" class="shop">Sklep serwera</a>
-    </div>
-  </section>
 
-  <!-- Sekcja trybów -->
-  <section class="modes">
-    <div class="mode-card">
-      <h3>🏡 SURVIVAL + DZIAŁKI</h3>
-      <p>Buduj, przetrwaj i rozwijaj swoje działki w świecie pełnym przygód.</p>
-    </div>
-    <div class="mode-card">
-      <h3>🧱 ONEBLOCK</h3>
-      <p>Zaczynasz od jednego bloku i tworzysz niesamowite struktury!</p>
-    </div>
-  </section>
+  <!-- Pasek zakładek -->
+  <nav>
+    <a href="#social">Media</a>
+    <a href="#shop">Sklep</a>
+    <a href="#rules">Regulamin</a>
+    <a href="#modes">Tryby</a>
+  </nav>
 
-  <!-- Sekcja social media -->
-  <section class="social">
-    <a href="#" class="discord" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord"></a>
-    <a href="#" class="twitch" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"></a>
-    <a href="#" class="youtube" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"></a>
-    <a href="#" class="tiktok" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok"></a>
-  </section>
+  <h1>BSCMC.PL</h1>
+  <div class="subtitle">IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3 +</strong></div>
 
-  <!-- Footer -->
-  <footer>
-    © 2025 BSCMC.PL | IP: BSCMC.PL | Wszystkie prawa zastrzeżone
-  </footer>
+  <!-- Social Media -->
+  <div id="social" style="text-align:center;">
+    <a href="https://discord.gg/9dt99b3NFG" class="button" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord"> Discord
+    </a>
+    <a href="https://www.twitch.tv/98bossman98" class="button twitch" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"> Twitch
+    </a>
+    <a href="https://www.tiktok.com/@bscmc.pl" class="button tiktok" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok"> TikTok
+    </a>
+    <a href="https://www.youtube.com/@BOSSCRAFTMCPL" class="button youtube" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"> YouTube
+    </a>
+  </div>
 
-  <!-- tsParticles -->
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+  <!-- Sklep i regulamin -->
+  <div id="shop" class="top-buttons">
+    <a href="https://yshop.pl/shop/boss" class="button button-shop" target="_blank">🛒 SKLEP SERVERA</a>
+    <a href="https://docs.google.com/document/d/1oNBwICgD2GQHxWO3LM2rPjL7VgWXYv0lsQL6ZVgHNks/edit?tab=t.0" class="button button-regulamin" target="_blank" id="rules">📜 REGULAMIN SERVERA</a>
+  </div>
+
+  <!-- Tryby serwera -->
+  <h2 class="fancy-title" id="modes">INFORMACJE O TRYBACH</h2>
+  <div class="mode-buttons">
+    <a href="survival.html">🏡 SURVIVAL + DZIAŁKI</a>
+    <a href="oneblock.html">🧱 ONE BLOCK</a>
+  </div>
+
+  <!-- Kolorowe światełka -->
   <script>
-    tsParticles.load("particles-js", {
-      background: { color: { value: "#111" } },
-      fpsLimit: 60,
-      interactivity: { 
-        events: {
-          onHover: { enable: true, mode: "repulse" },
-          onClick: { enable: true, mode: "push" }
-        }
-      },
-      particles: {
-        color: { value: ["#f39c12", "#e74c3c", "#9b59b6", "#3498db"] },
-        links: { enable: true, color: "#fff", distance: 150, opacity: 0.2, width: 1 },
-        collisions: { enable: false },
-        move: { direction: "none", enable: true, outModes: { default: "bounce" }, speed: 2 },
-        number: { density: { enable: true, area: 800 }, value: 80 },
-        opacity: { value: 0.7 },
-        shape: { type: "circle" },
-        size: { value: { min: 2, max: 5 } }
-      },
-      detectRetina: true
-    });
+    const totalLights = 30;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
+    for(let i = 0; i < totalLights; i++) {
+      const light = document.createElement('div');
+      light.classList.add('light');
+
+      const size = Math.random() * 6 + 4;
+      light.style.width = `${size}px`;
+      light.style.height = `${size}px`;
+
+      const x0 = Math.random() * w;
+      const y0 = Math.random() * h;
+
+      light.style.setProperty('--x1', (Math.random() * w - x0) + 'px');
+      light.style.setProperty('--y1', (Math.random() * h - y0) + 'px');
+      light.style.setProperty('--x2', (Math.random() * w - x0) + 'px');
+      light.style.setProperty('--y2', (Math.random() * h - y0) + 'px');
+      light.style.setProperty('--x3', (Math.random() * w - x0) + 'px');
+      light.style.setProperty('--y3', (Math.random() * h - y0) + 'px');
+      light.style.setProperty('--x4', (Math.random() * w - x0) + 'px');
+      light.style.setProperty('--y4', (Math.random() * h - y0) + 'px');
+
+      light.style.left = `${x0}px`;
+      light.style.top = `${y0}px`;
+
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+      light.style.background = `rgba(${r}, ${g}, ${b}, 0.7)`;
+      light.style.animationDuration = `${5 + Math.random() * 15}s`;
+      light.style.animationDelay = `${Math.random() * 10}s`;
+
+      document.body.appendChild(light);
+    }
   </script>
+
 </body>
 </html>
