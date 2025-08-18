@@ -15,19 +15,22 @@
       position: relative;
     }
 
-    /* Animowane światła */
+    /* Latające światła */
     .light {
       position: absolute;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.8);
       pointer-events: none;
-      animation: float 10s linear infinite;
+      opacity: 0.7;
+      animation: float linear infinite;
     }
 
     @keyframes float {
-      0% { transform: translateY(100vh) translateX(0); opacity: 0; }
-      10% { opacity: 1; }
-      100% { transform: translateY(-10vh) translateX(50vw); opacity: 0; }
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(calc(var(--x1) * 1px), calc(var(--y1) * 1px)); }
+      50% { transform: translate(calc(var(--x2) * 1px), calc(var(--y2) * 1px)); }
+      75% { transform: translate(calc(var(--x3) * 1px), calc(var(--y3) * 1px)); }
+      100% { transform: translate(calc(var(--x4) * 1px), calc(var(--y4) * 1px)); }
     }
 
     h1 {
@@ -143,15 +146,37 @@
   <!-- Generowanie światełek -->
   <script>
     const totalLights = 30;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
     for(let i=0; i<totalLights; i++){
       const light = document.createElement('div');
       light.classList.add('light');
-      const size = Math.random() * 6 + 4; // rozmiar od 4px do 10px
+
+      const size = Math.random() * 6 + 4;
       light.style.width = `${size}px`;
       light.style.height = `${size}px`;
-      light.style.left = `${Math.random() * 100}vw`;
-      light.style.animationDuration = `${5 + Math.random() * 10}s`;
+
+      // Losowe współrzędne startowe
+      const x0 = Math.random() * w;
+      const y0 = Math.random() * h;
+
+      // Losowe punkty ruchu
+      light.style.setProperty('--x1', (Math.random() * w - x0));
+      light.style.setProperty('--y1', (Math.random() * h - y0));
+      light.style.setProperty('--x2', (Math.random() * w - x0));
+      light.style.setProperty('--y2', (Math.random() * h - y0));
+      light.style.setProperty('--x3', (Math.random() * w - x0));
+      light.style.setProperty('--y3', (Math.random() * h - y0));
+      light.style.setProperty('--x4', (Math.random() * w - x0));
+      light.style.setProperty('--y4', (Math.random() * h - y0));
+
+      light.style.left = `${x0}px`;
+      light.style.top = `${y0}px`;
+
+      light.style.animationDuration = `${10 + Math.random() * 10}s`;
       light.style.animationDelay = `${Math.random() * 10}s`;
+
       document.body.appendChild(light);
     }
   </script>
