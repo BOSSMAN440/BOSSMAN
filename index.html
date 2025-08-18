@@ -54,7 +54,7 @@
       z-index: 1;
     }
 
-    /* Przycisk social media */
+    /* Przyciski główne */
     .button {
       display: inline-flex;
       align-items: center;
@@ -116,7 +116,6 @@
       width: fit-content;
       font-size: 1.2em;
       transition: all 0.3s;
-      position: relative;
     }
     .mode-buttons a:hover {
       background: linear-gradient(90deg, #2ecc71, #27ae60, #16a085);
@@ -152,14 +151,6 @@
       50% { text-shadow: 0 0 10px #f39c12, 0 0 20px #f1c40f, 0 0 30px #e74c3c; }
       100% { text-shadow: 0 0 5px #f39c12, 0 0 10px #f1c40f, 0 0 15px #e74c3c; }
     }
-
-    .player-count {
-      font-size: 1em;
-      color: #ffcc00;
-      margin-top: 5px;
-      position: relative;
-      z-index: 1;
-    }
   </style>
 </head>
 <body>
@@ -191,18 +182,8 @@
   <h2 class="fancy-title">INFORMACJE O TRYBACH</h2>
 
   <div class="mode-buttons">
-    <a href="survival.html">🏡 SURVIVAL + DZIAŁKI
-      <div class="player-count" id="survival-count">Ładuję...</div>
-    </a>
-    <a href="oneblock.html">🧱 ONE BLOCK
-      <div class="player-count" id="oneblock-count">Ładuję...</div>
-    </a>
-    <a href="lobby.html">🎮 LOBBY
-      <div class="player-count" id="lobby-count">Ładuję...</div>
-    </a>
-    <a>👥 ŁĄCZNIE
-      <div class="player-count" id="total-count">Ładuję...</div>
-    </a>
+    <a href="survival.html">🏡 SURVIVAL + DZIAŁKI</a>
+    <a href="oneblock.html">🧱 ONE BLOCK</a>
   </div>
 
   <!-- Kolorowe światełka -->
@@ -240,33 +221,12 @@
       const b = Math.floor(Math.random() * 256);
       light.style.background = `rgba(${r}, ${g}, ${b}, 0.7)`;
 
+      // Delikatny parallax: różna prędkość
       light.style.animationDuration = `${5 + Math.random() * 15}s`;
       light.style.animationDelay = `${Math.random() * 10}s`;
 
       document.body.appendChild(light);
     }
-
-    // Funkcja symulująca pobranie liczby graczy (tutaj można użyć prawdziwego API)
-    function getPlayers(ip) {
-      // Przykładowe losowe liczby graczy
-      return Math.floor(Math.random() * 50);
-    }
-
-    function updatePlayerCounts() {
-      const survival = getPlayers('pl12.chsrv.pl:52046');
-      const oneblock = getPlayers('pl4.chsrv.pl:52000');
-      const lobby = getPlayers('pl3.chsrv.pl:52093');
-      const total = survival + oneblock + lobby;
-
-      document.getElementById('survival-count').textContent = `Gracze: ${survival}`;
-      document.getElementById('oneblock-count').textContent = `Gracze: ${oneblock}`;
-      document.getElementById('lobby-count').textContent = `Gracze: ${lobby}`;
-      document.getElementById('total-count').textContent = `Łącznie: ${total}`;
-    }
-
-    // Aktualizacja co 10 sekund
-    updatePlayerCounts();
-    setInterval(updatePlayerCounts, 10000);
   </script>
 </body>
 </html>
