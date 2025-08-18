@@ -33,31 +33,13 @@
       font-size: 1.2em;
       transition: background-color 0.3s;
     }
-    .button.twitch {
-      background-color: #9146FF;
-    }
-    .button.youtube {
-      background-color: #FF0000;
-    }
-    .button.tiktok {
-      background-color: #69C9D0;
-    }
-    .button:hover {
-      opacity: 0.85;
-    }
-    .button img {
-      width: 24px;
-      height: 24px;
-      margin-right: 10px;
-    }
-    .mode-section h2 {
-      font-size: 2em;
-      margin-bottom: 20px;
-      color: #f1c40f; /* złoty kolor */
-    }
-    .mode-buttons {
-      margin-top: 20px;
-    }
+    .button.twitch { background-color: #9146FF; }
+    .button.tiktok { background-color: #25F4EE; color: #000; }
+    .button.youtube { background-color: #FF0000; }
+    .button:hover { opacity: 0.85; }
+    .button img { width: 24px; height: 24px; margin-right: 10px; }
+    .ip-info { margin: 30px 0 10px; font-size: 1.3em; }
+    .mode-buttons { margin-top: 20px; }
     .mode-buttons a {
       display: block;
       margin: 10px auto;
@@ -70,8 +52,25 @@
       font-size: 1.2em;
       transition: background-color 0.3s;
     }
-    .mode-buttons a:hover {
-      background-color: #27ae60;
+    .mode-buttons a:hover { background-color: #27ae60; }
+
+    /* Styl napisu TRYBY */
+    .fancy-title {
+      font-size: 3em;
+      font-weight: bold;
+      background: linear-gradient(90deg, #f39c12, #f1c40f, #e74c3c, #9b59b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      display: inline-block;
+      animation: glow 2s infinite alternate;
+      margin-bottom: 20px;
+    }
+    @keyframes glow {
+      0% { text-shadow: 0 0 5px #f39c12, 0 0 10px #f1c40f, 0 0 15px #e74c3c; }
+      50% { text-shadow: 0 0 10px #f39c12, 0 0 20px #f1c40f, 0 0 30px #e74c3c; }
+      100% { text-shadow: 0 0 5px #f39c12, 0 0 10px #f1c40f, 0 0 15px #e74c3c; }
     }
   </style>
 </head>
@@ -87,19 +86,18 @@
       <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"> Twitch
     </a>
     <a href="https://www.tiktok.com/@bscmc.pl" class="button tiktok" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046125.png" alt="TikTok"> TikTok
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok"> TikTok
     </a>
     <a href="https://www.youtube.com/@BOSSCRAFTMCPL" class="button youtube" target="_blank">
       <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"> YouTube
     </a>
   </div>
 
-  <div class="mode-section">
-    <h2>TRYBY</h2>
-    <div class="mode-buttons">
-      <a href="survival.html">🏡 SURVIVAL + DZIAŁKI</a>
-      <a href="oneblock.html">🧱 ONE BLOCK</a>
-    </div>
+  <h2 class="fancy-title">TRYBY</h2>
+
+  <div class="mode-buttons">
+    <a href="survival.html">🏡 SURVIVAL + DZIAŁKI</a>
+    <a href="oneblock.html">🧱 ONE BLOCK</a>
   </div>
 </body>
 </html>
