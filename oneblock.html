@@ -53,20 +53,28 @@
     li:hover {
       background: rgba(255, 255, 255, 0.15);
     }
-    a.back {
-      display: inline-block;
-      margin-top: 40px;
-      padding: 10px 20px;
-      background-color: #3498db;
-      color: white;
+
+    /* Przycisk powrotu */ 
+    .back-button {
+      display: block;
+      width: max-content;
+      margin: 40px auto;
+      padding: 10px 25px;
+      background: #f39c12;
+      color: #fff;
+      font-weight: bold;
       text-decoration: none;
       border-radius: 8px;
+      transition: background 0.3s;
+      text-align: center;
       position: relative;
       z-index: 20;
     }
-    a.back:hover {
-      background-color: #2980b9;
+
+    .back-button:hover {
+      background: #e67e22;
     }
+
     /* Kolorowe latające kulki */
     .floating-light {
       position: fixed;
@@ -111,7 +119,8 @@
       <li>✨ <strong>I wiele innych atrakcji:</strong> odkrywaj sekrety, bierz udział w eventach i rozwijaj wyspę według własnych pomysłów!</li>
     </ul>
   </div>
-  <a href="index.html" class="back">← Powrót</a>
+
+  <a href="index.html" class="back-button">← Powrót</a>
 
   <!-- Skrypt świetlnych kulek -->
   <script>
