@@ -5,125 +5,174 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BSCMC.PL</title>
   <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(270deg, #0e0e0e, #1a1a1a, #0e0e0e);
+      background-size: 600% 600%;
+      animation: gradientBG 20s ease infinite;
       color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      position: relative;
     }
 
-    header {
-      text-align: center;
-      padding: 50px 20px;
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url("https://www.transparenttextures.com/patterns/stardust.png");
+      opacity: 0.3;
+      z-index: 0;
     }
 
     h1 {
-      font-size: 3em;
-      background: linear-gradient(90deg, #00ffff, #ff00ff);
+      font-size: 4em;
+      text-transform: uppercase;
+      letter-spacing: 8px;
+      background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff);
+      background-size: 300%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: gradient 3s infinite alternate;
+      animation: titleGradient 6s infinite linear;
+      margin-bottom: 10px;
+      z-index: 1;
     }
 
-    @keyframes gradient {
-      0% {background-position: 0% 50%;}
-      100% {background-position: 100% 50%;}
+    @keyframes titleGradient {
+      0% { background-position: 0%; }
+      100% { background-position: 300%; }
     }
 
-    .social-buttons, .mode-buttons {
+    .subtitle {
+      font-size: 1.3em;
+      color: #aaa;
+      margin-bottom: 20px;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .top-buttons, .mode-buttons {
       display: flex;
-      justify-content: center;
-      gap: 15px;
+      gap: 20px;
       flex-wrap: wrap;
-      margin: 20px 0;
+      justify-content: center;
+      z-index: 1;
+      margin-bottom: 30px;
     }
 
     .button {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(255,255,255,0.1);
-      border: none;
-      border-radius: 10px;
-      padding: 10px 20px;
-      color: #fff;
+      justify-content: center;
+      padding: 15px 25px;
+      border-radius: 12px;
+      font-size: 1.2em;
       text-decoration: none;
-      font-weight: bold;
-      transition: transform 0.2s, background 0.2s;
-    }
-
-    .button img {
-      width: 24px;
-      height: 24px;
-    }
-
-    .button:hover {
-      transform: scale(1.05);
-      background: rgba(255,255,255,0.2);
-    }
-
-    h2.mode-title {
-      text-align: center;
-      font-size: 2em;
-      margin-top: 40px;
-      margin-bottom: 20px;
-      background: linear-gradient(90deg, #00ffff, #ff00ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradient 3s infinite alternate;
-    }
-
-    /* FAQ / Accordion */
-    .faq {
-      width: 90%;
-      max-width: 800px;
-      margin: 50px auto;
-    }
-
-    .accordion {
-      background: linear-gradient(90deg, #00ffff, #ff00ff);
       color: #fff;
+      transition: all 0.3s;
+      position: relative;
+      backdrop-filter: blur(6px);
       cursor: pointer;
-      padding: 15px 20px;
-      width: 100%;
-      border: none;
-      text-align: left;
-      outline: none;
-      font-size: 1.1em;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      transition: 0.3s;
-    }
-
-    .accordion:hover {
-      transform: scale(1.02);
-    }
-
-    .panel {
-      background-color: rgba(30,30,30,0.9);
-      color: #ddd;
-      max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease-out;
-      padding: 0 15px;
-      border-radius: 0 0 10px 10px;
+    }
+
+    .button img { width: 24px; height: 24px; margin-right: 10px; }
+
+    .discord { background: #7289da; }
+    .twitch { background: #9146ff; }
+    .tiktok { background: #25f4ee; color: #000; }
+    .youtube { background: #ff0000; }
+
+    .mode-buttons a {
+      background: linear-gradient(135deg, #00ffff, #ff00ff);
+      padding: 15px 30px;
+      border-radius: 15px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.2em;
+      transition: all 0.3s;
+      box-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff;
+    }
+
+    .mode-buttons a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
+    }
+
+    .ip-button {
+      background: linear-gradient(90deg, #00ffcc, #00ccff);
+      margin-top: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .news {
+      margin-top: 50px;
+      padding: 20px;
+      background: rgba(20, 20, 20, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 0 20px #ff00ff;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .news h2 {
       margin-bottom: 10px;
+      color: #ff00ff;
     }
 
-    .panel p {
-      padding: 10px 0;
+    .leaderboard {
+      position: absolute;
+      top: 50px;
+      right: 20px;
+      background: #111;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #00ffff;
+      min-width: 220px;
+      z-index: 1;
     }
 
+    .leaderboard h3 {
+      margin-bottom: 15px;
+      color: #00ffff;
+      text-align: center;
+    }
+
+    .leaderboard .player {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .leaderboard .gold { background: linear-gradient(90deg, #FFD700, #FFA500); color: #000; }
+    .leaderboard .silver { background: linear-gradient(90deg, #C0C0C0, #A9A9A9); color: #000; }
+    .leaderboard .bronze { background: linear-gradient(90deg, #CD7F32, #8B4513); color: #fff; }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>BSCMC.PL</h1>
-  </header>
+  <h1>BSCMC.PL</h1>
+  <div class="subtitle">IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3 +</strong></div>
 
-  <!-- Social media -->
-  <div class="social-buttons">
+  <!-- Social Media -->
+  <div class="top-buttons">
     <a href="https://discord.gg/9dt99b3NFG" class="button discord" target="_blank">
       <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord"> Discord
     </a>
@@ -138,55 +187,38 @@
     </a>
   </div>
 
-  <!-- Tryby -->
-  <h2 class="mode-title">TRYBY</h2>
+  <!-- TRYBY -->
+  <h2 class="subtitle" style="background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: titleGradient 6s infinite linear; margin-top: 30px;">
+    TRYBY
+  </h2>
+
   <div class="mode-buttons">
-    <a href="survival.html" class="button">Działki</a>
-    <a href="oneblock.html" class="button">OneBlock</a>
+    <a href="survival.html">🏡 Działki</a>
+    <a href="oneblock.html">🧱 OneBlock</a>
   </div>
 
-  <!-- FAQ / Rozwijane podpowiedzi -->
-  <div class="faq">
-    <h2 style="text-align:center; margin-bottom:20px;">❓ Najczęściej zadawane pytania</h2>
+  <!-- IP Button -->
+  <button class="button ip-button" onclick="copyIP()">📋 Kopiuj IP: BSCMC.PL</button>
 
-    <button class="accordion">🟢 Z jakiej wersji gracz wejdzie na serwer?</button>
-    <div class="panel">
-      <p>Serwer obsługuje wersje od <strong>1.21.3+</strong>. Starsze wersje mogą mieć problemy z łączeniem.</p>
-    </div>
+  <!-- Aktualności -->
+  <div class="news">
+    <h2>📢 Aktualności</h2>
+    <p>🎁 Co sobotę o <strong>20:00</strong> rozdawanie kluczy!</p>
+  </div>
 
-    <button class="accordion">💎 Czy gracz wejdzie z konta Premium i Non-Premium?</button>
-    <div class="panel">
-      <p>Tak, zarówno konta Premium jak i Non-Premium mogą dołączyć do serwera.</p>
-    </div>
-
-    <button class="accordion">🌍 Jak wejść na serwer?</button>
-    <div class="panel">
-      <p>W grze kliknij "Multiplayer" → "Dodaj serwer" i wpisz IP: <strong>BSCMC.PL</strong>.</p>
-    </div>
-
-    <button class="accordion">🕹️ Jakie tryby są dostępne?</button>
-    <div class="panel">
-      <p>Dostępne tryby to: <strong>Działki</strong> i <strong>OneBlock</strong>. Wybierz odpowiedni tryb z przycisków powyżej.</p>
-    </div>
-
-    <button class="accordion">🎁 Czy są eventy i rozdania?</button>
-    <div class="panel">
-      <p>Co sobotę o <strong>20:00</strong> organizujemy rozdania kluczy i eventy dla graczy.</p>
-    </div>
+  <!-- Leaderboard -->
+  <div class="leaderboard">
+    <h3>Topka graczy</h3>
+    <div class="player gold"><span>🥇 salatkaowocowa</span><span>120 zł</span></div>
+    <div class="player silver"><span>🥈 BloomFire000</span><span>104 zł</span></div>
+    <div class="player bronze"><span>🥉 michalek</span><span>80 zł</span></div>
   </div>
 
   <script>
-    var acc = document.getElementsByClassName("accordion");
-    for (var i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var panel = this.nextElementSibling;
-        if (panel.style.maxHeight) {
-          panel.style.maxHeight = null;
-        } else {
-          panel.style.maxHeight = panel.scrollHeight + "px";
-        } 
-      });
+    function copyIP() {
+      navigator.clipboard.writeText("BSCMC.PL")
+        .then(() => { alert("IP serwera zostało skopiowane!"); })
+        .catch(err => { alert("Błąd kopiowania IP."); });
     }
   </script>
 
