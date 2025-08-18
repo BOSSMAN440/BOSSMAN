@@ -12,6 +12,8 @@
       padding: 40px;
       text-align: center;
       line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
     }
     h1 {
       font-size: 3em;
@@ -24,6 +26,8 @@
       text-align: left;
       max-width: 800px;
       margin: 0 auto;
+      position: relative;
+      z-index: 10;
     }
     h2 {
       font-size: 1.8em;
@@ -57,9 +61,27 @@
       color: white;
       text-decoration: none;
       border-radius: 8px;
+      position: relative;
+      z-index: 20;
     }
     a.back:hover {
       background-color: #2980b9;
+    }
+    /* Kolorowe latające kulki */
+    .floating-light {
+      position: fixed;
+      pointer-events: none;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: float linear infinite;
+      z-index: 1;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0); opacity: 0.8; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
     }
     @media (max-width: 600px) {
       h1 { font-size: 2em; }
@@ -90,6 +112,23 @@
     </ul>
   </div>
   <a href="index.html" class="back">← Powrót</a>
+
+  <!-- Skrypt świetlnych kulek -->
+  <script>
+    const colors = ['#f39c12', '#f1c40f', '#e74c3c', '#9b59b6', '#1abc9c', '#3498db'];
+    const numLights = 40;
+
+    for (let i = 0; i < numLights; i++) {
+      const light = document.createElement('div');
+      light.classList.add('floating-light');
+      light.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      light.style.left = Math.random() * 100 + 'vw';
+      light.style.top = Math.random() * 100 + 'vh';
+      light.style.width = (5 + Math.random() * 10) + 'px';
+      light.style.height = light.style.width;
+      light.style.animationDuration = (5 + Math.random() * 10) + 's';
+      document.body.appendChild(light);
+    }
+  </script>
 </body>
 </html>
-
