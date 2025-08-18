@@ -5,23 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🏡 SURVIVAL + DZIAŁKI</title>
   <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #1e1e1e;
-      color: #f5f5f5;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      overflow: hidden;
-      position: relative;
-    }
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #1e1e1e;
+  color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  position: relative; /* lub nawet można zostawić static */
+}
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      position: relative;
-      z-index: 10;
+.floating-light {
+  position: fixed; /* zamiast absolute */
+  pointer-events: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255,255,255,0.9);
+  animation: lightFloat linear infinite;
+  z-index: 5;
+}
     }
 
     h1 {
@@ -102,7 +105,7 @@
     <h1>🏡 SURVIVAL + DZIAŁKI</h1>
     <p>Odkryj niesamowite możliwości naszego trybu survivalowego z działkami i wieloma dodatkami! Poniżej znajdziesz wszystkie atrakcje i funkcje:</p>
 
-    <h2>Główne funkcje</h2>
+    <h2>SERVER POSIADA</h2>
     <ul>
       <li>Customowe biomy zapewniające różnorodność terenów.</li>
       <li>Nocny Nether od 15:00 do 18:00, a End od 18:00 do 21:00.</li>
@@ -161,3 +164,4 @@
   </script>
 </body>
 </html>
+
