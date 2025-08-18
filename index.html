@@ -1,178 +1,144 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BSCMC.PL - Minecraft 1.21.3</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        /* Reset i podstawowe style */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BSCMC.PL</title>
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            background: url('https://i.imgur.com/8YdZxR0.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #0e0e0e;
+      color: #fff;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+    }
 
-        header {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
+    /* Tytuł */
+    h1 {
+      font-size: 4em;
+      text-transform: uppercase;
+      letter-spacing: 8px;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+      animation: pulse 2s infinite;
+      margin-bottom: 10px;
+    }
 
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff; }
+      50% { text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px #00ffff; }
+    }
 
-        header p {
-            font-size: 1.2rem;
-            color: #ddd;
-        }
+    .subtitle {
+      font-size: 1.3em;
+      color: #aaa;
+      margin-bottom: 40px;
+    }
 
-        nav {
-            margin: 20px 0;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
+    /* Przyciski */
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 10px;
+      padding: 15px 25px;
+      border-radius: 12px;
+      font-size: 1.2em;
+      text-decoration: none;
+      color: #fff;
+      transition: all 0.3s;
+      position: relative;
+      backdrop-filter: blur(6px);
+    }
 
-        nav a {
-            text-decoration: none;
-            padding: 15px 25px;
-            border-radius: 10px;
-            font-weight: bold;
-            color: #fff;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+    .button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+    }
 
-        nav a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-        }
+    .button.discord { background: #7289da; }
+    .button.twitch { background: #9146ff; }
+    .button.tiktok { background: #25f4ee; color: #000; }
+    .button.youtube { background: #ff0000; }
 
-        /* Kolory przycisków */
-        .discord { background: #7289da; }
-        .shop { background: linear-gradient(90deg, #f39c12, #e74c3c); }
-        .twitch { background: #9146ff; }
-        .youtube { background: #ff0000; }
-        .tiktok { background: #25f4ee; color: #000; }
-        .rules { background: linear-gradient(90deg, #3498db, #2980b9); }
+    .button img { width: 24px; height: 24px; margin-right: 10px; }
 
-        /* Sekcje główne */
-        main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px 20px;
-            backdrop-filter: blur(5px);
-            background: rgba(0,0,0,0.5);
-            margin: 20px;
-            border-radius: 20px;
-        }
+    /* Sekcja trybów */
+    .mode-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 30px;
+    }
 
-        section {
-            margin-bottom: 40px;
-            text-align: center;
-        }
+    .mode-buttons a {
+      background: linear-gradient(135deg, #00ffff, #ff00ff);
+      padding: 15px 30px;
+      border-radius: 15px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.2em;
+      transition: all 0.3s;
+      box-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff;
+    }
 
-        section h2 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: #f1c40f;
-        }
+    .mode-buttons a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
+    }
 
-        section p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
+    /* Top buttons */
+    .top-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
 
-        .game-buttons a {
-            display: inline-block;
-            margin: 10px;
-            background: linear-gradient(90deg, #1abc9c, #16a085);
-            color: #fff;
-            font-size: 1.1rem;
-        }
+    .button-shop { background: linear-gradient(90deg, #f39c12, #e74c3c); }
+    .button-regulamin { background: linear-gradient(90deg, #3498db, #9b59b6); }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
-        }
-
-        footer p {
-            color: #ccc;
-        }
-
-        /* Responsywność */
-        @media(max-width: 768px){
-            header h1 {
-                font-size: 2.2rem;
-            }
-            nav a {
-                padding: 12px 18px;
-            }
-        }
-
-    </style>
+  </style>
 </head>
 <body>
 
-<header>
-    <h1>BSCMC.PL</h1>
-    <p>Wersja: 1.21.3 | IP: <strong>BSCMC.PL</strong></p>
-</header>
+  <h1>BSCMC.PL</h1>
+  <div class="subtitle">IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3 +</strong></div>
 
-<nav class="links">
-    <a href="https://discord.gg/example" class="discord">Discord</a>
-    <a href="https://shop.example.com" class="shop">Sklep</a>
-    <a href="https://twitch.tv/example" class="twitch">Twitch</a>
-    <a href="https://youtube.com/example" class="youtube">YouTube</a>
-    <a href="https://tiktok.com/@example" class="tiktok">TikTok</a>
-    <a href="rules.html" class="rules">Regulamin</a>
-</nav>
+  <div class="top-buttons">
+    <a href="https://yshop.pl/shop/boss" class="button button-shop" target="_blank">🛒 SKLEP SERVERA</a>
+    <a href="https://docs.google.com/document/d/1oNBwICgD2GQHxWO3LM2rPjL7VgWXYv0lsQL6ZVgHNks/edit?tab=t.0" class="button button-regulamin" target="_blank">📜 REGULAMIN SERVERA</a>
+  </div>
 
-<main>
-    <section>
-        <h2>Dołącz do gry!</h2>
-        <p>Serwer Minecraft <strong>BSCMC.PL</strong> w wersji 1.21.3 oferuje unikalne tryby gry, pełne przygód i emocji!</p>
-        <div class="game-buttons">
-            <a href="survival.html">🏡 Survival + Działki</a>
-            <a href="oneblock.html">🧱 OneBlock</a>
-        </div>
-    </section>
+  <!-- Social Media -->
+  <div>
+    <a href="https://discord.gg/9dt99b3NFG" class="button discord" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord"> Discord
+    </a>
+    <a href="https://www.twitch.tv/98bossman98" class="button twitch" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"> Twitch
+    </a>
+    <a href="https://www.tiktok.com/@bscmc.pl" class="button tiktok" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok"> TikTok
+    </a>
+    <a href="https://www.youtube.com/@BOSSCRAFTMCPL" class="button youtube" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"> YouTube
+    </a>
+  </div>
 
-    <section>
-        <h2>Co oferujemy?</h2>
-        <p>✅ Stabilny serwer online 24/7<br>
-           ✅ Aktywna społeczność<br>
-           ✅ Ciekawe eventy i nagrody<br>
-           ✅ Wsparcie dla graczy<br>
-           ✅ System rang i ekonomii</p>
-    </section>
-
-    <section>
-        <h2>Kontakt i społeczność</h2>
-        <p>Dołącz do naszego Discorda aby być na bieżąco z eventami, promocjami i nowościami!</p>
-    </section>
-</main>
-
-<footer>
-    <p>&copy; 2025 BSCMC.PL | Wszystkie prawa zastrzeżone</p>
-</footer>
+  <h2 class="subtitle">INFORMACJE O TRYBACH</h2>
+  <div class="mode-buttons">
+    <a href="survival.html">🏡 SURVIVAL + DZIAŁKI</a>
+    <a href="oneblock.html">🧱 ONE BLOCK</a>
+  </div>
 
 </body>
 </html>
