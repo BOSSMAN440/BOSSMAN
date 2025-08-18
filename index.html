@@ -1,297 +1,207 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#101222" />
-  <title>BSCMC.PL — dołącz do gry!</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@600;800&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BSCMC.PL - Serwer Minecraft</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#0b0d13;          /* tło */
-      --card:rgba(255,255,255,.08); /* szkło */
-      --border:rgba(255,255,255,.12);
-      --text:#f5f7ff;
-      --muted:#b9c0d4;
-      --brand:#9b7bff;       /* fiolet */
-      --brand-2:#f6c945;     /* złoto */
-      --accent:#2ecc71;      /* zielony */
-      --danger:#ff4d4d;      /* czerwony */
-      --shadow:0 20px 60px rgba(0,0,0,.45);
-      --radius:20px;
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #0d0d0d;
+      color: white;
+      overflow-x: hidden;
     }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--text); background:radial-gradient(1200px 600px at 10% -10%,#182040 0%, transparent 60%),
-                         radial-gradient(1200px 600px at 110% 10%,#24183f 0%, transparent 60%),
-                         var(--bg);
-      overflow-x:hidden;
+    /* Animowane tło */
+    #tsparticles {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
     }
 
-    /* particles layer */
-    #tsparticles{position:fixed; inset:0; z-index:0}
-
-    /* page container */
-    .container{position:relative; z-index:1; max-width:1100px; margin-inline:auto; padding:28px 20px 64px}
-
-    header{
-      display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:24px;
+    header {
+      text-align: center;
+      padding: 80px 20px 40px;
     }
-    .brand{display:flex; align-items:center; gap:14px; text-decoration:none; color:var(--text)}
-    .logo{width:44px; height:44px; border-radius:12px; background:linear-gradient(135deg,var(--brand),#6a4bff); box-shadow:0 8px 24px rgba(155,123,255,.45); display:grid; place-items:center; font-weight:800; font-family:Orbitron,Inter,sans-serif}
-    .brand h1{font:800 20px/1 Orbitron,Inter,sans-serif; letter-spacing:.06em; margin:0}
 
-    nav .icon-links{display:flex; gap:10px; flex-wrap:wrap}
-    .icon-btn{--s:42px; width:var(--s); height:var(--s); display:grid; place-items:center; border-radius:12px; text-decoration:none; color:#fff; border:1px solid var(--border); background:var(--card); backdrop-filter:blur(10px); box-shadow:var(--shadow); transition:.2s transform,.25s box-shadow}
-    .icon-btn:hover{transform:translateY(-2px)}
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 4em;
+      margin: 0;
+      background: linear-gradient(90deg,#f39c12,#f1c40f,#e74c3c,#9b59b6);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientText 5s ease infinite;
+    }
 
-    /* hero */
-    .hero{margin-top:24px; display:grid; gap:22px; grid-template-columns:1.2fr .8fr; align-items:stretch}
-    @media (max-width:900px){.hero{grid-template-columns:1fr}}
+    @keyframes gradientText {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
 
-    .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow)}
-    .hero-main{padding:28px}
-    .hero-title{font:800 40px/1.05 Orbitron,Inter,sans-serif; letter-spacing:.04em; margin:0 0 10px}
-    .hero-title .accent{background:linear-gradient(90deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent}
-    .hero-sub{color:var(--muted); margin:0 0 18px; font-weight:500}
+    .subtitle {
+      font-size: 1.2em;
+      margin-top: 10px;
+      color: #ccc;
+    }
 
-    .ip-row{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
-    .ip-tag{padding:10px 14px; border-radius:14px; background:rgba(255,255,255,.06); border:1px solid var(--border); font-weight:700; letter-spacing:.03em}
-    .btn{appearance:none; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04)); color:var(--text); padding:10px 14px; border-radius:14px; font-weight:700; cursor:pointer; transition:.2s transform,.25s box-shadow; box-shadow:var(--shadow)}
-    .btn:hover{transform:translateY(-1px)}
-    .btn.copy{display:inline-flex; align-items:center; gap:8px}
-    .note{font-size:12px; color:var(--muted)}
-    .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:rgba(255,255,255,.06)}
-    .pill .dot{width:8px; height:8px; border-radius:50%}
+    .copy-ip {
+      margin-top: 20px;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      color: white;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
 
-    .hero-side{padding:22px}
-    .status-grid{display:grid; gap:12px}
+    .copy-ip:hover {
+      background: rgba(255,255,255,0.2);
+      transform: scale(1.05);
+    }
 
-    /* modes */
-    .section{margin-top:34px}
-    .section h2{font:800 26px/1.2 Orbitron,Inter,sans-serif; letter-spacing:.06em; margin:0 0 14px}
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
 
-    .modes{display:grid; grid-template-columns:repeat(2,1fr); gap:16px}
-    @media (max-width:800px){.modes{grid-template-columns:1fr}}
-    .mode{position:relative; padding:20px; display:flex; gap:16px; align-items:center}
-    .mode:hover{outline:1px solid rgba(255,255,255,.18)}
-    .mode svg{width:36px; height:36px; flex:0 0 36px}
-    .mode h3{margin:0 0 6px; font-size:18px}
-    .mode p{margin:0; color:var(--muted); font-size:14px}
-    .mode .go{margin-left:auto; text-decoration:none; font-weight:700; border:1px solid var(--border); padding:8px 12px; border-radius:12px; color:var(--text)}
+    h2 {
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      font-family: 'Orbitron', sans-serif;
+    }
 
-    /* shop + rules */
-    .quick-links{display:grid; grid-template-columns:1fr 1fr; gap:16px}
-    @media (max-width:700px){.quick-links{grid-template-columns:1fr}}
-    .quick a{display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text)}
-    .quick .emoji{font-size:22px}
+    .cards {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
 
-    /* social section */
-    .socials{display:flex; gap:10px; flex-wrap:wrap}
+    .card {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 30px;
+      width: 280px;
+      transition: all 0.3s;
+    }
 
-    /* gallery */
-    .gallery{display:grid; gap:10px; grid-template-columns:repeat(3,1fr)}
-    @media (max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
-    @media (max-width:600px){.gallery{grid-template-columns:1fr}}
-    .gallery img{width:100%; height:180px; object-fit:cover; border-radius:16px; border:1px solid var(--border); background:#0e111a}
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
 
-    /* faq */
-    details{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:14px 16px}
-    details+details{margin-top:10px}
-    summary{cursor:pointer; font-weight:700}
-    details p{color:var(--muted)}
+    .card-icon {
+      font-size: 3em;
+      margin-bottom: 15px;
+    }
 
-    footer{margin-top:40px; padding:20px; text-align:center; color:var(--muted)}
+    .socials a {
+      display: inline-block;
+      margin: 10px;
+      font-size: 2em;
+      text-decoration: none;
+      color: white;
+      transition: transform 0.3s;
+    }
 
-    /* accessibility */
-    @media (prefers-reduced-motion: reduce){
-      .btn,.icon-btn{transition:none}
+    .socials a:hover {
+      transform: scale(1.2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #aaa;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(8px);
     }
   </style>
 </head>
 <body>
-  <!-- particles background -->
-  <div id="tsparticles" aria-hidden="true"></div>
+  <div id="tsparticles"></div>
+  <header>
+    <h1>BSCMC.PL</h1>
+    <div class="subtitle">IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3+</strong></div>
+    <button class="copy-ip" onclick="copyIP()">📋 Skopiuj IP</button>
+  </header>
 
-  <div class="container">
-    <header>
-      <a class="brand" href="#">
-        <div class="logo">BS</div>
-        <h1>BSCMC.PL</h1>
+  <section>
+    <h2>🎮 Tryby gry</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">⛏️</div>
+        <h3>Survival + Działki</h3>
+        <p>Klasyczny survival z działkami i ekonomią.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧱</div>
+        <h3>OneBlock</h3>
+        <p>Rozpocznij od jednego bloku i rozwijaj świat!</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>🌐 Społeczność</h2>
+    <div class="socials">
+      <a href="https://discord.gg/9dt99b3NFG" target="_blank">💬</a>
+      <a href="https://www.twitch.tv/98bossman98" target="_blank">📺</a>
+      <a href="https://www.tiktok.com/@bscmc.pl" target="_blank">🎵</a>
+      <a href="https://www.youtube.com/@BOSSCRAFTMCPL" target="_blank">▶️</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>🛒 Sklep & 📜 Regulamin</h2>
+    <div class="cards">
+      <a class="card" href="https://yshop.pl/shop/boss" target="_blank">
+        <div class="card-icon">🛒</div>
+        <h3>Sklep serwera</h3>
       </a>
-      <nav>
-        <div class="icon-links">
-          <a class="icon-btn" href="https://discord.gg/9dt99b3NFG" target="_blank" aria-label="Discord" title="Discord">💬</a>
-          <a class="icon-btn" href="https://www.twitch.tv/98bossman98" target="_blank" aria-label="Twitch" title="Twitch">🎮</a>
-          <a class="icon-btn" href="https://www.tiktok.com/@bscmc.pl" target="_blank" aria-label="TikTok" title="TikTok">🎵</a>
-          <a class="icon-btn" href="https://www.youtube.com/@BOSSCRAFTMCPL" target="_blank" aria-label="YouTube" title="YouTube">▶️</a>
-        </div>
-      </nav>
-    </header>
+      <a class="card" href="https://docs.google.com/document/d/1oNBwICgD2GQHxWO3LM2rPjL7VgWXYv0lsQL6ZVgHNks/edit?tab=t.0" target="_blank">
+        <div class="card-icon">📜</div>
+        <h3>Regulamin</h3>
+      </a>
+    </div>
+  </section>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-main card">
-        <h2 class="hero-title">Wejdź na <span class="accent">BSCMC.PL</span></h2>
-        <p class="hero-sub">Serwer Minecraft Java — tryby <strong>Survival + Działki</strong> i <strong>OneBlock</strong>. Wersja <strong>1.21.3+</strong>.</p>
-        <div class="ip-row">
-          <span class="ip-tag" id="ipValue">BSCMC.PL</span>
-          <button class="btn copy" id="copyBtn" type="button">📋 Kopiuj IP</button>
-          <span class="note">Kliknij, aby skopiować i dołącz!</span>
-        </div>
-        <div style="height:10px"></div>
-        <div class="pill" id="statusPill" aria-live="polite">
-          <span class="dot" id="statusDot" style="background:#999"></span>
-          <span id="statusText">Sprawdzam status serwera…</span>
-        </div>
-      </div>
+  <footer>
+    © 2025 BSCMC.PL — Wszelkie prawa zastrzeżone
+  </footer>
 
-      <aside class="hero-side card">
-        <div class="status-grid">
-          <div class="quick">
-            <a href="https://yshop.pl/shop/boss" target="_blank"><span class="emoji">🛒</span><strong>Sklep serwera</strong> — rangi, skrzynie, dodatki</a>
-          </div>
-          <div class="quick">
-            <a href="https://docs.google.com/document/d/1oNBwICgD2GQHxWO3LM2rPjL7VgWXYv0lsQL6ZVgHNks/edit?tab=t.0" target="_blank"><span class="emoji">📜</span><strong>Regulamin</strong> — zasady i bezpieczeństwo</a>
-          </div>
-          <div class="quick">
-            <a href="#faq"><span class="emoji">❓</span><strong>FAQ</strong> — jak dołączyć, mody, wersje</a>
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <!-- MODES -->
-    <section class="section">
-      <h2>Tryby gry</h2>
-      <div class="modes">
-        <article class="mode card">
-          <!-- Kilof (inline SVG) -->
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 21l6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M7 17l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M21 4c-5-2-9 1-10 2L6 11l3 3 5-5c1-1 4-5 7-5Z" fill="currentColor"/></svg>
-          <div>
-            <h3>Survival + Działki</h3>
-            <p>Ekonomia, działki, skrzynie, eventy. Idealny do gry solo i ze znajomymi.</p>
-          </div>
-          <a class="go" href="survival.html">Wejdź</a>
-        </article>
-        <article class="mode card">
-          <!-- Sześcian (inline SVG) -->
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l9 5-9 5-9-5 9-5Z" stroke="currentColor" stroke-width="2"/><path d="M3 7v10l9 5 9-5V7" stroke="currentColor" stroke-width="2"/></svg>
-          <div>
-            <h3>OneBlock</h3>
-            <p>Start od jednego bloku, progres, wyzwania i kooperacja. Wciąga na długie godziny!</p>
-          </div>
-          <a class="go" href="oneblock.html">Wejdź</a>
-        </article>
-      </div>
-    </section>
-
-    <!-- SOCIALS -->
-    <section class="section">
-      <h2>Dołącz do społeczności</h2>
-      <div class="socials">
-        <a class="icon-btn" href="https://discord.gg/9dt99b3NFG" target="_blank" title="Discord">💬</a>
-        <a class="icon-btn" href="https://www.twitch.tv/98bossman98" target="_blank" title="Twitch">🎮</a>
-        <a class="icon-btn" href="https://www.tiktok.com/@bscmc.pl" target="_blank" title="TikTok">🎵</a>
-        <a class="icon-btn" href="https://www.youtube.com/@BOSSCRAFTMCPL" target="_blank" title="YouTube">▶️</a>
-      </div>
-    </section>
-
-    <!-- GALLERY (podmień src na własne screeny) -->
-    <section class="section">
-      <h2>Galeria serwera</h2>
-      <div class="gallery">
-        <img src="https://images.unsplash.com/photo-1611637576108-b6f76185d9f0?q=80&w=1400&auto=format&fit=crop" alt="Spawn serwera" loading="lazy" />
-        <img src="https://images.unsplash.com/photo-1611637575826-c70b745bc5fa?q=80&w=1400&auto=format&fit=crop" alt="Event PvP" loading="lazy" />
-        <img src="https://images.unsplash.com/photo-1611637575488-ac3d2b8cb5b3?q=80&w=1400&auto=format&fit=crop" alt="Budowle graczy" loading="lazy" />
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="section">
-      <h2>FAQ — najczęstsze pytania</h2>
-      <details>
-        <summary>Na jakiej wersji działa serwer?</summary>
-        <p>Aktualnie <strong>1.21.3+</strong> (Java Edition). Zwykle wspieramy kilka ostatnich wersji minor.</p>
-      </details>
-      <details>
-        <summary>Jak dołączyć do serwera?</summary>
-        <p>Skopiuj IP <strong>BSCMC.PL</strong> (przycisk u góry), w kliencie gry wybierz „Multiplayer” → „Add Server” → wklej IP i dołącz.</p>
-      </details>
-      <details>
-        <summary>Czy są wymagane mody?</summary>
-        <p>Nie. Wystarczy czysty klient Java. Polecamy <em>OptiFine</em> lub <em>Sodium</em> dla lepszej wydajności, ale nie są obowiązkowe.</p>
-      </details>
-    </section>
-
-    <footer>
-      © 2025 BSCMC.PL — Wszelkie prawa zastrzeżone. | Kontakt: admin@bscmc.pl
-    </footer>
-  </div>
-
-  <!-- tsParticles CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
   <script>
-    // Particles config
     tsParticles.load("tsparticles", {
-      background: { color: "transparent" },
+      background: { color: "#0d0d0d" },
       particles: {
-        number: { value: 120, density: { enable: true, area: 900 } },
-        color: { value: ["#ffffff", "#cdbbff", "#f6c945"] },
-        opacity: { value: 0.5 },
-        size: { value: { min: 1, max: 3 } },
-        move: { enable: true, speed: 0.7, direction: "none", outModes: { default: "out" } },
-        links: { enable: true, distance: 130, opacity: 0.25 }
+        number: { value: 80 },
+        color: { value: ["#f39c12", "#f1c40f", "#e74c3c", "#9b59b6"] },
+        shape: { type: "circle" },
+        opacity: { value: 0.7 },
+        size: { value: { min: 1, max: 5 } },
+        move: { enable: true, speed: 1 }
       },
       interactivity: {
-        events: { onHover: { enable: true, mode: "repulse" }, onClick: { enable: true, mode: "push" } },
-        modes: { repulse: { distance: 100 }, push: { quantity: 3 } }
+        events: { onHover: { enable: true, mode: "repulse" } },
+        modes: { repulse: { distance: 100 } }
       }
     });
 
-    // Copy IP button
-    const ipValue = document.getElementById('ipValue').textContent.trim();
-    const copyBtn = document.getElementById('copyBtn');
-    copyBtn.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(ipValue);
-        copyBtn.textContent = '✅ Skopiowano!';
-        setTimeout(()=> copyBtn.textContent = '📋 Kopiuj IP', 1400);
-      } catch(err){
-        copyBtn.textContent = '❌ Błąd kopiowania';
-        setTimeout(()=> copyBtn.textContent = '📋 Kopiuj IP', 1600);
-      }
-    });
-
-    // Server status (mcsrvstat.us)
-    const statusText = document.getElementById('statusText');
-    const statusDot  = document.getElementById('statusDot');
-
-    async function fetchStatus(){
-      try{
-        const res = await fetch('https://api.mcsrvstat.us/3/BSCMC.PL', { cache: 'no-store' });
-        const data = await res.json();
-        if(data && data.online){
-          const players = data.players?.online ?? 0;
-          const max     = data.players?.max ?? '?';
-          statusText.textContent = `✅ Serwer online — ${players}/${max} graczy`;
-          statusDot.style.background = 'var(--accent)';
-        } else {
-          statusText.textContent = '⛔ Serwer offline';
-          statusDot.style.background = 'var(--danger)';
-        }
-      } catch(e){
-        statusText.textContent = '⚠️ Nie udało się pobrać statusu';
-        statusDot.style.background = '#999';
-      }
+    function copyIP() {
+      navigator.clipboard.writeText("BSCMC.PL");
+      alert("✅ Skopiowano IP: BSCMC.PL");
     }
-
-    fetchStatus();
-    // odświeżanie co 60s
-    setInterval(fetchStatus, 60000);
   </script>
 </body>
 </html>
