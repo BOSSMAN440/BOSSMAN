@@ -3,141 +3,238 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BSCMC.PL</title>
+  <title>STRONA SERVEROWA</title>
   <style>
-    /* Reset */
+    /* RESET */
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      background: #0e0e0e;
+      font-family: 'Arial', sans-serif;
+      background: #0b0c10;
       color: #fff;
-      text-align: center;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
       overflow-x: hidden;
+      position: relative;
     }
 
-    /* Tytuł */
+    /* GWIEZDNE TŁO */
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: white;
+      opacity: 0.8;
+      pointer-events: none;
+      animation: floatStars linear infinite;
+    }
+
+    @keyframes floatStars {
+      0% { transform: translateY(0) translateX(0); opacity: 0.8; }
+      50% { opacity: 0.3; }
+      100% { transform: translateY(-1000px) translateX(50px); opacity: 0.8; }
+    }
+
+    /* GŁÓWNY KONTEKST */
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 50px 20px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
     h1 {
-      font-size: 4em;
-      text-transform: uppercase;
-      letter-spacing: 8px;
-      color: #00ffff;
-      text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
-      animation: pulse 2s infinite;
+      font-size: 3em;
       margin-bottom: 10px;
     }
 
-    @keyframes pulse {
-      0%, 100% { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff; }
-      50% { text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px #00ffff; }
-    }
-
     .subtitle {
-      font-size: 1.3em;
-      color: #aaa;
-      margin-bottom: 40px;
+      font-size: 1.2em;
+      color: #ccc;
+      margin-bottom: 30px;
     }
 
-    /* Przyciski */
+    /* NEONOWY PODTYTUŁ */
+    .fancy-title {
+      font-size: 2.5em;
+      font-weight: bold;
+      background: linear-gradient(90deg, #ff6ec7, #ffd86e, #6effb0, #6ed8ff);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      display: inline-block;
+      animation: gradientText 4s ease infinite, glow 2s infinite alternate;
+      margin: 30px 0;
+    }
+
+    @keyframes gradientText {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes glow {
+      0% { text-shadow: 0 0 5px #ff6ec7, 0 0 10px #ffd86e; }
+      50% { text-shadow: 0 0 15px #ff6ec7, 0 0 25px #ffd86e; }
+      100% { text-shadow: 0 0 5px #ff6ec7, 0 0 10px #ffd86e; }
+    }
+
+    /* PRZYCISKI ANIMOWANE */
     .button {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       margin: 10px;
       padding: 15px 25px;
-      border-radius: 12px;
-      font-size: 1.2em;
+      background-color: #5865F2;
+      color: white;
       text-decoration: none;
-      color: #fff;
+      border-radius: 10px;
+      font-size: 1.2em;
       transition: all 0.3s;
       position: relative;
-      backdrop-filter: blur(6px);
+      overflow: hidden;
     }
-
-    .button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
-    }
-
-    .button.discord { background: #7289da; }
-    .button.twitch { background: #9146ff; }
-    .button.tiktok { background: #25f4ee; color: #000; }
-    .button.youtube { background: #ff0000; }
 
     .button img { width: 24px; height: 24px; margin-right: 10px; }
 
-    /* Sekcja trybów */
-    .mode-buttons {
+    .button:hover::after {
+      content: '';
+      position: absolute;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      background: rgba(255,255,255,0.15);
+      transform: rotate(45deg);
+      animation: shine 0.7s forwards;
+    }
+
+    @keyframes shine {
+      0% { left: -50%; top: -50%; }
+      100% { left: 150%; top: 150%; }
+    }
+
+    .button.twitch { background-color: #9146FF; }
+    .button.tiktok { background-color: #25F4EE; color: #000; }
+    .button.youtube { background-color: #FF0000; }
+
+    /* SEKCJA O SERWERZE */
+    .about {
+      margin: 50px 0;
+      text-align: center;
+    }
+
+    .stats {
       display: flex;
-      flex-direction: column;
-      gap: 15px;
+      justify-content: center;
+      gap: 50px;
       margin-top: 30px;
-    }
-
-    .mode-buttons a {
-      background: linear-gradient(135deg, #00ffff, #ff00ff);
-      padding: 15px 30px;
-      border-radius: 15px;
-      text-decoration: none;
-      color: #fff;
-      font-size: 1.2em;
-      transition: all 0.3s;
-      box-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff;
-    }
-
-    .mode-buttons a:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
-    }
-
-    /* Top buttons */
-    .top-buttons {
-      display: flex;
-      gap: 20px;
       flex-wrap: wrap;
-      margin-bottom: 40px;
     }
 
-    .button-shop { background: linear-gradient(90deg, #f39c12, #e74c3c); }
-    .button-regulamin { background: linear-gradient(90deg, #3498db, #9b59b6); }
+    .stat {
+      background: rgba(255,255,255,0.1);
+      padding: 20px 40px;
+      border-radius: 15px;
+      font-size: 1.2em;
+      transition: transform 0.3s;
+    }
 
+    .stat:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+
+    /* TOPKA GRACZY PO PRAWEJ */
+    .topka {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.7);
+      padding: 20px;
+      border-radius: 15px;
+      width: 220px;
+      text-align: left;
+      z-index: 10;
+      font-size: 0.95em;
+    }
+
+    .topka h3 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #ffdc00;
+      font-weight: bold;
+      text-shadow: 0 0 5px #ffdc00;
+    }
+
+    .topka .player {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
   </style>
 </head>
 <body>
 
-  <h1>BSCMC.PL</h1>
-  <div class="subtitle">IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3 +</strong></div>
+  <!-- Gwiezdne tło -->
+  <script>
+    const totalStars = 80;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    for(let i=0; i<totalStars; i++){
+      const star = document.createElement('div');
+      star.classList.add('star');
+      const size = Math.random()*3 + 1;
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      star.style.left = `${Math.random()*w}px`;
+      star.style.top = `${Math.random()*h}px`;
+      star.style.animationDuration = `${5 + Math.random()*10}s`;
+      document.body.appendChild(star);
+    }
+  </script>
 
-  <div class="top-buttons">
-    <a href="https://yshop.pl/shop/boss" class="button button-shop" target="_blank">🛒 SKLEP SERVERA</a>
-    <a href="https://docs.google.com/document/d/1oNBwICgD2GQHxWO3LM2rPjL7VgWXYv0lsQL6ZVgHNks/edit?tab=t.0" class="button button-regulamin" target="_blank">📜 REGULAMIN SERVERA</a>
+  <div class="container">
+    <h1>BSCMC.PL</h1>
+    <div class="subtitle">IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3 +</strong></div>
+
+    <!-- Social media -->
+    <div>
+      <a href="https://discord.gg/9dt99b3NFG" class="button" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord"> Discord
+      </a>
+      <a href="https://www.twitch.tv/98bossman98" class="button twitch" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"> Twitch
+      </a>
+      <a href="https://www.tiktok.com/@bscmc.pl" class="button tiktok" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok"> TikTok
+      </a>
+      <a href="https://www.youtube.com/@BOSSCRAFTMCPL" class="button youtube" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"> YouTube
+      </a>
+    </div>
+
+    <!-- Sekcja O serwerze -->
+    <div class="about">
+      <h2 class="fancy-title">O serwerze</h2>
+      <p>BSCMC.PL to serwer Minecraft dla każdego! Przyjdź, zbuduj, poznaj nowych graczy i baw się na naszych eventach!</p>
+      <div class="stats">
+        <div class="stat">💻 Graczy online: 25</div>
+        <div class="stat">🏠 Zbudowane domy: 142</div>
+        <div class="stat">🎉 Aktywne eventy: 3</div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- Social Media -->
-  <div>
-    <a href="https://discord.gg/9dt99b3NFG" class="button discord" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord"> Discord
-    </a>
-    <a href="https://www.twitch.tv/98bossman98" class="button twitch" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"> Twitch
-    </a>
-    <a href="https://www.tiktok.com/@bscmc.pl" class="button tiktok" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok"> TikTok
-    </a>
-    <a href="https://www.youtube.com/@BOSSCRAFTMCPL" class="button youtube" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"> YouTube
-    </a>
-  </div>
-
-  <h2 class="subtitle">INFORMACJE O TRYBACH</h2>
-  <div class="mode-buttons">
-    <a href="survival.html">🏡 SURVIVAL + DZIAŁKI</a>
-    <a href="oneblock.html">🧱 ONE BLOCK</a>
+  <!-- TOPKA GRACZY -->
+  <div class="topka">
+    <h3>Topka</h3>
+    <div class="player"><span>salatkaowocowa</span><span>120 zł</span></div>
+    <div class="player"><span>BloomFire000</span><span>104 zł</span></div>
+    <div class="player"><span>michalek</span><span>80 zł</span></div>
   </div>
 
 </body>
