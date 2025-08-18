@@ -5,26 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🏡 SURVIVAL + DZIAŁKI</title>
   <style>
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #1e1e1e;
-  color: #f5f5f5;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-  position: relative; /* lub nawet można zostawić static */
-}
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #1e1e1e;
+      color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden; /* scroll w pionie działa normalnie */
+    }
 
-.floating-light {
-  position: fixed; /* zamiast absolute */
-  pointer-events: none;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(255,255,255,0.9);
-  animation: lightFloat linear infinite;
-  z-index: 5;
-}
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 10; /* aby treść była nad świetlami */
     }
 
     h1 {
@@ -76,22 +73,30 @@ body {
       border-left: 4px solid #3498db;
     }
 
-    /* Kolorowe latające świetlne kulki */
+    /* Latające kolorowe świetlne kulki */
     .floating-light {
-      position: absolute;
+      position: fixed;
       pointer-events: none;
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      box-shadow: 0 0 10px rgba(255,255,255,0.9);
-      animation: lightFloat linear infinite;
+      opacity: 0.8;
+      animation: float linear infinite;
       z-index: 5;
     }
 
-    @keyframes lightFloat {
-      0% { transform: translateY(0px) translateX(0px); opacity: 0.6; }
-      50% { transform: translateY(-80px) translateX(80px); opacity: 1; }
-      100% { transform: translateY(0px) translateX(0px); opacity: 0.6; }
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.8;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(100px);
+        opacity: 0;
+      }
     }
 
     @media (max-width: 600px) {
@@ -101,11 +106,30 @@ body {
   </style>
 </head>
 <body>
+
+  <!-- Świetlne kulki w tle -->
+  <script>
+    const colors = ['#f39c12', '#f1c40f', '#e74c3c', '#9b59b6', '#1abc9c', '#3498db'];
+    const numLights = 40;
+
+    for (let i = 0; i < numLights; i++) {
+      const light = document.createElement('div');
+      light.classList.add('floating-light');
+      light.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      light.style.left = Math.random() * 100 + 'vw';
+      light.style.top = Math.random() * 100 + 'vh';
+      light.style.width = (5 + Math.random() * 10) + 'px';
+      light.style.height = light.style.width;
+      light.style.animationDuration = (5 + Math.random() * 10) + 's';
+      document.body.appendChild(light);
+    }
+  </script>
+
   <div class="container">
     <h1>🏡 SURVIVAL + DZIAŁKI</h1>
     <p>Odkryj niesamowite możliwości naszego trybu survivalowego z działkami i wieloma dodatkami! Poniżej znajdziesz wszystkie atrakcje i funkcje:</p>
 
-    <h2>SERVER POSIADA</h2>
+    <h2>Główne funkcje</h2>
     <ul>
       <li>Customowe biomy zapewniające różnorodność terenów.</li>
       <li>Nocny Nether od 15:00 do 18:00, a End od 18:00 do 21:00.</li>
@@ -121,9 +145,9 @@ body {
     <div class="drop-list">
 <pre>
 12x Węgiel       50% szansa
-3x Diament       20% szansa
-3x Obsydian      50% szansa
-32x Pszenica     40% szansa
+3x Diament        20% szansa
+3x Obsydian       50% szansa
+32x Pszenica      40% szansa
 5x Sztabek Żelaza 30% szansa
 32x Dębowe Drewno 30% szansa
 4x Złota Sztabka  30% szansa
@@ -148,20 +172,5 @@ body {
       <li>Among Us – sprawdź swoją dedukcję i spryt wśród znajomych.</li>
     </ul>
   </div>
-
-  <script>
-    // Tworzenie kolorowych światełek
-    const colors = ["#ff4d4d","#4dff4d","#4d4dff","#ffff4d","#ff4dff","#4dffff"];
-    for (let i = 0; i < 50; i++) {
-      const light = document.createElement("div");
-      light.className = "floating-light";
-      light.style.top = Math.random() * window.innerHeight + "px";
-      light.style.left = Math.random() * window.innerWidth + "px";
-      light.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      light.style.animationDuration = (3 + Math.random() * 5) + "s";
-      document.body.appendChild(light);
-    }
-  </script>
 </body>
 </html>
-
