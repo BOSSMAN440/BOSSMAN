@@ -6,16 +6,12 @@
   <title>BSCMC.PL - Serwer Minecraft</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* RESET I PODSTAWY */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Roboto', sans-serif; background: #121212; color: #fff; scroll-behavior: smooth; }
-    a { text-decoration: none; color: inherit; }
 
-    /* NAGŁÓWEK I NAWIGACJA */
     header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      background: rgba(20,20,20,0.9);
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(20,20,20,0.95);
       display: flex; justify-content: space-between; align-items: center;
       padding: 15px 50px; z-index: 1000;
       border-bottom: 2px solid #5865F2;
@@ -24,153 +20,69 @@
     nav a { margin-left: 25px; font-weight: 500; transition: 0.3s; }
     nav a:hover { color: #FF6F61; }
 
-    /* HERO SECTION */
     .hero {
       height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
       text-align: center; background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
-      position: relative; overflow: hidden;
+      padding-top: 80px;
     }
-    .hero h2 { font-size: 4em; font-family: 'Orbitron', sans-serif; color: #FF6F61; margin-bottom: 15px; text-shadow: 0 0 10px #FF6F61; }
-    .hero p { font-size: 1.5em; margin-bottom: 30px; color: #ccc; }
-    .hero .hero-buttons a { margin: 10px; padding: 15px 30px; border-radius: 10px; background: #5865F2; color: #fff; font-weight: bold; transition: 0.3s; }
-    .hero .hero-buttons a:hover { transform: scale(1.05); background: #FF6F61; }
+    .hero h2 { font-size: 3.5em; font-family: 'Orbitron', sans-serif; color: #FF6F61; margin-bottom: 20px; text-shadow: 0 0 10px #FF6F61; }
+    .hero p { font-size: 1.5em; margin-bottom: 40px; color: #ccc; }
 
-    /* SEKCJE */
-    section { padding: 100px 50px; max-width: 1200px; margin: 0 auto; }
-    section h2 { font-family: 'Orbitron', sans-serif; font-size: 2.5em; color: #FF6F61; margin-bottom: 50px; text-align: center; }
-
-    /* TRYBY */
-    .modes { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
-    .mode-card {
-      background: #1f1f1f; padding: 30px; border-radius: 15px; width: 250px; text-align: center;
-      transition: 0.3s; box-shadow: 0 0 15px rgba(255,111,97,0.5);
+    .cards-container {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 40px;
     }
-    .mode-card:hover { transform: translateY(-10px); box-shadow: 0 0 25px rgba(255,111,97,0.8); }
-    .mode-card h3 { margin-bottom: 15px; color: #FF6F61; }
-    .mode-card p { color: #ccc; font-size: 0.95em; }
-
-    /* MEDIA SPOŁECZNOŚCIOWE */
-    .socials { display: flex; justify-content: center; gap: 20px; margin-top: 30px; }
-    .socials a { width: 60px; height: 60px; display: flex; justify-content: center; align-items: center;
-      border-radius: 50%; background: #5865F2; transition: 0.3s; }
-    .socials a:hover { transform: scale(1.2); background: #FF6F61; }
-    .socials img { width: 30px; height: 30px; }
-
-    /* SKLEP I REGULAMIN */
-    .top-buttons { display: flex; justify-content: center; gap: 30px; margin-top: 50px; }
-    .top-buttons a { padding: 15px 30px; border-radius: 10px; font-weight: bold; transition: 0.3s; }
-    .shop { background: linear-gradient(90deg, #f39c12, #f1c40f); color: #000; }
-    .shop:hover { transform: scale(1.05); }
-    .rules { background: linear-gradient(90deg, #3498db, #2980b9); }
-    .rules:hover { transform: scale(1.05); }
-
-    /* FOOTER */
-    footer { text-align: center; padding: 50px; color: #888; font-size: 0.9em; background: #111; }
-
-    /* EFEKTY ŚWIATEŁ */
-    .light {
-      position: absolute; border-radius: 50%; pointer-events: none; opacity: 0.5;
-      animation: float linear infinite;
+    .card {
+      background: #1f1f1f; border-radius: 20px; padding: 40px; width: 300px;
+      box-shadow: 0 0 20px rgba(255,111,97,0.5); transition: 0.3s;
     }
-    @keyframes float {
-      0% { transform: translate(0,0); }
-      50% { transform: translate(calc(var(--x)*1px), calc(var(--y)*1px)); }
-      100% { transform: translate(0,0); }
+    .card:hover { transform: translateY(-10px); box-shadow: 0 0 30px rgba(255,111,97,0.8); }
+    .card h3 { color: #FF6F61; margin-bottom: 20px; font-family: 'Orbitron', sans-serif; text-align: center; }
+    .card a {
+      display: block; margin: 10px 0; padding: 15px; border-radius: 12px;
+      background: #5865F2; color: #fff; text-align: center; font-weight: bold; transition: 0.3s;
     }
+    .card a:hover { background: #FF6F61; transform: scale(1.05); }
+
+    footer { text-align: center; padding: 50px; color: #888; font-size: 0.9em; background: #111; margin-top: 50px; }
   </style>
 </head>
 <body>
-  <!-- NAGŁÓWEK -->
   <header>
     <h1>BSCMC.PL</h1>
     <nav>
       <a href="#hero">Home</a>
       <a href="#modes">Tryby</a>
-      <a href="#social">Social</a>
-      <a href="#shop">Sklep</a>
-      <a href="#rules">Regulamin</a>
+      <a href="#links">Linki</a>
     </nav>
   </header>
 
-  <!-- HERO -->
   <section class="hero" id="hero">
     <h2>Witaj na BSCMC.PL</h2>
     <p>Dołącz do najlepszego serwera Minecraft! IP: <strong>BSCMC.PL</strong> | Wersja: <strong>1.21.3+</strong></p>
-    <div class="hero-buttons">
-      <a href="https://discord.gg/9dt99b3NFG" target="_blank">Discord</a>
-      <a href="survival.html">Survival</a>
-      <a href="oneblock.html">One Block</a>
-    </div>
-  </section>
 
-  <!-- TRYBY -->
-  <section id="modes">
-    <h2>Tryby Serwera</h2>
-    <div class="modes">
-      <div class="mode-card">
-        <h3>Survival + Działki</h3>
-        <p>Rozwijaj swoją bazę, handluj z innymi graczami i odkrywaj świat w trybie Survival z dodatkowymi działkami!</p>
+    <div class="cards-container">
+      <!-- KARTA SURVIVAL I ONEBLOCK -->
+      <div class="card" id="modes">
+        <h3>Tryby Serwera</h3>
+        <a href="survival.html">🌿 Survival + Działki</a>
+        <a href="oneblock.html">🪨 One Block</a>
       </div>
-      <div class="mode-card">
-        <h3>One Block</h3>
-        <p>Rozpocznij od jednego bloku i buduj swój świat krok po kroku. Walka, crafting i nieskończone możliwości!</p>
+
+      <!-- KARTA LINKÓW -->
+      <div class="card" id="links">
+        <h3>Linki</h3>
+        <a href="https://discord.gg/9dt99b3NFG" target="_blank">💬 Discord</a>
+        <a href="https://yshop.pl/shop/boss" target="_blank">🛒 Sklep</a>
+        <a href="https://www.twitch.tv/98bossman98" target="_blank">🎮 Twitch</a>
+        <a href="https://www.youtube.com/@BOSSCRAFTMCPL" target="_blank">📺 YouTube</a>
+        <a href="https://www.tiktok.com/@bscmc.pl" target="_blank">🎵 TikTok</a>
+        <a href="https://docs.google.com/document/d/1oNBwICgD2GQHxWO3LM2rPjL7VgWXYv0lsQL6ZVgHNks/edit" target="_blank">📜 Regulamin</a>
       </div>
     </div>
   </section>
 
-  <!-- SOCIAL -->
-  <section id="social">
-    <h2>Znajdź nas w sieci</h2>
-    <div class="socials">
-      <a href="https://discord.gg/9dt99b3NFG" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord"></a>
-      <a href="https://www.twitch.tv/98bossman98" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"></a>
-      <a href="https://www.tiktok.com/@bscmc.pl" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok"></a>
-      <a href="https://www.youtube.com/@BOSSCRAFTMCPL" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"></a>
-    </div>
-  </section>
-
-  <!-- SKLEP -->
-  <section id="shop">
-    <h2>Sklep Servera</h2>
-    <div class="top-buttons">
-      <a href="https://yshop.pl/shop/boss" target="_blank" class="shop">🛒 Odwiedź Sklep</a>
-    </div>
-  </section>
-
-  <!-- REGULAMIN -->
-  <section id="rules">
-    <h2>Regulamin Servera</h2>
-    <div class="top-buttons">
-      <a href="https://docs.google.com/document/d/1oNBwICgD2GQHxWO3LM2rPjL7VgWXYv0lsQL6ZVgHNks/edit" target="_blank" class="rules">📜 Przeczytaj Regulamin</a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
   <footer>
     © 2025 BSCMC.PL | Wszelkie prawa zastrzeżone.
   </footer>
-
-  <!-- LATAJĄCE ŚWIATEŁKA -->
-  <script>
-    const totalLights = 25;
-    const w = window.innerWidth;
-    const h = window.innerHeight;
-
-    for(let i=0;i<totalLights;i++){
-      const light = document.createElement('div');
-      light.classList.add('light');
-      const size = Math.random()*8+3;
-      light.style.width = size+'px';
-      light.style.height = size+'px';
-      light.style.left = Math.random()*w+'px';
-      light.style.top = Math.random()*h+'px';
-      light.style.background = `rgba(${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},0.6)`;
-      light.style.setProperty('--x', (Math.random()*200-100));
-      light.style.setProperty('--y', (Math.random()*200-100));
-      light.style.animationDuration = `${5+Math.random()*10}s`;
-      light.style.animationDelay = `${Math.random()*5}s`;
-      document.body.appendChild(light);
-    }
-  </script>
 </body>
 </html>
