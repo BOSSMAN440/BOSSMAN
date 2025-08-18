@@ -3,205 +3,180 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BSCMC.PL - Serwer Minecraft</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>BSCMC.PL – Minecraft Server</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    /* Global styles */
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: #0d0d0d;
-      color: white;
       overflow-x: hidden;
+      background: #0f0f1a;
+      color: white;
     }
+    a { text-decoration: none; }
 
-    /* Animowane tło */
-    #tsparticles {
+    /* Particles background */
+    #particles-js {
       position: fixed;
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
       z-index: -1;
     }
 
-    header {
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      padding: 80px 20px 40px;
+      padding: 0 20px;
     }
-
-    header h1 {
+    .hero h1 {
       font-family: 'Orbitron', sans-serif;
       font-size: 4em;
-      margin: 0;
-      background: linear-gradient(90deg,#f39c12,#f1c40f,#e74c3c,#9b59b6);
-      background-size: 200% 200%;
+      background: linear-gradient(90deg, #f39c12, #f1c40f, #e74c3c, #9b59b6);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: gradientText 5s ease infinite;
+      animation: glow 2s infinite alternate;
     }
-
-    @keyframes gradientText {
-      0%{background-position:0% 50%}
-      50%{background-position:100% 50%}
-      100%{background-position:0% 50%}
-    }
-
-    .subtitle {
-      font-size: 1.2em;
+    .hero p {
       margin-top: 10px;
+      font-size: 1.5em;
       color: #ccc;
     }
+    @keyframes glow {
+      0% { text-shadow: 0 0 10px #f39c12, 0 0 20px #f1c40f; }
+      100% { text-shadow: 0 0 20px #f39c12, 0 0 40px #f1c40f; }
+    }
 
-    .copy-ip {
-      margin-top: 20px;
-      padding: 12px 25px;
-      border: none;
+    /* Glassmorphism card */
+    .glass-card {
+      background: rgba(255,255,255,0.05);
       border-radius: 15px;
-      background: rgba(255,255,255,0.1);
+      padding: 20px 30px;
+      margin: 15px;
       backdrop-filter: blur(10px);
-      color: white;
-      font-size: 1.1em;
-      cursor: pointer;
-      transition: all 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-
-    .copy-ip:hover {
-      background: rgba(255,255,255,0.2);
-      transform: scale(1.05);
-    }
-
-    section {
-      padding: 60px 20px;
-      text-align: center;
-    }
-
-    h2 {
-      font-size: 2.5em;
-      margin-bottom: 30px;
-      font-family: 'Orbitron', sans-serif;
-    }
-
-    .cards {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .card {
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(12px);
-      border-radius: 20px;
-      padding: 30px;
-      width: 280px;
-      transition: all 0.3s;
-    }
-
-    .card:hover {
+    .glass-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 0 20px rgba(255,255,255,0.2);
     }
 
-    .card-icon {
-      font-size: 3em;
-      margin-bottom: 15px;
+    /* Buttons */
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 25px;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
+    .button:hover { transform: scale(1.05); }
+    .discord { background: #5865F2; color: white; }
+    .twitch { background: #9146FF; color: white; }
+    .tiktok { background: #25F4EE; color: black; }
+    .youtube { background: #FF0000; color: white; }
+    .shop { background: linear-gradient(90deg,#f39c12,#f1c40f,#e74c3c); color: white; font-weight: bold; }
+    .rules { background: linear-gradient(90deg,#3498db,#2980b9); color: white; font-weight: bold; }
 
-    .socials a {
-      display: inline-block;
-      margin: 10px;
-      font-size: 2em;
-      text-decoration: none;
-      color: white;
-      transition: transform 0.3s;
+    /* Modes Section */
+    .modes {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 50px 0;
     }
-
-    .socials a:hover {
-      transform: scale(1.2);
+    .mode-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 15px;
+      padding: 25px 35px;
+      margin: 15px;
+      width: 250px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
     }
+    .mode-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 25px rgba(255,255,255,0.2);
+    }
+    .mode-card img { width: 50px; margin-bottom: 10px; }
 
+    /* Footer */
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 20px 0;
       font-size: 0.9em;
-      color: #aaa;
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(8px);
+      color: #777;
     }
   </style>
 </head>
 <body>
-  <div id="tsparticles"></div>
-  <header>
+  <!-- Particles.js container -->
+  <div id="particles-js"></div>
+
+  <!-- Hero -->
+  <section class="hero">
     <h1>BSCMC.PL</h1>
-    <div class="subtitle">IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3+</strong></div>
-    <button class="copy-ip" onclick="copyIP()">📋 Skopiuj IP</button>
-  </header>
+    <p>IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3+</strong></p>
 
-  <section>
-    <h2>🎮 Tryby gry</h2>
-    <div class="cards">
-      <div class="card">
-        <div class="card-icon">⛏️</div>
-        <h3>Survival + Działki</h3>
-        <p>Klasyczny survival z działkami i ekonomią.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🧱</div>
-        <h3>OneBlock</h3>
-        <p>Rozpocznij od jednego bloku i rozwijaj świat!</p>
-      </div>
+    <!-- Social Buttons -->
+    <div class="glass-card">
+      <a href="https://discord.gg/9dt99b3NFG" class="button discord" target="_blank">Discord</a>
+      <a href="https://www.twitch.tv/98bossman98" class="button twitch" target="_blank">Twitch</a>
+      <a href="https://www.tiktok.com/@bscmc.pl" class="button tiktok" target="_blank">TikTok</a>
+      <a href="https://www.youtube.com/@BOSSCRAFTMCPL" class="button youtube" target="_blank">YouTube</a>
+    </div>
+
+    <!-- Shop & Rules -->
+    <div class="glass-card">
+      <a href="https://yshop.pl/shop/boss" class="button shop" target="_blank">🛒 SKLEP SERVERA</a>
+      <a href="https://docs.google.com/document/d/1oNBwICgD2GQHxWO3LM2rPjL7VgWXYv0lsQL6ZVgHNks/edit?tab=t.0" class="button rules" target="_blank">📜 REGULAMIN SERVERA</a>
     </div>
   </section>
 
-  <section>
-    <h2>🌐 Społeczność</h2>
-    <div class="socials">
-      <a href="https://discord.gg/9dt99b3NFG" target="_blank">💬</a>
-      <a href="https://www.twitch.tv/98bossman98" target="_blank">📺</a>
-      <a href="https://www.tiktok.com/@bscmc.pl" target="_blank">🎵</a>
-      <a href="https://www.youtube.com/@BOSSCRAFTMCPL" target="_blank">▶️</a>
+  <!-- Modes -->
+  <section class="modes">
+    <div class="mode-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Survival Icon">
+      <h3>Survival + Działki</h3>
+      <p>Eksploruj, buduj i rywalizuj w naszym survivalu!</p>
     </div>
-  </section>
-
-  <section>
-    <h2>🛒 Sklep & 📜 Regulamin</h2>
-    <div class="cards">
-      <a class="card" href="https://yshop.pl/shop/boss" target="_blank">
-        <div class="card-icon">🛒</div>
-        <h3>Sklep serwera</h3>
-      </a>
-      <a class="card" href="https://docs.google.com/document/d/1oNBwICgD2GQHxWO3LM2rPjL7VgWXYv0lsQL6ZVgHNks/edit?tab=t.0" target="_blank">
-        <div class="card-icon">📜</div>
-        <h3>Regulamin</h3>
-      </a>
+    <div class="mode-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/616/616494.png" alt="OneBlock Icon">
+      <h3>OneBlock</h3>
+      <p>Rozpocznij przygodę od jednego bloku i rozwijaj swój świat!</p>
     </div>
   </section>
 
   <footer>
-    © 2025 BSCMC.PL — Wszelkie prawa zastrzeżone
+    © 2025 BSCMC.PL | Wszystkie prawa zastrzeżone
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+  <!-- Particles.js -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    tsParticles.load("tsparticles", {
-      background: { color: "#0d0d0d" },
-      particles: {
-        number: { value: 80 },
-        color: { value: ["#f39c12", "#f1c40f", "#e74c3c", "#9b59b6"] },
-        shape: { type: "circle" },
-        opacity: { value: 0.7 },
-        size: { value: { min: 1, max: 5 } },
-        move: { enable: true, speed: 1 }
+    particlesJS('particles-js', {
+      "particles": {
+        "number": { "value": 80 },
+        "color": { "value": ["#f39c12","#f1c40f","#e74c3c","#9b59b6"] },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5, "random": true },
+        "size": { "value": 3, "random": true },
+        "line_linked": { "enable": false },
+        "move": { "enable": true, "speed": 1.5, "random": true, "straight": false }
       },
-      interactivity: {
-        events: { onHover: { enable: true, mode: "repulse" } },
-        modes: { repulse: { distance: 100 } }
+      "interactivity": {
+        "events": { "onhover": { "enable": true, "mode": "repulse" } }
       }
     });
-
-    function copyIP() {
-      navigator.clipboard.writeText("BSCMC.PL");
-      alert("✅ Skopiowano IP: BSCMC.PL");
-    }
   </script>
 </body>
 </html>
