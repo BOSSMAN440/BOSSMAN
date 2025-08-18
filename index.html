@@ -202,64 +202,48 @@
     .leaderboard .gold { background: linear-gradient(90deg, #FFD700, #FFA500); color: #000; }
     .leaderboard .silver { background: linear-gradient(90deg, #C0C0C0, #A9A9A9); color: #000; }
     .leaderboard .bronze { background: linear-gradient(90deg, #CD7F32, #8B4513); color: #fff; }
-  </style>
-</head>
-<body>
 
-  <h1>BSCMC.PL</h1>
-  <div class="subtitle">IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3 +</strong></div>
-
-  <div class="top-buttons">
-    <a href="https://yshop.pl/shop/boss" class="button button-shop" target="_blank">🛒 SKLEP SERVERA</a>
-    <a href="https://docs.google.com/document/d/1oNBwICgD2GQHxWO3LM2rPjL7VgWXYv0lsQL6ZVgHNks/edit?tab=t.0" class="button button-regulamin" target="_blank">📜 REGULAMIN SERVERA</a>
-  </div>
-
-  <!-- Social Media -->
-  <div>
-    <a href="https://discord.gg/9dt99b3NFG" class="button discord" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord"> Discord
-    </a>
-    <a href="https://www.twitch.tv/98bossman98" class="button twitch" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"> Twitch
-    </a>
-    <a href="https://www.tiktok.com/@bscmc.pl" class="button tiktok" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok"> TikTok
-    </a>
-    <a href="https://www.youtube.com/@BOSSCRAFTMCPL" class="button youtube" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"> YouTube
-    </a>
-  </div>
-
-  <!-- IP Button -->
-  <button class="button ip-button" onclick="copyIP()">📋 Kopiuj IP: BSCMC.PL</button>
-
-  <h2 class="subtitle">INFORMACJE O TRYBACH</h2>
-  <div class="mode-buttons">
-    <a href="survival.html">🏡 SURVIVAL + DZIAŁKI</a>
-    <a href="oneblock.html">🧱 ONE BLOCK</a>
-  </div>
-
-  <!-- Aktualności -->
-  <div class="news">
-    <h2>📢 Aktualności</h2>
-    <p>🎁 Co sobotę o <strong>20:00</strong> rozdawanie kluczy!</p>
-  </div>
-
-  <!-- Leaderboard -->
-  <div class="leaderboard">
-    <h3>Topka graczy</h3>
-    <div class="player gold"><span>🥇 salatkaowocowa</span><span>120 zł</span></div>
-    <div class="player silver"><span>🥈 BloomFire000</span><span>104 zł</span></div>
-    <div class="player bronze"><span>🥉 michalek</span><span>80 zł</span></div>
-  </div>
-
-  <script>
-    function copyIP() {
-      navigator.clipboard.writeText("BSCMC.PL")
-        .then(() => { alert("IP serwera zostało skopiowane!"); })
-        .catch(err => { alert("Błąd kopiowania IP."); });
+    /* 🔥 Dark/Light toggle */
+    .mode-toggle {
+      position: fixed;
+      bottom: 20px; right: 20px;
+      padding: 10px 20px;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #00ffff, #ff00ff);
+      border: none;
+      cursor: pointer;
+      font-size: 1em;
+      z-index: 99;
+      color: #fff;
+      box-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff;
+      transition: all 0.3s;
     }
-  </script>
+    .mode-toggle:hover { transform: scale(1.05); }
 
-</body>
-</html>
+    /* Sekcja O nas */
+    .about {
+      margin-top: 60px;
+      padding: 25px;
+      background: rgba(20,20,20,0.9);
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 0 20px #00ffff;
+      z-index: 1;
+    }
+    .about h2 { margin-bottom: 15px; color: #00ffff; }
+    .owner { margin-top: 10px; font-size: 1.2em; }
+    .owner-name {
+      font-weight: bold;
+      background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff);
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: ownerGradient 6s infinite linear;
+    }
+    @keyframes ownerGradient {
+      0% { background-position: 0%; }
+      100% { background-position: 300%; }
+    }
+
+    /* FAQ */
+    .faq { margin-top: 60px; width: 100%; max-width: 700px; }
