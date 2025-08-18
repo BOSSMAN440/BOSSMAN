@@ -19,13 +19,33 @@
     h1 {
       font-size: 3em;
       margin-bottom: 20px;
-      color: #00f0ff;
+      color: #ff9c00; /* pomarańcz */
       text-shadow: 
-        0 0 5px #00f0ff,
-        0 0 10px #00f0ff,
-        0 0 20px #00f0ff,
-        0 0 40px #9b59b6,
+        0 0 5px #ff9c00,
+        0 0 10px #ff9c00,
+        0 0 20px #ff9c00,
+        0 0 40px #e67e22,
         0 0 80px #e74c3c;
+      animation: neonPulse 2s infinite alternate;
+    }
+
+    @keyframes neonPulse {
+      0% {
+        text-shadow: 
+          0 0 5px #ff9c00,
+          0 0 10px #ff9c00,
+          0 0 20px #ff9c00,
+          0 0 40px #e67e22,
+          0 0 80px #e74c3c;
+      }
+      100% {
+        text-shadow: 
+          0 0 10px #ff9c00,
+          0 0 20px #ff9c00,
+          0 0 30px #ff9c00,
+          0 0 60px #e67e22,
+          0 0 120px #e74c3c;
+      }
     }
 
     .content {
@@ -134,7 +154,6 @@
 
   <a href="index.html" class="back-button">← Powrót</a>
 
-  <!-- Latające kolorowe kulki -->
   <script>
     const colors = ['#f39c12', '#f1c40f', '#e74c3c', '#9b59b6', '#1abc9c', '#3498db'];
     const numLights = 40;
