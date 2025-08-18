@@ -1,236 +1,178 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BSCMC.PL - Strona serwera</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-      color: #fff;
-      display: flex;
-      flex-direction: row;
-      overflow-x: hidden;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSCMC.PL - Minecraft 1.21.3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset i podstawowe style */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
 
-    /* Kontener główny */
-    .main-container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 50px 20px;
-      min-height: 100vh;
-      position: relative;
-    }
+        body {
+            background: url('https://i.imgur.com/8YdZxR0.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-    h1 {
-      font-size: 3em;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      background: linear-gradient(90deg, #ff6ec7, #7873f5, #4ade80);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: glowText 3s ease-in-out infinite alternate;
-    }
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
 
-    @keyframes glowText {
-      0% { text-shadow: 0 0 10px #ff6ec7, 0 0 20px #7873f5; }
-      100% { text-shadow: 0 0 20px #ff6ec7, 0 0 40px #4ade80; }
-    }
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
 
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      width: 100%;
-      max-width: 1200px;
-    }
+        header p {
+            font-size: 1.2rem;
+            color: #ddd;
+        }
 
-    .card {
-      background: rgba(30,30,30,0.8);
-      border-radius: 20px;
-      padding: 30px;
-      min-width: 300px;
-      max-width: 400px;
-      text-align: center;
-      box-shadow: 0 0 20px rgba(255,255,255,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
+        nav {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
 
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 40px rgba(255,255,255,0.3);
-    }
+        nav a {
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            color: #fff;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
 
-    .card h2 {
-      margin-bottom: 20px;
-      font-size: 1.8em;
-      color: #f1f1f1;
-    }
+        nav a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
 
-    .links a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin: 10px 0;
-      padding: 12px 20px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
-      color: #fff;
-      transition: all 0.3s;
-      background: linear-gradient(90deg, #ff6ec7, #7873f5);
-    }
+        /* Kolory przycisków */
+        .discord { background: #7289da; }
+        .shop { background: linear-gradient(90deg, #f39c12, #e74c3c); }
+        .twitch { background: #9146ff; }
+        .youtube { background: #ff0000; }
+        .tiktok { background: #25f4ee; color: #000; }
+        .rules { background: linear-gradient(90deg, #3498db, #2980b9); }
 
-    .links a:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px rgba(255,255,255,0.5);
-    }
+        /* Sekcje główne */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            backdrop-filter: blur(5px);
+            background: rgba(0,0,0,0.5);
+            margin: 20px;
+            border-radius: 20px;
+        }
 
-    .links a.discord { background: #7289da; }
-    .links a.shop { background: linear-gradient(90deg, #f39c12, #e74c3c); }
-    .links a.twitch { background: #9146ff; }
-    .links a.youtube { background: #ff0000; }
-    .links a.tiktok { background: #25f4ee; color: #000; }
-    .links a.rules { background: linear-gradient(90deg, #3498db, #2980b9); }
+        section {
+            margin-bottom: 40px;
+            text-align: center;
+        }
 
-    /* Panel Topki po prawej */
-    .topka-panel {
-      width: 250px;
-      background: rgba(30,30,30,0.85);
-      border-radius: 20px 0 0 20px;
-      padding: 20px;
-      position: fixed;
-      top: 0;
-      right: 0;
-      height: 100vh;
-      overflow-y: auto;
-      box-shadow: -5px 0 20px rgba(0,0,0,0.5);
-    }
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #f1c40f;
+        }
 
-    .topka-panel h2 {
-      text-align: center;
-      font-size: 1.5em;
-      margin-bottom: 15px;
-      color: #4ade80;
-      text-shadow: 0 0 10px #4ade80;
-    }
+        section p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
 
-    .topka-item {
-      display: flex;
-      justify-content: space-between;
-      margin: 10px 0;
-      padding: 10px 15px;
-      border-radius: 10px;
-      background: rgba(70,70,70,0.4);
-      transition: background 0.3s;
-    }
+        .game-buttons a {
+            display: inline-block;
+            margin: 10px;
+            background: linear-gradient(90deg, #1abc9c, #16a085);
+            color: #fff;
+            font-size: 1.1rem;
+        }
 
-    .topka-item:hover {
-      background: rgba(120,120,120,0.5);
-    }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+        }
 
-    .topka-name { font-weight: bold; }
-    .topka-amount { color: #ffd700; font-weight: bold; }
+        footer p {
+            color: #ccc;
+        }
 
-    /* Animowane światła */
-    .light {
-      position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-      opacity: 0.6;
-      animation: float linear infinite;
-    }
+        /* Responsywność */
+        @media(max-width: 768px){
+            header h1 {
+                font-size: 2.2rem;
+            }
+            nav a {
+                padding: 12px 18px;
+            }
+        }
 
-    @keyframes float {
-      0% { transform: translate(0, 0); }
-      50% { transform: translate(20px, -30px); }
-      100% { transform: translate(0, 0); }
-    }
-
-    footer {
-      margin-top: 50px;
-      font-size: 0.9em;
-      color: #bbb;
-      text-align: center;
-    }
-  </style>
+    </style>
 </head>
 <body>
-  <!-- Główna zawartość -->
-  <div class="main-container">
+
+<header>
     <h1>BSCMC.PL</h1>
-    <div class="container">
-      <!-- Karta Tryby -->
-      <div class="card">
-        <h2>Tryby Serwera</h2>
-        <div class="links">
-          <a href="survival.html">🏡 Survival + Działki</a>
-          <a href="oneblock.html">🧱 OneBlock</a>
+    <p>Wersja: 1.21.3 | IP: <strong>BSCMC.PL</strong></p>
+</header>
+
+<nav class="links">
+    <a href="https://discord.gg/example" class="discord">Discord</a>
+    <a href="https://shop.example.com" class="shop">Sklep</a>
+    <a href="https://twitch.tv/example" class="twitch">Twitch</a>
+    <a href="https://youtube.com/example" class="youtube">YouTube</a>
+    <a href="https://tiktok.com/@example" class="tiktok">TikTok</a>
+    <a href="rules.html" class="rules">Regulamin</a>
+</nav>
+
+<main>
+    <section>
+        <h2>Dołącz do gry!</h2>
+        <p>Serwer Minecraft <strong>BSCMC.PL</strong> w wersji 1.21.3 oferuje unikalne tryby gry, pełne przygód i emocji!</p>
+        <div class="game-buttons">
+            <a href="survival.html">🏡 Survival + Działki</a>
+            <a href="oneblock.html">🧱 OneBlock</a>
         </div>
-      </div>
+    </section>
 
-      <!-- Karta Linki -->
-      <div class="card">
-        <h2>Linki</h2>
-        <div class="links">
-          <a href="https://discord.gg/9dt99b3NFG" target="_blank" class="discord">💬 Discord</a>
-          <a href="https://yshop.pl/shop/boss" target="_blank" class="shop">🛒 Sklep</a>
-          <a href="https://www.twitch.tv/98bossman98" target="_blank" class="twitch">🎮 Twitch</a>
-          <a href="https://www.youtube.com/@BOSSCRAFTMCPL" target="_blank" class="youtube">📺 YouTube</a>
-          <a href="https://www.tiktok.com/@bscmc.pl" target="_blank" class="tiktok">🎵 TikTok</a>
-          <a href="https://docs.google.com/document/d/1oNBwICgD2GQHxWO3LM2rPjL7VgWXYv0lsQL6ZVgHNks/edit?usp=sharing" target="_blank" class="rules">📜 Regulamin</a>
-        </div>
-      </div>
-    </div>
-    <footer>© 2025 BSCMC.PL | Wszystkie prawa zastrzeżone</footer>
-  </div>
+    <section>
+        <h2>Co oferujemy?</h2>
+        <p>✅ Stabilny serwer online 24/7<br>
+           ✅ Aktywna społeczność<br>
+           ✅ Ciekawe eventy i nagrody<br>
+           ✅ Wsparcie dla graczy<br>
+           ✅ System rang i ekonomii</p>
+    </section>
 
-  <!-- Panel Topki -->
-  <div class="topka-panel">
-    <h2>Topka Wydanej Kasy</h2>
-    <div class="topka-item"><span class="topka-name">salatkaowocowa</span><span class="topka-amount">120 zł</span></div>
-    <div class="topka-item"><span class="topka-name">BloomFire000</span><span class="topka-amount">104 zł</span></div>
-    <div class="topka-item"><span class="topka-name">michalek</span><span class="topka-amount">80 zł</span></div>
-  </div>
+    <section>
+        <h2>Kontakt i społeczność</h2>
+        <p>Dołącz do naszego Discorda aby być na bieżąco z eventami, promocjami i nowościami!</p>
+    </section>
+</main>
 
-  <!-- Animowane światła -->
-  <script>
-    const totalLights = 40;
-    const w = window.innerWidth;
-    const h = window.innerHeight;
+<footer>
+    <p>&copy; 2025 BSCMC.PL | Wszystkie prawa zastrzeżone</p>
+</footer>
 
-    for(let i = 0; i < totalLights; i++) {
-      const light = document.createElement('div');
-      light.classList.add('light');
-
-      const size = Math.random() * 8 + 4;
-      light.style.width = `${size}px`;
-      light.style.height = `${size}px`;
-
-      const x = Math.random() * w;
-      const y = Math.random() * h;
-      light.style.left = `${x}px`;
-      light.style.top = `${y}px`;
-
-      const r = Math.floor(Math.random() * 256);
-      const g = Math.floor(Math.random() * 256);
-      const b = Math.floor(Math.random() * 256);
-      light.style.background = `rgba(${r},${g},${b},0.5)`;
-
-      light.style.animationDuration = `${5 + Math.random() * 15}s`;
-      light.style.animationDelay = `${Math.random() * 5}s`;
-
-      document.body.appendChild(light);
-    }
-  </script>
 </body>
 </html>
