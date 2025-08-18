@@ -24,13 +24,37 @@
       z-index: 10;
     }
 
-    h1 {
-      text-align: center;
+    h1.neon-text {
       font-size: 3em;
-      margin-bottom: 10px;
-      background: linear-gradient(90deg, #f39c12, #f1c40f, #e74c3c);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      text-align: center;
+      color: #fff;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-shadow:
+        0 0 5px #f39c12,
+        0 0 10px #f39c12,
+        0 0 20px #f39c12,
+        0 0 40px #e74c3c,
+        0 0 80px #e74c3c,
+        0 0 90px #e74c3c,
+        0 0 100px #e74c3c;
+      animation: flicker 2s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow:
+          0 0 5px #f39c12,
+          0 0 10px #f39c12,
+          0 0 20px #f39c12,
+          0 0 40px #e74c3c,
+          0 0 80px #e74c3c,
+          0 0 90px #e74c3c,
+          0 0 100px #e74c3c;
+      }
+      20%, 24%, 55% {
+        text-shadow: none;
+      }
     }
 
     h2 {
@@ -113,7 +137,7 @@
     }
 
     @media (max-width: 600px) {
-      h1 { font-size: 2em; }
+      h1.neon-text { font-size: 2em; }
       h2 { font-size: 1.5em; }
     }
   </style>
@@ -139,7 +163,7 @@
   </script>
 
   <div class="container">
-    <h1>🏡 SURVIVAL + DZIAŁKI</h1>
+    <h1 class="neon-text">🏡 SURVIVAL + DZIAŁKI</h1>
     <p>Odkryj niesamowite możliwości naszego trybu survivalowego z działkami i wieloma dodatkami! Poniżej znajdziesz wszystkie atrakcje i funkcje:</p>
 
     <h2>TRYB POSIADA</h2>
