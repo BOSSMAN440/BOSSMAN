@@ -6,55 +6,40 @@
   <title>STRONA SERVEROWA</title>
   <style>
     body {
+      margin: 0;
       font-family: 'Arial', sans-serif;
-      background: linear-gradient(120deg, #1e1e1e, #2c2c2c, #1e1e1e);
-      background-size: 400% 400%;
-      animation: gradientMove 15s ease infinite;
+      background: #0d0d0d;
       color: white;
       text-align: center;
-      padding: 50px;
       overflow: hidden;
       position: relative;
     }
 
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* Latające światła */
-    .light {
-      position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-      opacity: 0.7;
-      animation: float linear infinite;
-    }
-
-    @keyframes float {
-      0% { transform: translate(0, 0); }
-      25% { transform: translate(calc(var(--x1) * 1px), calc(var(--y1) * 1px)); }
-      50% { transform: translate(calc(var(--x2) * 1px), calc(var(--y2) * 1px)); }
-      75% { transform: translate(calc(var(--x3) * 1px), calc(var(--y3) * 1px)); }
-      100% { transform: translate(calc(var(--x4) * 1px), calc(var(--y4) * 1px)); }
+    /* kontener dla treści (glassmorphism) */
+    .content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: auto;
+      padding: 40px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
     }
 
     h1 {
       font-size: 3em;
       margin-bottom: 10px;
-      position: relative;
-      z-index: 1;
     }
+
     .subtitle {
       font-size: 1.2em;
       color: #ccc;
       margin-bottom: 30px;
-      position: relative;
-      z-index: 1;
     }
 
-    /* Przyciski główne */
+    /* przyciski social media */
     .button {
       display: inline-flex;
       align-items: center;
@@ -66,8 +51,6 @@
       border-radius: 10px;
       font-size: 1.2em;
       transition: all 0.3s;
-      position: relative;
-      z-index: 1;
     }
     .button:hover {
       transform: scale(1.05);
@@ -79,14 +62,12 @@
     .button.youtube { background-color: #FF0000; }
     .button img { width: 24px; height: 24px; margin-right: 10px; }
 
-    /* Przycisk sklepu i regulaminu */
+    /* przyciski góra */
     .top-buttons {
       display: flex;
       justify-content: center;
       gap: 20px;
       margin: 20px 0;
-      position: relative;
-      z-index: 1;
       flex-wrap: wrap;
     }
     .button-shop {
@@ -94,19 +75,20 @@
       color: white;
       font-weight: bold;
     }
-    .button-shop:hover { opacity: 0.85; }
-
     .button-regulamin {
       background: linear-gradient(90deg, #3498db, #2980b9);
       color: white;
       font-weight: bold;
     }
-    .button-regulamin:hover { opacity: 0.85; }
 
-    /* Tryby serwera */
-    .mode-buttons { margin-top: 20px; position: relative; z-index: 1; }
+    /* tryby serwera */
+    .mode-buttons {
+      margin-top: 20px;
+    }
     .mode-buttons a {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin: 10px auto;
       padding: 15px 25px;
       background-color: #2ecc71;
@@ -122,8 +104,13 @@
       box-shadow: 0 0 20px rgba(46, 204, 113, 0.5);
       transform: scale(1.05);
     }
+    .mode-buttons img {
+      width: 28px;
+      height: 28px;
+      margin-right: 10px;
+    }
 
-    /* Nagłówek fancy */
+    /* nagłówek fancy */
     .fancy-title {
       font-size: 3em;
       font-weight: bold;
@@ -136,98 +123,89 @@
       display: inline-block;
       animation: gradientText 3s ease infinite, glow 2s infinite alternate;
       margin-bottom: 20px;
-      position: relative;
-      z-index: 1;
     }
-
     @keyframes gradientText {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
     @keyframes glow {
       0% { text-shadow: 0 0 5px #f39c12, 0 0 10px #f1c40f, 0 0 15px #e74c3c; }
       50% { text-shadow: 0 0 10px #f39c12, 0 0 20px #f1c40f, 0 0 30px #e74c3c; }
       100% { text-shadow: 0 0 5px #f39c12, 0 0 10px #f1c40f, 0 0 15px #e74c3c; }
     }
+
+    /* kontener cząsteczek */
+    #tsparticles {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      top: 0;
+      left: 0;
+    }
   </style>
 </head>
 <body>
-  <h1>BSCMC.PL</h1>
-  <div class="subtitle">IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3 +</strong></div>
+  <!-- particles background -->
+  <div id="tsparticles"></div>
 
-  <!-- Social media -->
-  <div>
-    <a href="https://discord.gg/9dt99b3NFG" class="button" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord"> Discord
-    </a>
-    <a href="https://www.twitch.tv/98bossman98" class="button twitch" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"> Twitch
-    </a>
-    <a href="https://www.tiktok.com/@bscmc.pl" class="button tiktok" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok"> TikTok
-    </a>
-    <a href="https://www.youtube.com/@BOSSCRAFTMCPL" class="button youtube" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"> YouTube
-    </a>
+  <div class="content">
+    <h1>BSCMC.PL</h1>
+    <div class="subtitle">IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3 +</strong></div>
+
+    <!-- Social media -->
+    <div>
+      <a href="https://discord.gg/9dt99b3NFG" class="button" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord"> Discord
+      </a>
+      <a href="https://www.twitch.tv/98bossman98" class="button twitch" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"> Twitch
+      </a>
+      <a href="https://www.tiktok.com/@bscmc.pl" class="button tiktok" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok"> TikTok
+      </a>
+      <a href="https://www.youtube.com/@BOSSCRAFTMCPL" class="button youtube" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"> YouTube
+      </a>
+    </div>
+
+    <!-- Przycisk sklepu i regulaminu -->
+    <div class="top-buttons">
+      <a href="https://yshop.pl/shop/boss" class="button button-shop" target="_blank">🛒 SKLEP SERVERA</a>
+      <a href="https://docs.google.com/document/d/1oNBwICgD2GQHxWO3LM2rPjL7VgWXYv0lsQL6ZVgHNks/edit?tab=t.0" class="button button-regulamin" target="_blank">📜 REGULAMIN SERVERA</a>
+    </div>
+
+    <h2 class="fancy-title">INFORMACJE O TRYBACH</h2>
+
+    <div class="mode-buttons">
+      <a href="survival.html"><img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Survival"> SURVIVAL + DZIAŁKI</a>
+      <a href="oneblock.html"><img src="https://cdn-icons-png.flaticon.com/512/1533/1533913.png" alt="OneBlock"> ONE BLOCK</a>
+    </div>
   </div>
 
-  <!-- Przycisk sklepu i regulaminu -->
-  <div class="top-buttons">
-    <a href="https://yshop.pl/shop/boss" class="button button-shop" target="_blank">🛒 SKLEP SERVERA</a>
-    <a href="https://docs.google.com/document/d/1oNBwICgD2GQHxWO3LM2rPjL7VgWXYv0lsQL6ZVgHNks/edit?tab=t.0" class="button button-regulamin" target="_blank">📜 REGULAMIN SERVERA</a>
-  </div>
-
-  <h2 class="fancy-title">INFORMACJE O TRYBACH</h2>
-
-  <div class="mode-buttons">
-    <a href="survival.html">🏡 SURVIVAL + DZIAŁKI</a>
-    <a href="oneblock.html">🧱 ONE BLOCK</a>
-  </div>
-
-  <!-- Kolorowe światełka -->
+  <!-- tsParticles CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
   <script>
-    const totalLights = 30;
-    const w = window.innerWidth;
-    const h = window.innerHeight;
-
-    for(let i = 0; i < totalLights; i++) {
-      const light = document.createElement('div');
-      light.classList.add('light');
-
-      const size = Math.random() * 6 + 7;
-      light.style.width = `${size}px`;
-      light.style.height = `${size}px`;
-
-      const x0 = Math.random() * w;
-      const y0 = Math.random() * h;
-
-      light.style.setProperty('--x1', (Math.random() * w - x0));
-      light.style.setProperty('--y1', (Math.random() * h - y0));
-      light.style.setProperty('--x2', (Math.random() * w - x0));
-      light.style.setProperty('--y2', (Math.random() * h - y0));
-      light.style.setProperty('--x3', (Math.random() * w - x0));
-      light.style.setProperty('--y3', (Math.random() * h - y0));
-      light.style.setProperty('--x4', (Math.random() * w - x0));
-      light.style.setProperty('--y4', (Math.random() * h - y0));
-
-      light.style.left = `${x0}px`;
-      light.style.top = `${y0}px`;
-
-      // losowy kolor RGB
-      const r = Math.floor(Math.random() * 256);
-      const g = Math.floor(Math.random() * 256);
-      const b = Math.floor(Math.random() * 256);
-      light.style.background = `rgba(${r}, ${g}, ${b}, 0.7)`;
-
-      // Delikatny parallax: różna prędkość
-      light.style.animationDuration = `${5 + Math.random() * 15}s`;
-      light.style.animationDelay = `${Math.random() * 10}s`;
-
-      document.body.appendChild(light);
-    }
+    tsParticles.load("tsparticles", {
+      background: { color: "transparent" },
+      particles: {
+        number: { value: 100 },
+        color: { value: ["#ffffff", "#f1c40f", "#e74c3c"] },
+        shape: { type: "circle" },
+        opacity: { value: 0.6 },
+        size: { value: { min: 1, max: 4 } },
+        move: { enable: true, speed: 1, direction: "none", outModes: "out" },
+        links: { enable: true, color: "#ffffff", distance: 150, opacity: 0.3, width: 1 }
+      },
+      interactivity: {
+        events: {
+          onHover: { enable: true, mode: "repulse" },
+          onClick: { enable: true, mode: "push" }
+        },
+        modes: { repulse: { distance: 100 }, push: { quantity: 4 } }
+      }
+    });
   </script>
 </body>
 </html>
-
