@@ -5,41 +5,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>STRONA SERVEROWA</title>
   <style>
-    body {
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
       font-family: 'Arial', sans-serif;
-      background-color: #1e1e1e;
-      color: white;
-      text-align: center;
-      padding: 50px;
+      overflow: hidden;
+      background: #0e0e0e; /* ciemne tło jako podstawa */
+      cursor: pointer;
     }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
     h1 {
       font-size: 3em;
       margin-bottom: 10px;
+      color: white;
+      text-align: center;
     }
+
     .subtitle {
       font-size: 1.2em;
       color: #ccc;
       margin-bottom: 30px;
+      text-align: center;
     }
-    .button {
+
+    .button, .button-shop {
       display: inline-flex;
       align-items: center;
       margin: 10px;
       padding: 15px 25px;
-      background-color: #5865F2;
-      color: white;
-      text-decoration: none;
       border-radius: 10px;
       font-size: 1.2em;
-      transition: background-color 0.3s;
+      color: white;
+      text-decoration: none;
+      transition: background-color 0.3s, opacity 0.3s;
+    }
+
+    .button {
+      background-color: #5865F2;
     }
     .button.twitch { background-color: #9146FF; }
     .button.tiktok { background-color: #25F4EE; color: #000; }
     .button.youtube { background-color: #FF0000; }
     .button:hover { opacity: 0.85; }
-    .button img { width: 24px; height: 24px; margin-right: 10px; }
 
-    .mode-buttons { margin-top: 20px; }
+    .button-shop {
+      background: linear-gradient(90deg, #f39c12, #f1c40f, #e74c3c);
+      font-weight: bold;
+    }
+    .button-shop:hover { opacity: 0.85; }
+
+    .mode-buttons { margin-top: 20px; text-align: center; }
     .mode-buttons a {
       display: block;
       margin: 10px auto;
@@ -54,7 +77,6 @@
     }
     .mode-buttons a:hover { background-color: #27ae60; }
 
-    /* Styl napisu TRYBY */
     .fancy-title {
       font-size: 3em;
       font-weight: bold;
@@ -72,35 +94,27 @@
       50% { text-shadow: 0 0 10px #f39c12, 0 0 20px #f1c40f, 0 0 30px #e74c3c; }
       100% { text-shadow: 0 0 5px #f39c12, 0 0 10px #f1c40f, 0 0 15px #e74c3c; }
     }
-
-    /* Styl dla przycisku sklepu */
-    .button-shop {
-      background: linear-gradient(90deg, #f39c12, #f1c40f, #e74c3c);
-      color: white;
-      font-weight: bold;
-    }
-    .button-shop:hover {
-      opacity: 0.85;
-    }
   </style>
 </head>
 <body>
+  <canvas id="bgCanvas"></canvas>
+
   <h1>BSCMC.PL</h1>
   <div class="subtitle">IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3 +</strong></div>
 
   <!-- Social media -->
   <div>
     <a href="https://discord.gg/9dt99b3NFG" class="button" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord"> Discord
+      <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord" width="24" height="24"> Discord
     </a>
     <a href="https://www.twitch.tv/98bossman98" class="button twitch" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"> Twitch
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch" width="24" height="24"> Twitch
     </a>
     <a href="https://www.tiktok.com/@bscmc.pl" class="button tiktok" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok"> TikTok
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok" width="24" height="24"> TikTok
     </a>
     <a href="https://www.youtube.com/@BOSSCRAFTMCPL" class="button youtube" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"> YouTube
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" width="24" height="24"> YouTube
     </a>
   </div>
 
@@ -115,5 +129,87 @@
     <a href="survival.html">🏡 SURVIVAL + DZIAŁKI</a>
     <a href="oneblock.html">🧱 ONE BLOCK</a>
   </div>
+
+  <script>
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+
+    function random(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    class Particle {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.radius = random(2, 5);
+        this.color = `hsl(${Math.random()*360}, 100%, 70%)`;
+        this.vx = random(-1, 1);
+        this.vy = random(-1, 1);
+        this.life = 100;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.life--;
+        if (this.life <= 0) return false;
+        return true;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
+
+    function createExplosion(x, y, count=10) {
+      for (let i = 0; i < count; i++) {
+        particles.push(new Particle(x, y));
+      }
+    }
+
+    canvas.addEventListener('click', (e) => {
+      createExplosion(e.clientX, e.clientY, 15);
+    });
+
+    function animate() {
+      ctx.fillStyle = 'rgba(14,14,14,0.3)';
+      ctx.fillRect(0,0,canvas.width, canvas.height);
+
+      for (let i = particles.length-1; i>=0; i--) {
+        const p = particles[i];
+        if (!p.update()) {
+          particles.splice(i,1);
+        } else {
+          p.draw();
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    // Generowanie losowych latających światełek
+    function randomParticles() {
+      const x = random(0, canvas.width);
+      const y = random(0, canvas.height);
+      createExplosion(x, y, 1);
+      setTimeout(randomParticles, 500);
+    }
+
+    animate();
+    randomParticles();
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
 </body>
 </html>
