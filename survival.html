@@ -12,12 +12,16 @@
       margin: 0;
       padding: 0;
       line-height: 1.6;
+      overflow: hidden;
+      position: relative;
     }
 
     .container {
       max-width: 900px;
       margin: 0 auto;
       padding: 40px 20px;
+      position: relative;
+      z-index: 1;
     }
 
     h1 {
@@ -73,9 +77,26 @@
       h1 { font-size: 2em; }
       h2 { font-size: 1.5em; }
     }
+
+    /* Styl dla latających przedmiotów Minecraft */
+    .mc-item {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      pointer-events: none;
+      z-index: 0;
+      animation: float linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translateY(-120vh) translateX(50vw); opacity: 0; }
+    }
   </style>
 </head>
 <body>
+
   <div class="container">
     <h1>🏡 SURVIVAL + DZIAŁKI</h1>
     <p>Odkryj niesamowite możliwości naszego trybu survivalowego z działkami i wieloma dodatkami! Poniżej znajdziesz wszystkie atrakcje i funkcje:</p>
@@ -123,5 +144,29 @@
       <li>Among Us – sprawdź swoją dedukcję i spryt wśród znajomych.</li>
     </ul>
   </div>
+
+  <!-- Latające przedmioty Minecraft -->
+  <img src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/3/33/Wheat_JE2_BE2.png" class="mc-item">
+  <img src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/0c/Potato.png" class="mc-item">
+  <img src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/3/3b/Diamond.png" class="mc-item">
+  <img src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/1/1a/Emerald.png" class="mc-item">
+  <img src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/f/f5/Diamond_Sword_JE2_BE2.png" class="mc-item">
+  <img src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/2/22/Diamond_Pickaxe_JE2_BE2.png" class="mc-item">
+  <img src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/44/Diamond_Axe_JE2_BE2.png" class="mc-item">
+  <img src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/c/c4/Diamond_Chestplate_JE2_BE2.png" class="mc-item">
+
+  <script>
+    // Funkcja losująca pozycję i czas animacji
+    const items = document.querySelectorAll('.mc-item');
+
+    items.forEach(item => {
+      const startX = Math.random() * window.innerWidth;
+      const duration = 10 + Math.random() * 15; // czas trwania animacji 10-25s
+      const delay = Math.random() * 5; // losowe opóźnienie
+      item.style.left = startX + 'px';
+      item.style.animationDuration = duration + 's';
+      item.style.animationDelay = delay + 's';
+    });
+  </script>
 </body>
 </html>
