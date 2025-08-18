@@ -3,86 +3,175 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BSCMC.PL - Serwer Minecraft</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <title>BSCMC.PL - Strona serwera</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Roboto', sans-serif; background: #121212; color: #fff; scroll-behavior: smooth; }
-
-    header {
-      position: fixed; top: 0; left: 0; right: 0;
-      background: rgba(20,20,20,0.95);
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 15px 50px; z-index: 1000;
-      border-bottom: 2px solid #5865F2;
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px 20px;
+      overflow-x: hidden;
     }
-    header h1 { font-family: 'Orbitron', sans-serif; font-size: 2em; color: #5865F2; }
-    nav a { margin-left: 25px; font-weight: 500; transition: 0.3s; }
-    nav a:hover { color: #FF6F61; }
 
-    .hero {
-      height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-      text-align: center; background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
-      padding-top: 80px;
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #ff6ec7, #7873f5, #4ade80);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glowText 3s ease-in-out infinite alternate;
     }
-    .hero h2 { font-size: 3.5em; font-family: 'Orbitron', sans-serif; color: #FF6F61; margin-bottom: 20px; text-shadow: 0 0 10px #FF6F61; }
-    .hero p { font-size: 1.5em; margin-bottom: 40px; color: #ccc; }
 
-    .cards-container {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 40px;
+    @keyframes glowText {
+      0% { text-shadow: 0 0 10px #ff6ec7, 0 0 20px #7873f5; }
+      100% { text-shadow: 0 0 20px #ff6ec7, 0 0 40px #4ade80; }
     }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      width: 100%;
+      max-width: 1200px;
+    }
+
     .card {
-      background: #1f1f1f; border-radius: 20px; padding: 40px; width: 300px;
-      box-shadow: 0 0 20px rgba(255,111,97,0.5); transition: 0.3s;
+      background: rgba(30,30,30,0.8);
+      border-radius: 20px;
+      padding: 30px;
+      min-width: 300px;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
     }
-    .card:hover { transform: translateY(-10px); box-shadow: 0 0 30px rgba(255,111,97,0.8); }
-    .card h3 { color: #FF6F61; margin-bottom: 20px; font-family: 'Orbitron', sans-serif; text-align: center; }
-    .card a {
-      display: block; margin: 10px 0; padding: 15px; border-radius: 12px;
-      background: #5865F2; color: #fff; text-align: center; font-weight: bold; transition: 0.3s;
-    }
-    .card a:hover { background: #FF6F61; transform: scale(1.05); }
 
-    footer { text-align: center; padding: 50px; color: #888; font-size: 0.9em; background: #111; margin-top: 50px; }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 40px rgba(255,255,255,0.3);
+    }
+
+    .card h2 {
+      margin-bottom: 20px;
+      font-size: 1.8em;
+      color: #f1f1f1;
+    }
+
+    .links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 10px 0;
+      padding: 12px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #fff;
+      transition: all 0.3s;
+      background: linear-gradient(90deg, #ff6ec7, #7873f5);
+    }
+
+    .links a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    }
+
+    .links a.discord { background: #7289da; }
+    .links a.shop { background: linear-gradient(90deg, #f39c12, #e74c3c); }
+    .links a.twitch { background: #9146ff; }
+    .links a.youtube { background: #ff0000; }
+    .links a.tiktok { background: #25f4ee; color: #000; }
+    .links a.rules { background: linear-gradient(90deg, #3498db, #2980b9); }
+
+    /* Animowane tło świateł */
+    .light {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.6;
+      animation: float linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0); }
+      50% { transform: translate(20px, -30px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.9em;
+      color: #bbb;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>BSCMC.PL</h1>
-    <nav>
-      <a href="#hero">Home</a>
-      <a href="#modes">Tryby</a>
-      <a href="#links">Linki</a>
-    </nav>
-  </header>
-
-  <section class="hero" id="hero">
-    <h2>Witaj na BSCMC.PL</h2>
-    <p>Dołącz do najlepszego serwera Minecraft! IP: <strong>BSCMC.PL</strong> | Wersja: <strong>1.21.3+</strong></p>
-
-    <div class="cards-container">
-      <!-- KARTA SURVIVAL I ONEBLOCK -->
-      <div class="card" id="modes">
-        <h3>Tryby Serwera</h3>
-        <a href="survival.html">🌿 Survival + Działki</a>
-        <a href="oneblock.html">🪨 One Block</a>
-      </div>
-
-      <!-- KARTA LINKÓW -->
-      <div class="card" id="links">
-        <h3>Linki</h3>
-        <a href="https://discord.gg/9dt99b3NFG" target="_blank">💬 Discord</a>
-        <a href="https://yshop.pl/shop/boss" target="_blank">🛒 Sklep</a>
-        <a href="https://www.twitch.tv/98bossman98" target="_blank">🎮 Twitch</a>
-        <a href="https://www.youtube.com/@BOSSCRAFTMCPL" target="_blank">📺 YouTube</a>
-        <a href="https://www.tiktok.com/@bscmc.pl" target="_blank">🎵 TikTok</a>
-        <a href="https://docs.google.com/document/d/1oNBwICgD2GQHxWO3LM2rPjL7VgWXYv0lsQL6ZVgHNks/edit" target="_blank">📜 Regulamin</a>
+  <h1>BSCMC.PL</h1>
+  <div class="container">
+    <!-- Karta Tryby -->
+    <div class="card">
+      <h2>Tryby Serwera</h2>
+      <div class="links">
+        <a href="survival.html">🏡 Survival + Działki</a>
+        <a href="oneblock.html">🧱 OneBlock</a>
       </div>
     </div>
-  </section>
 
-  <footer>
-    © 2025 BSCMC.PL | Wszelkie prawa zastrzeżone.
-  </footer>
+    <!-- Karta Linki -->
+    <div class="card">
+      <h2>Linki</h2>
+      <div class="links">
+        <a href="https://discord.gg/9dt99b3NFG" target="_blank" class="discord">💬 Discord</a>
+        <a href="https://yshop.pl/shop/boss" target="_blank" class="shop">🛒 Sklep</a>
+        <a href="https://www.twitch.tv/98bossman98" target="_blank" class="twitch">🎮 Twitch</a>
+        <a href="https://www.youtube.com/@BOSSCRAFTMCPL" target="_blank" class="youtube">📺 YouTube</a>
+        <a href="https://www.tiktok.com/@bscmc.pl" target="_blank" class="tiktok">🎵 TikTok</a>
+        <a href="https://docs.google.com/document/d/1oNBwICgD2GQHxWO3LM2rPjL7VgWXYv0lsQL6ZVgHNks/edit?usp=sharing" target="_blank" class="rules">📜 Regulamin</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>© 2025 BSCMC.PL | Wszystkie prawa zastrzeżone</footer>
+
+  <!-- Animowane światła -->
+  <script>
+    const totalLights = 40;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
+    for(let i = 0; i < totalLights; i++) {
+      const light = document.createElement('div');
+      light.classList.add('light');
+
+      const size = Math.random() * 8 + 4;
+      light.style.width = `${size}px`;
+      light.style.height = `${size}px`;
+
+      const x = Math.random() * w;
+      const y = Math.random() * h;
+      light.style.left = `${x}px`;
+      light.style.top = `${y}px`;
+
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+      light.style.background = `rgba(${r},${g},${b},0.5)`;
+
+      light.style.animationDuration = `${5 + Math.random() * 15}s`;
+      light.style.animationDelay = `${Math.random() * 5}s`;
+
+      document.body.appendChild(light);
+    }
+  </script>
 </body>
 </html>
