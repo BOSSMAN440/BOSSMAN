@@ -6,69 +6,73 @@
   <title>🏝️ ONE BLOCK | BOSSCRAFT</title>
   <style>
     body {
-      background-color: #1e1e1e;
-      color: white;
-      font-family: Arial, sans-serif;
-      padding: 40px;
-      text-align: center;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+      color: #f5f5f5;
+      margin: 0;
+      padding: 0;
       line-height: 1.6;
       position: relative;
       overflow-x: hidden;
     }
 
-    h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
-      color: #ff9c00; /* pomarańcz */
-      text-shadow: 
-        0 0 5px #ff9c00,
-        0 0 10px #ff9c00,
-        0 0 20px #ff9c00,
-        0 0 40px #e67e22,
-        0 0 80px #e74c3c;
-      animation: neonPulse 2s infinite alternate;
-    }
-
-    @keyframes neonPulse {
-      0% {
-        text-shadow: 
-          0 0 5px #ff9c00,
-          0 0 10px #ff9c00,
-          0 0 20px #ff9c00,
-          0 0 40px #e67e22,
-          0 0 80px #e74c3c;
-      }
-      100% {
-        text-shadow: 
-          0 0 10px #ff9c00,
-          0 0 20px #ff9c00,
-          0 0 30px #ff9c00,
-          0 0 60px #e67e22,
-          0 0 120px #e74c3c;
-      }
-    }
-
-    .content {
-      text-align: left;
-      max-width: 800px;
+    .container {
+      max-width: 900px;
       margin: 0 auto;
+      padding: 40px 20px;
       position: relative;
       z-index: 10;
+      text-align: center;
+    }
+
+    h1.neon-text {
+      font-size: 3em;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #fff;
+      text-shadow:
+        0 0 5px #f39c12,
+        0 0 10px #f39c12,
+        0 0 20px #f39c12,
+        0 0 40px #e74c3c,
+        0 0 80px #e74c3c,
+        0 0 90px #e74c3c,
+        0 0 100px #e74c3c;
+      animation: flicker 2s infinite alternate;
+      margin-bottom: 30px;
+    }
+
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow:
+          0 0 5px #f39c12,
+          0 0 10px #f39c12,
+          0 0 20px #f39c12,
+          0 0 40px #e74c3c,
+          0 0 80px #e74c3c,
+          0 0 90px #e74c3c,
+          0 0 100px #e74c3c;
+      }
+      20%, 24%, 55% {
+        text-shadow: none;
+      }
     }
 
     h2 {
-      font-size: 1.8em;
       color: #f39c12;
       margin-top: 40px;
       margin-bottom: 20px;
-      border-bottom: 2px solid #f39c12;
       display: inline-block;
+      border-bottom: 2px solid #f39c12;
       padding-bottom: 5px;
     }
 
     ul {
       list-style: none;
       padding: 0;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: left;
     }
 
     li {
@@ -121,38 +125,33 @@
       50% { opacity: 1; }
       100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
     }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 2em; }
-      h2 { font-size: 1.5em; }
-    }
   </style>
 </head>
 <body>
-  <h1>🏝️ ONE BLOCK</h1>
+  <div class="container">
+    <h1 class="neon-text">🏝️ ONE BLOCK</h1>
 
-  <div class="content">
     <p>Rozpocznij przygodę na jednym małym bloku i rozwijaj ją w potężną bazę! Ten tryb oferuje mnóstwo atrakcji i możliwości dla każdego gracza – od pracy, przez walkę, po rozbudowane mechaniki automatyczne.</p>
 
     <h2>TRYB POSIADA</h2>
     <ul>
-      <li>💼 <strong>Prace:</strong> zarabiaj, wykonując różnorodne zadania i rozwijaj swoje możliwości.</li>
-      <li>⚡ <strong>Skille:</strong> zdobywaj doświadczenie i ulepszaj umiejętności, by stawać się silniejszym.</li>
-      <li>📦 <strong>AutoSellChesty:</strong> automatyczna sprzedaż przedmiotów – wygodne i szybkie.</li>
-      <li>🛌 <strong>Strefa AFK:</strong> bezpieczne miejsce do odpoczynku bez ryzyka utraty przedmiotów.</li>
-      <li>🤖 <strong>Minionki:</strong> pomagają w zbieraniu surowców i wykonywaniu zadań automatycznie.</li>
-      <li>🛒 <strong>Sklep Skrzynkowy:</strong> wymieniaj zdobyte przedmioty i zdobywaj wyjątkowe nagrody.</li>
-      <li>🎁 <strong>Drop od razu do EQ:</strong> wszystkie przedmioty trafiają prosto do ekwipunku.</li>
-      <li>⚔️ <strong>DuelSy:</strong> walcz z innymi graczami i testuj swoje umiejętności w PvP.</li>
+      <li>💼 <strong>Prace:</strong> zarabiaj, wykonując różnorodne zadania.</li>
+      <li>⚡ <strong>Skille:</strong> zdobywaj doświadczenie i ulepszaj umiejętności.</li>
+      <li>📦 <strong>AutoSellChesty:</strong> automatyczna sprzedaż przedmiotów.</li>
+      <li>🛌 <strong>Strefa AFK:</strong> bezpieczne miejsce do odpoczynku.</li>
+      <li>🤖 <strong>Minionki:</strong> pomagają w zbieraniu surowców.</li>
+      <li>🛒 <strong>Sklep Skrzynkowy:</strong> wymieniaj przedmioty i zdobywaj nagrody.</li>
+      <li>🎁 <strong>Drop do EQ:</strong> wszystkie przedmioty trafiają prosto do ekwipunku.</li>
+      <li>⚔️ <strong>DuelSy:</strong> walcz z innymi graczami w PvP.</li>
       <li>🌀 <strong>Windy:</strong> szybkie przemieszczanie się po wyspie.</li>
-      <li>⛏️ <strong>Ekstraktory i Generatory:</strong> automatycznie zbierają surowce i ułatwiają rozwój.</li>
-      <li>🐾 <strong>Stackowanie mobów:</strong> zbieraj i grupuj potwory, by zarabiać więcej doświadczenia.</li>
+      <li>⛏️ <strong>Ekstraktory i Generatory:</strong> automatycznie zbierają surowce.</li>
+      <li>🐾 <strong>Stackowanie mobów:</strong> zbieraj i grupuj potwory.</li>
       <li>🌑 <strong>Nocny Nether:</strong> od 15:00 do 18:00, a End od 18:00 do 21:00.</li>
-      <li>✨ <strong>I wiele innych atrakcji:</strong> odkrywaj sekrety, bierz udział w eventach i rozwijaj wyspę według własnych pomysłów!</li>
+      <li>✨ <strong>Wiele innych atrakcji:</strong> odkrywaj sekrety i bierz udział w eventach.</li>
     </ul>
-  </div>
 
-  <a href="index.html" class="back-button">← Powrót</a>
+    <a href="index.html" class="back-button">← Powrót</a>
+  </div>
 
   <script>
     const colors = ['#f39c12', '#f1c40f', '#e74c3c', '#9b59b6', '#1abc9c', '#3498db'];
