@@ -22,39 +22,33 @@
       padding: 40px 20px;
       position: relative;
       z-index: 10;
+      text-align: center;
     }
 
+    /* ✨ Gradientowy nagłówek jak w ONE BLOCK */
     h1.neon-text {
       font-size: 3em;
-      text-align: center;
-      color: #fff;
       font-weight: bold;
       letter-spacing: 2px;
-      text-shadow:
-        0 0 5px #f39c12,
-        0 0 10px #f39c12,
-        0 0 20px #f39c12,
-        0 0 40px #e74c3c,
-        0 0 80px #e74c3c,
-        0 0 90px #e74c3c,
-        0 0 100px #e74c3c;
-      animation: flicker 2s infinite alternate;
+      margin-bottom: 30px;
+
+      background: linear-gradient(90deg, #f39c12, #e74c3c, #9b59b6, #3498db, #f39c12);
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      animation: titleGradient 6s infinite linear;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
     }
 
-    @keyframes flicker {
-      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-        text-shadow:
-          0 0 5px #f39c12,
-          0 0 10px #f39c12,
-          0 0 20px #f39c12,
-          0 0 40px #e74c3c,
-          0 0 80px #e74c3c,
-          0 0 90px #e74c3c,
-          0 0 100px #e74c3c;
-      }
-      20%, 24%, 55% {
-        text-shadow: none;
-      }
+    h1.neon-text:hover {
+      transform: scale(1.05);
+      text-shadow: 0 0 15px #f39c12, 0 0 30px #e74c3c, 0 0 45px #9b59b6;
+    }
+
+    @keyframes titleGradient {
+      0% { background-position: 0%; }
+      100% { background-position: 300%; }
     }
 
     h2 {
@@ -69,6 +63,7 @@
     ul {
       list-style: none;
       padding: 0;
+      text-align: left;
     }
 
     li {
