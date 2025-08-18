@@ -1,0 +1,366 @@
+import React, { useMemo, useState, useEffect } from "react";
+
+/**
+ * Strona serwera Minecraft – single‑file React
+ *
+ * Jak użyć w VS Code:
+ * 1) Utwórz nowy projekt Vite (React):
+ *    npm create vite@latest my-mc-site -- --template react
+ *    cd my-mc-site && npm i && npm i tailwindcss postcss autoprefixer
+ *    npx tailwindcss init -p
+ * 2) W tailwind.config.js dodaj:  content: ["./index.html","./src/**/*.{js,ts,jsx,tsx}"]
+ *    W src/index.css wklej dyrektywy:
+ *      @tailwind base;@tailwind components;@tailwind utilities;
+ * 3) Zastąp zawartość src/App.jsx tym plikiem.
+ * 4) Uruchom: npm run dev
+ *
+ * Strona jest inspirowana układem ofert (cards, pricing, sekcje),
+ * ale cały tekst i styl są oryginalne.
+ */
+
+// ——— KONFIGURACJA ———
+const SITE = {
+  name: "BlockHaven",
+  tagline: "Polski serwer survival+ z ekonomią i eventami",
+  ip: "play.blockhaven.pl",
+  discord: "https://discord.gg/twoj-serwer",
+  email: "kontakt@blockhaven.pl",
+  ctaText: "Dołącz teraz",
+  accentFrom: "#22d3ee", // teals / cyans
+  accentTo: "#4f46e5",   // indigo
+  heroBg: 
+    "https://images.unsplash.com/photo-1520975922284-7b683b992b1a?q=80&w=1600&auto=format&fit=crop",
+};
+
+// ——— POMOCNICZE KOMPONENTY ———
+const Container = ({ className = "", children }) => (
+  <div className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>
+);
+
+const Badge = ({ children }) => (
+  <span className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium backdrop-blur border-white/20 bg-white/10 text-white">
+    {children}
+  </span>
+);
+
+const Card = ({ className = "", children }) => (
+  <div className={`rounded-2xl border bg-white/80 backdrop-blur shadow-sm border-black/5 ${className}`}>{children}</div>
+);
+
+const Button = ({ href, onClick, children, variant = "primary" }) => {
+  const base = "inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-offset-2";
+  const styles =
+    variant === "primary"
+      ? "bg-black text-white hover:bg-black/90 focus:ring-black"
+      : variant === "ghost"
+      ? "bg-transparent text-black hover:bg-black/5 focus:ring-black"
+      : "border border-black/10 bg-white hover:bg-black/5 text-black focus:ring-black";
+  const Cmp = href ? "a" : "button";
+  return (
+    <Cmp href={href} onClick={onClick} className={`${base} ${styles}`}>
+      {children}
+    </Cmp>
+  );
+};
+
+const GradientText = ({ children }) => (
+  <span
+    className="bg-clip-text text-transparent"
+    style={{
+      backgroundImage: `linear-gradient(90deg, ${SITE.accentFrom}, ${SITE.accentTo})`,
+    }}
+  >
+    {children}
+  </span>
+);
+
+const SectionTitle = ({ kicker, title, subtitle }) => (
+  <div className="text-center max-w-3xl mx-auto">
+    {kicker && (
+      <div className="mb-3">
+        <Badge>{kicker}</Badge>
+      </div>
+    )}
+    <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+      <GradientText>{title}</GradientText>
+    </h2>
+    {subtitle && (
+      <p className="mt-3 text-base text-black/70">{subtitle}</p>
+    )}
+  </div>
+);
+
+// ——— LOGIKA: pseudo‑status serwera (mock ping) ———
+function useMockServerStatus() {
+  const [online, setOnline] = useState(true);
+  const [players, setPlayers] = useState(87);
+  useEffect(() => {
+    const id = setInterval(() => {
+      // drobne losowe fluktuacje
+      setPlayers((p) => Math.max(0, Math.min(250, p + Math.round((Math.random() - 0.5) * 6))));
+      // sporadyczny "lag" off/on
+      if (Math.random() < 0.02) setOnline((o) => !o);
+    }, 2500);
+    return () => clearInterval(id);
+  }, []);
+  return { online, players, max: 250 };
+}
+
+// ——— GŁÓWNY KOMPONENT ———
+export default function MinecraftServerLanding() {
+  const { online, players, max } = useMockServerStatus();
+  const [billing, setBilling] = useState("m");
+  const [copied, setCopied] = useState(false);
+
+  const prices = useMemo(
+    () => ({
+      m: [
+        { name: "Starter", price: 19, perks: ["Ranga ⛏️ START", "/sethome x1", "/kit start co 24h", "Sloty aukcji x3"], cta: "Kup teraz" },
+        { name: "Adventurer", price: 39, featured: true, perks: ["Ranga 🗺️ ADV", "/sethome x3", "/fly (weekendy)", "Sloty aukcji x8"], cta: "Najczęściej wybierane" },
+        { name: "Legend", price: 79, perks: ["Ranga 🛡️ LEGEND", "/sethome x10", "/fly", "/repair", "Sloty aukcji x16"], cta: "Zdobądź przewagę" },
+      ],
+      y: [
+        { name: "Starter", price: 179, perks: ["Ranga ⛏️ START", "/sethome x1", "/kit start co 24h", "Sloty aukcji x3"], cta: "Kup teraz" },
+        { name: "Adventurer", price: 399, featured: true, perks: ["Ranga 🗺️ ADV", "/sethome x3", "/fly (weekendy)", "Sloty aukcji x8"], cta: "Najczęściej wybierane" },
+        { name: "Legend", price: 799, perks: ["Ranga 🛡️ LEGEND", "/sethome x10", "/fly", "/repair", "Sloty aukcji x16"], cta: "Zdobądź przewagę" },
+      ],
+    }),
+    []
+  );
+
+  const copyIP = async () => {
+    try {
+      await navigator.clipboard.writeText(SITE.ip);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {}
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-black selection:bg-black selection:text-white">
+      {/* NAV */}
+      <header className="sticky top-0 z-50 border-b border-black/5 bg-white/80 backdrop-blur">
+        <Container className="flex items-center justify-between h-16">
+          <a href="#home" className="flex items-center gap-3">
+            <div
+              className="h-9 w-9 rounded-lg"
+              style={{ background: `linear-gradient(135deg, ${SITE.accentFrom}, ${SITE.accentTo})` }}
+            />
+            <span className="font-bold">{SITE.name}</span>
+          </a>
+          <nav className="hidden md:flex items-center gap-6 text-sm">
+            <a href="#offer" className="hover:opacity-70">Oferta</a>
+            <a href="#features" className="hover:opacity-70">Funkcje</a>
+            <a href="#faq" className="hover:opacity-70">FAQ</a>
+            <a href="#contact" className="hover:opacity-70">Kontakt</a>
+            <Button href={SITE.discord}>Discord</Button>
+          </nav>
+        </Container>
+      </header>
+
+      {/* HERO */}
+      <section id="home" className="relative overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <img src={SITE.heroBg} alt="tło" className="h-full w-full object-cover" />
+          <div className="absolute inset-0" style={{
+            background: `linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 35%, rgba(255,255,255,0.2) 100%)`
+          }}/>
+        </div>
+        <Container className="py-16 md:py-24">
+          <div className="max-w-3xl">
+            <Badge>1.20.x • Java & Bedrock (Geyser)</Badge>
+            <h1 className="mt-4 text-4xl md:text-6xl font-extrabold leading-tight">
+              {SITE.name}: <GradientText>zagraj po swojemu</GradientText>
+            </h1>
+            <p className="mt-4 text-lg text-black/70">
+              {SITE.tagline}. Stabilna gospodarka, customowe questy i przyjazna społeczność. 
+              Zero pay‑to‑win, za to nagrody za aktywność i eventy co tydzień.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <Button onClick={copyIP}>{copied ? "Skopiowano IP!" : `${SITE.ctaText} – ${SITE.ip}`}</Button>
+              <Button href="#offer" variant="outline">Zobacz ofertę rang</Button>
+            </div>
+
+            <div className="mt-8 flex items-center gap-4 text-sm">
+              <span className={`inline-flex h-2.5 w-2.5 rounded-full ${online ? "bg-green-500" : "bg-red-500"}`} />
+              <span>
+                Status: {online ? "Online" : "Chwilowo offline"} • {players}/{max} graczy
+              </span>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* OFERTA / PRICING */}
+      <section id="offer" className="py-16 md:py-24">
+        <Container>
+          <SectionTitle
+            kicker="Oferta rang"
+            title="Wybierz pakiet i wesprzyj serwer"
+            subtitle="Wszystkie rangi są czysto kosmetyczne / wygodowe – brak przewagi w PvP."
+          />
+
+          <div className="mt-6 flex items-center justify-center gap-3 text-sm">
+            <span className={`rounded-full px-3 py-1 border ${billing === "m" ? "border-black bg-black text-white" : "border-black/20"}`} onClick={() => setBilling("m")} role="button">Miesięcznie</span>
+            <span className={`rounded-full px-3 py-1 border ${billing === "y" ? "border-black bg-black text-white" : "border-black/20"}`} onClick={() => setBilling("y")} role="button">Rocznie (–15%)</span>
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {prices[billing].map((p) => (
+              <Card key={p.name} className={`p-6 ${p.featured ? "ring-2 ring-black" : ""}`}>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold">{p.name}</h3>
+                  {p.featured && <Badge>Najpopularniejszy</Badge>}
+                </div>
+                <div className="mt-4 flex items-baseline gap-1">
+                  <span className="text-4xl font-extrabold">{p.price}</span>
+                  <span className="text-black/60 text-sm">PLN/{billing === "m" ? "mc" : "rok"}</span>
+                </div>
+                <ul className="mt-4 space-y-2 text-sm text-black/80">
+                  {p.perks.map((perk) => (
+                    <li key={perk} className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 rounded-full" style={{background: `linear-gradient(90deg, ${SITE.accentFrom}, ${SITE.accentTo})`}} />
+                      {perk}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6">
+                  <Button href="#buy">{p.cta}</Button>
+                </div>
+              </Card>
+            ))}
+          </div>
+
+          <p className="mt-6 text-center text-xs text-black/60">
+            Kupując rangę akceptujesz regulamin. Płatności obsługiwane przez Przelewy24/PayPal.
+          </p>
+        </Container>
+      </section>
+
+      {/* FUNKCJE */}
+      <section id="features" className="py-16 md:py-24 bg-white">
+        <Container>
+          <SectionTitle
+            kicker="Dlaczego warto?"
+            title="Funkcje, które mają znaczenie"
+            subtitle="Skupiamy się na jakości rozgrywki, nie na sztucznym grindzie."
+          />
+
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { title: "Ekonomia i rynek", desc: "Handel gracz‑gracz, aukcje, sklepy i przemyślany balans." },
+              { title: "Questy i sezonowe eventy", desc: "Cotygodniowe wyzwania, bossy i unikalne kosmetyki." },
+              { title: "Ochrona działek", desc: "Claimy, prywatne skrzynie i anty‑grief narzędzia." },
+              { title: "Kompatybilność Bedrock", desc: "Wejdź z telefonu lub konsoli przez Geyser." },
+              { title: "Niski ping w PL/EU", desc: "Serwery w Europie – stabilne TPS i brak lagów." },
+              { title: "Przyjazny support", desc: "Szybka pomoc na Discordzie i w grze." },
+            ].map((f) => (
+              <Card key={f.title} className="p-6">
+                <h3 className="font-semibold">{f.title}</h3>
+                <p className="mt-2 text-sm text-black/70">{f.desc}</p>
+              </Card>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* DOWODY SPOŁECZNE */}
+      <section className="py-16 md:py-24">
+        <Container>
+          <SectionTitle
+            kicker="Społeczność"
+            title="Polecany przez graczy"
+            subtitle="Kilka opinii z naszego Discorda."
+          />
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {[
+              { q: "Zero p2w, wreszcie!", a: "Eventy są mega, a ekonomia nie psuje zabawy." },
+              { q: "Świetna administracja", a: "Szybko reagują, a support naprawdę pomaga." },
+              { q: "Stabilny serwer", a: "Gram z UK i ping jest spoko, TPS trzyma." },
+            ].map((t, i) => (
+              <Card key={i} className="p-6">
+                <p className="text-sm">“{t.a}”</p>
+                <div className="mt-4 text-xs text-black/60">— {t.q}</div>
+              </Card>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="py-16 md:py-24 bg-white">
+        <Container>
+          <SectionTitle kicker="FAQ" title="Najczęstsze pytania" />
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            {[ 
+              {q:"Jak wejść na serwer?", a:`W kliencie Minecraft dodaj nowy serwer i wpisz IP: ${SITE.ip}. Bedrock: ten sam adres, port domyślny.`},
+              {q:"Czy są wipe'y?", a:"Sezony trwają zwykle 3–4 miesiące. Informujemy z wyprzedzeniem."},
+              {q:"Czy rangi dają przewagę?", a:"Nie. Są wygodowe i kosmetyczne. PvP pozostaje fair."},
+              {q:"Gdzie zgłosić problem?", a:`Najszybciej na Discordzie: ${SITE.discord} lub e‑mail: ${SITE.email}.`},
+            ].map((item, i) => (
+              <details key={i} className="rounded-xl border border-black/10 p-4 open:bg-black/[0.02]">
+                <summary className="cursor-pointer select-none font-medium">{item.q}</summary>
+                <p className="mt-2 text-sm text-black/75">{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* KONTAKT */}
+      <section id="contact" className="py-16 md:py-24">
+        <Container>
+          <SectionTitle
+            kicker="Kontakt"
+            title="Masz pytanie lub propozycję?"
+            subtitle="Napisz do nas – odpowiadamy zwykle w ciągu 24h."
+          />
+
+          <Card className="mt-8 p-6">
+            <form className="grid gap-4 md:grid-cols-2">
+              <div className="grid gap-2">
+                <label className="text-sm">Nick</label>
+                <input className="rounded-xl border border-black/10 px-3 py-2" placeholder="Twój nick" />
+              </div>
+              <div className="grid gap-2">
+                <label className="text-sm">E‑mail</label>
+                <input type="email" className="rounded-xl border border-black/10 px-3 py-2" placeholder="you@example.com" />
+              </div>
+              <div className="md:col-span-2 grid gap-2">
+                <label className="text-sm">Wiadomość</label>
+                <textarea rows={4} className="rounded-xl border border-black/10 px-3 py-2" placeholder="Jak możemy pomóc?" />
+              </div>
+              <div className="md:col-span-2 flex items-center justify-between">
+                <div className="text-xs text-black/60">
+                  Wysyłając formularz akceptujesz przetwarzanie danych w celu kontaktu.
+                </div>
+                <Button>Wyślij</Button>
+              </div>
+            </form>
+          </Card>
+
+          <div className="mt-6 text-center text-sm text-black/70">
+            Lub napisz bezpośrednio: <a className="underline" href={`mailto:${SITE.email}`}>{SITE.email}</a> • Discord: <a className="underline" href={SITE.discord}>dołącz</a>
+          </div>
+        </Container>
+      </section>
+
+      {/* STOPKA */}
+      <footer className="border-t border-black/5 py-10">
+        <Container className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div
+              className="h-8 w-8 rounded-lg"
+              style={{ background: `linear-gradient(135deg, ${SITE.accentFrom}, ${SITE.accentTo})` }}
+            />
+            <div>
+              <div className="font-semibold">{SITE.name}</div>
+              <div className="text-xs text-black/60">© {new Date().getFullYear()} Wszystkie prawa zastrzeżone.</div>
+            </div>
+          </div>
+          <div className="text-sm text-black/70">IP: {SITE.ip}</div>
+        </Container>
+      </footer>
+    </div>
+  );
+}
