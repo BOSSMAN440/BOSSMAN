@@ -3,191 +3,149 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🏡 SURVIVAL + DZIAŁKI</title>
+  <title>Survival + Działki - BSCMC.PL</title>
   <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #1e1e1e;
-      color: #f5f5f5;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      position: relative;
-      overflow-x: hidden;
-    }
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #0e0e0e;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
       position: relative;
-      z-index: 10;
     }
 
     h1 {
-      text-align: center;
-      font-size: 3em;
+      font-size: 4em;
+      text-transform: uppercase;
+      letter-spacing: 8px;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+      animation: pulse 2s infinite;
       margin-bottom: 10px;
-      background: linear-gradient(90deg, #f39c12, #f1c40f, #e74c3c);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
     }
 
-    h2 {
-      color: #f39c12;
-      margin-top: 40px;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #f39c12;
-      display: inline-block;
-      padding-bottom: 5px;
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff; }
+      50% { text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px #00ffff; }
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
+    .subtitle {
+      font-size: 1.3em;
+      color: #aaa;
+      margin-bottom: 40px;
     }
 
-    li {
-      background: rgba(255, 255, 255, 0.05);
-      margin: 8px 0;
-      padding: 10px 15px;
-      border-left: 4px solid #f39c12;
-      border-radius: 5px;
-      transition: background 0.3s;
-    }
-
-    li:hover {
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    .drop-list {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 10px 15px;
-      margin: 10px 0;
-      border-radius: 5px;
-      font-family: monospace;
-      overflow-x: auto;
-    }
-
-    .mini-games li {
-      border-left: 4px solid #3498db;
-    }
-
-    /* Latające kolorowe świetlne kulki */
-    .floating-light {
-      position: fixed;
-      pointer-events: none;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      opacity: 0.8;
-      animation: float linear infinite;
-      z-index: 1;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0) translateX(0); opacity: 0.8; }
-      50% { opacity: 1; }
-      100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
-    }
-
-    /* Przycisk powrotu */
-    .back-button {
-      display: block;
-      width: max-content;
-      margin: 40px auto;
-      padding: 10px 25px;
-      background: #f39c12;
-      color: #fff;
-      font-weight: bold;
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 10px;
+      padding: 15px 25px;
+      border-radius: 12px;
+      font-size: 1.2em;
       text-decoration: none;
-      border-radius: 8px;
-      transition: background 0.3s;
-      text-align: center;
+      color: #fff;
+      transition: all 0.3s;
       position: relative;
-      z-index: 20;
+      backdrop-filter: blur(6px);
+      cursor: pointer;
     }
 
-    .back-button:hover {
-      background: #e67e22;
+    .button:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(0, 255, 255, 0.6); }
+    .button.discord { background: #7289da; }
+    .button.twitch { background: #9146ff; }
+    .button.tiktok { background: #25f4ee; color: #000; }
+    .button.youtube { background: #ff0000; }
+
+    .button img { width: 24px; height: 24px; margin-right: 10px; }
+
+    .top-buttons { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
+    .button-shop { background: linear-gradient(90deg, #f39c12, #e74c3c); }
+    .button-regulamin { background: linear-gradient(90deg, #3498db, #9b59b6); }
+
+    .ip-button { background: linear-gradient(90deg, #00ffcc, #00ccff); margin-top: 20px; }
+
+    .leaderboard {
+      position: absolute;
+      top: 50px;
+      right: 20px;
+      background: #111;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #00ffff;
+      text-align: left;
+      min-width: 200px;
     }
 
-    @media (max-width: 600px) {
-      h1 { font-size: 2em; }
-      h2 { font-size: 1.5em; }
+    .leaderboard h3 { margin-bottom: 15px; color: #00ffff; text-align: center; }
+    .leaderboard div { display: flex; justify-content: space-between; margin-bottom: 10px; color: #fff; }
+    .leaderboard div span:first-child { font-weight: bold; }
+
+    .info-section {
+      max-width: 800px;
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .info-section p {
+      margin-bottom: 20px;
+      font-size: 1.1em;
+      color: #ccc;
     }
   </style>
 </head>
 <body>
 
-  <!-- Świetlne kulki w tle -->
-  <script>
-    const colors = ['#f39c12', '#f1c40f', '#e74c3c', '#9b59b6', '#1abc9c', '#3498db'];
-    const numLights = 40;
+  <h1>BSCMC.PL</h1>
+  <div class="subtitle">TRYB: <strong>SURVIVAL + DZIAŁKI</strong> | WERSJA: <strong>1.21.3 +</strong></div>
 
-    for (let i = 0; i < numLights; i++) {
-      const light = document.createElement('div');
-      light.classList.add('floating-light');
-      light.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      light.style.left = Math.random() * 100 + 'vw';
-      light.style.top = Math.random() * 100 + 'vh';
-      light.style.width = (5 + Math.random() * 10) + 'px';
-      light.style.height = light.style.width;
-      light.style.animationDuration = (5 + Math.random() * 10) + 's';
-      document.body.appendChild(light);
+  <div class="top-buttons">
+    <a href="https://yshop.pl/shop/boss" class="button button-shop" target="_blank">🛒 SKLEP SERVERA</a>
+    <a href="https://docs.google.com/document/d/1oNBwICgD2GQHxWO3LM2rPjL7VgWXYv0lsQL6ZVgHNks/edit?tab=t.0" class="button button-regulamin" target="_blank">📜 REGULAMIN SERVERA</a>
+  </div>
+
+  <div>
+    <a href="https://discord.gg/9dt99b3NFG" class="button discord" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord"> Discord
+    </a>
+    <a href="https://www.twitch.tv/98bossman98" class="button twitch" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"> Twitch
+    </a>
+    <a href="https://www.tiktok.com/@bscmc.pl" class="button tiktok" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok"> TikTok
+    </a>
+    <a href="https://www.youtube.com/@BOSSCRAFTMCPL" class="button youtube" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"> YouTube
+    </a>
+  </div>
+
+  <button class="button ip-button" onclick="copyIP()">📋 Kopiuj IP: BSCMC.PL</button>
+
+  <div class="info-section">
+    <p>Survival + Działki to tryb, w którym możesz budować swoje własne domy i działki, rozwijać ekonomię, handlować z innymi graczami oraz rywalizować o pierwsze miejsce w rankingu serwera.</p>
+    <p>Rozpocznij swoją przygodę już teraz i dołącz do społeczności BSCMC.PL!</p>
+  </div>
+
+  <div class="leaderboard">
+    <h3>Topka graczy</h3>
+    <div><span>salatkaowocowa</span><span>120 zł</span></div>
+    <div><span>BloomFire000</span><span>104 zł</span></div>
+    <div><span>michalek</span><span>80 zł</span></div>
+  </div>
+
+  <script>
+    function copyIP() {
+      navigator.clipboard.writeText("BSCMC.PL")
+        .then(() => { alert("IP serwera zostało skopiowane!"); })
+        .catch(err => { alert("Błąd kopiowania IP."); });
     }
   </script>
 
-  <div class="container">
-    <h1>🏡 SURVIVAL + DZIAŁKI</h1>
-    <p>Odkryj niesamowite możliwości naszego trybu survivalowego z działkami i wieloma dodatkami! Poniżej znajdziesz wszystkie atrakcje i funkcje:</p>
-
-    <h2>TRYB POSIADA</h2>
-    <ul>
-      <li>🌳 Customowe biomy zapewniające różnorodność terenów.</li>
-      <li>🌌 Nocny Nether od 15:00 do 18:00, a End od 18:00 do 21:00.</li>
-      <li>🪄 Stakowanie mobów i przedmiotów leżących na ziemi.</li>
-      <li>🏠 Działki z ulepszanym GUI i możliwością rozbudowy.</li>
-      <li>🎰 Kasyno z emocjonującymi mini-grami.</li>
-      <li>🧟 Arena zombie z customowym dropem i wyzwaniami.</li>
-      <li>⚒️ Rozbudowany system prac i zadań dla graczy.</li>
-      <li>🎁 Dzienna nagroda dla aktywnych graczy.</li>
-      <li>🐟 Specjalny drop z ryb, np. skrzynki z nagrodami:</li>
-    </ul>
-
-    <div class="drop-list">
-<pre>
-12x Węgiel         50% szansa
-3x Diament          20% szansa
-3x Obsydian         50% szansa
-32x Pszenica        40% szansa
-5x Sztabek Żelaza   30% szansa
-32x Dębowe Drewno   30% szansa
-4x Złota Sztabka     30% szansa
-</pre>
-    </div>
-
-    <ul>
-      <li>🛒 Sklep skrzynkowy z wygodnym interfejsem.</li>
-      <li>💵 Sellwandy do szybkiej sprzedaży przedmiotów.</li>
-      <li>🛡️ Strefa AFK do bezpiecznego odpoczynku.</li>
-      <li>⚰️ Groby trwające 3 minuty po śmierci.</li>
-      <li>📦 Specjalne spawnery skrzynek z nagrodami w środku.</li>
-      <li>🎣 Eventy rybackie z ciekawymi dropami.</li>
-      <li>✨ Customowe enchanty dla Twojego ekwipunku.</li>
-      <li>💑 Opcja MARRY – możliwość poślubienia innego gracza.</li>
-      <li>🌟 I wiele innych atrakcji, które czekają na odkrycie!</li>
-    </ul>
-
-    <h2>Mini-gry</h2>
-    <ul class="mini-games">
-      <li>💥 TNT Run – szybka i emocjonująca rozgrywka.</li>
-      <li>👽 Among Us – sprawdź swoją dedukcję i spryt wśród znajomych.</li>
-    </ul>
-
-    <!-- Przycisk Powrót -->
-    <a href="index.html" class="back-button">← Powrót</a>
-  </div>
 </body>
 </html>
-
