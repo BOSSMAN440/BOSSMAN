@@ -73,24 +73,6 @@
       border-left: 4px solid #3498db;
     }
 
-    /* Latające przedmioty Minecraft */
-    .floating-item {
-      position: absolute;
-      pointer-events: none;
-      width: 40px;
-      height: 40px;
-      z-index: 5;
-      animation: float linear infinite;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-      25% { transform: translateY(-50px) translateX(50px) rotate(45deg); }
-      50% { transform: translateY(0px) translateX(100px) rotate(90deg); }
-      75% { transform: translateY(50px) translateX(50px) rotate(135deg); }
-      100% { transform: translateY(0px) translateX(0px) rotate(180deg); }
-    }
-
     /* Kolorowe latające świetlne kulki */
     .floating-light {
       position: absolute;
@@ -165,29 +147,6 @@
   </div>
 
   <script>
-    // Lista Minecraftowych ikon (linki do ikon PNG w internecie lub lokalnie)
-    const items = [
-      "https://i.imgur.com/rl8K5aA.png", // pszenica
-      "https://i.imgur.com/qvYzqYh.png", // ziemniaki
-      "https://i.imgur.com/T6L3Ixo.png", // diament
-      "https://i.imgur.com/Yz0U3Kd.png", // szmaragd
-      "https://i.imgur.com/6hXLp1I.png", // diamentowy miecz
-      "https://i.imgur.com/J8l6H8T.png", // diamentowy kilof
-      "https://i.imgur.com/CHpU3Xr.png", // diamentowa siekierka
-      "https://i.imgur.com/tC4oZ9Y.png"  // zbroja diamentowa
-    ];
-
-    // Tworzenie latających przedmiotów
-    for (let i = 0; i < 15; i++) {
-      const img = document.createElement("img");
-      img.src = items[Math.floor(Math.random() * items.length)];
-      img.className = "floating-item";
-      img.style.top = Math.random() * window.innerHeight + "px";
-      img.style.left = Math.random() * window.innerWidth + "px";
-      img.style.animationDuration = (5 + Math.random() * 10) + "s";
-      document.body.appendChild(img);
-    }
-
     // Tworzenie kolorowych światełek
     const colors = ["#ff4d4d","#4dff4d","#4d4dff","#ffff4d","#ff4dff","#4dffff"];
     for (let i = 0; i < 50; i++) {
