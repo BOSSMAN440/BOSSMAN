@@ -12,10 +12,19 @@
       background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
       color: #fff;
       display: flex;
+      flex-direction: row;
+      overflow-x: hidden;
+    }
+
+    /* Kontener główny */
+    .main-container {
+      flex: 1;
+      display: flex;
       flex-direction: column;
       align-items: center;
       padding: 50px 20px;
-      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
     }
 
     h1 {
@@ -93,7 +102,46 @@
     .links a.tiktok { background: #25f4ee; color: #000; }
     .links a.rules { background: linear-gradient(90deg, #3498db, #2980b9); }
 
-    /* Animowane tło świateł */
+    /* Panel Topki po prawej */
+    .topka-panel {
+      width: 250px;
+      background: rgba(30,30,30,0.85);
+      border-radius: 20px 0 0 20px;
+      padding: 20px;
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      overflow-y: auto;
+      box-shadow: -5px 0 20px rgba(0,0,0,0.5);
+    }
+
+    .topka-panel h2 {
+      text-align: center;
+      font-size: 1.5em;
+      margin-bottom: 15px;
+      color: #4ade80;
+      text-shadow: 0 0 10px #4ade80;
+    }
+
+    .topka-item {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      padding: 10px 15px;
+      border-radius: 10px;
+      background: rgba(70,70,70,0.4);
+      transition: background 0.3s;
+    }
+
+    .topka-item:hover {
+      background: rgba(120,120,120,0.5);
+    }
+
+    .topka-name { font-weight: bold; }
+    .topka-amount { color: #ffd700; font-weight: bold; }
+
+    /* Animowane światła */
     .light {
       position: absolute;
       border-radius: 50%;
@@ -112,36 +160,47 @@
       margin-top: 50px;
       font-size: 0.9em;
       color: #bbb;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <h1>BSCMC.PL</h1>
-  <div class="container">
-    <!-- Karta Tryby -->
-    <div class="card">
-      <h2>Tryby Serwera</h2>
-      <div class="links">
-        <a href="survival.html">🏡 Survival + Działki</a>
-        <a href="oneblock.html">🧱 OneBlock</a>
+  <!-- Główna zawartość -->
+  <div class="main-container">
+    <h1>BSCMC.PL</h1>
+    <div class="container">
+      <!-- Karta Tryby -->
+      <div class="card">
+        <h2>Tryby Serwera</h2>
+        <div class="links">
+          <a href="survival.html">🏡 Survival + Działki</a>
+          <a href="oneblock.html">🧱 OneBlock</a>
+        </div>
       </div>
-    </div>
 
-    <!-- Karta Linki -->
-    <div class="card">
-      <h2>Linki</h2>
-      <div class="links">
-        <a href="https://discord.gg/9dt99b3NFG" target="_blank" class="discord">💬 Discord</a>
-        <a href="https://yshop.pl/shop/boss" target="_blank" class="shop">🛒 Sklep</a>
-        <a href="https://www.twitch.tv/98bossman98" target="_blank" class="twitch">🎮 Twitch</a>
-        <a href="https://www.youtube.com/@BOSSCRAFTMCPL" target="_blank" class="youtube">📺 YouTube</a>
-        <a href="https://www.tiktok.com/@bscmc.pl" target="_blank" class="tiktok">🎵 TikTok</a>
-        <a href="https://docs.google.com/document/d/1oNBwICgD2GQHxWO3LM2rPjL7VgWXYv0lsQL6ZVgHNks/edit?usp=sharing" target="_blank" class="rules">📜 Regulamin</a>
+      <!-- Karta Linki -->
+      <div class="card">
+        <h2>Linki</h2>
+        <div class="links">
+          <a href="https://discord.gg/9dt99b3NFG" target="_blank" class="discord">💬 Discord</a>
+          <a href="https://yshop.pl/shop/boss" target="_blank" class="shop">🛒 Sklep</a>
+          <a href="https://www.twitch.tv/98bossman98" target="_blank" class="twitch">🎮 Twitch</a>
+          <a href="https://www.youtube.com/@BOSSCRAFTMCPL" target="_blank" class="youtube">📺 YouTube</a>
+          <a href="https://www.tiktok.com/@bscmc.pl" target="_blank" class="tiktok">🎵 TikTok</a>
+          <a href="https://docs.google.com/document/d/1oNBwICgD2GQHxWO3LM2rPjL7VgWXYv0lsQL6ZVgHNks/edit?usp=sharing" target="_blank" class="rules">📜 Regulamin</a>
+        </div>
       </div>
     </div>
+    <footer>© 2025 BSCMC.PL | Wszystkie prawa zastrzeżone</footer>
   </div>
 
-  <footer>© 2025 BSCMC.PL | Wszystkie prawa zastrzeżone</footer>
+  <!-- Panel Topki -->
+  <div class="topka-panel">
+    <h2>Topka Wydanej Kasy</h2>
+    <div class="topka-item"><span class="topka-name">salatkaowocowa</span><span class="topka-amount">120 zł</span></div>
+    <div class="topka-item"><span class="topka-name">BloomFire000</span><span class="topka-amount">104 zł</span></div>
+    <div class="topka-item"><span class="topka-name">michalek</span><span class="topka-amount">80 zł</span></div>
+  </div>
 
   <!-- Animowane światła -->
   <script>
