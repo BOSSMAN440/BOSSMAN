@@ -38,7 +38,7 @@
     .button.youtube { background-color: #FF0000; }
     .button:hover { opacity: 0.85; }
     .button img { width: 24px; height: 24px; margin-right: 10px; }
-    .ip-info { margin: 30px 0 10px; font-size: 1.3em; }
+
     .mode-buttons { margin-top: 20px; }
     .mode-buttons a {
       display: block;
@@ -72,12 +72,23 @@
       50% { text-shadow: 0 0 10px #f39c12, 0 0 20px #f1c40f, 0 0 30px #e74c3c; }
       100% { text-shadow: 0 0 5px #f39c12, 0 0 10px #f1c40f, 0 0 15px #e74c3c; }
     }
+
+    /* Styl dla przycisku sklepu */
+    .button-shop {
+      background: linear-gradient(90deg, #f39c12, #f1c40f, #e74c3c);
+      color: white;
+      font-weight: bold;
+    }
+    .button-shop:hover {
+      opacity: 0.85;
+    }
   </style>
 </head>
 <body>
   <h1>BSCMC.PL</h1>
   <div class="subtitle">IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3 +</strong></div>
 
+  <!-- Social media -->
   <div>
     <a href="https://discord.gg/9dt99b3NFG" class="button" target="_blank">
       <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord"> Discord
@@ -93,15 +104,16 @@
     </a>
   </div>
 
+  <!-- Przycisk sklepu -->
+  <div style="margin: 20px 0;">
+    <a href="https://yshop.pl/shop/boss" class="button button-shop" target="_blank">🛒 SKLEP SERVERA</a>
+  </div>
+
   <h2 class="fancy-title">INFORMACJE O TRYBACH</h2>
 
-<div class="mode-buttons">
+  <div class="mode-buttons">
     <a href="survival.html">🏡 SURVIVAL + DZIAŁKI</a>
     <a href="oneblock.html">🧱 ONE BLOCK</a>
-    <a href="https://yshop.pl/shop/boss" class="button-shop" target="_blank">🛒 SKLEP SERVERA</a>
-</div>
+  </div>
 </body>
 </html>
-
-
-
