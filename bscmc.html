@@ -1,91 +1,194 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dropy</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #1a1a1a;
-    color: #f5f5f5;
-    padding: 20px;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎁 DROP Z SKRZYNEK</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+      color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+    }
 
-  h2 {
-    color: #f39c12;
-    margin-top: 30px;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #f39c12;
-    display: inline-block;
-    padding-bottom: 5px;
-  }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 10;
+      text-align: center;
+    }
 
-  ul {
-    list-style: none;
-    padding: 0;
-  }
+    h1.neon-text {
+      font-size: 3em;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-bottom: 30px;
 
-  li {
-    background: rgba(255,255,255,0.05);
-    margin: 6px 0;
-    padding: 10px 15px;
-    border-left: 4px solid #f39c12;
-    border-radius: 5px;
-    transition: background 0.3s;
-  }
+      background: linear-gradient(90deg, #f39c12, #e74c3c, #9b59b6, #3498db, #f39c12);
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
 
-  li:hover {
-    background: rgba(255,255,255,0.15);
-  }
+      animation: titleGradient 6s infinite linear;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+    }
 
-  .section-surowce li { border-color: #3498db; }
-  .section-moby li { border-color: #e74c3c; }
-  .section-hajs li { border-color: #2ecc71; }
+    h1.neon-text:hover {
+      transform: scale(1.05);
+      text-shadow: 0 0 15px #f39c12, 0 0 30px #e74c3c, 0 0 45px #9b59b6;
+    }
 
-</style>
+    @keyframes titleGradient {
+      0% { background-position: 0%; }
+      100% { background-position: 300%; }
+    }
+
+    h2 {
+      color: #f39c12;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #f39c12;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+    }
+
+    li {
+      background: rgba(255, 255, 255, 0.05);
+      margin: 8px 0;
+      padding: 10px 15px;
+      border-left: 4px solid #f39c12;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    li:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .section-surowce li { border-color: #3498db; }
+    .section-moby li { border-color: #e74c3c; }
+    .section-hajs li { border-color: #2ecc71; }
+
+    .floating-light {
+      position: fixed;
+      pointer-events: none;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: float linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0); opacity: 0.8; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+    }
+
+    .back-button {
+      display: block;
+      width: max-content;
+      margin: 40px auto;
+      padding: 10px 25px;
+      background: #f39c12;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.3s;
+      text-align: center;
+      position: relative;
+      z-index: 20;
+    }
+
+    .back-button:hover {
+      background: #e67e22;
+    }
+
+    @media (max-width: 600px) {
+      h1.neon-text { font-size: 2em; }
+      h2 { font-size: 1.5em; }
+    }
+  </style>
 </head>
 <body>
 
-<h2>SUROWCE</h2>
-<ul class="section-surowce">
-  <li>5x Węgiel – 50% szansa</li>
-  <li>3x szt. żelaza – 30% szansa</li>
-  <li>4x szt. miedzi – 35% szansa</li>
-  <li>2x szt. złota – 20% szansa</li>
-  <li>6x lazuryt – 25% szansa</li>
-  <li>5x redston – 25% szansa</li>
-  <li>1x emerald – 7% szansa</li>
-  <li>1x diament – 5% szansa</li>
-  <li>1x nether sc – 2% szansa</li>
-  <li>8x kwarc – 20% szansa</li>
-  <li>3x obsydian – 15% szansa</li>
-  <li>2x szlam – 10% szansa</li>
-</ul>
+<script>
+  const colors = ['#f39c12', '#f1c40f', '#e74c3c', '#9b59b6', '#1abc9c', '#3498db'];
+  const numLights = 40;
 
-<h2>MOBY</h2>
-<ul class="section-moby">
-  <li>1x zombie</li>
-  <li>1x szkielet</li>
-  <li>1x creeper</li>
-  <li>1x krowa</li>
-  <li>1x owca</li>
-  <li>1x swinia</li>
-  <li>1x kurczak</li>
-  <li>1x pajak</li>
-  <li>1x enderman</li>
-</ul>
+  for (let i = 0; i < numLights; i++) {
+    const light = document.createElement('div');
+    light.classList.add('floating-light');
+    light.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    light.style.left = Math.random() * 100 + 'vw';
+    light.style.top = Math.random() * 100 + 'vh';
+    light.style.width = (5 + Math.random() * 10) + 'px';
+    light.style.height = light.style.width;
+    light.style.animationDuration = (5 + Math.random() * 10) + 's';
+    document.body.appendChild(light);
+  }
+</script>
 
-<h2>HAJS</h2>
-<ul class="section-hajs">
-  <li>50$ – 40% szansa</li>
-  <li>100$ – 35% szansa</li>
-  <li>250$ – 30% szansa</li>
-  <li>500$ – 25% szansa</li>
-  <li>1000$ – 20% szansa</li>
-  <li>2000$ – 10% szansa</li>
-  <li>3000$ – 5% szansa</li>
-</ul>
+<div class="container">
+  <h1 class="neon-text">🎁 DROP Z SKRZYNEK</h1>
+
+  <h2>SUROWCE</h2>
+  <ul class="section-surowce">
+    <li>5x Węgiel – 50% szansa</li>
+    <li>3x szt. żelaza – 30% szansa</li>
+    <li>4x szt. miedzi – 35% szansa</li>
+    <li>2x szt. złota – 20% szansa</li>
+    <li>6x lazuryt – 25% szansa</li>
+    <li>5x redston – 25% szansa</li>
+    <li>1x emerald – 7% szansa</li>
+    <li>1x diament – 5% szansa</li>
+    <li>1x nether sc – 2% szansa</li>
+    <li>8x kwarc – 20% szansa</li>
+    <li>3x obsydian – 15% szansa</li>
+    <li>2x szlam – 10% szansa</li>
+  </ul>
+
+  <h2>MOBY</h2>
+  <ul class="section-moby">
+    <li>1x zombie</li>
+    <li>1x szkielet</li>
+    <li>1x creeper</li>
+    <li>1x krowa</li>
+    <li>1x owca</li>
+    <li>1x swinia</li>
+    <li>1x kurczak</li>
+    <li>1x pajak</li>
+    <li>1x enderman</li>
+  </ul>
+
+  <h2>HAJS</h2>
+  <ul class="section-hajs">
+    <li>50$ – 40% szansa</li>
+    <li>100$ – 35% szansa</li>
+    <li>250$ – 30% szansa</li>
+    <li>500$ – 25% szansa</li>
+    <li>1000$ – 20% szansa</li>
+    <li>2000$ – 10% szansa</li>
+    <li>3000$ – 5% szansa</li>
+  </ul>
+
+  <a href="survival.html" class="back-button">← Powrót</a>
+</div>
 
 </body>
 </html>
