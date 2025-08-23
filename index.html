@@ -20,6 +20,7 @@
       align-items: center;
       overflow-x: hidden;
       position: relative;
+      padding-bottom: 50px;
     }
 
     @keyframes gradientBG {
@@ -120,18 +121,26 @@
     }
 
     .news {
-      margin-top: 50px;
+      margin-top: 30px;
       padding: 20px;
       background: rgba(20, 20, 20, 0.9);
       border-radius: 15px;
       box-shadow: 0 0 20px #ff00ff;
       text-align: center;
       z-index: 1;
+      max-width: 500px;
     }
 
     .news h2 {
       margin-bottom: 10px;
       color: #ff00ff;
+    }
+
+    .countdown {
+      font-size: 1.2em;
+      margin-top: 10px;
+      color: #00ffff;
+      font-weight: bold;
     }
 
     .leaderboard {
@@ -164,6 +173,26 @@
     .leaderboard .gold { background: linear-gradient(90deg, #FFD700, #FFA500); color: #000; }
     .leaderboard .silver { background: linear-gradient(90deg, #C0C0C0, #A9A9A9); color: #000; }
     .leaderboard .bronze { background: linear-gradient(90deg, #CD7F32, #8B4513); color: #fff; }
+
+    .faq {
+      margin-top: 30px;
+      padding: 20px;
+      background: rgba(20, 20, 20, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 0 20px #00ffff;
+      max-width: 600px;
+      z-index: 1;
+    }
+
+    .faq h2 {
+      color: #00ffff;
+      margin-bottom: 10px;
+    }
+
+    .faq p {
+      margin-bottom: 10px;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
@@ -200,37 +229,20 @@
   <!-- IP Button -->
   <button class="button ip-button" onclick="copyIP()">📋 Kopiuj IP: BSCMC.PL</button>
 
-<!-- KLUCZE -->
-<div class="news">
-  <h2>📢 KLUCZE</h2>
-  <p>🎁 Co sobotę o <strong>20:00</strong> rozdawanie kluczy!</p>
-</div>
-
-<!-- EVENCIK -->
-<div class="news">
-  <h2>📢 EVENCIK</h2>
-  <p>📦 Co 24h o  16:00 odbywa się event zrzutu <br> <strong>35 skrzynek</strong> z nagrodami do zebrania!</p>
-</div>
-
-
-  <!-- Leaderboard -->
-  <div class="leaderboard">
-    <h3>Topka graczy</h3>
-    <div class="player gold"><span>🥇 salatkaowocowa</span><span>120 zł</span></div>
-    <div class="player silver"><span>🥈 BloomFire000</span><span>104 zł</span></div>
-    <div class="player bronze"><span>🥉 michalek</span><span>80 zł</span></div>
+  <!-- KLUCZE -->
+  <div class="news">
+    <h2>📢 KLUCZE</h2>
+    <p>🎁 Co sobotę o <strong>20:00</strong> rozdawanie kluczy!</p>
   </div>
 
-  <script>
-    function copyIP() {
-      navigator.clipboard.writeText("BSCMC.PL")
-        .then(() => { alert("IP serwera zostało skopiowane!"); })
-        .catch(err => { alert("Błąd kopiowania IP."); });
-    }
-  </script>
+  <!-- EVENCIK -->
+  <div class="news">
+    <h2>📢 EVENCIK</h2>
+    <p>📦 Co 24h odbywa się event zrzutu <br> <strong>35 skrzynek</strong> z nagrodami do zebrania!</p>
+    <div class="countdown" id="eventCountdown">Odliczanie: 00:00:00</div>
+  </div>
 
-</body>
-</html>
-
-
-
+  <!-- FAQ / Jak grać -->
+  <div class="faq">
+    <h2>❓ Jak grać?</h2>
+    <p
