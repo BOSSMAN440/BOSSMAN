@@ -274,4 +274,50 @@
     <button class="faq-question">Jak zgłosić błąd?</button>
     <div class="faq-answer"><p>Zgłoś problem na naszym Discordzie 👉 <a href="https://discord.gg/9dt99b3NFG" target="_blank">kliknij tutaj</a>.</p></div>
 
-    <button class="faq-ques
+    <button class="faq-question">Czy mogę grać z przyjaciółmi?</button>
+    <div class="faq-answer"><p>Tak! Możesz tworzyć drużyny i wspólne działki.</p></div>
+
+    <button class="faq-question">Jak zdobyć klucze i skrzynki?</button>
+    <div class="faq-answer"><p>🔑 W eventach, rozdaniach, dropach oraz w sklepie.</p></div>
+
+    <button class="faq-question">Czy serwer działa w trybie non-premium?</button>
+    <div class="faq-answer"><p>Tak, obsługujemy graczy premium i non-premium.</p></div>
+
+    <button class="faq-question">Jak mogę wspierać serwer?</button>
+    <div class="faq-answer"><p>W sklepie serwera lub zapraszając znajomych 🚀.</p></div>
+  </div>
+
+  <!-- Leaderboard -->
+  <div class="leaderboard">
+    <h3>Topka graczy</h3>
+    <div class="player gold"><span>🥇 salatkaowocowa</span><span>120 zł</span></div>
+    <div class="player silver"><span>🥈 BloomFire000</span><span>104 zł</span></div>
+    <div class="player bronze"><span>🥉 michalek</span><span>80 zł</span></div>
+  </div>
+
+  <script>
+    function copyIP() {
+      navigator.clipboard.writeText("BSCMC.PL")
+        .then(() => { alert("IP serwera zostało skopiowane!"); })
+        .catch(err => { alert("Błąd kopiowania IP."); });
+    }
+
+    // FAQ toggle
+    const faqQuestions = document.querySelectorAll(".faq-question");
+    faqQuestions.forEach(button => {
+      button.addEventListener("click", () => {
+        const answer = button.nextElementSibling;
+        document.querySelectorAll(".faq-answer").forEach(a => {
+          if (a !== answer) a.style.maxHeight = null;
+        });
+        if (answer.style.maxHeight) {
+          answer.style.maxHeight = null;
+        } else {
+          answer.style.maxHeight = answer.scrollHeight + "px";
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
