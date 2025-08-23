@@ -164,46 +164,6 @@
     .leaderboard .gold { background: linear-gradient(90deg, #FFD700, #FFA500); color: #000; }
     .leaderboard .silver { background: linear-gradient(90deg, #C0C0C0, #A9A9A9); color: #000; }
     .leaderboard .bronze { background: linear-gradient(90deg, #CD7F32, #8B4513); color: #fff; }
-
-    /* FAQ */
-    .faq {
-      margin-top: 50px;
-      width: 90%;
-      max-width: 800px;
-      background: rgba(20,20,20,0.9);
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px #00ffff;
-    }
-    .faq h2 { color: #00ffff; margin-bottom: 20px; text-align: center; }
-    .faq-item { margin-bottom: 10px; }
-    .faq-question {
-      width: 100%;
-      background: #222;
-      color: #fff;
-      padding: 15px;
-      border: none;
-      text-align: left;
-      font-size: 1.1em;
-      cursor: pointer;
-      border-radius: 10px;
-      transition: background 0.3s;
-    }
-    .faq-question:hover { background: #333; }
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.4s ease;
-      background: #111;
-      border-radius: 0 0 10px 10px;
-      margin-bottom: 10px;
-      padding: 0 15px;
-    }
-    .faq-answer.open {
-      max-height: 500px;
-      padding: 10px 15px;
-    }
-    .faq-answer p { margin: 0; }
   </style>
 </head>
 <body>
@@ -240,17 +200,18 @@
   <!-- IP Button -->
   <button class="button ip-button" onclick="copyIP()">📋 Kopiuj IP: BSCMC.PL</button>
 
-  <!-- KLUCZE -->
-  <div class="news">
-    <h2>📢 KLUCZE</h2>
-    <p>🎁 Co sobotę o <strong>20:00</strong> rozdawanie kluczy!</p>
-  </div>
+<!-- KLUCZE -->
+<div class="news">
+  <h2>📢 KLUCZE</h2>
+  <p>🎁 Co sobotę o <strong>20:00</strong> rozdawanie kluczy!</p>
+</div>
 
-  <!-- EVENCIK -->
-  <div class="news">
-    <h2>📢 EVENCIK</h2>
-    <p>📦 Co 24h o  16:00 odbywa się event zrzutu <br> <strong>35 skrzynek</strong> z nagrodami do zebrania!</p>
-  </div>
+<!-- EVENCIK -->
+<div class="news">
+  <h2>📢 EVENCIK</h2>
+  <p>📦 Co 24h o  16:00 odbywa się event zrzutu <br> <strong>35 skrzynek</strong> z nagrodami do zebrania!</p>
+</div>
+
 
   <!-- Leaderboard -->
   <div class="leaderboard">
@@ -260,57 +221,16 @@
     <div class="player bronze"><span>🥉 michalek</span><span>80 zł</span></div>
   </div>
 
-  <!-- FAQ -->
-  <div class="faq">
-    <h2>❓ FAQ / Jak grać</h2>
-    <div class="faq-item">
-      <button class="faq-question">Jak dołączyć na serwer?</button>
-      <div class="faq-answer"><p>W Minecraft wpisz IP: <strong>BSCMC.PL</strong>, wersja 1.21.3+. Potrzebujesz pomocy? Dołącz na <a href="https://discord.gg/9dt99b3NFG" target="_blank">nasz Discord</a>.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">Jak zdobyć klucze?</button>
-      <div class="faq-answer"><p>Klucze rozdawane są co sobotę o 20:00 w specjalnym evencie.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">Na czym polega event skrzynek?</button>
-      <div class="faq-answer"><p>Co 24h spada 35 skrzynek z nagrodami na mapę – kto pierwszy, ten lepszy!</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">Czy serwer jest premium?</button>
-      <div class="faq-answer"><p>Tak, serwer obsługuje zarówno premium jak i non-premium.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">Jak zdobyć rangę VIP?</button>
-      <div class="faq-answer"><p>Rangę VIP możesz kupić na stronie lub wygrać w eventach.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">Czy mogę grać z kolegą?</button>
-      <div class="faq-answer"><p>Tak! Możesz zaprosić znajomego, budować razem i brać udział w eventach.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">Mam problem – gdzie zgłosić?</button>
-      <div class="faq-answer"><p>Zajrzyj na <a href="https://discord.gg/9dt99b3NFG" target="_blank">nasz Discord</a>, tam znajdziesz support.</p></div>
-    </div>
-  </div>
-
   <script>
     function copyIP() {
       navigator.clipboard.writeText("BSCMC.PL")
         .then(() => { alert("IP serwera zostało skopiowane!"); })
         .catch(err => { alert("Błąd kopiowania IP."); });
     }
-
-    const faqQuestions = document.querySelectorAll(".faq-question");
-    faqQuestions.forEach(button => {
-      button.addEventListener("click", () => {
-        const answer = button.nextElementSibling;
-        document.querySelectorAll(".faq-answer").forEach(a => {
-          if (a !== answer) a.classList.remove("open");
-        });
-        answer.classList.toggle("open");
-      });
-    });
   </script>
 
 </body>
 </html>
+
+
+
