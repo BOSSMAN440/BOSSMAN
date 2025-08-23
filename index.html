@@ -127,7 +127,6 @@
       box-shadow: 0 0 20px #ff00ff;
       text-align: center;
       z-index: 1;
-      max-width: 600px;
     }
 
     .news h2 {
@@ -168,42 +167,43 @@
 
     /* FAQ */
     .faq {
-      margin: 60px auto;
-      padding: 20px;
+      margin-top: 50px;
+      width: 90%;
+      max-width: 800px;
       background: rgba(20,20,20,0.9);
+      padding: 20px;
       border-radius: 15px;
       box-shadow: 0 0 20px #00ffff;
-      max-width: 700px;
-      width: 90%;
     }
+    .faq h2 { color: #00ffff; margin-bottom: 20px; text-align: center; }
+    .faq-item { margin-bottom: 10px; }
     .faq-question {
       width: 100%;
       background: #222;
       color: #fff;
       padding: 15px;
-      margin: 5px 0;
       border: none;
-      border-radius: 10px;
       text-align: left;
       font-size: 1.1em;
       cursor: pointer;
+      border-radius: 10px;
       transition: background 0.3s;
     }
-    .faq-question:hover {
-      background: #333;
-    }
+    .faq-question:hover { background: #333; }
     .faq-answer {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.4s ease;
+      transition: max-height 0.4s ease, padding 0.4s ease;
       background: #111;
-      padding: 0 15px;
       border-radius: 0 0 10px 10px;
       margin-bottom: 10px;
+      padding: 0 15px;
     }
-    .faq-answer p {
-      padding: 10px 0;
+    .faq-answer.open {
+      max-height: 500px;
+      padding: 10px 15px;
     }
+    .faq-answer p { margin: 0; }
   </style>
 </head>
 <body>
@@ -249,42 +249,7 @@
   <!-- EVENCIK -->
   <div class="news">
     <h2>📢 EVENCIK</h2>
-    <p>📦 Co 24h o 16:00 odbywa się event zrzutu <br> <strong>35 skrzynek</strong> z nagrodami do zebrania!</p>
-  </div>
-
-  <!-- FAQ -->
-  <div class="faq">
-    <h2 style="text-align:center; color:#00ffff; margin-bottom:20px;">❓ FAQ / Jak grać</h2>
-
-    <button class="faq-question">Jak dołączyć do serwera?</button>
-    <div class="faq-answer"><p>Wejdź do Minecrafta (wersja 1.21.3+) i wpisz IP: <strong>BSCMC.PL</strong>.</p></div>
-
-    <button class="faq-question">Kiedy odbywa się event zrzutu skrzynek?</button>
-    <div class="faq-answer"><p>📦 Co 24 godziny o 16:00 zrzucane są <strong>35 skrzynki</strong>!</p></div>
-
-    <button class="faq-question">Kiedy są rozdawane darmowe klucze?</button>
-    <div class="faq-answer"><p>🎁 Każdą sobotę o <strong>20:00</strong> rozdawane są darmowe klucze.</p></div>
-
-    <button class="faq-question">Jakie tryby gry są dostępne?</button>
-    <div class="faq-answer"><p>🏡 Działki i 🧱 OneBlock – więcej trybów wkrótce!</p></div>
-
-    <button class="faq-question">Czy serwer jest darmowy?</button>
-    <div class="faq-answer"><p>Tak, granie jest darmowe. Usługi premium są opcjonalne.</p></div>
-
-    <button class="faq-question">Jak zgłosić błąd?</button>
-    <div class="faq-answer"><p>Zgłoś problem na naszym Discordzie 👉 <a href="https://discord.gg/9dt99b3NFG" target="_blank">kliknij tutaj</a>.</p></div>
-
-    <button class="faq-question">Czy mogę grać z przyjaciółmi?</button>
-    <div class="faq-answer"><p>Tak! Możesz tworzyć drużyny i wspólne działki.</p></div>
-
-    <button class="faq-question">Jak zdobyć klucze i skrzynki?</button>
-    <div class="faq-answer"><p>🔑 W eventach, rozdaniach, dropach oraz w sklepie.</p></div>
-
-    <button class="faq-question">Czy serwer działa w trybie non-premium?</button>
-    <div class="faq-answer"><p>Tak, obsługujemy graczy premium i non-premium.</p></div>
-
-    <button class="faq-question">Jak mogę wspierać serwer?</button>
-    <div class="faq-answer"><p>W sklepie serwera lub zapraszając znajomych 🚀.</p></div>
+    <p>📦 Co 24h o  16:00 odbywa się event zrzutu <br> <strong>35 skrzynek</strong> z nagrodami do zebrania!</p>
   </div>
 
   <!-- Leaderboard -->
@@ -295,6 +260,39 @@
     <div class="player bronze"><span>🥉 michalek</span><span>80 zł</span></div>
   </div>
 
+  <!-- FAQ -->
+  <div class="faq">
+    <h2>❓ FAQ / Jak grać</h2>
+    <div class="faq-item">
+      <button class="faq-question">Jak dołączyć na serwer?</button>
+      <div class="faq-answer"><p>W Minecraft wpisz IP: <strong>BSCMC.PL</strong>, wersja 1.21.3+. Potrzebujesz pomocy? Dołącz na <a href="https://discord.gg/9dt99b3NFG" target="_blank">nasz Discord</a>.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Jak zdobyć klucze?</button>
+      <div class="faq-answer"><p>Klucze rozdawane są co sobotę o 20:00 w specjalnym evencie.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Na czym polega event skrzynek?</button>
+      <div class="faq-answer"><p>Co 24h spada 35 skrzynek z nagrodami na mapę – kto pierwszy, ten lepszy!</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Czy serwer jest premium?</button>
+      <div class="faq-answer"><p>Tak, serwer obsługuje zarówno premium jak i non-premium.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Jak zdobyć rangę VIP?</button>
+      <div class="faq-answer"><p>Rangę VIP możesz kupić na stronie lub wygrać w eventach.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Czy mogę grać z kolegą?</button>
+      <div class="faq-answer"><p>Tak! Możesz zaprosić znajomego, budować razem i brać udział w eventach.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Mam problem – gdzie zgłosić?</button>
+      <div class="faq-answer"><p>Zajrzyj na <a href="https://discord.gg/9dt99b3NFG" target="_blank">nasz Discord</a>, tam znajdziesz support.</p></div>
+    </div>
+  </div>
+
   <script>
     function copyIP() {
       navigator.clipboard.writeText("BSCMC.PL")
@@ -302,19 +300,14 @@
         .catch(err => { alert("Błąd kopiowania IP."); });
     }
 
-    // FAQ toggle
     const faqQuestions = document.querySelectorAll(".faq-question");
     faqQuestions.forEach(button => {
       button.addEventListener("click", () => {
         const answer = button.nextElementSibling;
         document.querySelectorAll(".faq-answer").forEach(a => {
-          if (a !== answer) a.style.maxHeight = null;
+          if (a !== answer) a.classList.remove("open");
         });
-        if (answer.style.maxHeight) {
-          answer.style.maxHeight = null;
-        } else {
-          answer.style.maxHeight = answer.scrollHeight + "px";
-        }
+        answer.classList.toggle("open");
       });
     });
   </script>
