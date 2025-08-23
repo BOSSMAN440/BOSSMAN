@@ -1,33 +1,91 @@
-SUROWCE
-5x Węgiel         50% szansa
-3x szt. żelaza    30% szansa
-4x szt.miedzi     35% szansa
-2x szt. złota     20% szansa
-6x lazuryt        25% szansa
-5x redston        25% szansa
-1x emerald        7% szansa
-1x diament        5% szansa
-1x nether sc      2% szansa
-8x kwarc          20% szansa
-3x obsydian       15% szansa
-2x szlam          10% szansa
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dropy</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #1a1a1a;
+    color: #f5f5f5;
+    padding: 20px;
+  }
 
-MOBY
-1x zombie    
-1x szkielet
-1x creeper
-1x krowa
-1x owca 
-1x swinia
-1x kurczak 
-1x pajak  
-1x enderman
+  h2 {
+    color: #f39c12;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #f39c12;
+    display: inline-block;
+    padding-bottom: 5px;
+  }
 
-HAJS
-50$     40% szansa
-100$    35% szansa
-250$    30% szansa
-500$    25% szansa
-1000$   20% szansa
-2000$   10% szansa         
-3000$   5% szansa   
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    background: rgba(255,255,255,0.05);
+    margin: 6px 0;
+    padding: 10px 15px;
+    border-left: 4px solid #f39c12;
+    border-radius: 5px;
+    transition: background 0.3s;
+  }
+
+  li:hover {
+    background: rgba(255,255,255,0.15);
+  }
+
+  .section-surowce li { border-color: #3498db; }
+  .section-moby li { border-color: #e74c3c; }
+  .section-hajs li { border-color: #2ecc71; }
+
+</style>
+</head>
+<body>
+
+<h2>SUROWCE</h2>
+<ul class="section-surowce">
+  <li>5x Węgiel – 50% szansa</li>
+  <li>3x szt. żelaza – 30% szansa</li>
+  <li>4x szt. miedzi – 35% szansa</li>
+  <li>2x szt. złota – 20% szansa</li>
+  <li>6x lazuryt – 25% szansa</li>
+  <li>5x redston – 25% szansa</li>
+  <li>1x emerald – 7% szansa</li>
+  <li>1x diament – 5% szansa</li>
+  <li>1x nether sc – 2% szansa</li>
+  <li>8x kwarc – 20% szansa</li>
+  <li>3x obsydian – 15% szansa</li>
+  <li>2x szlam – 10% szansa</li>
+</ul>
+
+<h2>MOBY</h2>
+<ul class="section-moby">
+  <li>1x zombie</li>
+  <li>1x szkielet</li>
+  <li>1x creeper</li>
+  <li>1x krowa</li>
+  <li>1x owca</li>
+  <li>1x swinia</li>
+  <li>1x kurczak</li>
+  <li>1x pajak</li>
+  <li>1x enderman</li>
+</ul>
+
+<h2>HAJS</h2>
+<ul class="section-hajs">
+  <li>50$ – 40% szansa</li>
+  <li>100$ – 35% szansa</li>
+  <li>250$ – 30% szansa</li>
+  <li>500$ – 25% szansa</li>
+  <li>1000$ – 20% szansa</li>
+  <li>2000$ – 10% szansa</li>
+  <li>3000$ – 5% szansa</li>
+</ul>
+
+</body>
+</html>
