@@ -119,6 +119,24 @@
       cursor: pointer;
     }
 
+    .minigames-button {
+      background: linear-gradient(90deg, #ff00ff, #ffcc00);
+      margin-top: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .minigames-content {
+      display: none;
+      margin-top: 15px;
+      background: rgba(30, 30, 30, 0.9);
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 400px;
+      line-height: 1.6em;
+    }
+
     .news {
       margin-top: 50px;
       padding: 20px;
@@ -200,18 +218,25 @@
   <!-- IP Button -->
   <button class="button ip-button" onclick="copyIP()">📋 Kopiuj IP: BSCMC.PL</button>
 
-<!-- KLUCZE -->
-<div class="news">
-  <h2>📢 KLUCZE</h2>
-  <p>🎁 Co sobotę o <strong>20:00</strong> rozdawanie kluczy!</p>
-</div>
+  <!-- Mini-gre Button -->
+  <button class="button minigames-button" onclick="toggleMiniGames()">🎮 Mini-gry</button>
+  <div class="minigames-content" id="minigames-content">
+    💥 TNT Run – szybka i emocjonująca rozgrywka.<br>
+    👽 Among Us – sprawdź swoją dedukcję i spryt wśród znajomych.<br>
+    🏹 Walka o przetrwanie – zbieraj broń i zasoby, aby przetrwać do końca.
+  </div>
 
-<!-- EVENCIK -->
-<div class="news">
-  <h2>📢 EVENCIK</h2>
-  <p>📦 Co 24h o  16:00 odbywa się event zrzutu <br> <strong>35 skrzynek</strong> z nagrodami do zebrania!</p>
-</div>
+  <!-- KLUCZE -->
+  <div class="news">
+    <h2>📢 KLUCZE</h2>
+    <p>🎁 Co sobotę o <strong>20:00</strong> rozdawanie kluczy!</p>
+  </div>
 
+  <!-- EVENCIK -->
+  <div class="news">
+    <h2>📢 EVENCIK</h2>
+    <p>📦 Co 24h o 16:00 odbywa się event zrzutu <br> <strong>35 skrzynek</strong> z nagrodami do zebrania!</p>
+  </div>
 
   <!-- Leaderboard -->
   <div class="leaderboard">
@@ -227,10 +252,12 @@
         .then(() => { alert("IP serwera zostało skopiowane!"); })
         .catch(err => { alert("Błąd kopiowania IP."); });
     }
+
+    function toggleMiniGames() {
+      const content = document.getElementById('minigames-content');
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    }
   </script>
 
 </body>
 </html>
-
-
-
