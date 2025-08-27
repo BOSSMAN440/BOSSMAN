@@ -9,7 +9,17 @@
       font-family: Arial, sans-serif;
     }
 
-    /* Styl zakładki */
+    h1 {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    p {
+      text-align: center;
+      font-size: 18px;
+    }
+
+    /* Styl zakładki (pionowy napis po prawej stronie) */
     .sidebar {
       position: fixed;
       top: 50%;
@@ -32,7 +42,7 @@
       background-color: #d62828;
     }
 
-    /* Po kliknięciu wysuwa się panel */
+    /* Panel wysuwany po kliknięciu zakładki */
     .sidebar-panel {
       position: fixed;
       top: 0;
@@ -64,8 +74,13 @@
 </head>
 <body>
 
+  <h1>Moja Strona</h1>
+  <p>To jest przykładowa treść strony.</p>
+
+  <!-- Zakładka po boku -->
   <div class="sidebar" id="sidebar">NOWOŚCI</div>
 
+  <!-- Panel wysuwany -->
   <div class="sidebar-panel" id="panel">
     <span class="close-btn" id="closeBtn">&times;</span>
     <h2>NOWOŚCI</h2>
