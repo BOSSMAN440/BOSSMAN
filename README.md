@@ -80,9 +80,9 @@
 <h1>Galeria BSCMC.PL</h1>
 
 <div class="gallery">
-  <img src="https://i.postimg.cc/MTcG3W0c/amongus.png" alt="Among Us">
-  <img src="https://postimg.cc/hf5BVd52" alt="Post Image 2">
+  <img src="https://i.postimg.cc/L8H8KkBF/tnt-run.png" alt="TNT RUN">
   <img src="https://i.postimg.cc/vBbfxx5r/igrzyska.png" alt="Igrzyska">
+  <img src="https://i.postimg.cc/MTcG3W0c/amongus.png" alt="Among Us">
 </div>
 
 <!-- Modal -->
