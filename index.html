@@ -157,6 +157,54 @@
       color: #ff00ff;
     }
 
+    /* --- NOWA SEKCJA FEATURES --- */
+    .features {
+      margin-top: 50px;
+      max-width: 1000px;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .features h2 {
+      font-size: 2em;
+      margin-bottom: 30px;
+      background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: titleGradient 6s infinite linear;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .feature {
+      background: rgba(25,25,25,0.9);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,255,255,0.5);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .feature:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #ff00ff;
+    }
+
+    .feature h3 {
+      margin-bottom: 10px;
+      font-size: 1.3em;
+      color: #00ffff;
+    }
+
+    .feature p {
+      color: #ddd;
+      font-size: 0.95em;
+      line-height: 1.4em;
+    }
+
     .leaderboard {
       position: absolute;
       top: 50px;
@@ -295,6 +343,29 @@
     <p>📦 Co 24h o 16:00 odbywa się event zrzutu <br> <strong>35 skrzynek</strong> z nagrodami do zebrania!</p>
   </div>
 
+  <!-- Dlaczego warto wybrać -->
+  <section class="features">
+    <h2>🔥 Dlaczego warto wybrać <span style="color:#00ffff;">BSCMC.PL</span>?</h2>
+    <div class="features-grid">
+      <div class="feature">
+        <h3>👑 Elitarna Administracja</h3>
+        <p>Nasz zespół to profesjonaliści, zawsze gotowi do pomocy i dbający o porządek.</p>
+      </div>
+      <div class="feature">
+        <h3>⚡ Innowacyjne Rozwiązania</h3>
+        <p>Wprowadzamy unikalne mechaniki, których nie znajdziesz nigdzie indziej.</p>
+      </div>
+      <div class="feature">
+        <h3>🎉 Epickie Eventy</h3>
+        <p>Regularnie organizujemy konkursy i wydarzenia z niesamowitymi nagrodami.</p>
+      </div>
+      <div class="feature">
+        <h3>🤝 Zgrana Społeczność</h3>
+        <p>Dołącz do dojrzałej i przyjaznej społeczności graczy, którzy tworzą to miejsce.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Leaderboard -->
   <div class="leaderboard">
     <h3>Topka graczy</h3>
@@ -342,4 +413,3 @@
 
 </body>
 </html>
-
