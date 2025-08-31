@@ -56,7 +56,7 @@
     }
 
     .subtitle {
-      font-size: 3em;
+      font-size: 1.8em;
       color: #00ccff;
       margin-bottom: 20px;
       z-index: 1;
@@ -175,7 +175,7 @@
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr); /* zawsze 2 kolumny */
+      grid-template-columns: repeat(2, 1fr);
       gap: 20px;
     }
 
@@ -292,7 +292,10 @@
 <body>
 
   <h1>BSCMC.PL</h1>
-  <div class="subtitle">IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3 +</strong></div>
+  <div class="subtitle">
+    IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3 +</strong> | 
+    Gracze online: <span id="online-players">Ładowanie...</span>
+  </div>
 
   <!-- Social Media -->
   <div class="top-buttons">
@@ -385,12 +388,14 @@
   </div>
 
   <script>
+    // Kopiowanie IP
     function copyIP() {
       navigator.clipboard.writeText("BSCMC.PL")
         .then(() => { alert("IP serwera zostało skopiowane!"); })
         .catch(err => { alert("Błąd kopiowania IP."); });
     }
 
+    // Toggle mini-gry
     function toggleMiniGames() {
       const content = document.getElementById('minigames-content');
       content.style.display = content.style.display === 'block' ? 'none' : 'block';
@@ -408,12 +413,24 @@
     closeBtn.addEventListener('click', () => {
       panel.classList.remove('open');
     });
+
+    // Pobieranie liczby graczy online
+    async function fetchOnlinePlayers() {
+      try {
+        const response = await fetch('https://api.mcsrvstat.us/2/BSCMC.PL');
+        const data = await response.json();
+        const online = data.players ? data.players.online : 0;
+        document.getElementById('online-players').textContent = online;
+      } catch (err) {
+        console.error('Błąd pobierania danych:', err);
+        document.getElementById('online-players').textContent = 'Nieznana';
+      }
+    }
+
+    // Aktualizacja co 15 sekund
+    fetchOnlinePlayers();
+    setInterval(fetchOnlinePlayers, 15000);
   </script>
 
 </body>
 </html>
-
-
-
-
-
