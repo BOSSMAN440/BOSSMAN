@@ -171,7 +171,7 @@
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr); /* 2 kolumny */
+      grid-template-columns: repeat(2, 1fr); /* zawsze 2 kolumny */
       gap: 20px;
     }
 
@@ -200,42 +200,7 @@
       line-height: 1.4em;
     }
 
-    /* Discord CTA */
-    .discord-cta {
-      margin: 50px auto 30px auto;
-      max-width: 800px;
-      background: linear-gradient(135deg, #7289da, #99aab5);
-      padding: 30px;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 0 30px rgba(114, 137, 218, 0.7);
-    }
-
-    .discord-cta h2 {
-      font-size: 2em;
-      margin-bottom: 15px;
-      color: #fff;
-    }
-
-    .discord-cta p {
-      font-size: 1.1em;
-      color: #eee;
-      margin-bottom: 20px;
-    }
-
-    .discord-cta .button.discord {
-      font-size: 1.2em;
-      padding: 15px 30px;
-      box-shadow: 0 0 15px #7289da, 0 0 30px #99aab5;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .discord-cta .button.discord:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px #7289da, 0 0 50px #99aab5;
-    }
-
-    /* Leaderboard */
+    /* --- Leaderboard --- */
     .leaderboard {
       position: absolute;
       top: 50px;
@@ -267,7 +232,7 @@
     .leaderboard .silver { background: linear-gradient(90deg, #C0C0C0, #A9A9A9); color: #000; }
     .leaderboard .bronze { background: linear-gradient(90deg, #CD7F32, #8B4513); color: #fff; }
 
-    /* Zakładka NOWOŚCI */
+    /* --- Styl zakładki NOWOŚCI --- */
     .sidebar {
       position: fixed;
       top: 50%;
@@ -320,6 +285,53 @@
       float: right;
     }
 
+    /* --- Discord CTA --- */
+    .discord-cta {
+      margin: 50px auto;
+      padding: 30px 20px;
+      max-width: 700px;
+      background: linear-gradient(135deg, #7289da, #99aab5);
+      border-radius: 20px;
+      box-shadow: 0 0 30px #7289da, 0 0 60px #99aab5;
+      text-align: center;
+      color: #fff;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .discord-cta:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 40px #7289da, 0 0 80px #99aab5;
+    }
+
+    .discord-cta h2 {
+      font-size: 2.2em;
+      margin-bottom: 15px;
+      background: linear-gradient(90deg, #ffffff, #ff00ff, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: titleGradient 5s linear infinite;
+    }
+
+    .discord-cta p {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+
+    .discord-cta .button.discord {
+      padding: 15px 35px;
+      font-size: 1.3em;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #ffffff, 0 0 30px #ff00ff;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .discord-cta .button.discord:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px #ffffff, 0 0 50px #ff00ff;
+    }
+
   </style>
 </head>
 <body>
@@ -330,123 +342,4 @@
   <!-- Social Media -->
   <div class="top-buttons">
     <a href="https://discord.gg/9dt99b3NFG" class="button discord" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord"> Discord
-    </a>
-    <a href="https://www.twitch.tv/98bossman98" class="button twitch" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"> Twitch
-    </a>
-    <a href="https://www.tiktok.com/@bscmc.pl" class="button tiktok" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok"> TikTok
-    </a>
-    <a href="https://www.youtube.com/@BOSSCRAFTMCPL" class="button youtube" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"> YouTube
-    </a>
-  </div>
-
-  <!-- TRYBY -->
-  <h2 class="subtitle" style="background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: titleGradient 6s infinite linear; margin-top: 30px;">
-    DOSTĘPNE TRYBY
-  </h2>
-
-  <div class="mode-buttons">
-    <a href="survival.html">🏡 Działki</a>
-  </div>
-
-  <!-- IP Button -->
-  <button class="button ip-button" onclick="copyIP()">📋 Kopiuj IP: BSCMC.PL</button>
-
-  <!-- Mini-gry -->
-  <button class="button minigames-button" onclick="toggleMiniGames()">🎮 Mini-gry</button>
-  <div class="minigames-content" id="minigames-content">
-    💥 TNT RUN – szybka i emocjonująca rozgrywka.<br>
-    👽 AMONG US – sprawdź swoją dedukcję i spryt wśród znajomych.<br>
-    🏹 IGRZYSKA SMIERCI – zbieraj broń i zasoby, aby przetrwać do końca.
-  </div>
-
-  <!-- KLUCZE -->
-  <div class="news">
-    <h2>📢 KLUCZE</h2>
-    <p>🎁 Co sobotę o <strong>20:00</strong> rozdawanie kluczy!</p>
-  </div>
-
-  <!-- EVENCIK -->
-  <div class="news">
-    <h2>📢 EVENCIK</h2>
-    <p>📦 Co 24h o 16:00 odbywa się event zrzutu <br> <strong>35 skrzynek</strong> z nagrodami do zebrania!</p>
-  </div>
-
-  <!-- Dlaczego warto wybrać -->
-  <section class="features">
-    <h2>🔥 Dlaczego warto wybrać <span style="color:#00ffff;">BSCMC.PL</span>?</h2>
-    <div class="features-grid">
-      <div class="feature">
-        <h3>👑 Miła Administracja</h3>
-        <p>Administracja MSCMC.PL zawsze z checia pomoże w razie problemow.</p>
-      </div>
-      <div class="feature">
-        <h3>⚡ Nowatorskie Mechaniki</h3>
-        <p>Stawiamy na świeże pomysły i autorskie systemy, które wyróżniają nas na tle innych serwerów</p>
-      </div>
-      <div class="feature">
-        <h3>🎉 Niezapomniane Wydarzenia</h3>
-        <p>Organizujemy turnieje i atrakcje pełne emocji, gdzie czekają unikatowe nagrody i świetna zabawa.</p>
-      </div>
-      <div class="feature">
-        <h3>🤝 Silna Społeczność</h3>
-        <p>Gracze BSCMC.PL to zgrana ekipa – zawsze gotowa na wspólną rozgrywkę, pomoc i dobrą atmosferę.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Discord CTA -->
-  <div class="discord-cta">
-    <h2>💬 Dołącz do nas na Discordzie!</h2>
-    <p>Bądź na bieżąco z nowościami, bierz udział w konkursach na Discordzie i wygrywaj fajne rzeczy na serwerze!</p>
-    <a href="https://discord.gg/9dt99b3NFG" target="_blank" class="button discord">Dołącz teraz</a>
-  </div>
-
-  <!-- Leaderboard -->
-  <div class="leaderboard">
-    <h3>Topka graczy</h3>
-    <div class="player gold"><span>🥇 salatkaowocowa</span><span>120 zł</span></div>
-    <div class="player silver"><span>🥈 BloomFire000</span><span>104 zł</span></div>
-    <div class="player bronze"><span>🥉 michalek</span><span>80 zł</span></div>
-  </div>
-
-  <!-- Zakładka NOWOŚCI -->
-  <div class="sidebar" id="sidebar">NOWOŚCI</div>
-  <div class="sidebar-panel" id="panel">
-    <span class="close-btn" id="closeBtn">&times;</span>
-    <h2>NOWOŚCI</h2>
-    <p>🏹 IGRZYSKA ŚMIERCI</p>
-    <p>KOMENDA: /hg join ARENA1</p>
-    <p>ZMIERZ SIE Z INNYMI I ZOSTAŃ JAKO JEDYNY NA MAPIE</p>
-  </div>
-
-  <script>
-    function copyIP() {
-      navigator.clipboard.writeText("BSCMC.PL")
-        .then(() => { alert("IP serwera zostało skopiowane!"); })
-        .catch(err => { alert("Błąd kopiowania IP."); });
-    }
-
-    function toggleMiniGames() {
-      const content = document.getElementById('minigames-content');
-      content.style.display = content.style.display === 'block' ? 'none' : 'block';
-    }
-
-    const sidebar = document.getElementById('sidebar');
-    const panel = document.getElementById('panel');
-    const closeBtn = document.getElementById('closeBtn');
-
-    sidebar.addEventListener('click', () => {
-      panel.classList.add('open');
-    });
-
-    closeBtn.addEventListener('click', () => {
-      panel.classList.remove('open');
-    });
-  </script>
-
-</body>
-</html>
+      <img src="https://cdn-icons-png.flaticon.com/
