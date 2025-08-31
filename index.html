@@ -112,11 +112,6 @@
       box-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
     }
 
-    .mode-buttons a.gallery {
-      background: linear-gradient(135deg, #ff6ec7, #ffcc00);
-      box-shadow: 0 0 10px #ff6ec7, 0 0 20px #ffcc00;
-    }
-
     .ip-button {
       background: linear-gradient(90deg, #00ffcc, #00ccff);
       margin-top: 10px;
@@ -176,7 +171,7 @@
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr); /* zawsze 2 kolumny */
+      grid-template-columns: repeat(2, 1fr); /* 2 kolumny */
       gap: 20px;
     }
 
@@ -205,6 +200,42 @@
       line-height: 1.4em;
     }
 
+    /* Discord CTA */
+    .discord-cta {
+      margin: 50px auto 30px auto;
+      max-width: 800px;
+      background: linear-gradient(135deg, #7289da, #99aab5);
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(114, 137, 218, 0.7);
+    }
+
+    .discord-cta h2 {
+      font-size: 2em;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    .discord-cta p {
+      font-size: 1.1em;
+      color: #eee;
+      margin-bottom: 20px;
+    }
+
+    .discord-cta .button.discord {
+      font-size: 1.2em;
+      padding: 15px 30px;
+      box-shadow: 0 0 15px #7289da, 0 0 30px #99aab5;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .discord-cta .button.discord:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #7289da, 0 0 50px #99aab5;
+    }
+
+    /* Leaderboard */
     .leaderboard {
       position: absolute;
       top: 50px;
@@ -236,7 +267,7 @@
     .leaderboard .silver { background: linear-gradient(90deg, #C0C0C0, #A9A9A9); color: #000; }
     .leaderboard .bronze { background: linear-gradient(90deg, #CD7F32, #8B4513); color: #fff; }
 
-    /* --- Styl zakładki NOWOŚCI --- */
+    /* Zakładka NOWOŚCI */
     .sidebar {
       position: fixed;
       top: 50%;
@@ -288,6 +319,7 @@
       color: #fff;
       float: right;
     }
+
   </style>
 </head>
 <body>
@@ -366,6 +398,13 @@
     </div>
   </section>
 
+  <!-- Discord CTA -->
+  <div class="discord-cta">
+    <h2>💬 Dołącz do nas na Discordzie!</h2>
+    <p>Bądź na bieżąco z nowościami, bierz udział w konkursach na Discordzie i wygrywaj fajne rzeczy na serwerze!</p>
+    <a href="https://discord.gg/9dt99b3NFG" target="_blank" class="button discord">Dołącz teraz</a>
+  </div>
+
   <!-- Leaderboard -->
   <div class="leaderboard">
     <h3>Topka graczy</h3>
@@ -376,7 +415,6 @@
 
   <!-- Zakładka NOWOŚCI -->
   <div class="sidebar" id="sidebar">NOWOŚCI</div>
-
   <div class="sidebar-panel" id="panel">
     <span class="close-btn" id="closeBtn">&times;</span>
     <h2>NOWOŚCI</h2>
@@ -397,7 +435,6 @@
       content.style.display = content.style.display === 'block' ? 'none' : 'block';
     }
 
-    // Zakładka NOWOŚCI
     const sidebar = document.getElementById('sidebar');
     const panel = document.getElementById('panel');
     const closeBtn = document.getElementById('closeBtn');
@@ -413,6 +450,3 @@
 
 </body>
 </html>
-
-
-
