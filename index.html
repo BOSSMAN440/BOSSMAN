@@ -141,6 +141,23 @@
       line-height: 1.6em;
     }
 
+    .mode-link {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 12px 25px;
+      background: linear-gradient(135deg, #00ffff, #ff00ff);
+      border-radius: 12px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      transition: all 0.3s;
+      box-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff;
+    }
+    .mode-link:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
+    }
+
     .news {
       margin-top: 50px;
       padding: 20px;
@@ -328,7 +345,10 @@
   <button class="button minigames-button" onclick="toggleMiniGames()">🎮 Mini-gry</button>
   <div class="minigames-content" id="minigames-content">
     👽 AMONG US – sprawdź swoją dedukcję i spryt wśród znajomych.<br>
-    🏹 IGRZYSKA SMIERCI – zbieraj broń i zasoby, aby przetrwać do końca.
+    🏹 IGRZYSKA ŚMIERCI – zbieraj broń i zasoby, aby przetrwać do końca.<br><br>
+
+    <strong style="color:#00ffff;">⬇️ KLIKNIJ NIŻEJ, ŻEBY ZAGRAĆ TU ⬇️</strong><br><br>
+    <a href="oneblock.html" class="mode-link">🌍 Zagraj w OneBlock</a>
   </div>
 
   <!-- KLUCZE -->
@@ -432,5 +452,3 @@
 
 </body>
 </html>
-
-
