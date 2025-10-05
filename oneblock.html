@@ -3,47 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🏝️ ONE BLOCK | BOSSCRAFT</title>
+  <title>BSCMC.PL</title>
   <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
-      color: #f5f5f5;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      position: relative;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: url("https://wallpapercave.com/wp/wp9808994.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       overflow-x: hidden;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
       position: relative;
-      z-index: 10;
-      text-align: center;
     }
 
-    /* 🔥 Neonowy gradient + hover na tytule */
-    h1.neon-text {
-      font-size: 3em;
-      font-weight: bold;
-      letter-spacing: 2px;
-      margin-bottom: 30px;
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url("https://www.transparenttextures.com/patterns/stardust.png");
+      opacity: 0.3;
+      z-index: 0;
+    }
 
-      background: linear-gradient(90deg, #f39c12, #e74c3c, #9b59b6, #3498db, #f39c12);
+    h1 {
+      font-size: 4em;
+      text-transform: uppercase;
+      letter-spacing: 8px;
+      background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff);
       background-size: 300%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-
       animation: titleGradient 6s infinite linear;
-      transition: transform 0.3s ease, text-shadow 0.3s ease;
-    }
-
-    h1.neon-text:hover {
-      transform: scale(1.05);
-      text-shadow: 0 0 15px #f39c12, 0 0 30px #e74c3c, 0 0 45px #9b59b6;
+      margin-bottom: 10px;
+      z-index: 1;
     }
 
     @keyframes titleGradient {
@@ -51,116 +49,341 @@
       100% { background-position: 300%; }
     }
 
-    h2 {
-      color: #f39c12;
-      margin-top: 40px;
+    .subtitle {
+      font-size: 1.8em;
+      color: #00ccff;
       margin-bottom: 20px;
-      display: inline-block;
-      border-bottom: 2px solid #f39c12;
-      padding-bottom: 5px;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: left;
-    }
-
-    li {
-      background: rgba(255, 255, 255, 0.05);
-      margin: 8px 0;
-      padding: 10px 15px;
-      border-left: 4px solid #f39c12;
-      border-radius: 5px;
-      transition: background 0.3s;
-    }
-
-    li:hover {
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    .back-button {
-      display: block;
-      width: max-content;
-      margin: 40px auto;
-      padding: 10px 25px;
-      background: #f39c12;
-      color: #fff;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: background 0.3s;
+      z-index: 1;
       text-align: center;
+    }
+
+    .top-buttons, .mode-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      z-index: 1;
+      margin-bottom: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 25px;
+      border-radius: 12px;
+      font-size: 1.2em;
+      text-decoration: none;
+      color: #fff;
+      transition: all 0.3s;
       position: relative;
-      z-index: 20;
+      backdrop-filter: blur(6px);
+      cursor: pointer;
+      overflow: hidden;
     }
 
-    .back-button:hover {
-      background: #e67e22;
+    .button img { width: 24px; height: 24px; margin-right: 10px; }
+
+    .discord { background: #7289da; }
+    .twitch { background: #9146ff; }
+    .tiktok { background: #25f4ee; color: #000; }
+    .youtube { background: #ff0000; }
+
+    .ip-button {
+      background: linear-gradient(90deg, #00ffcc, #00ccff);
+      margin-top: 10px;
+      border: none;
+      cursor: pointer;
     }
 
-    /* 🌈 Latające kolorowe kulki */
-    .floating-light {
-      position: fixed;
-      pointer-events: none;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      opacity: 0.8;
-      animation: float linear infinite;
+    .minigames-button {
+      background: linear-gradient(90deg, #ff00ff, #ffcc00);
+      margin-top: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Nowy przycisk mini-gier przeglądarkowych */
+    .browser-minigames-button {
+      background: linear-gradient(90deg, #00ccff, #9900ff);
+      margin-top: 10px;
+      border: none;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .browser-minigames-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #00ccff, 0 0 25px #9900ff;
+    }
+
+    .minigames-content {
+      display: none;
+      margin-top: 15px;
+      background: rgba(30, 30, 30, 0.9);
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 400px;
+      line-height: 1.6em;
+    }
+
+    .news {
+      margin-top: 50px;
+      padding: 20px;
+      background: rgba(20, 20, 20, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 0 20px #ff00ff;
+      text-align: center;
       z-index: 1;
     }
 
-    @keyframes float {
-      0% { transform: translateY(0) translateX(0); opacity: 0.8; }
-      50% { opacity: 1; }
-      100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+    .news h2 {
+      margin-bottom: 10px;
+      color: #ff00ff;
+    }
+
+    /* Sekcja gier przeglądarkowych */
+    .browser-games-panel {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.85);
+      border-radius: 15px;
+      box-shadow: 0 0 20px #00ccff;
+      text-align: center;
+    }
+
+    canvas {
+      background: #111;
+      display: block;
+      margin: 20px auto;
+      border: 2px solid #00ccff;
+      border-radius: 10px;
+    }
+
+    /* --- Styl zakładki NOWOŚCI --- */
+    .sidebar {
+      position: fixed;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      background-color: #e63946;
+      color: white;
+      padding: 15px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      border-radius: 10px 0 0 10px;
+      box-shadow: -2px 2px 8px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: background 0.3s;
+      z-index: 10;
+    }
+
+    .sidebar:hover {
+      background-color: #d62828;
+    }
+
+    .sidebar-panel {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 300px;
+      height: 100%;
+      background: #111;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.5);
+      transition: right 0.4s ease;
+      padding: 20px;
+      z-index: 11;
+    }
+
+    .sidebar-panel.open {
+      right: 0;
+    }
+
+    .sidebar-panel h2 {
+      margin-top: 0;
+      color: #ff4444;
+    }
+
+    .close-btn {
+      cursor: pointer;
+      font-size: 20px;
+      color: #fff;
+      float: right;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1 class="neon-text">🏝️ ONE BLOCK</h1>
 
-    <p>Rozpocznij przygodę na jednym małym bloku i rozwijaj ją w potężną bazę! Ten tryb oferuje mnóstwo atrakcji i możliwości dla każdego gracza – od pracy, przez walkę, po rozbudowane mechaniki automatyczne.</p>
+  <h1>BSCMC.PL</h1>
+  <div class="subtitle">
+    IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3 +</strong>
+  </div>
 
-    <h2>TRYB POSIADA</h2>
-    <ul>
-      <li>💼 <strong>Prace:</strong> zarabiaj, wykonując różnorodne zadania.</li>
-      <li>⚡ <strong>Skille:</strong> zdobywaj doświadczenie i ulepszaj umiejętności.</li>
-      <li>📦 <strong>AutoSellChesty:</strong> automatyczna sprzedaż przedmiotów.</li>
-      <li>🛌 <strong>Strefa AFK:</strong> bezpieczne miejsce do odpoczynku.</li>
-      <li>🤖 <strong>Minionki:</strong> pomagają w zbieraniu surowców.</li>
-      <li>🛒 <strong>Sklep Skrzynkowy:</strong> wymieniaj przedmioty i zdobywaj nagrody.</li>
-      <li>🎁 <strong>Drop do EQ:</strong> wszystkie przedmioty trafiają prosto do ekwipunku.</li>
-      <li>⚔️ <strong>DuelSy:</strong> walcz z innymi graczami w PvP.</li>
-      <li>🌀 <strong>Windy:</strong> szybkie przemieszczanie się po wyspie.</li>
-      <li>⛏️ <strong>Ekstraktory i Generatory:</strong> automatycznie zbierają surowce.</li>
-      <li>🐾 <strong>Stackowanie mobów:</strong> zbieraj i grupuj potwory.</li>
-      <li>🌑 <strong>Nocny Nether:</strong> od 15:00 do 18:00, a End od 18:00 do 21:00.</li>
-      <li>✨ <strong>Wiele innych atrakcji:</strong> odkrywaj sekrety i bierz udział w eventach.</li>
-    </ul>
+  <!-- Social Media -->
+  <div class="top-buttons">
+    <a href="https://discord.gg/9dt99b3NFG" class="button discord" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord"> Discord
+    </a>
+    <a href="https://www.twitch.tv/98bossman98" class="button twitch" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"> Twitch
+    </a>
+    <a href="https://www.tiktok.com/@bscmc.pl" class="button tiktok" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok"> TikTok
+    </a>
+    <a href="https://www.youtube.com/@BOSSCRAFTMCPL" class="button youtube" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"> YouTube
+    </a>
+  </div>
 
-    <a href="index.html" class="back-button">← Powrót</a>
+  <!-- TRYBY -->
+  <h2 class="subtitle" style="background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: titleGradient 6s infinite linear; margin-top: 30px;">
+    DOSTĘPNE TRYBY
+  </h2>
+
+  <div class="mode-buttons">
+    <a href="survival.html">🏡 Działki</a>
+  </div>
+
+  <!-- IP Button -->
+  <button class="button ip-button" onclick="copyIP()">📋 Kopiuj IP: BSCMC.PL</button>
+
+  <!-- Mini-gry -->
+  <button class="button minigames-button" onclick="toggleMiniGames()">🎮 Mini-gry</button>
+  <div class="minigames-content" id="minigames-content">
+    👽 AMONG US – sprawdź swoją dedukcję i spryt wśród znajomych.<br>
+    🏹 IGRZYSKA SMIERCI – zbieraj broń i zasoby, aby przetrwać do końca.
+  </div>
+
+  <!-- Mini-gry przeglądarkowe -->
+  <button class="button browser-minigames-button" onclick="toggleBrowserGames()">🌐 Mini-gry Przeglądarkowe</button>
+
+  <!-- Sekcja gier przeglądarkowych -->
+  <div id="browser-games" class="browser-games-panel">
+    <h2>🐍 Snake</h2>
+    <p>Sterowanie: strzałki na klawiaturze</p>
+    <canvas id="snake" width="400" height="400"></canvas>
+  </div>
+
+  <!-- KLUCZE -->
+  <div class="news">
+    <h2>📢 KLUCZE</h2>
+    <p>🎁 Co sobotę o <strong>20:00</strong> rozdawanie kluczy!</p>
+  </div>
+
+  <!-- EVENCIK -->
+  <div class="news">
+    <h2>📢 EVENCIK</h2>
+    <p>📦 Co 24h o 16:00 odbywa się event zrzutu <br> <strong>35 skrzynek</strong> z nagrodami do zebrania!</p>
   </div>
 
   <script>
-    const colors = ['#f39c12', '#f1c40f', '#e74c3c', '#9b59b6', '#1abc9c', '#3498db'];
-    const numLights = 40;
-
-    for (let i = 0; i < numLights; i++) {
-      const light = document.createElement('div');
-      light.classList.add('floating-light');
-      light.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      light.style.left = Math.random() * 100 + 'vw';
-      light.style.top = Math.random() * 100 + 'vh';
-      light.style.width = (5 + Math.random() * 10) + 'px';
-      light.style.height = light.style.width;
-      light.style.animationDuration = (5 + Math.random() * 10) + 's';
-      document.body.appendChild(light);
+    // Kopiowanie IP
+    function copyIP() {
+      navigator.clipboard.writeText("BSCMC.PL")
+        .then(() => { alert("IP serwera zostało skopiowane!"); })
+        .catch(err => { alert("Błąd kopiowania IP."); });
     }
+
+    // Toggle mini-gry
+    function toggleMiniGames() {
+      const content = document.getElementById('minigames-content');
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Toggle gry przeglądarkowe
+    function toggleBrowserGames() {
+      const panel = document.getElementById('browser-games');
+      panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Snake Game
+    const canvas = document.getElementById('snake');
+    const ctx = canvas.getContext('2d');
+    const box = 20;
+    let snake = [];
+    snake[0] = { x: 9 * box, y: 10 * box };
+    let direction;
+    let food = { 
+      x: Math.floor(Math.random() * 19 + 1) * box, 
+      y: Math.floor(Math.random() * 19 + 1) * box 
+    };
+    let score = 0;
+
+    document.addEventListener("keydown", setDirection);
+
+    function setDirection(e) {
+      if (e.keyCode == 37 && direction != "RIGHT") direction = "LEFT";
+      else if (e.keyCode == 38 && direction != "DOWN") direction = "UP";
+      else if (e.keyCode == 39 && direction != "LEFT") direction = "RIGHT";
+      else if (e.keyCode == 40 && direction != "UP") direction = "DOWN";
+    }
+
+    function draw() {
+      ctx.fillStyle = "#111";
+      ctx.fillRect(0, 0, 400, 400);
+
+      for (let i = 0; i < snake.length; i++) {
+        ctx.fillStyle = (i == 0) ? "#00ffcc" : "#00ccff";
+        ctx.fillRect(snake[i].x, snake[i].y, box, box);
+
+        ctx.strokeStyle = "#111";
+        ctx.strokeRect(snake[i].x, snake[i].y, box, box);
+      }
+
+      ctx.fillStyle = "red";
+      ctx.fillRect(food.x, food.y, box, box);
+
+      let snakeX = snake[0].x;
+      let snakeY = snake[0].y;
+
+      if (direction == "LEFT") snakeX -= box;
+      if (direction == "UP") snakeY -= box;
+      if (direction == "RIGHT") snakeX += box;
+      if (direction == "DOWN") snakeY += box;
+
+      if (snakeX == food.x && snakeY == food.y) {
+        score++;
+        food = {
+          x: Math.floor(Math.random() * 19 + 1) * box,
+          y: Math.floor(Math.random() * 19 + 1) * box
+        };
+      } else {
+        snake.pop();
+      }
+
+      let newHead = { x: snakeX, y: snakeY };
+
+      // Game Over
+      if (
+        snakeX < 0 || snakeY < 0 || snakeX >= 400 || snakeY >= 400 ||
+        collision(newHead, snake)
+      ) {
+        clearInterval(game);
+        alert("Game Over! Wynik: " + score);
+      }
+
+      snake.unshift(newHead);
+
+      ctx.fillStyle = "#fff";
+      ctx.font = "20px Arial";
+      ctx.fillText("Wynik: " + score, 10, 390);
+    }
+
+    function collision(head, array) {
+      for (let i = 0; i < array.length; i++) {
+        if (head.x == array[i].x && head.y == array[i].y) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    let game = setInterval(draw, 150);
   </script>
+
 </body>
 </html>
