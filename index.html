@@ -130,6 +130,20 @@
       cursor: pointer;
     }
 
+    /* Nowy przycisk mini-gier przeglądarkowych */
+    .browser-minigames-button {
+      background: linear-gradient(90deg, #00ccff, #9900ff);
+      margin-top: 10px;
+      border: none;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .browser-minigames-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #00ccff, 0 0 25px #9900ff;
+    }
+
     .minigames-content {
       display: none;
       margin-top: 15px;
@@ -139,23 +153,6 @@
       text-align: center;
       max-width: 400px;
       line-height: 1.6em;
-    }
-
-    .mode-link {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 12px 25px;
-      background: linear-gradient(135deg, #00ffff, #ff00ff);
-      border-radius: 12px;
-      text-decoration: none;
-      color: #fff;
-      font-weight: bold;
-      transition: all 0.3s;
-      box-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff;
-    }
-    .mode-link:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
     }
 
     .news {
@@ -345,11 +342,11 @@
   <button class="button minigames-button" onclick="toggleMiniGames()">🎮 Mini-gry</button>
   <div class="minigames-content" id="minigames-content">
     👽 AMONG US – sprawdź swoją dedukcję i spryt wśród znajomych.<br>
-    🏹 IGRZYSKA ŚMIERCI – zbieraj broń i zasoby, aby przetrwać do końca.<br><br>
-
-    <strong style="color:#00ffff;">⬇️ KLIKNIJ NIŻEJ, ŻEBY ZAGRAĆ TU ⬇️</strong><br><br>
-    <a href="oneblock.html" class="mode-link">🌍 Zagraj w OneBlock</a>
+    🏹 IGRZYSKA SMIERCI – zbieraj broń i zasoby, aby przetrwać do końca.
   </div>
+
+  <!-- Mini-gry przeglądarkowe -->
+  <a href="oneblock.html" class="button browser-minigames-button">🌐 Mini-gry Przeglądarkowe</a>
 
   <!-- KLUCZE -->
   <div class="news">
