@@ -6,7 +6,6 @@
   <title>BSCMC.PL</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background: url("https://wallpapercave.com/wp/wp9808994.jpg") no-repeat center center fixed;
@@ -19,7 +18,6 @@
       overflow-x: hidden;
       position: relative;
     }
-
     body::before {
       content: "";
       position: absolute;
@@ -29,7 +27,6 @@
       opacity: 0.3;
       z-index: 0;
     }
-
     h1 {
       font-size: 4em;
       text-transform: uppercase;
@@ -42,34 +39,17 @@
       margin-bottom: 10px;
       z-index: 1;
     }
-
     @keyframes titleGradient {
       0% { background-position: 0%; }
       100% { background-position: 300%; }
     }
-
     .subtitle {
-      font-size: 1.5em;
+      font-size: 1.8em;
       color: #00ccff;
       margin-bottom: 20px;
       z-index: 1;
       text-align: center;
     }
-
-    #server-status, #online-players {
-      font-weight: bold;
-      color: #00ffff;
-    }
-
-    .top-buttons, .mode-buttons {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-      z-index: 1;
-      margin-bottom: 30px;
-    }
-
     .button {
       display: inline-flex;
       align-items: center;
@@ -84,125 +64,50 @@
       backdrop-filter: blur(6px);
       cursor: pointer;
       overflow: hidden;
+      border: none;
     }
-
-    .button img { width: 24px; height: 24px; margin-right: 10px; }
-    .discord { background: #7289da; }
-    .twitch { background: #9146ff; }
-    .tiktok { background: #25f4ee; color: #000; }
-    .youtube { background: #ff0000; }
-
-    .mode-buttons a {
-      background: linear-gradient(135deg, #00ffff, #ff00ff);
-      padding: 15px 30px;
-      border-radius: 15px;
-      text-decoration: none;
-      color: #fff;
-      font-size: 1.2em;
-      transition: all 0.3s;
-      box-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff;
-    }
-
     .ip-button {
       background: linear-gradient(90deg, #00ffcc, #00ccff);
       margin-top: 10px;
-      border: none;
       cursor: pointer;
     }
-
-    .minigames-button {
-      background: linear-gradient(90deg, #ff00ff, #ffcc00);
-      margin-top: 10px;
-      border: none;
-      cursor: pointer;
-    }
-
-    .minigames-content {
-      display: none;
-      margin-top: 15px;
-      background: rgba(30, 30, 30, 0.9);
-      padding: 15px;
-      border-radius: 12px;
-      text-align: center;
-      max-width: 400px;
-      line-height: 1.6em;
-    }
-
-    .news {
-      margin-top: 50px;
-      padding: 20px;
-      background: rgba(20, 20, 20, 0.9);
-      border-radius: 15px;
-      box-shadow: 0 0 20px #ff00ff;
-      text-align: center;
-      z-index: 1;
-    }
-
-    .leaderboard {
-      position: absolute;
-      top: 50px;
-      right: 20px;
-      background: #111;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px #00ffff;
-      min-width: 220px;
-      z-index: 1;
-    }
-
-    .leaderboard .player { display: flex; justify-content: space-between; margin-bottom: 10px; }
   </style>
 </head>
 <body>
 
   <h1>BSCMC.PL</h1>
   <div class="subtitle">
-    IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3+</strong><br>
-    Status serwera: <span id="server-status">⏳</span> | Gracze online: <span id="online-players">...</span>
+    IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3 +</strong>
   </div>
 
-  <div class="top-buttons">
-    <a href="https://discord.gg/9dt99b3NFG" class="button discord" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt=""> Discord
-    </a>
-    <a href="https://www.twitch.tv/98bossman98" class="button twitch" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt=""> Twitch
-    </a>
-  </div>
-
+  <!-- 📋 Przycisk kopiowania IP -->
   <button class="button ip-button" onclick="copyIP()">📋 Kopiuj IP: BSCMC.PL</button>
-  <button class="button minigames-button" onclick="toggleMiniGames()">🎮 Mini-gry</button>
-  <div class="minigames-content" id="minigames-content">
-    👽 AMONG US – sprawdź swoją dedukcję i spryt wśród znajomych.<br>
-    🏹 IGRZYSKA ŚMIERCI – zbieraj broń i zasoby, aby przetrwać do końca.<br>
-    🏰 TOWER PVP – buduj, walcz i przetrwaj!
+
+  <!-- 🟢 Status serwera i licznik graczy -->
+  <div id="server-info" style="margin-top:15px; text-align:center; font-size:1.2em;">
+    Status serwera: <span id="server-status" style="color:#00ff00;">🟢 Online</span> | 
+    Gracze online: <strong id="online-players">Ładowanie...</strong>
   </div>
 
-  <div class="leaderboard">
-    <h3>Topka graczy</h3>
-    <div class="player"><span>🥇 salatkaowocowa</span><span>120 zł</span></div>
-    <div class="player"><span>🥈 BloomFire000</span><span>104 zł</span></div>
-    <div class="player"><span>🥉 michalek</span><span>80 zł</span></div>
+  <!-- Dalsza zawartość strony -->
+  <div style="margin-top:40px; text-align:center; max-width:600px;">
+    <h2>🔥 Dlaczego warto wybrać BSCMC.PL?</h2>
+    <p>👑 Miła Administracja — zawsze pomoże w razie problemów.</p>
+    <p>⚡ Nowatorskie mechaniki i świetna społeczność!</p>
   </div>
 
   <script>
-    // 🟢 Kopiowanie IP
+    // 📋 Kopiowanie IP
     function copyIP() {
       navigator.clipboard.writeText("BSCMC.PL")
         .then(() => alert("IP serwera zostało skopiowane!"))
         .catch(() => alert("Błąd kopiowania IP."));
     }
 
-    // 🎮 Pokazywanie/ukrywanie mini-gier
-    function toggleMiniGames() {
-      const c = document.getElementById('minigames-content');
-      c.style.display = c.style.display === 'block' ? 'none' : 'block';
-    }
-
-    // 🌐 Pobieranie liczby graczy i statusu
+    // 🟢 Licznik graczy i status serwera
     async function fetchOnlinePlayers() {
       try {
-        const res = await fetch('https://api.mcsrvstat.us/2/pl2.chsrv.pl:52024');
+        const res = await fetch('https://api.mcsrvstat.us/2/BSCMC.PL');
         const data = await res.json();
         const onlineEl = document.getElementById('online-players');
         const statusEl = document.getElementById('server-status');
