@@ -21,12 +21,6 @@
       position: relative;
     }
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
     body::before {
       content: "";
       position: absolute;
@@ -111,11 +105,6 @@
       box-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
     }
 
-    .mode-buttons a.gallery {
-      background: linear-gradient(135deg, #ff6ec7, #ffcc00);
-      box-shadow: 0 0 10px #ff6ec7, 0 0 20px #ffcc00;
-    }
-
     .ip-button {
       background: linear-gradient(90deg, #00ffcc, #00ccff);
       margin-top: 10px;
@@ -156,7 +145,6 @@
       color: #ff00ff;
     }
 
-    /* --- NOWA SEKCJA FEATURES --- */
     .features {
       margin-top: 50px;
       max-width: 1000px;
@@ -235,7 +223,6 @@
     .leaderboard .silver { background: linear-gradient(90deg, #C0C0C0, #A9A9A9); color: #000; }
     .leaderboard .bronze { background: linear-gradient(90deg, #CD7F32, #8B4513); color: #fff; }
 
-    /* --- Styl zakładki NOWOŚCI --- */
     .sidebar {
       position: fixed;
       top: 50%;
@@ -255,9 +242,7 @@
       z-index: 10;
     }
 
-    .sidebar:hover {
-      background-color: #d62828;
-    }
+    .sidebar:hover { background-color: #d62828; }
 
     .sidebar-panel {
       position: fixed;
@@ -272,14 +257,9 @@
       z-index: 11;
     }
 
-    .sidebar-panel.open {
-      right: 0;
-    }
+    .sidebar-panel.open { right: 0; }
 
-    .sidebar-panel h2 {
-      margin-top: 0;
-      color: #ff4444;
-    }
+    .sidebar-panel h2 { margin-top: 0; color: #ff4444; }
 
     .close-btn {
       cursor: pointer;
@@ -333,6 +313,11 @@
     🏰 TOWER PVP – buduj, walcz i przetrwaj, aby zdobyć zwycięstwo nad przeciwnikami!
   </div>
 
+  <!-- Online Players Button -->
+  <button class="button ip-button" id="online-button">
+    🔹 Gracze online: <span id="online-players">Ładowanie...</span>
+  </button>
+
   <!-- KLUCZE -->
   <div class="news">
     <h2>📢 KLUCZE</h2>
@@ -378,7 +363,6 @@
 
   <!-- Zakładka NOWOŚCI -->
   <div class="sidebar" id="sidebar">NOWOŚCI</div>
-
   <div class="sidebar-panel" id="panel">
     <span class="close-btn" id="closeBtn">&times;</span>
     <h2>NOWOŚCI</h2>
@@ -389,16 +373,14 @@
     <p>⚔️ TOWER PVP</p>
     <p>KOMENDA: /tower join ARENA1</p>
     <p>Wspinaj się na wieżyczki, walcz z innymi graczami i zostań ostatnim ocalałym!</p>
-
   </div>
-  
 
   <script>
     // Kopiowanie IP
     function copyIP() {
       navigator.clipboard.writeText("BSCMC.PL")
-        .then(() => { alert("IP serwera zostało skopiowane!"); })
-        .catch(err => { alert("Błąd kopiowania IP."); });
+        .then(() => alert("IP serwera zostało skopiowane!"))
+        .catch(() => alert("Błąd kopiowania IP."));
     }
 
     // Toggle mini-gry
@@ -412,13 +394,8 @@
     const panel = document.getElementById('panel');
     const closeBtn = document.getElementById('closeBtn');
 
-    sidebar.addEventListener('click', () => {
-      panel.classList.add('open');
-    });
-
-    closeBtn.addEventListener('click', () => {
-      panel.classList.remove('open');
-    });
+    sidebar.addEventListener('click', () => panel.classList.add('open'));
+    closeBtn.addEventListener('click', () => panel.classList.remove('open'));
 
     // Pobieranie liczby graczy online
     async function fetchOnlinePlayers() {
@@ -433,13 +410,10 @@
       }
     }
 
-    // Aktualizacja co 15 sekund
+    // Aktualizacja co 20 sekund
     fetchOnlinePlayers();
-    setInterval(fetchOnlinePlayers, 1000);
+    setInterval(fetchOnlinePlayers, 20000);
   </script>
 
 </body>
 </html>
-
-
-
