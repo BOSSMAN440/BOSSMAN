@@ -296,11 +296,56 @@
     IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3 +</strong>
   </div>
 
+<script>
+  // Kopiowanie IP
+  function copyIP() {
+    navigator.clipboard.writeText("BSCMC.PL")
+      .then(() => alert("IP serwera zostało skopiowane!"))
+      .catch(() => alert("Błąd kopiowania IP."));
+  }
 
-    <!-- 🔥 Dodany licznik graczy -->
-  <div id="player-status" class="status">
-    👥 Gracze online: <strong id="online-players">Ładowanie...</strong> <span id="server-status" class="offline">🔴</span>
-  </div>
+  // Toggle mini-gry
+  function toggleMiniGames() {
+    const content = document.getElementById('minigames-content');
+    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+  }
+
+  // Zakładka NOWOŚCI
+  const sidebar = document.getElementById('sidebar');
+  const panel = document.getElementById('panel');
+  const closeBtn = document.getElementById('closeBtn');
+
+  sidebar.addEventListener('click', () => panel.classList.add('open'));
+  closeBtn.addEventListener('click', () => panel.classList.remove('open'));
+
+  // 🟢 Licznik graczy i status serwera
+  async function fetchOnlinePlayers() {
+    try {
+      const res = await fetch('https://api.mcsrvstat.us/2/pl2.chsrv.pl:52024');
+      const data = await res.json();
+      const onlineEl = document.getElementById('online-players');
+      const statusEl = document.getElementById('server-status');
+
+      if (data && data.online) {
+        onlineEl.textContent = `${data.players?.online ?? 0}/${data.players?.max ?? 0}`;
+        statusEl.textContent = '🟢 Online';
+        statusEl.style.color = '#00ff00';
+      } else {
+        onlineEl.textContent = 'Offline';
+        statusEl.textContent = '🔴 Offline';
+        statusEl.style.color = '#ff3333';
+      }
+    } catch {
+      document.getElementById('online-players').textContent = 'Błąd';
+      document.getElementById('server-status').textContent = '⚠️ Błąd';
+      document.getElementById('server-status').style.color = '#ffaa00';
+    }
+  }
+
+  // Uruchomienie i odświeżanie co 20s
+  fetchOnlinePlayers();
+  setInterval(fetchOnlinePlayers, 20000);
+</script>
 
   
   <!-- Social Media -->
@@ -447,6 +492,7 @@
 
 </body>
 </html>
+
 
 
 
