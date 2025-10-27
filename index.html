@@ -21,6 +21,12 @@
       position: relative;
     }
 
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     body::before {
       content: "";
       position: absolute;
@@ -56,18 +62,6 @@
       z-index: 1;
       text-align: center;
     }
-
-    .status {
-      margin-top: 10px;
-      font-size: 1.2em;
-      background: rgba(0,0,0,0.5);
-      padding: 10px 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #00ffff;
-    }
-
-    .online { color: #00ff00; font-weight: bold; }
-    .offline { color: #ff4444; font-weight: bold; }
 
     .top-buttons, .mode-buttons {
       display: flex;
@@ -117,6 +111,11 @@
       box-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
     }
 
+    .mode-buttons a.gallery {
+      background: linear-gradient(135deg, #ff6ec7, #ffcc00);
+      box-shadow: 0 0 10px #ff6ec7, 0 0 20px #ffcc00;
+    }
+
     .ip-button {
       background: linear-gradient(90deg, #00ffcc, #00ccff);
       margin-top: 10px;
@@ -152,8 +151,12 @@
       z-index: 1;
     }
 
-    .news h2 { margin-bottom: 10px; color: #ff00ff; }
+    .news h2 {
+      margin-bottom: 10px;
+      color: #ff00ff;
+    }
 
+    /* --- NOWA SEKCJA FEATURES --- */
     .features {
       margin-top: 50px;
       max-width: 1000px;
@@ -189,6 +192,18 @@
       box-shadow: 0 0 25px #ff00ff;
     }
 
+    .feature h3 {
+      margin-bottom: 10px;
+      font-size: 1.3em;
+      color: #00ffff;
+    }
+
+    .feature p {
+      color: #ddd;
+      font-size: 0.95em;
+      line-height: 1.4em;
+    }
+
     .leaderboard {
       position: absolute;
       top: 50px;
@@ -219,6 +234,59 @@
     .leaderboard .gold { background: linear-gradient(90deg, #FFD700, #FFA500); color: #000; }
     .leaderboard .silver { background: linear-gradient(90deg, #C0C0C0, #A9A9A9); color: #000; }
     .leaderboard .bronze { background: linear-gradient(90deg, #CD7F32, #8B4513); color: #fff; }
+
+    /* --- Styl zakładki NOWOŚCI --- */
+    .sidebar {
+      position: fixed;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      background-color: #e63946;
+      color: white;
+      padding: 15px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      border-radius: 10px 0 0 10px;
+      box-shadow: -2px 2px 8px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: background 0.3s;
+      z-index: 10;
+    }
+
+    .sidebar:hover {
+      background-color: #d62828;
+    }
+
+    .sidebar-panel {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 300px;
+      height: 100%;
+      background: #111;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.5);
+      transition: right 0.4s ease;
+      padding: 20px;
+      z-index: 11;
+    }
+
+    .sidebar-panel.open {
+      right: 0;
+    }
+
+    .sidebar-panel h2 {
+      margin-top: 0;
+      color: #ff4444;
+    }
+
+    .close-btn {
+      cursor: pointer;
+      font-size: 20px;
+      color: #fff;
+      float: right;
+    }
   </style>
 </head>
 <body>
@@ -228,6 +296,13 @@
     IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3 +</strong>
   </div>
 
+
+    <!-- 🔥 Dodany licznik graczy -->
+  <div id="player-status" class="status">
+    👥 Gracze online: <strong id="online-players">Ładowanie...</strong> <span id="server-status" class="offline">🔴</span>
+  </div>
+
+  
   <!-- Social Media -->
   <div class="top-buttons">
     <a href="https://discord.gg/9dt99b3NFG" class="button discord" target="_blank">
@@ -244,6 +319,7 @@
     </a>
   </div>
 
+  <!-- TRYBY -->
   <h2 class="subtitle" style="background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: titleGradient 6s infinite linear; margin-top: 30px;">
     DOSTĘPNE TRYBY
   </h2>
@@ -256,31 +332,50 @@
   <!-- IP Button -->
   <button class="button ip-button" onclick="copyIP()">📋 Kopiuj IP: BSCMC.PL</button>
 
-  <!-- 🔥 Dodany licznik graczy -->
-  <div id="player-status" class="status">
-    👥 Gracze online: <strong id="online-players">Ładowanie...</strong> <span id="server-status" class="offline">🔴</span>
-  </div>
-
-  <!-- --- tu dalej cała Twoja oryginalna treść: minigry, klucze, eventy itd. --- -->
   <!-- Mini-gry -->
   <button class="button minigames-button" onclick="toggleMiniGames()">🎮 Mini-gry</button>
   <div class="minigames-content" id="minigames-content">
     👽 AMONG US – sprawdź swoją dedukcję i spryt wśród znajomych.<br>
-    🏹 IGRZYSKA ŚMIERCI – zbieraj broń i zasoby, aby przetrwać do końca.<br>
-    🏰 TOWER PVP – buduj, walcz i przetrwaj, aby zdobyć zwycięstwo!
+    🏹 IGRZYSKA SMIERCI – zbieraj broń i zasoby, aby przetrwać do końca.
+    🏰 TOWER PVP – buduj, walcz i przetrwaj, aby zdobyć zwycięstwo nad przeciwnikami!
   </div>
 
+  <!-- KLUCZE -->
   <div class="news">
     <h2>📢 KLUCZE</h2>
     <p>🎁 Co sobotę o <strong>20:00</strong> rozdawanie kluczy!</p>
   </div>
 
+  <!-- EVENCIK -->
   <div class="news">
     <h2>📢 EVENCIK</h2>
-    <p>📦 Co 24h o 16:00 odbywa się event zrzutu <br> <strong>35 skrzynek</strong> z nagrodami!</p>
+    <p>📦 Co 24h o 16:00 odbywa się event zrzutu <br> <strong>35 skrzynek</strong> z nagrodami do zebrania!</p>
   </div>
 
-  <!-- Topka -->
+  <!-- Dlaczego warto wybrać -->
+  <section class="features">
+    <h2>🔥 Dlaczego warto wybrać <span style="color:#00ffff;">BSCMC.PL</span>?</h2>
+    <div class="features-grid">
+      <div class="feature">
+        <h3>👑 Miła Administracja</h3>
+        <p>Administracja MSCMC.PL zawsze z checia pomoże w razie problemow.</p>
+      </div>
+      <div class="feature">
+        <h3>⚡ Nowatorskie Mechaniki</h3>
+        <p>Stawiamy na świeże pomysły i autorskie systemy, które wyróżniają nas na tle innych serwerów</p>
+      </div>
+      <div class="feature">
+        <h3>🎉 Niezapomniane Wydarzenia</h3>
+        <p>Organizujemy turnieje i atrakcje pełne emocji, gdzie czekają unikatowe nagrody i świetna zabawa.</p>
+      </div>
+      <div class="feature">
+        <h3>🤝 Silna Społeczność</h3>
+        <p>Gracze BSCMC.PL to zgrana ekipa – zawsze gotowa na wspólną rozgrywkę, pomoc i dobrą atmosferę.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leaderboard -->
   <div class="leaderboard">
     <h3>Topka graczy</h3>
     <div class="player gold"><span>🥇 salatkaowocowa</span><span>120 zł</span></div>
@@ -288,12 +383,29 @@
     <div class="player bronze"><span>🥉 michalek</span><span>80 zł</span></div>
   </div>
 
+  <!-- Zakładka NOWOŚCI -->
+  <div class="sidebar" id="sidebar">NOWOŚCI</div>
+
+  <div class="sidebar-panel" id="panel">
+    <span class="close-btn" id="closeBtn">&times;</span>
+    <h2>NOWOŚCI</h2>
+    <p>🏹 IGRZYSKA ŚMIERCI</p>
+    <p>KOMENDA: /hg join ARENA1</p>
+    <p>ZMIERZ SIE Z INNYMI I ZOSTAŃ JAKO JEDYNY NA MAPIE</p>
+    <p>===============</p>
+    <p>⚔️ TOWER PVP</p>
+    <p>KOMENDA: /tower join ARENA1</p>
+    <p>Wspinaj się na wieżyczki, walcz z innymi graczami i zostań ostatnim ocalałym!</p>
+
+  </div>
+  
+
   <script>
     // Kopiowanie IP
     function copyIP() {
       navigator.clipboard.writeText("BSCMC.PL")
-        .then(() => alert("IP serwera zostało skopiowane!"))
-        .catch(() => alert("Błąd kopiowania IP."));
+        .then(() => { alert("IP serwera zostało skopiowane!"); })
+        .catch(err => { alert("Błąd kopiowania IP."); });
     }
 
     // Toggle mini-gry
@@ -302,32 +414,39 @@
       content.style.display = content.style.display === 'block' ? 'none' : 'block';
     }
 
-    // 🟢 Licznik graczy z pl2.chsrv.pl:52024
+    // Zakładka NOWOŚCI
+    const sidebar = document.getElementById('sidebar');
+    const panel = document.getElementById('panel');
+    const closeBtn = document.getElementById('closeBtn');
+
+    sidebar.addEventListener('click', () => {
+      panel.classList.add('open');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      panel.classList.remove('open');
+    });
+
+    // Pobieranie liczby graczy online
     async function fetchOnlinePlayers() {
       try {
-        const res = await fetch('https://api.mcsrvstat.us/2/pl2.chsrv.pl:52024');
-        const data = await res.json();
-        const onlineEl = document.getElementById('online-players');
-        const statusEl = document.getElementById('server-status');
-
-        if (data && data.online) {
-          onlineEl.textContent = `${data.players?.online ?? 0}/${data.players?.max ?? 0}`;
-          statusEl.textContent = '🟢';
-          statusEl.className = 'online';
-        } else {
-          onlineEl.textContent = 'Offline';
-          statusEl.textContent = '🔴';
-          statusEl.className = 'offline';
-        }
-      } catch {
-        document.getElementById('online-players').textContent = 'Błąd';
-        document.getElementById('server-status').textContent = '⚠️';
+        const response = await fetch('https://api.mcsrvstat.us/2/BSCMC.PL');
+        const data = await response.json();
+        const online = data.players ? data.players.online : 0;
+        document.getElementById('online-players').textContent = online;
+      } catch (err) {
+        console.error('Błąd pobierania danych:', err);
+        document.getElementById('online-players').textContent = 'Nieznana';
       }
     }
 
+    // Aktualizacja co 15 sekund
     fetchOnlinePlayers();
-    setInterval(fetchOnlinePlayers, 20000);
+    setInterval(fetchOnlinePlayers, 1000);
   </script>
 
 </body>
 </html>
+
+
+
