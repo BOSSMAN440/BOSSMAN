@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🏡 ONEBLOCK</title>
+  <title>🌍 EARTH SMP</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, sans-serif;
@@ -32,7 +32,7 @@
       font-weight: bold;
       letter-spacing: 2px;
       margin-bottom: 30px;
-      background: linear-gradient(90deg, #f39c12, #e74c3c, #9b59b6, #3498db, #f39c12);
+      background: linear-gradient(90deg, #1abc9c, #2ecc71, #3498db, #9b59b6, #1abc9c);
       background-size: 300%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -42,7 +42,7 @@
 
     h1.neon-text:hover {
       transform: scale(1.05);
-      text-shadow: 0 0 15px #f39c12, 0 0 30px #e74c3c, 0 0 45px #9b59b6;
+      text-shadow: 0 0 15px #1abc9c, 0 0 30px #3498db, 0 0 45px #9b59b6;
     }
 
     @keyframes titleGradient {
@@ -51,10 +51,10 @@
     }
 
     h2 {
-      color: #f39c12;
+      color: #1abc9c;
       margin-top: 40px;
       margin-bottom: 20px;
-      border-bottom: 2px solid #f39c12;
+      border-bottom: 2px solid #1abc9c;
       display: inline-block;
       padding-bottom: 5px;
     }
@@ -69,7 +69,7 @@
       background: rgba(255, 255, 255, 0.05);
       margin: 8px 0;
       padding: 10px 15px;
-      border-left: 4px solid #f39c12;
+      border-left: 4px solid #1abc9c;
       border-radius: 5px;
       transition: background 0.3s;
     }
@@ -78,34 +78,24 @@
       background: rgba(255, 255, 255, 0.15);
     }
 
-    .drop-list {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 10px 15px;
-      margin: 10px 0;
-      border-radius: 5px;
-      font-family: monospace;
-      overflow-x: auto;
+    .link-button {
+      display: block;
+      width: max-content;
+      margin: 20px auto;
+      padding: 12px 25px;
+      background: #3498db;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.3s;
+      text-align: center;
+      position: relative;
+      z-index: 20;
     }
 
-    .mini-games li {
-      border-left: 4px solid #3498db;
-    }
-
-    .floating-light {
-      position: fixed;
-      pointer-events: none;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      opacity: 0.8;
-      animation: float linear infinite;
-      z-index: 1;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0) translateX(0); opacity: 0.8; }
-      50% { opacity: 1; }
-      100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+    .link-button:hover {
+      background: #2980b9;
     }
 
     .back-button {
@@ -113,7 +103,7 @@
       width: max-content;
       margin: 40px auto;
       padding: 10px 25px;
-      background: #f39c12;
+      background: #1abc9c;
       color: #fff;
       font-weight: bold;
       text-decoration: none;
@@ -125,7 +115,7 @@
     }
 
     .back-button:hover {
-      background: #e67e22;
+      background: #16a085;
     }
 
     @media (max-width: 600px) {
@@ -137,7 +127,7 @@
 <body>
 
   <script>
-    const colors = ['#f39c12', '#f1c40f', '#e74c3c', '#9b59b6', '#1abc9c', '#3498db'];
+    const colors = ['#1abc9c', '#2ecc71', '#3498db', '#9b59b6'];
     const numLights = 40;
 
     for (let i = 0; i < numLights; i++) {
@@ -154,27 +144,28 @@
   </script>
 
   <div class="container">
-    <h1 class="neon-text">🏡 ONEBLOCK</h1>
-    <p>Rozpocznij przygodę na wyspie, zbieraj surowce i rozwijaj swoją przestrzeń. Twoim celem jest przetrwanie i rozwój w trybie OneBlock!</p>
+    <h1 class="neon-text">🌍 EARTH SMP</h1>
+    <p>Dołącz do świata opartego na prawdziwej mapie Ziemi. Zakładaj narody, twórz sojusze, prowadź wojny i zapisuj się w historii serwera!</p>
 
     <h2>TRYB POSIADA</h2>
     <ul>
-      <li>🪓 Zbieranie bloków – każdy blok daje nowe surowce i przedmioty.</li>
-      <li>🌱 Uprawy i hodowla – rozwijaj swoją wyspę i zdobywaj doświadczenie.</li>
-      <li>🏠 Rozbudowa wyspy – buduj struktury, dekoracje i systemy automatyczne.</li>
-      <li>⚔️ Walka z potworami – zdobywaj cenne dropy i bronie.</li>
-      <li>🎁 Skarby i skrzynki – losowe nagrody podczas rozgrywki.</li>
-      <li>🛒 Sklep i wymiana przedmiotów z innymi graczami.</li>
-      <li>🌟 Wiele wyzwań i osiągnięć do zdobycia.</li>
+      <li>🌐 Prawdziwa mapa Ziemi – kontynenty, państwa i oceany.</li>
+      <li>🏳️ Zakładanie narodów i państw graczy.</li>
+      <li>🤝 Sojusze, dyplomacja i polityka.</li>
+      <li>⚔️ Wojny między narodami i walka o terytoria.</li>
+      <li>🏙️ Budowa miast, baz i imperiów.</li>
+      <li>💰 Handel i gospodarka między graczami.</li>
+      <li>📜 Historia tworzona przez społeczność.</li>
     </ul>
 
-    <h2>MINI-GRY</h2>
-    <ul class="mini-games">
-      <li>🏹 TOWER PVP – buduj, walcz i przetrwaj, aby zdobyć zwycięstwo nad przeciwnikami!</li>
-    </ul>
+    <a href="http://pl1.chsrv.pl:52083/#earthsmp:16379:0:4771:7609:0:0:0:1:flat" class="link-button" target="_blank">🌍 ZOBACZ MAPĘ TERAZ</a>
+
+    <h2>LINKI SERWERA</h2>
+
+    <a href="https://discord.gg/EdsHuFaSDJ" class="link-button" target="_blank">💬 DOŁĄCZ DO DISCORD</a>
+    <a href="https://bscmc.pl" class="link-button" target="_blank">🔗 STRONA & IP SERWERA</a>
 
     <a href="index.html" class="back-button">← Powrót</a>
   </div>
 </body>
 </html>
-
