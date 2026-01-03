@@ -1,1 +1,23 @@
-asd
+<div style="text-align:center; margin-bottom:30px;">
+  <a href="regulaminearthsmp.html" class="nav-button">🌍 Regulamin Earth SMP</a>
+  <a href="regulaminsurvivaldzialki.html" class="nav-button">🏡 Regulamin Survival Działki</a>
+</div>
+
+<style>
+  .nav-button {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 12px 30px;
+    background: #3498db;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .nav-button:hover {
+    background: #2980b9;
+    transform: scale(1.05);
+  }
+</style>
