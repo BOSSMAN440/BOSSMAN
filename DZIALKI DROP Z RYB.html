@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🎁 DROP Z SKRZYNEK RYB</title>
+  <title>BSCMC.PL</title>
   <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background: url("https://wallpapercave.com/wp/wp9808994.jpg") no-repeat center center fixed;
@@ -18,33 +21,27 @@
       position: relative;
     }
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      position: relative;
-      z-index: 10;
-      text-align: center;
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url("https://www.transparenttextures.com/patterns/stardust.png");
+      opacity: 0.3;
+      z-index: 0;
     }
 
-    h1.neon-text {
-      font-size: 3em;
-      font-weight: bold;
-      letter-spacing: 2px;
-      margin-bottom: 30px;
-
-      background: linear-gradient(90deg, #f39c12, #e74c3c, #9b59b6, #3498db, #f39c12);
+    h1 {
+      font-size: 4em;
+      text-transform: uppercase;
+      letter-spacing: 8px;
+      background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff);
       background-size: 300%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-
       animation: titleGradient 6s infinite linear;
-      transition: transform 0.3s ease, text-shadow 0.3s ease;
-    }
-
-    h1.neon-text:hover {
-      transform: scale(1.05);
-      text-shadow: 0 0 15px #f39c12, 0 0 30px #e74c3c, 0 0 45px #9b59b6;
+      margin-bottom: 10px;
+      z-index: 1;
     }
 
     @keyframes titleGradient {
@@ -52,147 +49,351 @@
       100% { background-position: 300%; }
     }
 
-    h2 {
-      color: #f39c12;
-      margin-top: 40px;
+    .subtitle {
+      font-size: 1.8em;
+      color: #00ccff;
       margin-bottom: 20px;
-      border-bottom: 2px solid #f39c12;
-      display: inline-block;
-      padding-bottom: 5px;
+      z-index: 1;
+      text-align: center;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
-      text-align: left;
+    .top-buttons, .mode-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      z-index: 1;
+      margin-bottom: 30px;
     }
 
-    li {
-      background: rgba(255, 255, 255, 0.05);
-      margin: 8px 0;
-      padding: 10px 15px;
-      border-left: 4px solid #f39c12;
-      border-radius: 5px;
-      transition: background 0.3s;
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 25px;
+      border-radius: 12px;
+      font-size: 1.2em;
+      text-decoration: none;
+      color: #fff;
+      transition: all 0.3s;
+      position: relative;
+      backdrop-filter: blur(6px);
+      cursor: pointer;
+      overflow: hidden;
     }
 
-    li:hover {
-      background: rgba(255, 255, 255, 0.15);
+    .button img { width: 24px; height: 24px; margin-right: 10px; }
+
+    .discord { background: #7289da; }
+    .twitch { background: #9146ff; }
+    .tiktok { background: #25f4ee; color: #000; }
+    .youtube { background: #ff0000; }
+
+    .mode-buttons a {
+      background: linear-gradient(135deg, #00ffff, #ff00ff);
+      padding: 15px 30px;
+      border-radius: 15px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.2em;
+      transition: all 0.3s;
+      box-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff;
     }
 
-    .section-surowce li { border-color: #3498db; }
-    .section-moby li { border-color: #e74c3c; }
-    .section-hajs li { border-color: #2ecc71; }
+    .mode-buttons a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
+    }
 
-    .floating-light {
-      position: fixed;
-      pointer-events: none;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      opacity: 0.8;
-      animation: float linear infinite;
+    .ip-button {
+      background: linear-gradient(90deg, #00ffcc, #00ccff);
+      margin-top: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .minigames-button {
+      background: linear-gradient(90deg, #ff00ff, #ffcc00);
+      margin-top: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .minigames-content {
+      display: none;
+      margin-top: 15px;
+      background: rgba(30, 30, 30, 0.9);
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 400px;
+      line-height: 1.6em;
+    }
+
+    .news {
+      margin-top: 50px;
+      padding: 20px;
+      background: rgba(20, 20, 20, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 0 20px #ff00ff;
+      text-align: center;
       z-index: 1;
     }
 
-    @keyframes float {
-      0% { transform: translateY(0) translateX(0); opacity: 0.8; }
-      50% { opacity: 1; }
-      100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+    .news h2 {
+      margin-bottom: 10px;
+      color: #ff00ff;
     }
 
-    .back-button {
-      display: block;
-      width: max-content;
-      margin: 40px auto;
-      padding: 10px 25px;
-      background: #f39c12;
-      color: #fff;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: background 0.3s;
+    .features {
+      margin-top: 50px;
+      max-width: 1000px;
       text-align: center;
-      position: relative;
-      z-index: 20;
+      z-index: 1;
     }
 
-    .back-button:hover {
-      background: #e67e22;
+    .features h2 {
+      font-size: 2em;
+      margin-bottom: 30px;
+      background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: titleGradient 6s infinite linear;
     }
 
-    @media (max-width: 600px) {
-      h1.neon-text { font-size: 2em; }
-      h2 { font-size: 1.5em; }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .feature {
+      background: rgba(25,25,25,0.9);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,255,255,0.5);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .feature:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #ff00ff;
+    }
+
+    .feature h3 {
+      margin-bottom: 10px;
+      font-size: 1.3em;
+      color: #00ffff;
+    }
+
+    .feature p {
+      color: #ddd;
+      font-size: 0.95em;
+      line-height: 1.4em;
+    }
+
+    .leaderboard {
+      position: absolute;
+      top: 50px;
+      right: 20px;
+      background: #111;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #00ffff;
+      min-width: 220px;
+      z-index: 1;
+    }
+
+    .leaderboard h3 {
+      margin-bottom: 15px;
+      color: #00ffff;
+      text-align: center;
+    }
+
+    .leaderboard .player {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .leaderboard .gold { background: linear-gradient(90deg, #FFD700, #FFA500); color: #000; }
+    .leaderboard .silver { background: linear-gradient(90deg, #C0C0C0, #A9A9A9); color: #000; }
+    .leaderboard .bronze { background: linear-gradient(90deg, #CD7F32, #8B4513); color: #fff; }
+
+    .sidebar {
+      position: fixed;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      background-color: #e63946;
+      color: white;
+      padding: 15px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      border-radius: 10px 0 0 10px;
+      box-shadow: -2px 2px 8px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: background 0.3s;
+      z-index: 10;
+    }
+
+    .sidebar:hover { background-color: #d62828; }
+
+    .sidebar-panel {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 300px;
+      height: 100%;
+      background: #111;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.5);
+      transition: right 0.4s ease;
+      padding: 20px;
+      z-index: 11;
+    }
+
+    .sidebar-panel.open { right: 0; }
+
+    .sidebar-panel h2 { margin-top: 0; color: #ff4444; }
+
+    .close-btn {
+      cursor: pointer;
+      font-size: 20px;
+      color: #fff;
+      float: right;
     }
   </style>
 </head>
 <body>
 
-<script>
-  const colors = ['#f39c12', '#f1c40f', '#e74c3c', '#9b59b6', '#1abc9c', '#3498db'];
-  const numLights = 40;
+  <h1>BSCMC.PL</h1>
+  <div class="subtitle">
+    IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3 +</strong>
+  </div>
 
-  for (let i = 0; i < numLights; i++) {
-    const light = document.createElement('div');
-    light.classList.add('floating-light');
-    light.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-    light.style.left = Math.random() * 100 + 'vw';
-    light.style.top = Math.random() * 100 + 'vh';
-    light.style.width = (5 + Math.random() * 10) + 'px';
-    light.style.height = light.style.width;
-    light.style.animationDuration = (5 + Math.random() * 10) + 's';
-    document.body.appendChild(light);
-  }
-</script>
+  <!-- Social Media -->
+  <div class="top-buttons">
+    <a href="https://discord.gg/9dt99b3NFG" class="button discord" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord"> Discord
+    </a>
+    <a href="https://www.twitch.tv/98bossman98" class="button twitch" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"> Twitch
+    </a>
+    <a href="https://www.tiktok.com/@bscmc.pl" class="button tiktok" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok"> TikTok
+    </a>
+    <a href="https://www.youtube.com/@BOSSCRAFTMCPL" class="button youtube" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"> YouTube
+    </a>
+  </div>
 
-<div class="container">
-  <h1 class="neon-text">🎁 DROP Z SKRZYNEK</h1>
+  <!-- TRYBY -->
+  <h2 class="subtitle" style="background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: titleGradient 6s infinite linear; margin-top: 30px;">
+    DOSTĘPNE TRYBY
+  </h2>
 
-  <h2>SUROWCE</h2>
-  <ul class="section-surowce">
-    <li>5x Węgiel – 50% szansa</li>
-    <li>3x szt. żelaza – 30% szansa</li>
-    <li>4x szt. miedzi – 35% szansa</li>
-    <li>2x szt. złota – 20% szansa</li>
-    <li>6x lazuryt – 25% szansa</li>
-    <li>5x redston – 25% szansa</li>
-    <li>1x emerald – 7% szansa</li>
-    <li>1x diament – 5% szansa</li>
-    <li>1x nether sc – 2% szansa</li>
-    <li>8x kwarc – 20% szansa</li>
-    <li>3x obsydian – 15% szansa</li>
-    <li>2x szlam – 10% szansa</li>
-  </ul>
+  <div class="mode-buttons">
+    <a href="survival.html">🏡 Działki</a>
+    <a href="oneblock.html">🌍 Earth SMP</a>
+    <a href="README.html">📜 Regulamin</a>
+  </div>
 
-  <h2>MOBY</h2>
-  <ul class="section-moby">
-    <li>1x zombie</li>
-    <li>1x szkielet</li>
-    <li>1x creeper</li>
-    <li>1x krowa</li>
-    <li>1x owca</li>
-    <li>1x swinia</li>
-    <li>1x kurczak</li>
-    <li>1x pajak</li>
-    <li>1x enderman</li>
-  </ul>
+  <!-- IP Button -->
+  <button class="button ip-button" onclick="copyIP()">📋 Kopiuj IP: BSCMC.PL</button>
 
-  <h2>HAJS</h2>
-  <ul class="section-hajs">
-    <li>50$ – 40% szansa</li>
-    <li>100$ – 35% szansa</li>
-    <li>250$ – 30% szansa</li>
-    <li>500$ – 25% szansa</li>
-    <li>1000$ – 20% szansa</li>
-    <li>2000$ – 10% szansa</li>
-    <li>3000$ – 5% szansa</li>
-  </ul>
+  <!-- Online Players Button -->
+  <button class="button ip-button" id="online-button">
+    🔹 Gracze online: <span id="online-players">Ładowanie...</span>
+  </button>
 
-  <a href="survival.html" class="back-button">← Powrót</a>
-</div>
+  <!-- KLUCZE -->
+  <div class="news">
+    <h2>📢 KLUCZE</h2>
+    <p>🎁 Co sobotę o <strong>20:00</strong> rozdawanie kluczy!</p>
+  </div>
+
+  <!-- EVENCIK -->
+  <div class="news">
+    <h2>📢 EVENCIK</h2>
+    <p>📦 Co 24h o 16:00 odbywa się event zrzutu <br> <strong>35 skrzynek</strong> z nagrodami do zebrania!</p>
+  </div>
+
+  <!-- Dlaczego warto wybrać -->
+  <section class="features">
+    <h2>🔥 Dlaczego warto wybrać <span style="color:#00ffff;">BSCMC.PL</span>?</h2>
+    <div class="features-grid">
+      <div class="feature">
+        <h3>👑 Miła Administracja</h3>
+        <p>Administracja BSCMC.PL zawsze z checia pomoże w razie problemow.</p>
+      </div>
+      <div class="feature">
+        <h3>⚡ Nowatorskie Mechaniki</h3>
+        <p>Stawiamy na świeże pomysły i autorskie systemy, które wyróżniają nas na tle innych serwerów</p>
+      </div>
+      <div class="feature">
+        <h3>🎉 Niezapomniane Wydarzenia</h3>
+        <p>Organizujemy turnieje i atrakcje pełne emocji, gdzie czekają unikatowe nagrody i świetna zabawa.</p>
+      </div>
+      <div class="feature">
+        <h3>🤝 Silna Społeczność</h3>
+        <p>Gracze BSCMC.PL to zgrana ekipa – zawsze gotowa na wspólną rozgrywkę, pomoc i dobrą atmosferę.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leaderboard -->
+  <div class="leaderboard">
+    <h3>Topka graczy</h3>
+    <div class="player gold"><span>🥇 salatkaowocowa</span><span>120 zł</span></div>
+    <div class="player silver"><span>🥈 BloomFire000</span><span>104 zł</span></div>
+    <div class="player bronze"><span>🥉 michalek</span><span>80 zł</span></div>
+  </div>
+
+
+  <script>
+    // Kopiowanie IP
+    function copyIP() {
+      navigator.clipboard.writeText("BSCMC.PL")
+        .then(() => alert("IP serwera zostało skopiowane!"))
+        .catch(() => alert("Błąd kopiowania IP."));
+    }
+
+    // Toggle mini-gry
+    function toggleMiniGames() {
+      const content = document.getElementById('minigames-content');
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Zakładka NOWOŚCI
+    const sidebar = document.getElementById('sidebar');
+    const panel = document.getElementById('panel');
+    const closeBtn = document.getElementById('closeBtn');
+
+    sidebar.addEventListener('click', () => panel.classList.add('open'));
+    closeBtn.addEventListener('click', () => panel.classList.remove('open'));
+
+    // Pobieranie liczby graczy online
+    async function fetchOnlinePlayers() {
+      try {
+        const response = await fetch('https://api.mcsrvstat.us/2/BSCMC.PL');
+        const data = await response.json();
+        const online = data.players ? data.players.online : 0;
+        document.getElementById('online-players').textContent = online;
+      } catch (err) {
+        console.error('Błąd pobierania danych:', err);
+        document.getElementById('online-players').textContent = 'Nieznana';
+      }
+    }
+
+    // Aktualizacja co 20 sekund
+    fetchOnlinePlayers();
+    setInterval(fetchOnlinePlayers, 20000);
+  </script>
 
 </body>
 </html>
-
-
