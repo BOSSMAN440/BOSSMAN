@@ -1,122 +1,192 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Galeria BSCMC.PL</title>
-<style>
-  body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    background: #111;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-    padding: 20px;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌍 REGULAMIN EARTH SMP</title>
 
-  h1 {
-    margin-bottom: 30px;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    color: #ff00ff;
-  }
-
-  .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    max-width: 1000px;
-  }
-
-  .gallery img {
-    width: 300px;
-    height: auto;
-    border-radius: 15px;
-    box-shadow: 0 0 20px #ff00ff;
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-  }
-
-  .gallery img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 30px #00ffff;
-  }
-
-  /* Modal */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 20;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.9);
-    justify-content: center;
-    align-items: center;
-  }
-
-  .modal img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 15px;
-  }
-
-  .close-modal {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 40px;
-    color: #fff;
-    cursor: pointer;
-  }
-</style>
-</head>
-<body>
-
-<h1>Galeria BSCMC.PL</h1>
-
-<div class="gallery">
-  <img src="https://i.postimg.cc/vBbfxx5r/igrzyska.png" alt="Igrzyska">
-  <img src="https://i.postimg.cc/L8H8KkBF/tnt-run.png" alt="TNT RUN">
-  <img src="https://i.postimg.cc/MTcG3W0c/amongus.png" alt="Among Us">
-</div>
-
-<!-- Modal -->
-<div class="modal" id="modal">
-  <span class="close-modal" id="closeModal">&times;</span>
-  <img id="modalImg" src="">
-</div>
-
-<script>
-  const galleryImages = document.querySelectorAll('.gallery img');
-  const modal = document.getElementById('modal');
-  const modalImg = document.getElementById('modalImg');
-  const closeModal = document.getElementById('closeModal');
-
-  galleryImages.forEach(img => {
-    img.addEventListener('click', () => {
-      modal.style.display = 'flex';
-      modalImg.src = img.src;
-    });
-  });
-
-  closeModal.addEventListener('click', () => {
-    modal.style.display = 'none';
-    modalImg.src = '';
-  });
-
-  // Zamknięcie modala po kliknięciu poza obraz
-  modal.addEventListener('click', (e) => {
-    if(e.target === modal) {
-      modal.style.display = 'none';
-      modalImg.src = '';
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: url("https://wallpapercave.com/wp/wp9808994.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      overflow-x: hidden;
     }
-  });
-</script>
 
+    .container {
+      max-width: 1000px;
+      padding: 40px 20px;
+      background: rgba(0,0,0,0.6);
+      border-radius: 15px;
+      margin: 40px 10px;
+    }
+
+    h1.neon-text {
+      font-size: 3em;
+      text-align: center;
+      margin-bottom: 30px;
+      background: linear-gradient(90deg, #1abc9c, #3498db, #9b59b6, #1abc9c);
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradient 6s linear infinite;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0%; }
+      100% { background-position: 300%; }
+    }
+
+    h2 {
+      color: #1abc9c;
+      margin-top: 40px;
+      border-bottom: 2px solid #1abc9c;
+      padding-bottom: 5px;
+    }
+
+    p {
+      line-height: 1.6;
+      opacity: 0.95;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background: rgba(255,255,255,0.08);
+      margin: 8px 0;
+      padding: 10px 15px;
+      border-left: 4px solid #1abc9c;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    li:hover {
+      background: rgba(255,255,255,0.18);
+    }
+
+    .warning {
+      color: #f1c40f;
+      font-weight: bold;
+    }
+
+    .back-button {
+      display: block;
+      width: max-content;
+      margin: 40px auto 0;
+      padding: 12px 30px;
+      background: #1abc9c;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .back-button:hover {
+      background: #16a085;
+    }
+
+    @media (max-width: 600px) {
+      h1.neon-text {
+        font-size: 2em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <h1 class="neon-text">🌍 REGULAMIN EARTH SMP</h1>
+
+    <p>
+      Regulamin obowiązuje <strong>wszystkich graczy</strong>.
+      Gra na serwerze oznacza pełną akceptację zasad.
+      <span class="warning">Nieznajomość regulaminu nie zwalnia z odpowiedzialności.</span>
+    </p>
+
+    <h2>📌 §1 Postanowienia ogólne</h2>
+    <ul>
+      <li>Serwer działa w trybie Earth SMP – mapa odwzorowuje Ziemię.</li>
+      <li>Gracze mogą zakładać państwa, miasta i rozwijać swoje terytoria.</li>
+      <li>Administracja ma prawo interpretować regulamin i reagować na sytuacje w nim nieopisane.</li>
+      <li>Regulamin może ulec zmianie w dowolnym momencie.</li>
+    </ul>
+
+    <h2>🧑‍🤝‍🧑 §2 Zasady zachowania</h2>
+    <ul>
+      <li>Zakaz obrażania graczy, administracji oraz grup społecznych.</li>
+      <li>Zakaz rasizmu, seksizmu, homofobii i mowy nienawiści.</li>
+      <li>Zakaz gróźb w realnym świecie (DDoS, doxxing, szantaż).</li>
+      <li>Zakaz spamu, floodu, CAPS LOCKA i prowokacji.</li>
+      <li>Zakaz podszywania się pod administrację lub innych graczy.</li>
+    </ul>
+
+    <h2>🛠️ §3 Cheaty, bugi i mody</h2>
+    <ul>
+      <li>Zakazane są wszelkie cheaty, hacki i exploitowanie mechanik.</li>
+      <li>Zakaz xRaya, freecama, ESP, kill aury, auto-clickera.</li>
+      <li>Dozwolone są OptiFine, shadery i mody optymalizujące.</li>
+      <li class="warning">Każdy cheat = ban permanentny.</li>
+      <li>Bugi należy zgłaszać administracji – wykorzystywanie ich jest karane.</li>
+    </ul>
+
+    <h2>🏗️ §4 Budowanie i infrastruktura</h2>
+    <ul>
+      <li>Budowanie poza claimami jest dozwolone tylko tymczasowo.</li>
+      <li>Zakaz griefowania, kradzieży i niszczenia infrastruktury.</li>
+      <li>Budowle muszą być estetyczne i pasować do klimatu serwera.</li>
+      <li>Administracja może usuwać porzucone lub szkodliwe konstrukcje.</li>
+    </ul>
+
+    <h2>🗺️ §5 Państwa, miasta i claimy</h2>
+    <ul>
+      <li>Każde państwo musi posiadać nazwę i stolicę.</li>
+      <li>Państwo odpowiada za swoich obywateli.</li>
+      <li>Claimy muszą być zwarte – zakaz „wężyków”.</li>
+      <li>Nieaktywne państwa mogą zostać rozwiązane.</li>
+    </ul>
+
+    <h2>⚔️ §6 Wojny i konflikty</h2>
+    <ul>
+      <li>Konflikty muszą być oficjalnie ogłoszone.</li>
+      <li>Zakaz griefowania cywilnych miast bez konfliktu.</li>
+      <li>Zakaz losowego zabijania graczy (RDM).</li>
+      <li>Po wojnie obowiązuje okres spokoju.</li>
+    </ul>
+
+    <h2>🧨 §7 PvP</h2>
+    <ul>
+      <li>PvP dozwolone podczas konfliktów lub za zgodą obu stron.</li>
+      <li>Zakaz PvP na spawnach i w strefach bezpiecznych.</li>
+      <li>Zakaz combat-logowania i spawn-killu.</li>
+    </ul>
+
+    <h2>💰 §8 Ekonomia</h2>
+    <ul>
+      <li>Zakaz oszustw finansowych i scamowania.</li>
+      <li>Zakaz wykorzystywania bugów ekonomii.</li>
+      <li>Administracja może resetować środki w razie nadużyć.</li>
+    </ul>
+
+    <h2>🚫 §9 Kary</h2>
+    <ul>
+      <li>Ostrzeżenie</li>
+      <li>Mute</li>
+      <li>Jail</li>
+      <li>Tempban</li>
+      <li>Ban permanentny</li>
+    </ul>
+
+    <a href="index.html" class="back-button">← Powrót</a>
+
+  </div>
 </body>
 </html>
