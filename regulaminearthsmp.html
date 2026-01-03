@@ -1,180 +1,211 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Regulamin Earth SMP</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      background: #f9f9f9;
-      color: #333;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regulamin Earth SMP</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: url("https://wallpapercave.com/wp/wp9808994.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
 
+  /* Cząsteczki w tle */
+  .particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.8);
+    animation: float 10s linear infinite;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0) translateX(0); opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 60px auto;
+    background: rgba(255,255,255,0.95);
+    color: #333;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 1;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 1.5em;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 5px;
+  }
+
+  ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+
+  li {
+    margin: 6px 0;
+  }
+
+  .warning {
+    font-weight: bold;
+    color: #d35400;
+  }
+
+  a.back-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 10px 25px;
+    background: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+  }
+
+  a.back-button:hover {
+    background: #2980b9;
+  }
+
+  @media (max-width: 600px) {
     .container {
-      max-width: 800px;
-      margin: 40px auto;
-      background: #fff;
-      padding: 30px 40px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      border-radius: 8px;
+      padding: 20px;
     }
-
     h1 {
-      text-align: center;
-      font-size: 2.5em;
-      margin-bottom: 20px;
+      font-size: 2em;
     }
-
     h2 {
-      font-size: 1.5em;
-      margin-top: 30px;
-      margin-bottom: 10px;
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 5px;
+      font-size: 1.3em;
     }
-
-    ul {
-      list-style-type: disc;
-      padding-left: 20px;
-    }
-
-    li {
-      margin: 6px 0;
-    }
-
-    .warning {
-      font-weight: bold;
-      color: #d35400;
-    }
-
-    a.back-button {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 10px 25px;
-      background: #3498db;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background 0.3s;
-    }
-
-    a.back-button:hover {
-      background: #2980b9;
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 20px;
-      }
-      h1 {
-        font-size: 2em;
-      }
-      h2 {
-        font-size: 1.3em;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>🌍 Regulamin EARTH SMP</h1>
 
-    <p>Regulamin obowiązuje wszystkich graczy. Gra na serwerze oznacza akceptację zasad. 
-    <span class="warning">Nieznajomość regulaminu nie zwalnia z odpowiedzialności.</span></p>
+<div class="container">
+  <h1>🌍 Regulamin EARTH SMP</h1>
 
-    <h2>📌 §1 Postanowienia ogólne</h2>
-    <ul>
-      <li>Serwer działa w trybie Earth SMP – mapa odwzorowuje Ziemię.</li>
-      <li>Gracze mogą zakładać państwa, miasta i rozwijać swoje terytoria.</li>
-      <li>Administracja ma prawo interpretować regulamin i reagować na sytuacje w nim nieopisane.</li>
-      <li>Regulamin może ulec zmianie w dowolnym momencie.</li>
-    </ul>
+  <p>Regulamin obowiązuje wszystkich graczy. Gra na serwerze oznacza akceptację zasad. 
+  <span class="warning">Nieznajomość regulaminu nie zwalnia z odpowiedzialności.</span></p>
 
-    <h2>🧑‍🤝‍🧑 §2 Zasady zachowania</h2>
-    <ul>
-      <li>Zakaz obrażania innych graczy, administracji oraz grup społecznych.</li>
-      <li>Zakaz rasizmu, seksizmu, homofobii i mowy nienawiści.</li>
-      <li>Zakaz grożenia w realnym świecie (DDoS, doxxing, szantaż).</li>
-      <li>Zakaz spamu, floodu, CAPS LOCKA i prowokacji.</li>
-      <li>Zakaz podszywania się pod administrację lub innych graczy.</li>
-    </ul>
+  <h2>📌 §1 Postanowienia ogólne</h2>
+  <ul>
+    <li>Serwer działa w trybie Earth SMP – mapa odwzorowuje Ziemię.</li>
+    <li>Gracze mogą zakładać państwa, miasta i rozwijać swoje terytoria.</li>
+    <li>Administracja ma prawo interpretować regulamin i reagować na sytuacje w nim nieopisane.</li>
+    <li>Regulamin może ulec zmianie w dowolnym momencie.</li>
+  </ul>
 
-    <h2>🛠️ §3 Cheaty, bugi i mody</h2>
-    <ul>
-      <li>Zakazane są wszelkie cheaty, hacki i exploity.</li>
-      <li>Zakaz xRaya, freecama, ESP, kill aury, auto-clickera.</li>
-      <li>Dozwolone są OptiFine, shadery i mody poprawiające wydajność.</li>
-      <li class="warning">Każdy cheat = ban zależny od powagi sytuacji</li>
-      <li>Bugi należy zgłaszać administracji.</li>
-    </ul>
+  <h2>🧑‍🤝‍🧑 §2 Zasady zachowania</h2>
+  <ul>
+    <li>Zakaz obrażania innych graczy, administracji oraz grup społecznych.</li>
+    <li>Zakaz rasizmu, seksizmu, homofobii i mowy nienawiści.</li>
+    <li>Zakaz grożenia w realnym świecie (DDoS, doxxing, szantaż).</li>
+    <li>Zakaz spamu, floodu, CAPS LOCKA i prowokacji.</li>
+    <li>Zakaz podszywania się pod administrację lub innych graczy.</li>
+  </ul>
 
-    <h2>🏗️ §4 Budowanie i infrastruktura</h2>
-    <ul>
-      <li>Budowanie poza claimami jest dozwolone tylko tymczasowo.</li>
-      <li>Zakaz griefowania, kradzieży i niszczenia infrastruktury.</li>
-      <li>Budowle muszą być estetyczne i pasować do klimatu serwera.</li>
-      <li>Administracja może usuwać porzucone lub szkodliwe konstrukcje.</li>
-    </ul>
+  <h2>🛠️ §3 Cheaty, bugi i mody</h2>
+  <ul>
+    <li>Zakazane są wszelkie cheaty, hacki i exploity.</li>
+    <li>Zakaz xRaya, freecama, ESP, kill aury, auto-clickera.</li>
+    <li>Dozwolone są OptiFine, shadery i mody poprawiające wydajność.</li>
+    <li class="warning">Każdy cheat = ban zależny od powagi sytuacji</li>
+    <li>Bugi należy zgłaszać administracji.</li>
+  </ul>
 
-    <h2>🗺️ §5 Państwa, miasta i claimy</h2>
-    <ul>
-      <li>Każde państwo musi posiadać nazwę i stolicę.</li>
-      <li>Państwo odpowiada za swoich obywateli.</li>
-      <li>Zakaz oblęzania panstwa gracza uniemożliwiając mu dalszego rozwoju</li>
-      <li>Nieaktywne państwa mogą zostać rozwiązane.</li>
-    </ul>
+  <h2>🏗️ §4 Budowanie i infrastruktura</h2>
+  <ul>
+    <li>Budowanie poza claimami jest dozwolone tylko tymczasowo.</li>
+    <li>Zakaz griefowania, kradzieży i niszczenia infrastruktury.</li>
+    <li>Budowle muszą być estetyczne i pasować do klimatu serwera.</li>
+    <li>Administracja może usuwać porzucone lub szkodliwe konstrukcje.</li>
+  </ul>
 
-    <h2>⚔️ §6 Wojny i konflikty</h2>
-    <ul>
-      <li>Zakaz griefowania cywilnych miast bez konfliktu.</li>
-      <li>Zakaz trapow w postaci tpaccept.</li>
-      <li>Zakaz trapow na warpach kontynentalnych.</li>
-      <li>Po wojnie obowiązuje okres spokoju.</li>
-    </ul>
+  <h2>🗺️ §5 Państwa, miasta i claimy</h2>
+  <ul>
+    <li>Każde państwo musi posiadać nazwę i stolicę.</li>
+    <li>Państwo odpowiada za swoich obywateli.</li>
+    <li>Zakaz oblęzania panstwa gracza uniemożliwiając mu dalszego rozwoju</li>
+    <li>Nieaktywne państwa mogą zostać rozwiązane.</li>
+  </ul>
 
-    <h2>🧨 §7 PvP</h2>
-    <ul>
-      <li>PvP dozwolone podczas konfliktów lub za zgodą obu stron.</li>
-      <li>Zakaz combat-logowania i spawn-killu.</li>
-    </ul>
+  <h2>⚔️ §6 Wojny i konflikty</h2>
+  <ul>
+    <li>Zakaz griefowania cywilnych miast bez konfliktu.</li>
+    <li>Zakaz trapow w postaci tpaccept.</li>
+    <li>Zakaz trapow na warpach kontynentalnych.</li>
+    <li>Po wojnie obowiązuje okres spokoju.</li>
+  </ul>
 
-    <h2>💰 §8 Ekonomia</h2>
-    <ul>
-      <li>Zakaz oszustw finansowych i scamowania.</li>
-      <li>Zakaz wykorzystywania bugów ekonomii.</li>
-      <li>Administracja może resetować środki w razie nadużyć.</li>
-    </ul>
+  <h2>🧨 §7 PvP</h2>
+  <ul>
+    <li>PvP dozwolone podczas konfliktów lub za zgodą obu stron.</li>
+    <li>Zakaz combat-logowania i spawn-killu.</li>
+  </ul>
 
-    <h2>💰 §9 Afk</h2>
-    <ul>
-      <li>System AFK służy zapobieganiu pasywnemu zdobywaniu zasobów, pieniędzy i nagród.</li>
-      <li>Zakazane są wszelkie próby omijania działania systemu anty-AFK.</li>
-      <li>W szczególności zabronione jest używanie mechanizmów, skryptów, maszyn, pojazdów, makr, autoklikerów lub innych metod w celu symulowania aktywności.</li>
-      <li>Zakazane jest pozostawanie AFK w celu uzyskania przewagi zarobkowej, tokenowej lub innej przewagi nad innymi graczami.</li>
-      <li>Każda próba obejścia systemu anty-AFK będzie traktowana jako exploit i może skutkować karą administracyjną.</li>
-      <li>takie dzialania moga powodowac do utraty czesci tokenow,kicka a nawet bana od 30 minut do 5H</li>
-    </ul>
-    
+  <h2>💰 §8 Ekonomia</h2>
+  <ul>
+    <li>Zakaz oszustw finansowych i scamowania.</li>
+    <li>Zakaz wykorzystywania bugów ekonomii.</li>
+    <li>Administracja może resetować środki w razie nadużyć.</li>
+  </ul>
 
-    <h2>🚫 §10 Kary</h2>
-    <ul>
-      <li>Ostrzeżenie</li>
-      <li>Częsciowa utrata tokenow</li>
-      <li>Mute</li>
-      <li>Jail</li>
-      <li>Tempban</li>
-      <li>Ban permanentny</li>
-    </ul>
+  <h2>💰 §9 Afk</h2>
+  <ul>
+    <li>System AFK służy zapobieganiu pasywnemu zdobywaniu zasobów, pieniędzy i nagród.</li>
+    <li>Zakazane są wszelkie próby omijania działania systemu anty-AFK.</li>
+    <li>W szczególności zabronione jest używanie mechanizmów, skryptów, maszyn, pojazdów, makr, autoklikerów lub innych metod w celu symulowania aktywności.</li>
+    <li>Zakazane jest pozostawanie AFK w celu uzyskania przewagi zarobkowej, tokenowej lub innej przewagi nad innymi graczami.</li>
+    <li>Każda próba obejścia systemu anty-AFK będzie traktowana jako exploit i może skutkować karą administracyjną.</li>
+    <li>takie dzialania moga powodowac do utraty czesci tokenow,kicka a nawet bana od 30 minut do 5H</li>
+  </ul>
 
-    <a href="klikanyregulamin.html" class="back-button">← Powrót</a>
-  </div>
+  <h2>🚫 §10 Kary</h2>
+  <ul>
+    <li>Ostrzeżenie</li>
+    <li>Częsciowa utrata tokenow</li>
+    <li>Mute</li>
+    <li>Jail</li>
+    <li>Tempban</li>
+    <li>Ban permanentny</li>
+  </ul>
+
+  <a href="klikanyregulamin.html" class="back-button">← Powrót</a>
+</div>
+
+<script>
+  // Tworzenie cząsteczek w tle
+  for(let i=0; i<50; i++){
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * window.innerWidth + 'px';
+    p.style.top = Math.random() * window.innerHeight + 'px';
+    p.style.width = p.style.height = (3 + Math.random()*6) + 'px';
+    p.style.animationDuration = (5 + Math.random()*10) + 's';
+    document.body.appendChild(p);
+  }
+</script>
+
 </body>
 </html>
-
-
-
-
