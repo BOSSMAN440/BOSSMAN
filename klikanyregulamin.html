@@ -69,17 +69,28 @@
     transform: scale(1.05);
     box-shadow: 0 0 20px #00ccff, 0 0 40px #ff00ff;
   }
+
+  /* Przyciski powrotu mają inny kolor */
+  .back-button {
+    background: #3498db;
+    box-shadow: 0 0 10px #2980b9, 0 0 20px #3498db;
+  }
 </style>
 </head>
 <body>
 
 <div class="container">
   <h1>📜 Wybierz regulamin</h1>
+  
+  <!-- Przycisk Earth SMP -->
   <a href="regulaminearthsmp.html" class="button">🌍 Earth SMP</a>
+  
+  <!-- Przycisk Działki -->
   <a href="regulaminsurvivaldzialki.html" class="button">🏡 Działki</a>
-
-  <!-- Przycisk powrotu -->
-  <a href="index.html" class="button" style="background: #3498db; box-shadow: 0 0 10px #2980b9, 0 0 20px #3498db;">← Powrót</a>
+  
+  <!-- Przycisk Powrotu pod przyciskami -->
+  <br>
+  <a href="index.html" class="button back-button">← Powrót</a>
 </div>
 
 <script>
