@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🌍 REGULAMIN EARTH SMP</title>
-
+  <title>BSCMC.PL</title>
   <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: 'Segoe UI', Tahoma, sans-serif;
       background: url("https://wallpapercave.com/wp/wp9808994.jpg") no-repeat center center fixed;
@@ -13,180 +15,389 @@
       color: #fff;
       min-height: 100vh;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
       overflow-x: hidden;
+      position: relative;
     }
 
-    .container {
-      max-width: 1000px;
-      padding: 40px 20px;
-      background: rgba(0,0,0,0.6);
-      border-radius: 15px;
-      margin: 40px 10px;
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url("https://www.transparenttextures.com/patterns/stardust.png");
+      opacity: 0.3;
+      z-index: 0;
     }
 
-    h1.neon-text {
-      font-size: 3em;
-      text-align: center;
-      margin-bottom: 30px;
-      background: linear-gradient(90deg, #1abc9c, #3498db, #9b59b6, #1abc9c);
+    h1 {
+      font-size: 4em;
+      text-transform: uppercase;
+      letter-spacing: 8px;
+      background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff);
       background-size: 300%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: gradient 6s linear infinite;
+      animation: titleGradient 6s infinite linear;
+      margin-bottom: 10px;
+      z-index: 1;
     }
 
-    @keyframes gradient {
+    @keyframes titleGradient {
       0% { background-position: 0%; }
       100% { background-position: 300%; }
     }
 
-    h2 {
-      color: #1abc9c;
-      margin-top: 40px;
-      border-bottom: 2px solid #1abc9c;
-      padding-bottom: 5px;
+    .subtitle {
+      font-size: 1.8em;
+      color: #00ccff;
+      margin-bottom: 20px;
+      z-index: 1;
+      text-align: center;
     }
 
-    p {
-      line-height: 1.6;
-      opacity: 0.95;
+    .top-buttons, .mode-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      z-index: 1;
+      margin-bottom: 30px;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    li {
-      background: rgba(255,255,255,0.08);
-      margin: 8px 0;
-      padding: 10px 15px;
-      border-left: 4px solid #1abc9c;
-      border-radius: 6px;
-      transition: background 0.3s;
-    }
-
-    li:hover {
-      background: rgba(255,255,255,0.18);
-    }
-
-    .warning {
-      color: #f1c40f;
-      font-weight: bold;
-    }
-
-    .back-button {
-      display: block;
-      width: max-content;
-      margin: 40px auto 0;
-      padding: 12px 30px;
-      background: #1abc9c;
-      color: #fff;
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 25px;
+      border-radius: 12px;
+      font-size: 1.2em;
       text-decoration: none;
+      color: #fff;
+      transition: all 0.3s;
+      position: relative;
+      backdrop-filter: blur(6px);
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .button img { width: 24px; height: 24px; margin-right: 10px; }
+
+    .discord { background: #7289da; }
+    .twitch { background: #9146ff; }
+    .tiktok { background: #25f4ee; color: #000; }
+    .youtube { background: #ff0000; }
+
+    .mode-buttons a {
+      background: linear-gradient(135deg, #00ffff, #ff00ff);
+      padding: 15px 30px;
+      border-radius: 15px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.2em;
+      transition: all 0.3s;
+      box-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff;
+    }
+
+    .mode-buttons a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
+    }
+
+    .ip-button {
+      background: linear-gradient(90deg, #00ffcc, #00ccff);
+      margin-top: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .minigames-button {
+      background: linear-gradient(90deg, #ff00ff, #ffcc00);
+      margin-top: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .minigames-content {
+      display: none;
+      margin-top: 15px;
+      background: rgba(30, 30, 30, 0.9);
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 400px;
+      line-height: 1.6em;
+    }
+
+    .news {
+      margin-top: 50px;
+      padding: 20px;
+      background: rgba(20, 20, 20, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 0 20px #ff00ff;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .news h2 {
+      margin-bottom: 10px;
+      color: #ff00ff;
+    }
+
+    .features {
+      margin-top: 50px;
+      max-width: 1000px;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .features h2 {
+      font-size: 2em;
+      margin-bottom: 30px;
+      background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: titleGradient 6s infinite linear;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .feature {
+      background: rgba(25,25,25,0.9);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,255,255,0.5);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .feature:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #ff00ff;
+    }
+
+    .feature h3 {
+      margin-bottom: 10px;
+      font-size: 1.3em;
+      color: #00ffff;
+    }
+
+    .feature p {
+      color: #ddd;
+      font-size: 0.95em;
+      line-height: 1.4em;
+    }
+
+    .leaderboard {
+      position: absolute;
+      top: 50px;
+      right: 20px;
+      background: #111;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #00ffff;
+      min-width: 220px;
+      z-index: 1;
+    }
+
+    .leaderboard h3 {
+      margin-bottom: 15px;
+      color: #00ffff;
+      text-align: center;
+    }
+
+    .leaderboard .player {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding: 8px;
       border-radius: 10px;
       font-weight: bold;
+    }
+
+    .leaderboard .gold { background: linear-gradient(90deg, #FFD700, #FFA500); color: #000; }
+    .leaderboard .silver { background: linear-gradient(90deg, #C0C0C0, #A9A9A9); color: #000; }
+    .leaderboard .bronze { background: linear-gradient(90deg, #CD7F32, #8B4513); color: #fff; }
+
+    .sidebar {
+      position: fixed;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      background-color: #e63946;
+      color: white;
+      padding: 15px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      border-radius: 10px 0 0 10px;
+      box-shadow: -2px 2px 8px rgba(0,0,0,0.3);
+      cursor: pointer;
       transition: background 0.3s;
+      z-index: 10;
     }
 
-    .back-button:hover {
-      background: #16a085;
+    .sidebar:hover { background-color: #d62828; }
+
+    .sidebar-panel {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 300px;
+      height: 100%;
+      background: #111;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.5);
+      transition: right 0.4s ease;
+      padding: 20px;
+      z-index: 11;
     }
 
-    @media (max-width: 600px) {
-      h1.neon-text {
-        font-size: 2em;
-      }
+    .sidebar-panel.open { right: 0; }
+
+    .sidebar-panel h2 { margin-top: 0; color: #ff4444; }
+
+    .close-btn {
+      cursor: pointer;
+      font-size: 20px;
+      color: #fff;
+      float: right;
     }
   </style>
 </head>
-
 <body>
-  <div class="container">
 
-    <h1 class="neon-text">🌍 REGULAMIN EARTH SMP</h1>
-
-    <p>
-      Regulamin obowiązuje <strong>wszystkich graczy</strong>.
-      Gra na serwerze oznacza pełną akceptację zasad.
-      <span class="warning">Nieznajomość regulaminu nie zwalnia z odpowiedzialności.</span>
-    </p>
-
-    <h2>📌 §1 Postanowienia ogólne</h2>
-    <ul>
-      <li>Serwer działa w trybie Earth SMP – mapa odwzorowuje Ziemię.</li>
-      <li>Gracze mogą zakładać państwa, miasta i rozwijać swoje terytoria.</li>
-      <li>Administracja ma prawo interpretować regulamin i reagować na sytuacje w nim nieopisane.</li>
-      <li>Regulamin może ulec zmianie w dowolnym momencie.</li>
-    </ul>
-
-    <h2>🧑‍🤝‍🧑 §2 Zasady zachowania</h2>
-    <ul>
-      <li>Zakaz obrażania graczy, administracji oraz grup społecznych.</li>
-      <li>Zakaz rasizmu, seksizmu, homofobii i mowy nienawiści.</li>
-      <li>Zakaz gróźb w realnym świecie (DDoS, doxxing, szantaż).</li>
-      <li>Zakaz spamu, floodu, CAPS LOCKA i prowokacji.</li>
-      <li>Zakaz podszywania się pod administrację lub innych graczy.</li>
-    </ul>
-
-    <h2>🛠️ §3 Cheaty, bugi i mody</h2>
-    <ul>
-      <li>Zakazane są wszelkie cheaty, hacki i exploitowanie mechanik.</li>
-      <li>Zakaz xRaya, freecama, ESP, kill aury, auto-clickera.</li>
-      <li>Dozwolone są OptiFine, shadery i mody optymalizujące.</li>
-      <li class="warning">Każdy cheat = ban permanentny.</li>
-      <li>Bugi należy zgłaszać administracji – wykorzystywanie ich jest karane.</li>
-    </ul>
-
-    <h2>🏗️ §4 Budowanie i infrastruktura</h2>
-    <ul>
-      <li>Budowanie poza claimami jest dozwolone tylko tymczasowo.</li>
-      <li>Zakaz griefowania, kradzieży i niszczenia infrastruktury.</li>
-      <li>Budowle muszą być estetyczne i pasować do klimatu serwera.</li>
-      <li>Administracja może usuwać porzucone lub szkodliwe konstrukcje.</li>
-    </ul>
-
-    <h2>🗺️ §5 Państwa, miasta i claimy</h2>
-    <ul>
-      <li>Każde państwo musi posiadać nazwę i stolicę.</li>
-      <li>Państwo odpowiada za swoich obywateli.</li>
-      <li>Claimy muszą być zwarte – zakaz „wężyków”.</li>
-      <li>Nieaktywne państwa mogą zostać rozwiązane.</li>
-    </ul>
-
-    <h2>⚔️ §6 Wojny i konflikty</h2>
-    <ul>
-      <li>Konflikty muszą być oficjalnie ogłoszone.</li>
-      <li>Zakaz griefowania cywilnych miast bez konfliktu.</li>
-      <li>Zakaz losowego zabijania graczy (RDM).</li>
-      <li>Po wojnie obowiązuje okres spokoju.</li>
-    </ul>
-
-    <h2>🧨 §7 PvP</h2>
-    <ul>
-      <li>PvP dozwolone podczas konfliktów lub za zgodą obu stron.</li>
-      <li>Zakaz PvP na spawnach i w strefach bezpiecznych.</li>
-      <li>Zakaz combat-logowania i spawn-killu.</li>
-    </ul>
-
-    <h2>💰 §8 Ekonomia</h2>
-    <ul>
-      <li>Zakaz oszustw finansowych i scamowania.</li>
-      <li>Zakaz wykorzystywania bugów ekonomii.</li>
-      <li>Administracja może resetować środki w razie nadużyć.</li>
-    </ul>
-
-    <h2>🚫 §9 Kary</h2>
-    <ul>
-      <li>Ostrzeżenie</li>
-      <li>Mute</li>
-      <li>Jail</li>
-      <li>Tempban</li>
-      <li>Ban permanentny</li>
-    </ul>
-
-    <a href="index.html" class="back-button">← Powrót</a>
-
+  <h1>BSCMC.PL</h1>
+  <div class="subtitle">
+    IP: <strong>BSCMC.PL</strong> | WERSJA: <strong>1.21.3 +</strong>
   </div>
+
+  <!-- Social Media -->
+  <div class="top-buttons">
+    <a href="https://discord.gg/9dt99b3NFG" class="button discord" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="Discord"> Discord
+    </a>
+    <a href="https://www.twitch.tv/98bossman98" class="button twitch" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968819.png" alt="Twitch"> Twitch
+    </a>
+    <a href="https://www.tiktok.com/@bscmc.pl" class="button tiktok" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok"> TikTok
+    </a>
+    <a href="https://www.youtube.com/@BOSSCRAFTMCPL" class="button youtube" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"> YouTube
+    </a>
+  </div>
+
+  <!-- TRYBY -->
+  <h2 class="subtitle" style="background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: titleGradient 6s infinite linear; margin-top: 30px;">
+    DOSTĘPNE TRYBY
+  </h2>
+
+  <div class="mode-buttons">
+    <a href="survival.html">🏡 Działki</a>
+    <a href="oneblock.html">🌍 Earth SMP</a>
+    <a href="README.html">📜 Regulamin</a>
+  </div>
+
+  <!-- IP Button -->
+  <button class="button ip-button" onclick="copyIP()">📋 Kopiuj IP: BSCMC.PL</button>
+
+  <!-- Online Players Button -->
+  <button class="button ip-button" id="online-button">
+    🔹 Gracze online: <span id="online-players">Ładowanie...</span>
+  </button>
+
+  <!-- KLUCZE -->
+  <div class="news">
+    <h2>📢 KLUCZE</h2>
+    <p>🎁 Co sobotę o <strong>20:00</strong> rozdawanie kluczy!</p>
+  </div>
+
+  <!-- EVENCIK -->
+  <div class="news">
+    <h2>📢 EVENCIK</h2>
+    <p>📦 Co 24h o 16:00 odbywa się event zrzutu <br> <strong>35 skrzynek</strong> z nagrodami do zebrania!</p>
+  </div>
+
+  <!-- Dlaczego warto wybrać -->
+  <section class="features">
+    <h2>🔥 Dlaczego warto wybrać <span style="color:#00ffff;">BSCMC.PL</span>?</h2>
+    <div class="features-grid">
+      <div class="feature">
+        <h3>👑 Miła Administracja</h3>
+        <p>Administracja BSCMC.PL zawsze z checia pomoże w razie problemow.</p>
+      </div>
+      <div class="feature">
+        <h3>⚡ Nowatorskie Mechaniki</h3>
+        <p>Stawiamy na świeże pomysły i autorskie systemy, które wyróżniają nas na tle innych serwerów</p>
+      </div>
+      <div class="feature">
+        <h3>🎉 Niezapomniane Wydarzenia</h3>
+        <p>Organizujemy turnieje i atrakcje pełne emocji, gdzie czekają unikatowe nagrody i świetna zabawa.</p>
+      </div>
+      <div class="feature">
+        <h3>🤝 Silna Społeczność</h3>
+        <p>Gracze BSCMC.PL to zgrana ekipa – zawsze gotowa na wspólną rozgrywkę, pomoc i dobrą atmosferę.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leaderboard -->
+  <div class="leaderboard">
+    <h3>Topka graczy</h3>
+    <div class="player gold"><span>🥇 salatkaowocowa</span><span>120 zł</span></div>
+    <div class="player silver"><span>🥈 BloomFire000</span><span>104 zł</span></div>
+    <div class="player bronze"><span>🥉 michalek</span><span>80 zł</span></div>
+  </div>
+
+
+  <script>
+    // Kopiowanie IP
+    function copyIP() {
+      navigator.clipboard.writeText("BSCMC.PL")
+        .then(() => alert("IP serwera zostało skopiowane!"))
+        .catch(() => alert("Błąd kopiowania IP."));
+    }
+
+    // Toggle mini-gry
+    function toggleMiniGames() {
+      const content = document.getElementById('minigames-content');
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Zakładka NOWOŚCI
+    const sidebar = document.getElementById('sidebar');
+    const panel = document.getElementById('panel');
+    const closeBtn = document.getElementById('closeBtn');
+
+    sidebar.addEventListener('click', () => panel.classList.add('open'));
+    closeBtn.addEventListener('click', () => panel.classList.remove('open'));
+
+    // Pobieranie liczby graczy online
+    async function fetchOnlinePlayers() {
+      try {
+        const response = await fetch('https://api.mcsrvstat.us/2/BSCMC.PL');
+        const data = await response.json();
+        const online = data.players ? data.players.online : 0;
+        document.getElementById('online-players').textContent = online;
+      } catch (err) {
+        console.error('Błąd pobierania danych:', err);
+        document.getElementById('online-players').textContent = 'Nieznana';
+      }
+    }
+
+    // Aktualizacja co 20 sekund
+    fetchOnlinePlayers();
+    setInterval(fetchOnlinePlayers, 20000);
+  </script>
+
 </body>
 </html>
+
+
+
+
