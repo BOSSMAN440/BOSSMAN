@@ -1,1 +1,161 @@
-asdasd
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regulamin Usług | BSCMC.PL</title>
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: url("https://wallpapercave.com/wp/wp9808994.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url("https://www.transparenttextures.com/patterns/stardust.png");
+      opacity: 0.3;
+      z-index: 0;
+    }
+
+    h1 {
+      font-size: 3em;
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff);
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: titleGradient 6s infinite linear;
+      margin-bottom: 20px;
+      z-index: 1;
+      text-align: center;
+    }
+
+    @keyframes titleGradient {
+      0% { background-position: 0%; }
+      100% { background-position: 300%; }
+    }
+
+    .content {
+      max-width: 1000px;
+      background: rgba(20, 20, 20, 0.9);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #ff00ff;
+      z-index: 1;
+    }
+
+    .content h2 {
+      text-align: center;
+      color: #ff00ff;
+      margin-bottom: 15px;
+      font-size: 2em;
+    }
+
+    .content p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      color: #ffcc66;
+    }
+
+    .content ul {
+      list-style: inside disc;
+      margin-bottom: 15px;
+      color: #ffcc66;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 25px;
+      background: linear-gradient(90deg, #00ffcc, #00ccff);
+      color: #fff;
+      font-size: 1.1em;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .back-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
+    }
+
+    /* Responsywność */
+    @media (max-width: 900px) {
+      .content {
+        padding: 15px;
+      }
+      .content p, .content ul {
+        font-size: 1em;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .content {
+        padding: 10px;
+      }
+      h1 {
+        font-size: 2em;
+      }
+      .content h2 {
+        font-size: 1.5em;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>REGULAMIN USŁUG | BSCMC.PL</h1>
+
+  <div class="content">
+    <h2>1. Zakres usług</h2>
+    <p>Oferujemy konfigurację i przygotowanie serwerów Minecraft, w tym:</p>
+    <ul>
+      <li>Instalacja silnika serwera (Paper, Spigot lub inne legalne silniki)</li>
+      <li>Wgranie i konfiguracja podstawowych i dodatkowych pluginów</li>
+      <li>Backup serwera</li>
+      <li>Instalacja własnej mapy lub świata klienta</li>
+      <li>Wsparcie techniczne przez 2 tygodnie po zakończeniu konfiguracji</li>
+    </ul>
+
+    <h2>2. Proces realizacji</h2>
+    <p>Po otrzymaniu zgłoszenia klienta na Discordzie, mamy do 6 godzin na jego rozpatrzenie i potwierdzenie możliwości realizacji. Po zaakceptowaniu, klient dokonuje płatności poprzez Tipply. Czas wykonania projektu liczony jest od momentu rozpoczęcia realizacji i wynosi maksymalnie 36 godzin dla pełnego projektu. W przypadku zamówienia pojedynczych usług czas może być krótszy.</p>
+
+    <h2>3. Płatności</h2>
+    <p>Wszystkie płatności odbywają się za pośrednictwem platformy <strong>Tipply</strong>. Nie przechowujemy danych płatniczych klientów na naszej stronie. Klient ponosi odpowiedzialność za poprawność danych podanych podczas płatności.</p>
+
+    <h2>4. Reklamacje</h2>
+    <p>Klient ma prawo zgłosić reklamację w ciągu 7 dni od zakończenia realizacji usługi, jeśli usługa nie została wykonana zgodnie z opisem. W przypadku reklamacji dokonujemy poprawek zgodnie z zakresem zgłoszonym przez klienta.</p>
+
+    <h2>5. Odpowiedzialność</h2>
+    <p>Nie odpowiadamy za dane klientów przechowywane na serwerach Minecraft ani za nielegalne pluginy czy mapy dostarczane przez klienta. Wszystkie oferowane pluginy i mapy używane w ramach naszych usług posiadają legalne licencje.</p>
+
+    <h2>6. Dane osobowe</h2>
+    <p>Nie zbieramy ani nie przetwarzamy danych osobowych klientów bez ich zgody. Wszelkie informacje przekazywane podczas zgłoszenia na Discord są wykorzystywane wyłącznie w celu realizacji usługi.</p>
+
+    <h2>7. Postanowienia końcowe</h2>
+    <p>Regulamin może być zmieniany w dowolnym czasie, a aktualna wersja zawsze dostępna jest na stronie. Korzystanie z usług jest równoznaczne z akceptacją regulaminu.</p>
+
+    <a href="index.html" class="back-button">⬅ Powrót na stronę główną</a>
+  </div>
+
+</body>
+</html>
