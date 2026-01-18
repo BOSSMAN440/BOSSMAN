@@ -17,9 +17,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      overflow-x: hidden;
-      position: relative;
       padding: 20px;
+      position: relative;
+      overflow-x: hidden;
     }
 
     body::before {
@@ -43,7 +43,6 @@
       animation: titleGradient 6s infinite linear;
       margin-bottom: 20px;
       z-index: 1;
-      text-align: center;
     }
 
     @keyframes titleGradient {
@@ -61,33 +60,44 @@
 
     .pricing-table {
       width: 100%;
-      max-width: 1700px;
+      max-width: 1200px;
       background: rgba(20, 20, 20, 0.9);
-      padding: 20px;
+      padding: 15px;
       border-radius: 15px;
       box-shadow: 0 0 20px #ff00ff;
       z-index: 1;
-      overflow-x: auto;
+      table-layout: fixed;
+      word-wrap: break-word;
       margin-bottom: 40px;
     }
 
     .pricing-table h2 {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       color: #ff00ff;
       font-size: 2em;
+    }
+
+    .pricing-table p {
+      text-align:center;
+      color:#00ccff;
+      font-style: italic;
+      font-size:1em;
+      margin-bottom: 20px;
     }
 
     .pricing-table table {
       width: 100%;
       border-collapse: collapse;
+      table-layout: fixed;
     }
 
     .pricing-table th, .pricing-table td {
-      padding: 12px 15px;
+      padding: 10px;
       text-align: left;
       border-bottom: 1px solid #444;
-      white-space: nowrap;
+      font-size: 0.95em;
+      word-wrap: break-word;
     }
 
     .pricing-table th {
@@ -102,54 +112,32 @@
     }
 
     .cta-section {
-      background: rgba(30,30,30,0.95);
-      padding: 30px 20px;
-      border-radius: 15px;
       text-align: center;
-      box-shadow: 0 0 20px #00ffff;
-      max-width: 700px;
-      margin-bottom: 30px;
+      margin-top: 30px;
+      margin-bottom: 50px;
     }
 
-    .cta-section h2 {
-      color: #ff00ff;
-      margin-bottom: 20px;
-      font-size: 1.8em;
+    .cta-section p {
+      font-size: 1.2em;
+      color: #00ccff;
+      margin-bottom: 15px;
     }
 
-    .ticket-button {
+    .cta-section button {
       padding: 15px 35px;
-      background: linear-gradient(90deg, #ff9900, #ff3300);
-      color: #fff;
       font-size: 1.2em;
       border-radius: 12px;
-      text-decoration: none;
-      transition: all 0.3s;
-      display: inline-block;
-    }
-
-    .ticket-button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #ff9900, 0 0 35px #ff3300;
-    }
-
-    .back-button {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 12px 25px;
-      background: linear-gradient(90deg, #00ffcc, #00ccff);
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(90deg, #ff9900, #ff3300);
       color: #fff;
-      font-size: 1.1em;
-      border-radius: 12px;
-      text-decoration: none;
       transition: all 0.3s;
     }
 
-    .back-button:hover {
+    .cta-section button:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
+      box-shadow: 0 0 20px #ff9900, 0 0 40px #ff3300;
     }
-
   </style>
 </head>
 <body>
@@ -159,24 +147,25 @@
 
   <div class="pricing-table">
     <h2>Usługi i ceny</h2>
+    <p>Od momentu zatwierdzenia zlecenia i przyjęcia płatności, rozpoczynam realizację projektu w ciągu 24 godzin.</p>
     <table>
       <tr>
         <th>Usługa</th>
         <th>Opis</th>
         <th>Cena</th>
-        <th>Czas realizacji</th>
+        <th>Zajmuje około</th>
       </tr>
       <tr>
         <td>Pełne przygotowanie środowiska serwera</td>
         <td>Instalacja silnika + wgranie podstawowych i dodatkowych pluginów + konfiguracja + testy działania</td>
         <td>150 zł</td>
-        <td>od 24h do 48h</td>
+        <td>do 24h</td>
       </tr>
       <tr>
         <td>Wgranie silnika</td>
         <td>Instalacja silnika serwera (działającego wyłącznie na pluginach)</td>
         <td>10 zł</td>
-        <td>do 10 min</td>
+        <td>do 1h</td>
       </tr>
       <tr>
         <td>Wgranie podstawowych pluginów</td>
@@ -223,13 +212,10 @@
     </table>
   </div>
 
-  <!-- Sekcja CTA -->
   <div class="cta-section">
-    <h2>Jesteś zainteresowany usługą? Kliknij poniżej i zrób ticket!</h2>
-    <a href="https://discord.gg/uek2nZQr9k" class="ticket-button" target="_blank">🎫 Zrób ticket / Zakup</a>
+    <p>Jesteś zainteresowany usługą? Kliknij poniżej i zrób TICKET:</p>
+    <button onclick="window.location.href='https://discord.gg/uek2nZQr9k'">TICKET ZAKUP</button>
   </div>
-
-  <a href="index.html" class="back-button">⬅ Powrót na stronę główną</a>
 
 </body>
 </html>
