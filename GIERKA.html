@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memory / Zapamiętaj Kolory</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #111;
+    color: #fff;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+    color: #00ffff;
+  }
+
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 120px);
+    grid-gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .color-btn {
+    width: 120px;
+    height: 120px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 0;
+    transition: all 0.2s;
+  }
+
+  .red { background: #ff4c4c; }
+  .green { background: #4cff4c; }
+  .blue { background: #4c4cff; }
+  .yellow { background: #ffff4c; }
+
+  .color-btn.active {
+    filter: brightness(1.5);
+    transform: scale(1.1);
+  }
+
+  #level {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+  }
+
+  #message {
+    font-size: 1.2em;
+    margin-top: 10px;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+</style>
+</head>
+<body>
+
+<h1>Memory / Zapamiętaj Kolory</h1>
+<div id="level">Poziom: 0</div>
+<div class="buttons">
+  <button class="color-btn red" data-color="red"></button>
+  <button class="color-btn green" data-color="green"></button>
+  <button class="color-btn blue" data-color="blue"></button>
+  <button class="color-btn yellow" data-color="yellow"></button>
+</div>
+<div id="message"></div>
+
+<script>
+const colors = ["red", "green", "blue", "yellow"];
+let sequence = [];
+let playerSequence = [];
+let level = 0;
+
+const buttons = document.querySelectorAll('.color-btn');
+const levelDisplay = document.getElementById('level');
+const message = document.getElementById('message');
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function playSequence() {
+  for (let color of sequence) {
+    const btn = document.querySelector(`.color-btn.${color}`);
+    btn.classList.add('active');
+    await sleep(500);
+    btn.classList.remove('active');
+    await sleep(200);
+  }
+}
+
+function nextLevel() {
+  level++;
+  levelDisplay.textContent = `Poziom: ${level}`;
+  sequence.push(colors[Math.floor(Math.random() * colors.length)]);
+  playerSequence = [];
+  message.textContent = "Powtarzaj sekwencję!";
+  disableButtons(true);
+  playSequence().then(() => disableButtons(false));
+}
+
+function disableButtons(disable) {
+  buttons.forEach(btn => btn.disabled = disable);
+}
+
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const color = btn.dataset.color;
+    playerSequence.push(color);
+    btn.classList.add('active');
+    setTimeout(() => btn.classList.remove('active'), 200);
+
+    // Sprawdzenie sekwencji
+    const currentIndex = playerSequence.length - 1;
+    if (playerSequence[currentIndex] !== sequence[currentIndex]) {
+      message.textContent = "❌ Pomyłka! Gra rozpoczęta od nowa.";
+      sequence = [];
+      level = 0;
+      setTimeout(nextLevel, 1500);
+      return;
+    }
+
+    if (playerSequence.length === sequence.length) {
+      message.textContent = "✅ Poprawnie! Kolejny poziom...";
+      setTimeout(nextLevel, 1000);
+    }
+  });
+});
+
+// Start gry
+nextLevel();
+</script>
+
+</body>
+</html>
