@@ -1,117 +1,196 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Survival Clicker / Crafting</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      background: linear-gradient(120deg, #1e1e2f, #2b2b3f);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-    }
-    h1 { margin-bottom: 10px; }
-    #resources, #inventory, #monsters { margin-top: 20px; width: 90%; max-width: 600px; }
-    button {
-      padding: 10px 20px;
-      margin: 5px;
-      font-size: 1em;
-      cursor: pointer;
-      border-radius: 8px;
-      border: none;
-      transition: all 0.2s;
-    }
-    button:hover { transform: scale(1.05); }
-    .resource-btn { background: #4caf50; color: #fff; }
-    .craft-btn { background: #ff9800; color: #fff; }
-    .monster-btn { background: #f44336; color: #fff; }
-    .boss { background: #9c27b0; color: #fff; font-weight: bold; }
-    .section { background: rgba(30,30,40,0.8); padding: 15px; border-radius: 12px; margin-bottom: 15px; }
-    .resource { font-size: 1.1em; margin: 5px 0; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini Platformer RPG</title>
+<style>
+  body { margin:0; padding:0; background:#222; font-family:sans-serif; overflow:hidden; }
+  canvas { display:block; margin:0 auto; background:#87CEEB; border:2px solid #000; }
+
+  #stats {
+    position:absolute; top:10px; left:10px; color:white; font-size:16px;
+    background:rgba(0,0,0,0.5); padding:10px; border-radius:5px;
+  }
+
+  #shop {
+    position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.5); color:white;
+    padding:10px; border-radius:5px;
+  }
+  #shop button { margin-top:5px; display:block; }
+</style>
 </head>
 <body>
+<canvas id="game" width="800" height="450"></canvas>
 
-  <h1>Survival Clicker / Crafting</h1>
+<div id="stats">
+  Monety: <span id="coins">0</span><br>
+  Surowce: <span id="resources">0</span><br>
+  Życie: <span id="hp">3</span>
+</div>
 
-  <div class="section" id="resources">
-    <h2>Surowce</h2>
-    <div class="resource">Drewno: <span id="wood">0</span></div>
-    <div class="resource">Kamień: <span id="stone">0</span></div>
-    <div class="resource">Metal: <span id="metal">0</span></div>
-    <button class="resource-btn" onclick="gather('wood')">Zbierz drewno</button>
-    <button class="resource-btn" onclick="gather('stone')">Zbierz kamień</button>
-    <button class="resource-btn" onclick="gather('metal')">Zbierz metal</button>
-  </div>
+<div id="shop">
+  <h3>Sklep</h3>
+  <button onclick="upgrade('speed')">Ulepsz prędkość (5 monet)</button>
+  <button onclick="upgrade('attack')">Ulepsz atak (10 monet)</button>
+</div>
 
-  <div class="section" id="inventory">
-    <h2>Crafting / Przedmioty</h2>
-    <div class="resource">Topór (+1 drewno na klik): <span id="axe-count">0</span></div>
-    <div class="resource">Kilof (+1 kamień na klik): <span id="pick-count">0</span></div>
-    <div class="resource">Miecz (+1 obrażenie potworom): <span id="sword-count">0</span></div>
-    <button class="craft-btn" onclick="craft('axe')">Ulepsz topór (5 drewna)</button>
-    <button class="craft-btn" onclick="craft('pick')">Ulepsz kilof (5 kamienia)</button>
-    <button class="craft-btn" onclick="craft('sword')">Ulepsz miecz (5 metalu)</button>
-  </div>
+<script>
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
 
-  <div class="section" id="monsters">
-    <h2>Potwory</h2>
-    <div class="resource">Pokonane potwory: <span id="monster-kills">0</span></div>
-    <button class="monster-btn" onclick="attackMonster()">Atakuj losowego potwora</button>
-  </div>
+const WIDTH = canvas.width;
+const HEIGHT = canvas.height;
 
-  <script>
-    // Zasoby
-    let wood = 0, stone = 0, metal = 0;
+let coins = 0;
+let resources = 0;
+let hp = 3;
 
-    // Przedmioty
-    let axe = 0, pick = 0, sword = 0;
+// Gracz
+const player = {
+  x: 50, y: 350, width:30, height:50, color:'#FF0', dx:0, dy:0,
+  speed:4, jumpStrength:12, onGround:false, attack:1
+};
 
-    // Potwory
-    let monsterKills = 0;
-    const bossThreshold = 10; // po ilu potworach pojawia się boss
-    let bossAlive = false;
+// Platformy
+const platforms = [
+  {x:0, y:400, width:800, height:50, color:'#654321'},
+  {x:150, y:300, width:100, height:20, color:'#654321'},
+  {x:300, y:220, width:150, height:20, color:'#654321'},
+  {x:550, y:280, width:120, height:20, color:'#654321'}
+];
 
-    // Funkcja zbierania surowców
-    function gather(resource) {
-      if(resource === 'wood') wood += 1 + axe;
-      if(resource === 'stone') stone += 1 + pick;
-      if(resource === 'metal') metal += 1;
-      updateDisplay();
+// Monety i surowce
+let items = [
+  {x:180,y:270,type:'coin',collected:false},
+  {x:350,y:190,type:'resource',collected:false},
+  {x:580,y:250,type:'coin',collected:false}
+];
+
+// Wrogowie
+let enemies = [
+  {x:200,y:370,width:30,height:30,color:'#F00',type:'slime',dx:1,hp:3},
+  {x:400,y:190,width:30,height:30,color:'#0F0',type:'goblin',dx:1,hp:5},
+  {x:600,y:250,width:30,height:30,color:'#00F',type:'bat',dx:2,hp:2}
+];
+
+// Sterowanie
+const keys = {};
+document.addEventListener('keydown', e=>keys[e.key]='down');
+document.addEventListener('keyup', e=>keys[e.key]='up');
+
+// Sklep
+function upgrade(type){
+  if(type==='speed' && coins>=5){ player.speed+=1; coins-=5; updateStats(); }
+  if(type==='attack' && coins>=10){ player.attack+=1; coins-=10; updateStats(); }
+}
+
+// Aktualizacja statystyk
+function updateStats(){
+  document.getElementById('coins').textContent=coins;
+  document.getElementById('resources').textContent=resources;
+  document.getElementById('hp').textContent=hp;
+}
+
+// Gra - logika
+function gameLoop(){
+  ctx.clearRect(0,0,WIDTH,HEIGHT);
+
+  // Grawitacja
+  player.dy +=0.7;
+  player.y += player.dy;
+  player.x += player.dx;
+
+  // Platformy - kolizje
+  player.onGround=false;
+  for(let plat of platforms){
+    if(player.x+player.width>plat.x && player.x<plat.x+plat.width &&
+       player.y+player.height>plat.y && player.y+player.height<plat.y+plat.height+player.dy){
+      player.y=plat.y-player.height;
+      player.dy=0;
+      player.onGround=true;
     }
+  }
 
-    // Funkcja craftingu
-    function craft(item) {
-      if(item === 'axe' && wood >= 5){ axe += 1; wood -= 5; document.getElementById('axe-count').textContent = axe; }
-      if(item === 'pick' && stone >= 5){ pick += 1; stone -= 5; document.getElementById('pick-count').textContent = pick; }
-      if(item === 'sword' && metal >= 5){ sword += 1; metal -= 5; document.getElementById('sword-count').textContent = sword; }
-      updateDisplay();
+  // Sterowanie
+  player.dx=0;
+  if(keys['ArrowLeft']=='down') player.dx=-player.speed;
+  if(keys['ArrowRight']=='down') player.dx=player.speed;
+  if(keys['ArrowUp']=='down' && player.onGround) player.dy=-player.jumpStrength;
+
+  // Rysuj platformy
+  for(let plat of platforms){
+    ctx.fillStyle=plat.color;
+    ctx.fillRect(plat.x,plat.y,plat.width,plat.height);
+  }
+
+  // Rysuj gracza
+  ctx.fillStyle=player.color;
+  ctx.fillRect(player.x,player.y,player.width,player.height);
+
+  // Items
+  for(let item of items){
+    if(!item.collected){
+      ctx.fillStyle=(item.type==='coin')?'yellow':'orange';
+      ctx.fillRect(item.x,item.y,20,20);
+
+      // Kolizja z graczem
+      if(player.x+player.width>item.x && player.x<item.x+20 &&
+         player.y+player.height>item.y && player.y<item.y+20){
+        item.collected=true;
+        if(item.type==='coin') coins++; else resources++;
+        updateStats();
+      }
     }
+  }
 
-    // Funkcja ataku na potwora
-    function attackMonster() {
-      let damage = 1 + sword;
-      monsterKills += 1;
-      document.getElementById('monster-kills').textContent = monsterKills;
+  // Wrogowie
+  for(let en of enemies){
+    ctx.fillStyle=en.color;
+    ctx.fillRect(en.x,en.y,en.width,en.height);
 
-      // Losowy boss
-      if(monsterKills >= bossThreshold && !bossAlive){
-        bossAlive = true;
-        alert("⚠️ Pojawił się BOSSS! Kliknij aby pokonać go!");
+    en.x += en.dx;
+    if(en.x<0 || en.x+en.width>WIDTH) en.dx*=-1;
+
+    // Kolizja z graczem
+    if(player.x+player.width>en.x && player.x<en.x+en.width &&
+       player.y+player.height>en.y && player.y<en.y+en.height){
+      hp--;
+      player.x=50; player.y=350;
+      updateStats();
+      if(hp<=0){
+        alert("GAME OVER");
+        resetGame();
+        return;
       }
     }
 
-    // Aktualizacja zasobów na ekranie
-    function updateDisplay() {
-      document.getElementById('wood').textContent = wood;
-      document.getElementById('stone').textContent = stone;
-      document.getElementById('metal').textContent = metal;
-    }
-  </script>
+    // Kliknięcie na wroga
+    canvas.addEventListener('click', function(e){
+      const rect=canvas.getBoundingClientRect();
+      const mx=e.clientX-rect.left;
+      const my=e.clientY-rect.top;
+      if(mx>en.x && mx<en.x+en.width && my>en.y && my<en.y+en.height){
+        en.hp -= player.attack;
+        if(en.hp<=0){
+          en.x=-50; // znika
+        }
+      }
+    });
+  }
 
+  requestAnimationFrame(gameLoop);
+}
+
+function resetGame(){
+  player.x=50; player.y=350; player.dx=0; player.dy=0; hp=3; coins=0; resources=0;
+  items.forEach(i=>i.collected=false);
+  enemies.forEach((en,i)=>{en.hp=(en.type==='slime')?3:(en.type==='goblin')?5:2; en.x=[200,400,600][i];});
+  updateStats();
+}
+
+updateStats();
+gameLoop();
+</script>
 </body>
 </html>
