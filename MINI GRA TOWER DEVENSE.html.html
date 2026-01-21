@@ -2,213 +2,66 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<title>Mini Hill Climb Racing</title>
+<title>Ankieta Discord</title>
 <style>
-body {background:#222;color:white;font-family:Arial;text-align:center;}
-canvas {background:#87CEEB;display:block;margin:auto;border:2px solid #555;}
-#ui {margin-top:10px;}
-button {padding:10px;margin:5px;cursor:pointer;}
+body {font-family:Arial; background:#222; color:white; text-align:center;}
+input, select, textarea, button {margin:10px; padding:8px; width:300px;}
+button {cursor:pointer; background:#7289da; color:white; border:none;}
 </style>
 </head>
 <body>
+<h1>📝 Ankieta</h1>
 
-<h1>🚗 Mini Hill Climb Racing</h1>
-<p>Odległość: <span id="distance">0</span> m | Silnik: <span id="engine">1</span> | Zawieszenie: <span id="suspension">1</span> | Nitro: <span id="nitro">0</span></p>
-<div id="ui">
-  <button onclick="upgrade('engine')">Ulepsz silnik (50 pkt)</button>
-  <button onclick="upgrade('suspension')">Ulepsz zawieszenie (50 pkt)</button>
-  <button onclick="useNitro()">Użyj Nitro (100 pkt)</button>
-</div>
+<form id="surveyForm">
+  <p>Jak masz na imię?</p>
+  <input type="text" name="name" required>
 
-<canvas id="game" width="800" height="400"></canvas>
+  <p>Twój wiek:</p>
+  <input type="number" name="age" min="1" max="120" required>
+
+  <p>Twoja ulubiona gra:</p>
+  <select name="game">
+    <option value="Minecraft">Minecraft</option>
+    <option value="Fortnite">Fortnite</option>
+    <option value="Valorant">Valorant</option>
+    <option value="Inna">Inna</option>
+  </select>
+
+  <p>Dodatkowe uwagi:</p>
+  <textarea name="comments" rows="3"></textarea><br>
+
+  <button type="submit">Wyślij ankietę</button>
+</form>
 
 <script>
-const canvas = document.getElementById("game");
-const ctx = canvas.getContext("2d");
+// URL Twojego webhooka
+const webhookURL = "TU_WKLEJ_SWÓJ_WEBHOOK";
 
-let terrain = [];
-let terrainWidth = 30000;
-let scrollX = 0;
-let distance = 0;
-let points = 0;
-let obstacles = [];
+document.getElementById("surveyForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+  const formData = new FormData(this);
+  const data = {
+    content: `📊 Nowa ankieta:\n**Imię:** ${formData.get("name")}\n**Wiek:** ${formData.get("age")}\n**Ulubiona gra:** ${formData.get("game")}\n**Uwagi:** ${formData.get("comments")}`
+  };
 
-let car = {
-  x: 100,
-  y: 0,
-  vx: 0,
-  vy: 0,
-  width: 50,
-  height: 20,
-  angle: 0,
-  onGround: false,
-  engine: 1,
-  suspension: 1,
-  nitro: 0
-};
-
-let keys = {};
-
-function generateTerrain(){
-  let lastY = canvas.height/2 + 50;
-  for(let x=0;x<terrainWidth;x+=10){
-    lastY += Math.random()*20-10;
-    lastY = Math.min(canvas.height-50, Math.max(150,lastY));
-    
-    let typeRand = Math.random();
-    let type = "grass";
-    if(typeRand>0.85) type="stone";
-    else if(typeRand>0.7) type="sand";
-    
-    terrain.push({x,lastY,type});
-    
-    if(Math.random()<0.02){
-      obstacles.push({x,lastY-20,type:Math.random()<0.5?"hole":"barrel"});
-    }
-  }
-}
-generateTerrain();
-
-const gravity = 0.5;
-
-function updatePhysics(){
-  if(keys.ArrowRight) car.vx += 0.2*car.engine;
-  if(keys.ArrowLeft) car.vx -= 0.1;
-
-  if(!car.onGround){
-    if(keys.ArrowUp) car.angle -= 0.05;
-    if(keys.ArrowDown) car.angle += 0.05;
-  }
-
-  if(car.nitro>0){
-    car.vx += 0.5;
-    car.nitro -= 0.5;
-  }
-
-  car.vy += gravity;
-
-  let terrainY = getTerrainY(car.x);
-  if(car.y+car.height/2 >= terrainY){
-    car.y = terrainY - car.height/2;
-    car.vy = -car.vy*0.3*car.suspension; 
-    car.onGround = true;
-    car.angle *= 0.9;
-  } else {
-    car.onGround = false;
-  }
-
-  for(let obs of obstacles){
-    if(Math.abs(car.x - obs.x)<25 && Math.abs(car.y - obs.y)<20){
-      if(obs.type==="hole") car.vy -= 5;
-      if(obs.type==="barrel") car.vx *= 0.7;
-    }
-  }
-
-  car.x += car.vx;
-  car.y += car.vy;
-
-  scrollX = car.x - 100;
-
-  distance = Math.floor(car.x/10);
-  points = distance;
-}
-
-function getTerrainY(x){
-  const i = Math.floor(x/10);
-  if(i>=terrain.length-1) return canvas.height/2+50;
-  const t0 = terrain[i];
-  const t1 = terrain[i+1];
-  const ratio = (x-t0.x)/(t1.x-t0.x);
-  return t0.y*(1-ratio)+t1.y*ratio;
-}
-
-function drawTerrain(){
-  ctx.fillStyle="#654321";
-  ctx.beginPath();
-  ctx.moveTo(terrain[0].x - scrollX, terrain[0].y);
-  for(let i=1;i<terrain.length;i++){
-    ctx.lineTo(terrain[i].x - scrollX, terrain[i].y);
-  }
-  ctx.lineTo(canvas.width, canvas.height);
-  ctx.lineTo(0, canvas.height);
-  ctx.closePath();
-  ctx.fill();
-
-  // narysuj kolory powierzchni
-  for(let i=0;i<terrain.length-1;i++){
-    const t = terrain[i];
-    if(t.type==="grass") ctx.strokeStyle="#228B22";
-    else if(t.type==="stone") ctx.strokeStyle="#888";
-    else ctx.strokeStyle="#DAA520";
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(t.x - scrollX, t.y);
-    ctx.lineTo(terrain[i+1].x - scrollX, terrain[i+1].y);
-    ctx.stroke();
-  }
-}
-
-function drawObstacles(){
-  for(let obs of obstacles){
-    const x = obs.x - scrollX;
-    const y = obs.y;
-    if(obs.type==="hole"){
-      ctx.fillStyle="black";
-      ctx.beginPath();
-      ctx.arc(x,y,10,0,Math.PI*2);
-      ctx.fill();
+  try {
+    const response = await fetch(webhookURL, {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify(data)
+    });
+    if(response.ok){
+      alert("Ankieta wysłana! Dziękujemy 👍");
+      this.reset();
     } else {
-      ctx.fillStyle="brown";
-      ctx.fillRect(x-10,y-20,20,20);
+      alert("Błąd przy wysyłaniu ankiety.");
     }
+  } catch(err){
+    console.error(err);
+    alert("Nie udało się wysłać ankiety.");
   }
-}
-
-function drawCar(){
-  ctx.save();
-  ctx.translate(car.x - scrollX, car.y);
-  ctx.rotate(car.angle);
-  ctx.fillStyle="red";
-  ctx.fillRect(-car.width/2,-car.height/2,car.width,car.height);
-  ctx.fillStyle="black";
-  ctx.beginPath();
-  ctx.arc(-car.width/3,car.height/2,8,0,Math.PI*2);
-  ctx.arc(car.width/3,car.height/2,8,0,Math.PI*2);
-  ctx.fill();
-  ctx.restore();
-}
-
-function upgrade(type){
-  if(points<50) return alert("Za mało punktów!");
-  if(type==='engine') car.engine += 0.5;
-  if(type==='suspension') car.suspension += 0.5;
-  points -= 50;
-  document.getElementById("engine").innerText = car.engine;
-  document.getElementById("suspension").innerText = car.suspension;
-}
-
-function useNitro(){
-  if(points<100) return alert("Za mało punktów!");
-  car.nitro = 50;
-  points -= 100;
-  document.getElementById("nitro").innerText = car.nitro.toFixed(0);
-}
-
-document.addEventListener('keydown', e=>keys[e.key]=true);
-document.addEventListener('keyup', e=>keys[e.key]=false);
-
-function loop(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  updatePhysics();
-  drawTerrain();
-  drawObstacles();
-  drawCar();
-  document.getElementById("distance").innerText = distance;
-  document.getElementById("nitro").innerText = car.nitro.toFixed(0);
-  requestAnimationFrame(loop);
-}
-
-loop();
+});
 </script>
+
 </body>
 </html>
