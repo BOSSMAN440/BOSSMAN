@@ -2,195 +2,193 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mini Platformer RPG</title>
+<title>Tower Defense</title>
 <style>
-  body { margin:0; padding:0; background:#222; font-family:sans-serif; overflow:hidden; }
-  canvas { display:block; margin:0 auto; background:#87CEEB; border:2px solid #000; }
-
-  #stats {
-    position:absolute; top:10px; left:10px; color:white; font-size:16px;
-    background:rgba(0,0,0,0.5); padding:10px; border-radius:5px;
+  body {
+    background: #222;
+    color: white;
+    font-family: Arial;
+    text-align: center;
   }
-
-  #shop {
-    position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.5); color:white;
-    padding:10px; border-radius:5px;
+  canvas {
+    background: #333;
+    display: block;
+    margin: 10px auto;
+    border: 2px solid #555;
   }
-  #shop button { margin-top:5px; display:block; }
 </style>
 </head>
 <body>
-<canvas id="game" width="800" height="450"></canvas>
 
-<div id="stats">
-  Monety: <span id="coins">0</span><br>
-  Surowce: <span id="resources">0</span><br>
-  Życie: <span id="hp">3</span>
-</div>
+<h1>🏹 Tower Defense</h1>
+<p>Złoto: <span id="gold">100</span> | Życia: <span id="lives">10</span></p>
 
-<div id="shop">
-  <h3>Sklep</h3>
-  <button onclick="upgrade('speed')">Ulepsz prędkość (5 monet)</button>
-  <button onclick="upgrade('attack')">Ulepsz atak (10 monet)</button>
-</div>
+<canvas id="game" width="600" height="400"></canvas>
 
 <script>
-const canvas = document.getElementById('game');
-const ctx = canvas.getContext('2d');
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
 
-const WIDTH = canvas.width;
-const HEIGHT = canvas.height;
+let gold = 100;
+let lives = 10;
+let enemies = [];
+let towers = [];
+let bullets = [];
 
-let coins = 0;
-let resources = 0;
-let hp = 3;
-
-// Gracz
-const player = {
-  x: 50, y: 350, width:30, height:50, color:'#FF0', dx:0, dy:0,
-  speed:4, jumpStrength:12, onGround:false, attack:1
-};
-
-// Platformy
-const platforms = [
-  {x:0, y:400, width:800, height:50, color:'#654321'},
-  {x:150, y:300, width:100, height:20, color:'#654321'},
-  {x:300, y:220, width:150, height:20, color:'#654321'},
-  {x:550, y:280, width:120, height:20, color:'#654321'}
+const path = [
+  {x: 0, y: 200},
+  {x: 600, y: 200}
 ];
 
-// Monety i surowce
-let items = [
-  {x:180,y:270,type:'coin',collected:false},
-  {x:350,y:190,type:'resource',collected:false},
-  {x:580,y:250,type:'coin',collected:false}
-];
+class Enemy {
+  constructor() {
+    this.x = 0;
+    this.y = 200;
+    this.hp = 100;
+    this.speed = 1;
+  }
+  move() {
+    this.x += this.speed;
+    if (this.x > 600) {
+      lives--;
+      updateUI();
+      enemies.splice(enemies.indexOf(this), 1);
+    }
+  }
+  draw() {
+    ctx.fillStyle = "red";
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, 10, 0, Math.PI * 2);
+    ctx.fill();
 
-// Wrogowie
-let enemies = [
-  {x:200,y:370,width:30,height:30,color:'#F00',type:'slime',dx:1,hp:3},
-  {x:400,y:190,width:30,height:30,color:'#0F0',type:'goblin',dx:1,hp:5},
-  {x:600,y:250,width:30,height:30,color:'#00F',type:'bat',dx:2,hp:2}
-];
-
-// Sterowanie
-const keys = {};
-document.addEventListener('keydown', e=>keys[e.key]='down');
-document.addEventListener('keyup', e=>keys[e.key]='up');
-
-// Sklep
-function upgrade(type){
-  if(type==='speed' && coins>=5){ player.speed+=1; coins-=5; updateStats(); }
-  if(type==='attack' && coins>=10){ player.attack+=1; coins-=10; updateStats(); }
+    // HP bar
+    ctx.fillStyle = "green";
+    ctx.fillRect(this.x - 10, this.y - 15, (this.hp / 100) * 20, 4);
+  }
 }
 
-// Aktualizacja statystyk
-function updateStats(){
-  document.getElementById('coins').textContent=coins;
-  document.getElementById('resources').textContent=resources;
-  document.getElementById('hp').textContent=hp;
+class Tower {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.range = 100;
+    this.cooldown = 0;
+  }
+  shoot() {
+    if (this.cooldown > 0) {
+      this.cooldown--;
+      return;
+    }
+    for (let e of enemies) {
+      const dist = Math.hypot(e.x - this.x, e.y - this.y);
+      if (dist < this.range) {
+        bullets.push(new Bullet(this.x, this.y, e));
+        this.cooldown = 30;
+        break;
+      }
+    }
+  }
+  draw() {
+    ctx.fillStyle = "blue";
+    ctx.fillRect(this.x - 10, this.y - 10, 20, 20);
+  }
 }
 
-// Gra - logika
-function gameLoop(){
-  ctx.clearRect(0,0,WIDTH,HEIGHT);
+class Bullet {
+  constructor(x, y, target) {
+    this.x = x;
+    this.y = y;
+    this.target = target;
+    this.speed = 4;
+  }
+  move() {
+    if (!this.target) return;
+    const dx = this.target.x - this.x;
+    const dy = this.target.y - this.y;
+    const dist = Math.hypot(dx, dy);
 
-  // Grawitacja
-  player.dy +=0.7;
-  player.y += player.dy;
-  player.x += player.dx;
+    this.x += (dx / dist) * this.speed;
+    this.y += (dy / dist) * this.speed;
 
-  // Platformy - kolizje
-  player.onGround=false;
-  for(let plat of platforms){
-    if(player.x+player.width>plat.x && player.x<plat.x+plat.width &&
-       player.y+player.height>plat.y && player.y+player.height<plat.y+plat.height+player.dy){
-      player.y=plat.y-player.height;
-      player.dy=0;
-      player.onGround=true;
+    if (dist < 5) {
+      this.target.hp -= 20;
+      if (this.target.hp <= 0) {
+        gold += 10;
+        enemies.splice(enemies.indexOf(this.target), 1);
+        updateUI();
+      }
+      bullets.splice(bullets.indexOf(this), 1);
     }
   }
+  draw() {
+    ctx.fillStyle = "yellow";
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
 
-  // Sterowanie
-  player.dx=0;
-  if(keys['ArrowLeft']=='down') player.dx=-player.speed;
-  if(keys['ArrowRight']=='down') player.dx=player.speed;
-  if(keys['ArrowUp']=='down' && player.onGround) player.dy=-player.jumpStrength;
+function updateUI() {
+  document.getElementById("gold").innerText = gold;
+  document.getElementById("lives").innerText = lives;
+}
 
-  // Rysuj platformy
-  for(let plat of platforms){
-    ctx.fillStyle=plat.color;
-    ctx.fillRect(plat.x,plat.y,plat.width,plat.height);
+canvas.addEventListener("click", e => {
+  if (gold < 50) return;
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  // nie pozwól stawiać na drodze
+  if (Math.abs(y - 200) < 30) return;
+
+  towers.push(new Tower(x, y));
+  gold -= 50;
+  updateUI();
+});
+
+function spawnEnemy() {
+  enemies.push(new Enemy());
+}
+
+setInterval(spawnEnemy, 2000);
+
+function gameLoop() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // droga
+  ctx.strokeStyle = "#777";
+  ctx.lineWidth = 40;
+  ctx.beginPath();
+  ctx.moveTo(0, 200);
+  ctx.lineTo(600, 200);
+  ctx.stroke();
+
+  for (let e of enemies) {
+    e.move();
+    e.draw();
   }
 
-  // Rysuj gracza
-  ctx.fillStyle=player.color;
-  ctx.fillRect(player.x,player.y,player.width,player.height);
-
-  // Items
-  for(let item of items){
-    if(!item.collected){
-      ctx.fillStyle=(item.type==='coin')?'yellow':'orange';
-      ctx.fillRect(item.x,item.y,20,20);
-
-      // Kolizja z graczem
-      if(player.x+player.width>item.x && player.x<item.x+20 &&
-         player.y+player.height>item.y && player.y<item.y+20){
-        item.collected=true;
-        if(item.type==='coin') coins++; else resources++;
-        updateStats();
-      }
-    }
+  for (let t of towers) {
+    t.shoot();
+    t.draw();
   }
 
-  // Wrogowie
-  for(let en of enemies){
-    ctx.fillStyle=en.color;
-    ctx.fillRect(en.x,en.y,en.width,en.height);
+  for (let b of bullets) {
+    b.move();
+    b.draw();
+  }
 
-    en.x += en.dx;
-    if(en.x<0 || en.x+en.width>WIDTH) en.dx*=-1;
-
-    // Kolizja z graczem
-    if(player.x+player.width>en.x && player.x<en.x+en.width &&
-       player.y+player.height>en.y && player.y<en.y+en.height){
-      hp--;
-      player.x=50; player.y=350;
-      updateStats();
-      if(hp<=0){
-        alert("GAME OVER");
-        resetGame();
-        return;
-      }
-    }
-
-    // Kliknięcie na wroga
-    canvas.addEventListener('click', function(e){
-      const rect=canvas.getBoundingClientRect();
-      const mx=e.clientX-rect.left;
-      const my=e.clientY-rect.top;
-      if(mx>en.x && mx<en.x+en.width && my>en.y && my<en.y+en.height){
-        en.hp -= player.attack;
-        if(en.hp<=0){
-          en.x=-50; // znika
-        }
-      }
-    });
+  if (lives <= 0) {
+    alert("GAME OVER");
+    location.reload();
   }
 
   requestAnimationFrame(gameLoop);
 }
 
-function resetGame(){
-  player.x=50; player.y=350; player.dx=0; player.dy=0; hp=3; coins=0; resources=0;
-  items.forEach(i=>i.collected=false);
-  enemies.forEach((en,i)=>{en.hp=(en.type==='slime')?3:(en.type==='goblin')?5:2; en.x=[200,400,600][i];});
-  updateStats();
-}
-
-updateStats();
 gameLoop();
 </script>
+
 </body>
 </html>
