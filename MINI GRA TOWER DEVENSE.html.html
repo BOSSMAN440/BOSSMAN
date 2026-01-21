@@ -4,35 +4,18 @@
 <meta charset="UTF-8">
 <title>Tower Defense Advanced</title>
 <style>
-body {
-  background:#1e1e1e;
-  color:white;
-  font-family:Arial;
-  text-align:center;
-}
-canvas {
-  background:#333;
-  border:2px solid #555;
-  display:block;
-  margin:auto;
-}
-#ui {
-  margin-top:10px;
-}
-button {
-  margin:5px;
-  padding:10px;
-  cursor:pointer;
-}
-.selected {
-  outline:3px solid yellow;
-}
+body {background:#1e1e1e;color:white;font-family:Arial;text-align:center;}
+canvas {background:#333;border:2px solid #555;display:block;margin:auto;}
+#ui {margin-top:10px;}
+button {margin:5px;padding:10px;cursor:pointer;}
+.selected {outline:3px solid yellow;}
 </style>
 </head>
 <body>
 
 <h1>🏹 Tower Defense</h1>
 <p>Złoto: <span id="gold">150</span> | Życia: <span id="lives">10</span></p>
+<p>Runda: <span id="round">1</span> | Start kolejnej fali za: <span id="timer">7</span> s</p>
 
 <canvas id="game" width="700" height="400"></canvas>
 
@@ -45,20 +28,25 @@ button {
 </div>
 
 <script>
-const canvas = document.getElementById("game");
-const ctx = canvas.getContext("2d");
+const canvas=document.getElementById("game");
+const ctx=canvas.getContext("2d");
 
-let gold = 150;
-let lives = 10;
-let selectedTower = null;
+let gold=150;
+let lives=10;
+let selectedTower=null;
+let round=1;
+let countdown=7;
 
-const enemies = [];
-const towers = [];
-const bullets = [];
+const enemies=[];
+const towers=[];
+const bullets=[];
 
-const pathY = 200;
+const pathPoints=[
+  {x:0, y:200}, {x:150, y:200}, {x:150, y:100}, {x:400, y:100}, 
+  {x:400, y:300}, {x:600, y:300}, {x:600, y:200}
+];
 
-const towerTypes = {
+const towerTypes={
   archer:{cost:50, damage:15, range:120, rate:20, color:"blue"},
   cannon:{cost:100, damage:40, range:100, rate:50, color:"gray"},
   ice:{cost:80, damage:10, range:110, rate:30, color:"cyan"},
@@ -67,58 +55,70 @@ const towerTypes = {
 };
 
 class Enemy {
-  constructor() {
-    this.x = 0;
-    this.y = pathY;
-    this.hp = 120;
-    this.speed = 1;
-    this.slow = 0;
+  constructor(round){
+    this.x=pathPoints[0].x;
+    this.y=pathPoints[0].y;
+    this.hp=100 + (round-1)*20;
+    this.speed=1 + (round-1)*0.2;
+    this.slow=0;
+    this.targetIndex=1;
   }
-  move() {
-    let speed = this.speed * (this.slow > 0 ? 0.5 : 1);
-    this.x += speed;
-    if (this.slow > 0) this.slow--;
-    if (this.x > canvas.width) {
+  move(){
+    if(this.targetIndex>=pathPoints.length) {
       lives--;
       enemies.splice(enemies.indexOf(this),1);
       updateUI();
+      return;
     }
+    const target=pathPoints[this.targetIndex];
+    const dx=target.x-this.x;
+    const dy=target.y-this.y;
+    const dist=Math.hypot(dx,dy);
+    let speed=this.speed*(this.slow>0?0.5:1);
+    if(dist<speed){
+      this.x=target.x; this.y=target.y;
+      this.targetIndex++;
+    } else {
+      this.x+=dx/dist*speed;
+      this.y+=dy/dist*speed;
+    }
+    if(this.slow>0) this.slow--;
   }
-  draw() {
+  draw(){
     ctx.fillStyle="red";
     ctx.beginPath();
     ctx.arc(this.x,this.y,10,0,Math.PI*2);
     ctx.fill();
     ctx.fillStyle="green";
-    ctx.fillRect(this.x-10,this.y-15,(this.hp/120)*20,4);
+    ctx.fillRect(this.x-10,this.y-15,(this.hp/(100+(round-1)*20))*20,4);
   }
 }
 
 class Tower {
-  constructor(x,y,type) {
-    Object.assign(this, towerTypes[type]);
+  constructor(x,y,type){
+    Object.assign(this,towerTypes[type]);
     this.x=x; this.y=y;
     this.cooldown=0;
     this.type=type;
   }
-  act() {
-    if (this.cooldown>0){this.cooldown--; return;}
-    for (let e of enemies){
-      let d=Math.hypot(e.x-this.x,e.y-this.y);
-      if (d<this.range){
+  act(){
+    if(this.cooldown>0){this.cooldown--;return;}
+    for(let e of enemies){
+      const d=Math.hypot(e.x-this.x,e.y-this.y);
+      if(d<this.range){
         bullets.push(new Bullet(this,e));
         this.cooldown=this.rate;
         break;
       }
     }
   }
-  draw() {
+  draw(){
     ctx.fillStyle=this.color;
     ctx.fillRect(this.x-10,this.y-10,20,20);
   }
 }
 
-class Bullet {
+class Bullet{
   constructor(tower,target){
     this.x=tower.x;
     this.y=tower.y;
@@ -128,9 +128,9 @@ class Bullet {
   }
   move(){
     if(!this.target) return;
-    let dx=this.target.x-this.x;
-    let dy=this.target.y-this.y;
-    let dist=Math.hypot(dx,dy);
+    const dx=this.target.x-this.x;
+    const dy=this.target.y-this.y;
+    const dist=Math.hypot(dx,dy);
     this.x+=dx/dist*4;
     this.y+=dy/dist*4;
     if(dist<5){
@@ -152,58 +152,85 @@ class Bullet {
   }
 }
 
-function selectTower(type){
-  selectedTower=type;
-}
+function selectTower(type){selectedTower=type;}
 
-canvas.onclick = e => {
+canvas.onclick=e=>{
   if(!selectedTower) return;
   const cost=towerTypes[selectedTower].cost;
   if(gold<cost) return;
-
   const r=canvas.getBoundingClientRect();
   const x=e.clientX-r.left;
   const y=e.clientY-r.top;
-
-  if(Math.abs(y-pathY)<30) return;
-
+  for(let p of pathPoints){
+    if(Math.hypot(x-p.x,y-p.y)<30) return; // nie stawiaj na ścieżce
+  }
   towers.push(new Tower(x,y,selectedTower));
   gold-=cost;
   updateUI();
 };
 
 function updateUI(){
-  goldEl.innerText=gold;
-  livesEl.innerText=lives;
+  document.getElementById("gold").innerText=gold;
+  document.getElementById("lives").innerText=lives;
+  document.getElementById("round").innerText=round;
+  document.getElementById("timer").innerText=Math.ceil(countdown);
 }
 
-const goldEl=document.getElementById("gold");
-const livesEl=document.getElementById("lives");
+let enemyTimer=0;
+const enemyInterval=0.5; // spawn co 0.5 sekundy w fali
+let enemiesLeft=0;
 
-setInterval(()=>enemies.push(new Enemy()),2000);
+function startWave(){
+  enemiesLeft=5 + round*2;
+  enemyTimer=0;
+}
 
-function loop(){
+setInterval(()=>{
+  countdown-=1;
+  if(countdown<=0 && enemiesLeft===0) startWave();
+  updateUI();
+},1000);
+
+function gameLoop(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
 
+  // rysuj zakręconą ścieżkę
   ctx.strokeStyle="#777";
   ctx.lineWidth=40;
   ctx.beginPath();
-  ctx.moveTo(0,pathY);
-  ctx.lineTo(canvas.width,pathY);
+  ctx.moveTo(pathPoints[0].x,pathPoints[0].y);
+  for(let i=1;i<pathPoints.length;i++){
+    ctx.lineTo(pathPoints[i].x,pathPoints[i].y);
+  }
   ctx.stroke();
 
-  enemies.forEach(e=>{e.move(); e.draw();});
-  towers.forEach(t=>{t.act(); t.draw();});
-  bullets.forEach(b=>{b.move(); b.draw();});
+  // spawn przeciwników w fali
+  if(enemiesLeft>0){
+    enemyTimer+=1/60;
+    if(enemyTimer>=enemyInterval){
+      enemies.push(new Enemy(round));
+      enemiesLeft--;
+      enemyTimer=0;
+    }
+  } else if(enemies.length===0 && countdown<=0){
+    round++;
+    countdown=7;
+  }
+
+  enemies.forEach(e=>{e.move();e.draw();});
+  towers.forEach(t=>{t.act();t.draw();});
+  bullets.forEach(b=>{b.move();b.draw();});
 
   if(lives<=0){
     alert("GAME OVER");
     location.reload();
   }
 
-  requestAnimationFrame(loop);
+  requestAnimationFrame(gameLoop);
 }
-loop();
+
+updateUI();
+gameLoop();
 </script>
 
 </body>
