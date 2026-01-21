@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<title>Mini Hill Climb Racing Advanced</title>
+<title>Mini Hill Climb Racing</title>
 <style>
 body {background:#222;color:white;font-family:Arial;text-align:center;}
 canvas {background:#87CEEB;display:block;margin:auto;border:2px solid #555;}
@@ -12,7 +12,7 @@ button {padding:10px;margin:5px;cursor:pointer;}
 </head>
 <body>
 
-<h1>🚗 Mini Hill Climb Racing Advanced</h1>
+<h1>🚗 Mini Hill Climb Racing</h1>
 <p>Odległość: <span id="distance">0</span> m | Silnik: <span id="engine">1</span> | Zawieszenie: <span id="suspension">1</span> | Nitro: <span id="nitro">0</span></p>
 <div id="ui">
   <button onclick="upgrade('engine')">Ulepsz silnik (50 pkt)</button>
@@ -26,7 +26,6 @@ button {padding:10px;margin:5px;cursor:pointer;}
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 
-// --- STAN GRY ---
 let terrain = [];
 let terrainWidth = 30000;
 let scrollX = 0;
@@ -50,15 +49,12 @@ let car = {
 
 let keys = {};
 
-// --- GENEROWANIE TERENU I PRZESZKÓD ---
 function generateTerrain(){
   let lastY = canvas.height/2 + 50;
   for(let x=0;x<terrainWidth;x+=10){
-    // losowa wysokość
     lastY += Math.random()*20-10;
     lastY = Math.min(canvas.height-50, Math.max(150,lastY));
     
-    // losowy typ terenu
     let typeRand = Math.random();
     let type = "grass";
     if(typeRand>0.85) type="stone";
@@ -66,7 +62,6 @@ function generateTerrain(){
     
     terrain.push({x,lastY,type});
     
-    // przeszkody
     if(Math.random()<0.02){
       obstacles.push({x,lastY-20,type:Math.random()<0.5?"hole":"barrel"});
     }
@@ -74,21 +69,17 @@ function generateTerrain(){
 }
 generateTerrain();
 
-// --- FIZYKA ---
 const gravity = 0.5;
 
 function updatePhysics(){
-  // przyspieszenie
   if(keys.ArrowRight) car.vx += 0.2*car.engine;
   if(keys.ArrowLeft) car.vx -= 0.1;
 
-  // obrót w powietrzu
   if(!car.onGround){
     if(keys.ArrowUp) car.angle -= 0.05;
     if(keys.ArrowDown) car.angle += 0.05;
   }
 
-  // Nitro
   if(car.nitro>0){
     car.vx += 0.5;
     car.nitro -= 0.5;
@@ -96,18 +87,16 @@ function updatePhysics(){
 
   car.vy += gravity;
 
-  // kolizja z terenem
   let terrainY = getTerrainY(car.x);
   if(car.y+car.height/2 >= terrainY){
     car.y = terrainY - car.height/2;
-    car.vy = -car.vy*0.3; 
+    car.vy = -car.vy*0.3*car.suspension; 
     car.onGround = true;
     car.angle *= 0.9;
   } else {
     car.onGround = false;
   }
 
-  // kolizje z przeszkodami
   for(let obs of obstacles){
     if(Math.abs(car.x - obs.x)<25 && Math.abs(car.y - obs.y)<20){
       if(obs.type==="hole") car.vy -= 5;
@@ -124,7 +113,6 @@ function updatePhysics(){
   points = distance;
 }
 
-// --- POMOCNICZE ---
 function getTerrainY(x){
   const i = Math.floor(x/10);
   if(i>=terrain.length-1) return canvas.height/2+50;
@@ -134,18 +122,29 @@ function getTerrainY(x){
   return t0.y*(1-ratio)+t1.y*ratio;
 }
 
-// --- RYSOWANIE ---
 function drawTerrain(){
+  ctx.fillStyle="#654321";
   ctx.beginPath();
   ctx.moveTo(terrain[0].x - scrollX, terrain[0].y);
   for(let i=1;i<terrain.length;i++){
-    const color = terrain[i].type==="grass"?"#228B22": terrain[i].type==="stone"?"#888":"#DAA520";
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 10;
     ctx.lineTo(terrain[i].x - scrollX, terrain[i].y);
-    ctx.stroke();
+  }
+  ctx.lineTo(canvas.width, canvas.height);
+  ctx.lineTo(0, canvas.height);
+  ctx.closePath();
+  ctx.fill();
+
+  // narysuj kolory powierzchni
+  for(let i=0;i<terrain.length-1;i++){
+    const t = terrain[i];
+    if(t.type==="grass") ctx.strokeStyle="#228B22";
+    else if(t.type==="stone") ctx.strokeStyle="#888";
+    else ctx.strokeStyle="#DAA520";
+    ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.moveTo(terrain[i].x - scrollX, terrain[i].y);
+    ctx.moveTo(t.x - scrollX, t.y);
+    ctx.lineTo(terrain[i+1].x - scrollX, terrain[i+1].y);
+    ctx.stroke();
   }
 }
 
@@ -169,19 +168,16 @@ function drawCar(){
   ctx.save();
   ctx.translate(car.x - scrollX, car.y);
   ctx.rotate(car.angle);
-  // Auto
   ctx.fillStyle="red";
-  ctx.fillRect(-car.width/2, -car.height/2, car.width, car.height);
-  // Koła
+  ctx.fillRect(-car.width/2,-car.height/2,car.width,car.height);
   ctx.fillStyle="black";
   ctx.beginPath();
-  ctx.arc(-car.width/3, car.height/2, 8, 0, Math.PI*2);
-  ctx.arc(car.width/3, car.height/2, 8, 0, Math.PI*2);
+  ctx.arc(-car.width/3,car.height/2,8,0,Math.PI*2);
+  ctx.arc(car.width/3,car.height/2,8,0,Math.PI*2);
   ctx.fill();
   ctx.restore();
 }
 
-// --- ULEPSZENIA ---
 function upgrade(type){
   if(points<50) return alert("Za mało punktów!");
   if(type==='engine') car.engine += 0.5;
@@ -198,11 +194,9 @@ function useNitro(){
   document.getElementById("nitro").innerText = car.nitro.toFixed(0);
 }
 
-// --- STEROWANIE ---
 document.addEventListener('keydown', e=>keys[e.key]=true);
 document.addEventListener('keyup', e=>keys[e.key]=false);
 
-// --- PĘTLA GRY ---
 function loop(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
   updatePhysics();
