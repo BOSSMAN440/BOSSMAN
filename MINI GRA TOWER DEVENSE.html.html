@@ -2,192 +2,208 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<title>Tower Defense</title>
+<title>Tower Defense Advanced</title>
 <style>
-  body {
-    background: #222;
-    color: white;
-    font-family: Arial;
-    text-align: center;
-  }
-  canvas {
-    background: #333;
-    display: block;
-    margin: 10px auto;
-    border: 2px solid #555;
-  }
+body {
+  background:#1e1e1e;
+  color:white;
+  font-family:Arial;
+  text-align:center;
+}
+canvas {
+  background:#333;
+  border:2px solid #555;
+  display:block;
+  margin:auto;
+}
+#ui {
+  margin-top:10px;
+}
+button {
+  margin:5px;
+  padding:10px;
+  cursor:pointer;
+}
+.selected {
+  outline:3px solid yellow;
+}
 </style>
 </head>
 <body>
 
 <h1>🏹 Tower Defense</h1>
-<p>Złoto: <span id="gold">100</span> | Życia: <span id="lives">10</span></p>
+<p>Złoto: <span id="gold">150</span> | Życia: <span id="lives">10</span></p>
 
-<canvas id="game" width="600" height="400"></canvas>
+<canvas id="game" width="700" height="400"></canvas>
+
+<div id="ui">
+  <button onclick="selectTower('archer')">🏹 Archer<br>50g</button>
+  <button onclick="selectTower('cannon')">💣 Cannon<br>100g</button>
+  <button onclick="selectTower('ice')">❄️ Ice<br>80g</button>
+  <button onclick="selectTower('fire')">🔥 Fire<br>120g</button>
+  <button onclick="selectTower('laser')">⚡ Laser<br>150g</button>
+</div>
 
 <script>
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 
-let gold = 100;
+let gold = 150;
 let lives = 10;
-let enemies = [];
-let towers = [];
-let bullets = [];
+let selectedTower = null;
 
-const path = [
-  {x: 0, y: 200},
-  {x: 600, y: 200}
-];
+const enemies = [];
+const towers = [];
+const bullets = [];
+
+const pathY = 200;
+
+const towerTypes = {
+  archer:{cost:50, damage:15, range:120, rate:20, color:"blue"},
+  cannon:{cost:100, damage:40, range:100, rate:50, color:"gray"},
+  ice:{cost:80, damage:10, range:110, rate:30, color:"cyan"},
+  fire:{cost:120, damage:20, range:110, rate:25, color:"orange"},
+  laser:{cost:150, damage:30, range:140, rate:10, color:"red"}
+};
 
 class Enemy {
   constructor() {
     this.x = 0;
-    this.y = 200;
-    this.hp = 100;
+    this.y = pathY;
+    this.hp = 120;
     this.speed = 1;
+    this.slow = 0;
   }
   move() {
-    this.x += this.speed;
-    if (this.x > 600) {
+    let speed = this.speed * (this.slow > 0 ? 0.5 : 1);
+    this.x += speed;
+    if (this.slow > 0) this.slow--;
+    if (this.x > canvas.width) {
       lives--;
+      enemies.splice(enemies.indexOf(this),1);
       updateUI();
-      enemies.splice(enemies.indexOf(this), 1);
     }
   }
   draw() {
-    ctx.fillStyle = "red";
+    ctx.fillStyle="red";
     ctx.beginPath();
-    ctx.arc(this.x, this.y, 10, 0, Math.PI * 2);
+    ctx.arc(this.x,this.y,10,0,Math.PI*2);
     ctx.fill();
-
-    // HP bar
-    ctx.fillStyle = "green";
-    ctx.fillRect(this.x - 10, this.y - 15, (this.hp / 100) * 20, 4);
+    ctx.fillStyle="green";
+    ctx.fillRect(this.x-10,this.y-15,(this.hp/120)*20,4);
   }
 }
 
 class Tower {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-    this.range = 100;
-    this.cooldown = 0;
+  constructor(x,y,type) {
+    Object.assign(this, towerTypes[type]);
+    this.x=x; this.y=y;
+    this.cooldown=0;
+    this.type=type;
   }
-  shoot() {
-    if (this.cooldown > 0) {
-      this.cooldown--;
-      return;
-    }
-    for (let e of enemies) {
-      const dist = Math.hypot(e.x - this.x, e.y - this.y);
-      if (dist < this.range) {
-        bullets.push(new Bullet(this.x, this.y, e));
-        this.cooldown = 30;
+  act() {
+    if (this.cooldown>0){this.cooldown--; return;}
+    for (let e of enemies){
+      let d=Math.hypot(e.x-this.x,e.y-this.y);
+      if (d<this.range){
+        bullets.push(new Bullet(this,e));
+        this.cooldown=this.rate;
         break;
       }
     }
   }
   draw() {
-    ctx.fillStyle = "blue";
-    ctx.fillRect(this.x - 10, this.y - 10, 20, 20);
+    ctx.fillStyle=this.color;
+    ctx.fillRect(this.x-10,this.y-10,20,20);
   }
 }
 
 class Bullet {
-  constructor(x, y, target) {
-    this.x = x;
-    this.y = y;
-    this.target = target;
-    this.speed = 4;
+  constructor(tower,target){
+    this.x=tower.x;
+    this.y=tower.y;
+    this.target=target;
+    this.damage=tower.damage;
+    this.type=tower.type;
   }
-  move() {
-    if (!this.target) return;
-    const dx = this.target.x - this.x;
-    const dy = this.target.y - this.y;
-    const dist = Math.hypot(dx, dy);
-
-    this.x += (dx / dist) * this.speed;
-    this.y += (dy / dist) * this.speed;
-
-    if (dist < 5) {
-      this.target.hp -= 20;
-      if (this.target.hp <= 0) {
-        gold += 10;
-        enemies.splice(enemies.indexOf(this.target), 1);
+  move(){
+    if(!this.target) return;
+    let dx=this.target.x-this.x;
+    let dy=this.target.y-this.y;
+    let dist=Math.hypot(dx,dy);
+    this.x+=dx/dist*4;
+    this.y+=dy/dist*4;
+    if(dist<5){
+      this.target.hp-=this.damage;
+      if(this.type==="ice") this.target.slow=60;
+      if(this.target.hp<=0){
+        gold+=10;
+        enemies.splice(enemies.indexOf(this.target),1);
         updateUI();
       }
-      bullets.splice(bullets.indexOf(this), 1);
+      bullets.splice(bullets.indexOf(this),1);
     }
   }
-  draw() {
-    ctx.fillStyle = "yellow";
+  draw(){
+    ctx.fillStyle="yellow";
     ctx.beginPath();
-    ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+    ctx.arc(this.x,this.y,3,0,Math.PI*2);
     ctx.fill();
   }
 }
 
-function updateUI() {
-  document.getElementById("gold").innerText = gold;
-  document.getElementById("lives").innerText = lives;
+function selectTower(type){
+  selectedTower=type;
 }
 
-canvas.addEventListener("click", e => {
-  if (gold < 50) return;
-  const rect = canvas.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
+canvas.onclick = e => {
+  if(!selectedTower) return;
+  const cost=towerTypes[selectedTower].cost;
+  if(gold<cost) return;
 
-  // nie pozwól stawiać na drodze
-  if (Math.abs(y - 200) < 30) return;
+  const r=canvas.getBoundingClientRect();
+  const x=e.clientX-r.left;
+  const y=e.clientY-r.top;
 
-  towers.push(new Tower(x, y));
-  gold -= 50;
+  if(Math.abs(y-pathY)<30) return;
+
+  towers.push(new Tower(x,y,selectedTower));
+  gold-=cost;
   updateUI();
-});
+};
 
-function spawnEnemy() {
-  enemies.push(new Enemy());
+function updateUI(){
+  goldEl.innerText=gold;
+  livesEl.innerText=lives;
 }
 
-setInterval(spawnEnemy, 2000);
+const goldEl=document.getElementById("gold");
+const livesEl=document.getElementById("lives");
 
-function gameLoop() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+setInterval(()=>enemies.push(new Enemy()),2000);
 
-  // droga
-  ctx.strokeStyle = "#777";
-  ctx.lineWidth = 40;
+function loop(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  ctx.strokeStyle="#777";
+  ctx.lineWidth=40;
   ctx.beginPath();
-  ctx.moveTo(0, 200);
-  ctx.lineTo(600, 200);
+  ctx.moveTo(0,pathY);
+  ctx.lineTo(canvas.width,pathY);
   ctx.stroke();
 
-  for (let e of enemies) {
-    e.move();
-    e.draw();
-  }
+  enemies.forEach(e=>{e.move(); e.draw();});
+  towers.forEach(t=>{t.act(); t.draw();});
+  bullets.forEach(b=>{b.move(); b.draw();});
 
-  for (let t of towers) {
-    t.shoot();
-    t.draw();
-  }
-
-  for (let b of bullets) {
-    b.move();
-    b.draw();
-  }
-
-  if (lives <= 0) {
+  if(lives<=0){
     alert("GAME OVER");
     location.reload();
   }
 
-  requestAnimationFrame(gameLoop);
+  requestAnimationFrame(loop);
 }
-
-gameLoop();
+loop();
 </script>
 
 </body>
