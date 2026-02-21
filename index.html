@@ -3,182 +3,97 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BSCMC.PL</title>
+<title>BSCMC.PL - Strona Główna</title>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior: smooth; }
-
+  html { scroll-behavior:smooth; }
   body {
-    font-family:'Segoe UI', Tahoma, sans-serif;
+    font-family:'Segoe UI',Tahoma,sans-serif;
     background: url("https://wallpapercave.com/wp/wp6005486.jpg") no-repeat center center fixed;
     background-size: cover;
-    color: #fff;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-x: hidden;
-    position: relative;
+    color:#fff;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    overflow-x:hidden;
+    position:relative;
   }
-
   body::before {
     content:"";
-    position:absolute;
-    top:0; left:0;
+    position:absolute; top:0; left:0;
     width:100%; height:100%;
-    background: url("https://www.transparenttextures.com/patterns/stardust.png");
-    opacity:0.3;
-    z-index:0;
+    background:url("https://www.transparenttextures.com/patterns/stardust.png");
+    opacity:0.3; z-index:0;
   }
-
   h1 {
-    font-size:4em;
-    text-transform:uppercase;
-    letter-spacing:8px;
+    font-size:4em; text-transform:uppercase; letter-spacing:8px;
     background:linear-gradient(90deg,#00ffff,#ff00ff,#00ffff);
     background-size:300%;
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
     animation:titleGradient 6s infinite linear;
-    margin-bottom:10px;
-    z-index:1;
-  }
-
-  @keyframes titleGradient {
-    0% { background-position:0%; }
-    100% { background-position:300%; }
-  }
-
-  .subtitle {
-    font-size:1.8em;
-    color:#00ccff;
-    margin-bottom:20px;
-    z-index:1;
+    margin-bottom:10px; z-index:1;
     text-align:center;
   }
-
-  .top-buttons, .mode-buttons { display:flex; gap:20px; flex-wrap:wrap; justify-content:center; z-index:1; margin-bottom:30px; }
-
-  .button {
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding:15px 25px;
-    border-radius:12px;
-    font-size:1.2em;
-    text-decoration:none;
-    color:#fff;
-    font-weight:bold;
-    transition: all 0.3s;
-    position:relative;
-    backdrop-filter:blur(6px);
-    cursor:pointer;
-    overflow:hidden;
+  @keyframes titleGradient {0%{background-position:0%}100%{background-position:300%}}
+  .subtitle {
+    font-size:1.5em; color:#00ccff; margin-bottom:20px; z-index:1; text-align:center;
   }
-
+  .top-buttons, .mode-buttons { display:flex; gap:20px; flex-wrap:wrap; justify-content:center; z-index:1; margin-bottom:30px; }
+  .button {
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:15px 25px; border-radius:12px; font-size:1.2em;
+    text-decoration:none; color:#fff; font-weight:bold;
+    transition:all 0.3s; position:relative; backdrop-filter:blur(6px); cursor:pointer; overflow:hidden;
+  }
   .button img { width:24px; height:24px; margin-right:10px; }
-
   .discord { background:#7289da; }
   .twitch { background:#9146ff; }
   .tiktok { background:#25f4ee; color:#000; }
-
   .mode-buttons a {
     background:linear-gradient(135deg,#00ffff,#ff00ff);
-    padding:15px 30px;
-    border-radius:15px;
-    text-decoration:none;
-    color:orange;
-    font-size:1.2em;
-    font-weight:bold;
-    transition: all 0.3s;
-    box-shadow: 0 0 10px #00ffff,0 0 20px #ff00ff;
-    text-align:center;
-    opacity:0;
-    transform: translateY(30px);
+    padding:15px 30px; border-radius:15px; text-decoration:none;
+    color:orange; font-size:1.2em; font-weight:bold;
+    box-shadow:0 0 10px #00ffff,0 0 20px #ff00ff;
+    text-align:center; opacity:0; transform:translateY(30px); transition: all 0.5s;
   }
-  .mode-buttons a.show { opacity:1; transform: translateY(0); }
-
+  .mode-buttons a.show { opacity:1; transform:translateY(0); }
   .mode-buttons a:hover { transform:scale(1.05); box-shadow:0 0 20px #00ffff,0 0 40px #ff00ff; }
-
   .ip-button { background:linear-gradient(90deg,#00ffcc,#00ccff); margin-top:10px; border:none; cursor:pointer; }
   .pricing-button { background:linear-gradient(90deg,#ff9900,#ff3300); margin-top:10px; border:none; cursor:pointer; }
 
-  .news {
-    margin-top:50px;
-    padding:20px;
-    background: rgba(20,20,20,0.9);
-    border-radius:15px;
-    box-shadow:0 0 20px #ff00ff;
-    text-align:center;
-    z-index:1;
-  }
-  .news h2 { margin-bottom:10px; color:#ff00ff; }
-
-  .features {
-    margin-top:50px;
-    max-width:1000px;
-    text-align:center;
-    z-index:1;
-  }
-
-  .features h2 {
-    font-size:2em;
-    margin-bottom:30px;
-    background: linear-gradient(90deg,#00ffff,#ff00ff,#00ffff);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    animation: titleGradient 6s infinite linear;
-  }
-
-  .features-grid {
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:20px;
-  }
-
+  /* Features */
+  .features { margin-top:50px; max-width:1000px; text-align:center; z-index:1; }
+  .features h2 { font-size:2em; margin-bottom:30px; background:linear-gradient(90deg,#00ffff,#ff00ff,#00ffff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:titleGradient 6s infinite linear; }
+  .features-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
   .feature {
-    background: rgba(25,25,25,0.9);
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0 0 15px rgba(0,255,255,0.5);
-    transition: transform 0.3s, box-shadow 0.3s;
-    opacity:0;
-    transform: translateY(30px);
+    background: rgba(25,25,25,0.9); padding:20px; border-radius:15px;
+    box-shadow:0 0 15px rgba(0,255,255,0.5); transition: transform 0.3s, box-shadow 0.3s;
+    opacity:0; transform:translateY(30px);
   }
   .feature.show { opacity:1; transform:translateY(0); }
-  .feature:hover { transform: scale(1.05); box-shadow: 0 0 25px #ff00ff; }
+  .feature:hover { transform:scale(1.05); box-shadow:0 0 25px #ff00ff; }
   .feature h3 { margin-bottom:10px; font-size:1.3em; color:#00ffff; }
   .feature p { color:#ddd; font-size:0.95em; line-height:1.4em; }
 
-  .leaderboard {
-    background:#111;
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0 0 20px #00ffff;
-    min-width:220px;
-    margin:40px auto;
-    z-index:1;
-  }
+  /* Leaderboard */
+  .leaderboard { background:#111; padding:20px; border-radius:15px; box-shadow:0 0 20px #00ffff; min-width:220px; margin:40px auto; z-index:1; }
   .leaderboard h3 { margin-bottom:15px; color:#00ffff; text-align:center; }
   .leaderboard .player {
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:10px;
-    padding:8px;
-    border-radius:10px;
-    font-weight:bold;
-    transition: all 0.3s;
+    display:flex; justify-content:space-between; margin-bottom:10px; padding:8px; border-radius:10px; font-weight:bold; transition:all 0.3s;
   }
-  .leaderboard .player:hover { background: linear-gradient(90deg,#00ffff,#ff00ff); color:#fff; transform:scale(1.02); }
+  .leaderboard .player:hover { background:linear-gradient(90deg,#00ffff,#ff00ff); color:#fff; transform:scale(1.02); }
   .leaderboard .gold { background: linear-gradient(90deg,#FFD700,#FFA500); color:#000; }
   .leaderboard .silver { background: linear-gradient(90deg,#C0C0C0,#A9A9A9); color:#000; }
   .leaderboard .bronze { background: linear-gradient(90deg,#CD7F32,#8B4513); color:#fff; }
 
-  @media(max-width:768px){
-    .features-grid { grid-template-columns:1fr; }
-    .mode-buttons, .top-buttons { flex-direction:column; }
+  footer {
+    margin-top:50px; width:100%; background:rgba(0,0,0,0.8); color:#ccc; text-align:center; padding:15px;
+    font-size:0.85em; line-height:1.5em;
   }
 
+  @media(max-width:768px){ .features-grid { grid-template-columns:1fr; } .mode-buttons, .top-buttons { flex-direction:column; } }
 </style>
 </head>
 <body>
@@ -202,37 +117,34 @@
 </div>
 
 <!-- TRYBY -->
- <h2 class="subtitle" style="margin-top:30px;">DOSTĘPNE TRYBY</h2>
-
+<h2 class="subtitle" style="margin-top:30px;">DOSTĘPNE TRYBY</h2>
 <div class="mode-buttons">
   <a href="survival.html">🏡 SURVIVAL DZIAŁKI</a>
   <a href="klikanyregulamin.html">📜 REGULAMIN</a>
 </div>
 
-<!-- IP Button -->
+<!-- IP / Cennik -->
 <button class="button ip-button" onclick="copyIP(this)">📋 Kopiuj IP: BSCMC.PL</button>
 <button class="button pricing-button" onclick="window.location.href='cennik pomocy tworzenia.html'">
   💰 CENNIK TWORZENIA SERVERA
 </button>
 
-<!-- Dlaczego warto wybrać -->
+<!-- Features -->
 <section class="features">
   <h2>🔥 Dlaczego warto wybrać <span style="color:#00ffff;">BSCMC.PL</span>?</h2>
   <div class="features-grid">
     <div class="feature"><h3>👑 Miła Administracja</h3><p>Administracja BSCMC.PL zawsze z chęcią pomoże w razie problemów.</p></div>
-    <div class="feature"><h3>⚡ Nowatorskie Mechaniki</h3><p>Stawiamy na świeże pomysły i autorskie systemy, które wyróżniają nas na tle innych serwerów.</p></div>
-    <div class="feature"><h3>🎉 Niezapomniane Wydarzenia</h3><p>Organizujemy turnieje i atrakcje pełne emocji, gdzie czekają unikatowe nagrody i świetna zabawa.</p></div>
-    <div class="feature"><h3>🤝 Silna Społeczność</h3><p>Gracze BSCMC.PL to zgrana ekipa – zawsze gotowa na wspólną rozgrywkę, pomoc i dobrą atmosferę.</p></div>
-    <div class="feature"><h3>🎯 Stabilny Serwer</h3><p>Nasze serwery działają 24/7 bez lagów – płynna rozgrywka gwarantowana.</p></div>
-    <div class="feature"><h3>🛡️ Bezpieczeństwo</h3><p>Dbamy o Twoje dane i rozgrywkę – anty-cheat oraz regularne kopie zapasowe.</p></div>
-    <div class="feature"><h3>🎁 Codzienne Nagrody</h3><p>Loguj się codziennie i odbieraj bonusy, skrzynki i wyjątkowe przedmioty.</p></div>
-    <div class="feature"><h3>💬 Aktywna Społeczność</h3><p>Gracze pomagają sobie nawzajem – twórz drużyny i poznawaj nowych przyjaciół.</p></div>
-    <div class="feature"><h3>🌐 Eventy Globalne</h3><p>Turnieje, konkursy i rywalizacja z nagrodami dla całego serwera.</p></div>
-    <div class="feature"><h3>💡 Tutoriale i Pomoc</h3><p>Nowi gracze nie zgubią się – obszerne poradniki i przyjazna administracja.</p></div>
+    <div class="feature"><h3>⚡ Nowatorskie Mechaniki</h3><p>Autorskie systemy i świeże pomysły, które wyróżniają nas na tle innych serwerów.</p></div>
+    <div class="feature"><h3>🎉 Niezapomniane Wydarzenia</h3><p>Turnieje i eventy z nagrodami i wyjątkową zabawą.</p></div>
+    <div class="feature"><h3>🤝 Silna Społeczność</h3><p>Gracze wspierają się nawzajem i tworzą aktywną społeczność.</p></div>
+    <div class="feature"><h3>🎯 Stabilny Serwer</h3><p>24/7 bez lagów, płynna rozgrywka gwarantowana.</p></div>
+    <div class="feature"><h3>🛡️ Bezpieczeństwo</h3><p>Anty-cheat, kopie zapasowe i bezpieczne konta graczy.</p></div>
+    <div class="feature"><h3>🎁 Codzienne Nagrody</h3><p>Loguj się codziennie i odbieraj bonusy oraz unikatowe przedmioty.</p></div>
+    <div class="feature"><h3>💬 Aktywna Społeczność</h3><p>Twórz drużyny, poznawaj nowych graczy i graj wspólnie.</p></div>
   </div>
 </section>
 
-<!-- LEADERBOARD -->
+<!-- Leaderboard -->
 <section id="leaderboard">
   <h2 class="subtitle">🏆 TOP GRACZE</h2>
   <div class="leaderboard">
@@ -244,6 +156,13 @@
   </div>
 </section>
 
+<!-- Footer -->
+<footer>
+  © 2026 BSCMC.PL | Wszystkie prawa zastrzeżone.<br>
+  Korzystając z serwera akceptujesz regulamin i zobowiązujesz się do jego przestrzegania.<br>
+  Administracja nie ponosi odpowiedzialności za działania graczy, a decyzje administracyjne są ostateczne, chyba że sprawa zostanie skierowana do właściciela serwera.
+</footer>
+
 <script>
   // Kopiowanie IP
   function copyIP(btn){
@@ -254,7 +173,7 @@
     }).catch(()=> alert("Błąd kopiowania IP."));
   }
 
-  // Animacje przy przewijaniu
+  // Animacje przy scrollu
   function scrollAnimations(){
     document.querySelectorAll('.feature').forEach(el=>{
       const top = el.getBoundingClientRect().top;
@@ -268,24 +187,16 @@
   window.addEventListener('scroll', scrollAnimations);
   window.addEventListener('load', scrollAnimations);
 
-  // Online players
+  // Online players (poll co 10s)
   async function fetchOnline(){
     try{
       const res = await fetch("https://api.mcsrvstat.us/2/BSCMC.PL");
       const data = await res.json();
       document.getElementById("online-players").textContent = data.players ? data.players.online : 0;
-    }catch(e){
-      document.getElementById("online-players").textContent = "offline";
-    }
+    }catch(e){ document.getElementById("online-players").textContent = "offline"; }
   }
   fetchOnline();
-  setInterval(fetchOnline, 1000);
+  setInterval(fetchOnline, 10000);
 </script>
-
 </body>
 </html>
-
-
-
-
-
