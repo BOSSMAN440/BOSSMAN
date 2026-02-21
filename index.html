@@ -78,22 +78,28 @@
   .feature p { color:#ddd; font-size:0.95em; line-height:1.4em; }
 
   /* Leaderboard */
-  .leaderboard { background:#111; padding:20px; border-radius:15px; box-shadow:0 0 20px #00ffff; min-width:220px; margin:40px auto; z-index:1; }
-  .leaderboard h3 { margin-bottom:15px; color:#00ffff; text-align:center; }
-  .leaderboard .player {
-    display:flex; justify-content:space-between; margin-bottom:10px; padding:8px; border-radius:10px; font-weight:bold; transition:all 0.3s;
+  #leaderboard { padding:50px 20px; background:linear-gradient(135deg,#0f0f0f,#1a1a1a); width:100%; }
+  #leaderboard h2 { text-align:center; font-size:2.2em; margin-bottom:30px; background:linear-gradient(90deg,#00ffff,#ff00ff,#00ffff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:titleGradient 6s infinite linear; }
+  .leaderboard-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; max-width:1000px; margin:0 auto; }
+  .leaderboard-card {
+    padding:20px; border-radius:15px; display:flex; flex-direction:column; align-items:center; text-align:center; transition: transform 0.3s, box-shadow 0.3s;
   }
-  .leaderboard .player:hover { background:linear-gradient(90deg,#00ffff,#ff00ff); color:#fff; transform:scale(1.02); }
-  .leaderboard .gold { background: linear-gradient(90deg,#FFD700,#FFA500); color:#000; }
-  .leaderboard .silver { background: linear-gradient(90deg,#C0C0C0,#A9A9A9); color:#000; }
-  .leaderboard .bronze { background: linear-gradient(90deg,#CD7F32,#8B4513); color:#fff; }
+  .leaderboard-card.gold { background:linear-gradient(135deg,#FFD700,#FFA500); color:#000; box-shadow:0 0 20px #FFD700; }
+  .leaderboard-card.silver { background:linear-gradient(135deg,#C0C0C0,#A9A9A9); color:#000; box-shadow:0 0 15px #C0C0C0; }
+  .leaderboard-card.bronze { background:linear-gradient(135deg,#CD7F32,#8B4513); color:#fff; box-shadow:0 0 15px #CD7F32; }
+  .leaderboard-card:hover { transform:translateY(-10px) scale(1.05); box-shadow: 0 0 30px #ff00ff, 0 0 20px #00ffff; }
+  .leaderboard-card div { margin:5px 0; }
 
   footer {
     margin-top:50px; width:100%; background:rgba(0,0,0,0.8); color:#ccc; text-align:center; padding:15px;
     font-size:0.85em; line-height:1.5em;
   }
 
-  @media(max-width:768px){ .features-grid { grid-template-columns:1fr; } .mode-buttons, .top-buttons { flex-direction:column; } }
+  @media(max-width:768px){ 
+    .features-grid { grid-template-columns:1fr; } 
+    .mode-buttons, .top-buttons { flex-direction:column; } 
+    .leaderboard-grid { grid-template-columns:1fr; }
+  }
 </style>
 </head>
 <body>
@@ -146,12 +152,33 @@
 
 <!-- Leaderboard -->
 <section id="leaderboard">
-  <div class="leaderboard">
-    <div class="player gold"><span>🥇 SalatkaOwocowa</span><span>120 zł</span></div>
-    <div class="player gold"><span>🥇 michalek</span><span>120 zł</span></div>
-    <div class="player silver"><span>🥈 BloomFire000</span><span>104 zł</span></div>
-    <div class="player bronze"><span>🥉 Robocik_TV</span><span>81 zł</span></div>
-    <div class="player bronze"><span>🍒 Wicia i Dany</span><span>50 zł</span></div>
+  <h2>🏆 TOP GRACZE</h2>
+  <div class="leaderboard-grid">
+    <div class="leaderboard-card gold">
+      <div style="font-size:2em;">🥇</div>
+      <div style="font-weight:bold; font-size:1.2em;">SalatkaOwocowa</div>
+      <div>120 zł</div>
+    </div>
+    <div class="leaderboard-card gold">
+      <div style="font-size:2em;">🥇</div>
+      <div style="font-weight:bold; font-size:1.2em;">michalek</div>
+      <div>120 zł</div>
+    </div>
+    <div class="leaderboard-card silver">
+      <div style="font-size:2em;">🥈</div>
+      <div style="font-weight:bold; font-size:1.2em;">BloomFire000</div>
+      <div>104 zł</div>
+    </div>
+    <div class="leaderboard-card bronze">
+      <div style="font-size:2em;">🥉</div>
+      <div style="font-weight:bold; font-size:1.2em;">Robocik_TV</div>
+      <div>81 zł</div>
+    </div>
+    <div class="leaderboard-card bronze">
+      <div style="font-size:2em;">🍒</div>
+      <div style="font-weight:bold; font-size:1.2em;">Wicia i Dany</div>
+      <div>50 zł</div>
+    </div>
   </div>
 </section>
 
@@ -199,4 +226,3 @@
 </script>
 </body>
 </html>
-
