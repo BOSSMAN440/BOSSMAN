@@ -1,236 +1,244 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cennik Tworzenia Serwera | BSCMC.PL</title>
-  <style>
-    /* Reset */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cennik Tworzenia Serwera | BSCMC.PL</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    body {
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      background: url("https://wallpapercave.com/wp/wp6005486.jpg") no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-      position: relative;
-      overflow-x: hidden;
-    }
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: url("https://wallpapercave.com/wp/wp6005486.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+  }
 
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: url("https://www.transparenttextures.com/patterns/stardust.png");
-      opacity: 0.3;
-      z-index: 0;
-    }
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: url("https://www.transparenttextures.com/patterns/stardust.png");
+    opacity: 0.25;
+    z-index: 0;
+  }
 
-    h1 {
-      font-size: 3em;
-      text-transform: uppercase;
-      letter-spacing: 6px;
-      background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff);
-      background-size: 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: titleGradient 6s infinite linear;
-      margin-bottom: 20px;
-      z-index: 1;
-    }
+  h1 {
+    font-size: 3em;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: titleGradient 6s infinite linear;
+    margin-bottom: 20px;
+    z-index: 1;
+    text-align: center;
+  }
 
-    @keyframes titleGradient {
-      0% { background-position: 0%; }
-      100% { background-position: 300%; }
-    }
+  @keyframes titleGradient {
+    0% { background-position: 0%; }
+    100% { background-position: 300%; }
+  }
 
-    .subtitle {
-      font-size: 1.5em;
-      color: #00ccff;
-      margin-bottom: 30px;
-      text-align: center;
-      z-index: 1;
-    }
+  .subtitle {
+    font-size: 1.5em;
+    color: #00ccff;
+    margin-bottom: 40px;
+    text-align: center;
+    z-index: 1;
+  }
 
-    .pricing-table {
-      width: 100%;
-      max-width: 1200px;
-      background: rgba(20, 20, 20, 0.9);
-      padding: 15px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px #ff00ff;
-      z-index: 1;
-      table-layout: fixed;
-      word-wrap: break-word;
-      margin-bottom: 40px;
-    }
+  .pricing-table {
+    width: 100%;
+    max-width: 1200px;
+    background: rgba(20, 20, 20, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 30px #ff00ff;
+    z-index: 1;
+    table-layout: fixed;
+    word-wrap: break-word;
+    margin-bottom: 50px;
+    transition: all 0.3s;
+  }
 
-    .pricing-table h2 {
-      text-align: center;
-      margin-bottom: 10px;
-      color: #ff00ff;
-      font-size: 2em;
-    }
+  .pricing-table h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ff00ff;
+    font-size: 2em;
+    text-shadow: 0 0 10px #ff00ff;
+  }
 
-    .pricing-table p {
-      text-align:center;
-      color:#ff6600;
-      font-style: italic;
-      font-size:1.5em;
-      margin-bottom: 20px;
-    }
+  .pricing-table p {
+    text-align:center;
+    color:#ff9900;
+    font-style: italic;
+    font-size:1.2em;
+    margin-bottom: 25px;
+  }
 
-    .pricing-table table {
-      width: 100%;
-      border-collapse: collapse;
-      table-layout: fixed;
-    }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
 
-    .pricing-table th, .pricing-table td {
-      padding: 10px;
-      text-align: left;
-      border-bottom: 1px solid #444;
-      font-size: 0.95em;
-      word-wrap: break-word;
-    }
+  th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #444;
+    font-size: 1em;
+    word-wrap: break-word;
+  }
 
-    .pricing-table th {
-      background: linear-gradient(90deg, #00ffff, #ff00ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-size: 1.1em;
-    }
+  th {
+    background: linear-gradient(90deg, #00ffff, #ff00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.1em;
+  }
 
-    .pricing-table tr:hover {
-      background: rgba(255, 255, 255, 0.05);
-    }
+  tr:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transition: background 0.3s;
+  }
 
-    /* CTA Section */
-    .cta-section {
-      text-align: center;
-      margin-top: 30px;
-      margin-bottom: 50px;
-      position: relative; /* żeby z-index działał */
-      z-index: 2; /* wyżej niż tło */
-    }
+  /* CTA Section */
+  .cta-section {
+    text-align: center;
+    margin-bottom: 50px;
+    z-index: 2;
+    position: relative;
+  }
 
-    .cta-section p {
-      font-size: 1.2em;
-      color: #00ccff;
-      margin-bottom: 15px;
-    }
+  .cta-section p {
+    font-size: 1.2em;
+    color: #00ccff;
+    margin-bottom: 15px;
+  }
 
-    .cta-section button {
-      padding: 15px 35px;
-      font-size: 1.2em;
-      border-radius: 12px;
-      border: none;
-      cursor: pointer;
-      background: linear-gradient(90deg, #ff9900, #ff3300);
-      color: #fff;
-      transition: all 0.3s;
-      position: relative;
-      z-index: 2;
-    }
+  .cta-section button {
+    padding: 15px 35px;
+    font-size: 1.2em;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(90deg, #ff9900, #ff3300);
+    color: #fff;
+    transition: all 0.3s;
+    margin: 5px;
+  }
 
-    .cta-section button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #ff9900, 0 0 40px #ff3300;
-    }
+  .cta-section button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #ff9900, 0 0 40px #ff3300;
+  }
 
-    /* Responsywność tabeli */
-    @media (max-width: 900px) {
-      .pricing-table table {
-        font-size: 0.85em;
-      }
-    }
-    @media (max-width: 600px) {
-      .pricing-table {
-        padding: 10px;
-      }
-      .pricing-table table {
-        font-size: 0.8em;
-      }
-    }
-  </style>
+  /* Responsywność */
+  @media (max-width: 900px) {
+    table { font-size: 0.9em; }
+  }
+  @media (max-width: 600px) {
+    .pricing-table { padding: 10px; }
+    table { font-size: 0.8em; }
+  }
+</style>
 </head>
 <body>
 
-  <h1>CENNIK TWORZENIA SERWERA</h1>
-  <div class="subtitle">Wybierz usługę, która najlepiej odpowiada Twoim potrzebom!</div>
+<h1>CENNIK TWORZENIA SERWERA</h1>
+<div class="subtitle">Wybierz usługę najlepiej dopasowaną do Twojego projektu!</div>
 
-  <div class="pricing-table">
-    <h2>Usługi i ceny</h2>
-    <p><p>Po otrzymaniu i pozytywnym rozpatrzeniu zgłoszenia (proces ten trwa do 6 godzin) przechodzimy do płatności. Po jej dokonaniu rozpoczynamy realizację projektu. Czas wykonania pełnego projektu wynosi maksymalnie 36 godzin, jednak w przypadku zamówienia pojedynczych usług, takich jak wgranie pojedynczych pluginów, konfiguracja czy drobne poprawki, czas realizacji może być znacznie krótszy</p>
-</p>
-    <table>
-      <tr>
-        <th>Usługa</th>
-        <th>Opis</th>
-        <th>Cena</th>
-        <th>Zajmuje około</th>
-      </tr>
-      <tr>
-        <td>Pełne przygotowanie środowiska serwera</td>
-        <td>Instalacja silnika + wgranie podstawowych i dodatkowych pluginów + konfiguracja + testy działania</td>
-        <td>165 zł</td>
-        <td>do 36 h</td>
-      </tr>
-      <tr>
-        <td>Wgranie silnika</td>
-        <td>Instalacja silnika serwera (działającego wyłącznie na pluginach)</td>
-        <td>11 zł</td>
-      </tr>
-      <tr>
-        <td>Wgranie podstawowych pluginów</td>
-        <td>Wgranie zestawu podstawowych pluginów (max 10)</td>
-        <td>33 zł</td>
-      </tr>
-      <tr>
-        <td>Konfiguracja podstawowych pluginów</td>
-        <td>Podstawowa konfiguracja wgranych pluginów</td>
-        <td>16,50 zł</td>
-      </tr>
-      <tr>
-        <td>Wgranie kolejnych pluginów</td>
-        <td>Cena za każdy dodatkowy plugin powyżej podstawowego pakietu</td>
-        <td>5,50 zł / plugin</td>
-      </tr>
-      <tr>
-        <td>Konfiguracja kolejnych pluginów</td>
-        <td>Konfiguracja dodatkowych pluginów powyżej podstawowego pakietu</td>
-        <td>5,50 zł / plugin</td>
-      </tr>
-      <tr>
-        <td>Backup serwera</td>
-        <td>Tworzenie kopii zapasowej po konfiguracji</td>
-        <td>22 zł</td>
-      </tr>
-      <tr>
-        <td>Instalacja mapy / świata</td>
-        <td>Dodanie własnej mapy lub świata klienta na serwer</td>
-        <td>33 zł</td>
-      </tr>
-      <tr>
-        <td>Wsparcie techniczne / konfiguracja 2 tygodnie</td>
-        <td>2-tygodniowa gwarancja / wszelkie poprawki</td>
-        <td>44 zł</td>
-      </tr>
-    </table>
-  </div>
+<div class="pricing-table">
+  <h2>Usługi i ceny</h2>
+  <p>Po zgłoszeniu i potwierdzeniu zamówienia przechodzimy do realizacji. Czas wykonania pełnego serwera: max 36h. Pojedyncze usługi mogą być szybsze.</p>
+  <table>
+    <tr>
+      <th>Usługa</th>
+      <th>Opis</th>
+      <th>Cena</th>
+      <th>Czas realizacji</th>
+    </tr>
+    <tr>
+      <td>Pełne przygotowanie środowiska serwera</td>
+      <td>Instalacja silnika + wgranie podstawowych i dodatkowych pluginów + konfiguracja + testy działania</td>
+      <td>165 zł</td>
+      <td>do 36 h</td>
+    </tr>
+    <tr>
+      <td>Wgranie silnika</td>
+      <td>Instalacja silnika serwera (działa na pluginach)</td>
+      <td>1 zł</td>
+      <td>do 10 min</td>
+    </tr>
+    <tr>
+      <td>Wgranie podstawowych pluginów</td>
+      <td>Zestaw podstawowych pluginów (max 10)</td>
+      <td>20 zł</td>
+      <td>do 30 min</td>
+    </tr>
+    <tr>
+      <td>Konfiguracja podstawowych pluginów</td>
+      <td>Podstawowa konfiguracja wgranych pluginów</td>
+      <td>20 zł</td>
+      <td>do 30 min</td>
+    </tr>
+    <tr>
+      <td>Wgranie kolejnych pluginów</td>
+      <td>Cena za każdy dodatkowy plugin powyżej podstawowego pakietu</td>
+      <td>5,50 zł / plugin</td>
+      <td>5-10 min / plugin</td>
+    </tr>
+    <tr>
+      <td>Konfiguracja kolejnych pluginów</td>
+      <td>Konfiguracja dodatkowych pluginów powyżej podstawowego pakietu</td>
+      <td>5,50 zł / plugin</td>
+      <td>5-10 min / plugin</td>
+    </tr>
+    <tr>
+      <td>Backup serwera</td>
+      <td>Tworzenie kopii zapasowej po konfiguracji</td>
+      <td>22 zł</td>
+      <td>10-15 min</td>
+    </tr>
+    <tr>
+      <td>Instalacja mapy / świata</td>
+      <td>Dodanie własnej mapy lub świata klienta</td>
+      <td>33 zł</td>
+      <td>15-20 min</td>
+    </tr>
+    <tr>
+      <td>Wsparcie techniczne / konfiguracja 2 tygodnie</td>
+      <td>Gwarancja poprawek i wsparcia 2 tygodnie</td>
+      <td>50 zł</td>
+      <td>2 tygodnie</td>
+    </tr>
+    <tr>
+      <td>Wsparcie techniczne / konfiguracja 4 tygodnie</td>
+      <td>Gwarancja poprawek i wsparcia 4 tygodnie</td>
+      <td>85 zł</td>
+      <td>4 tygodnie</td>
+    </tr>
+  </table>
+</div>
 
-  <div class="cta-section">
-    <p>Jesteś zainteresowany usługą? Kliknij poniżej i zrób TICKET:</p>
-    <button onclick="window.location.href='https://discord.gg/uek2nZQr9k'">TICKET ZAKUP</button>
-    <button onclick="window.location.href='regulamin,platnoscusugi.html'" style="margin-left: 15px; background: linear-gradient(90deg, #ff6600, #ff3300);">REGULAMIN</button>
-    <button onclick="window.location.href='index.html'" style="margin-left: 15px; background: linear-gradient(90deg, #ff6600, #ff3300);">Powrót do strogy głównej</button>
-  </div>
+<div class="cta-section">
+  <p>Chcesz zamówić serwer? Kliknij poniżej, aby zrobić TICKET:</p>
+  <button onclick="window.location.href='https://discord.gg/uek2nZQr9k'">TICKET ZAKUP</button>
+  <button onclick="window.location.href='regulamin,platnoscusugi.html'">REGULAMIN</button>
+  <button onclick="window.location.href='index.html'">POWRÓT DO STRONY GŁÓWNEJ</button>
+</div>
 
 </body>
 </html>
