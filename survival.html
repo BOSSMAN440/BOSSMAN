@@ -4,173 +4,243 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Survival Działki — BSCMC.PL</title>
+
 <style>
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    background: url("https://wallpapercave.com/wp/wp6005486.jpg") no-repeat center center fixed;
-    background-size: cover;
-    color: #333;
-    min-height: 100vh;
-    overflow-x: hidden;
-    position: relative;
-  }
 
-  /* Cząsteczki w tle */
-  .particle {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.8);
-    animation: float 10s linear infinite;
-  }
+body{
+margin:0;
+font-family:'Segoe UI',Tahoma,sans-serif;
+background:url("https://wallpapercave.com/wp/wp6005486.jpg") no-repeat center center fixed;
+background-size:cover;
+color:#333;
+min-height:100vh;
+overflow-x:hidden;
+position:relative;
+}
 
-  @keyframes float {
-    0% { transform: translateY(0) translateX(0); opacity: 0.8; }
-    50% { opacity: 1; }
-    100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
-  }
+/* cząsteczki */
 
-  .container {
-    max-width: 900px;
-    margin: 60px auto;
-    background: rgba(255,255,255,0.95);
-    padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    position: relative;
-    z-index: 1;
-  }
+.particle{
+position:absolute;
+width:6px;
+height:6px;
+border-radius:50%;
+background:rgba(255,255,255,0.8);
+animation:float 10s linear infinite;
+}
 
-  h1 {
-    text-align: center;
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    color: #222;
-  }
+@keyframes float{
+0%{transform:translateY(0) translateX(0);opacity:0.8;}
+50%{opacity:1;}
+100%{transform:translateY(-100vh) translateX(100px);opacity:0;}
+}
 
-  h2 {
-    font-size: 1.7em;
-    margin-top: 30px;
-    margin-bottom: 10px;
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 5px;
-  }
+.container{
+max-width:900px;
+margin:60px auto;
+background:rgba(255,255,255,0.95);
+padding:30px 40px;
+border-radius:12px;
+box-shadow:0 0 20px rgba(0,0,0,0.3);
+position:relative;
+z-index:1;
+}
 
-  p {
-    line-height: 1.6;
-    margin-bottom: 12px;
-  }
+h1{
+text-align:center;
+font-size:2.5em;
+margin-bottom:20px;
+color:#222;
+}
 
-  ul {
-    list-style-type: disc;
-    padding-left: 20px;
-  }
+h2{
+font-size:1.7em;
+margin-top:30px;
+margin-bottom:10px;
+border-bottom:2px solid #ccc;
+padding-bottom:5px;
+}
 
-  li {
-    margin: 6px 0;
-  }
+h3{
+margin-top:20px;
+color:#444;
+}
 
-  .highlight {
-    font-weight: bold;
-    color: #2980b9;
-  }
+p{
+line-height:1.6;
+margin-bottom:12px;
+}
 
-  a.back-button {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 10px 25px;
-    background: #3498db;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background 0.3s;
-  }
+ul{
+list-style-type:disc;
+padding-left:20px;
+}
 
-  a.back-button:hover {
-    background: #2980b9;
-  }
+li{
+margin:6px 0;
+}
 
-  @media (max-width: 600px) {
-    .container {
-      padding: 20px;
-    }
-    h1 {
-      font-size: 2em;
-    }
-    h2 {
-      font-size: 1.4em;
-    }
-  }
+.highlight{
+font-weight:bold;
+color:#2980b9;
+}
+
+.back-button{
+display:inline-block;
+margin-top:30px;
+padding:10px 25px;
+background:#3498db;
+color:#fff;
+text-decoration:none;
+border-radius:5px;
+transition:background 0.3s;
+}
+
+.back-button:hover{
+background:#2980b9;
+}
+
+@media (max-width:600px){
+.container{padding:20px;}
+h1{font-size:2em;}
+h2{font-size:1.4em;}
+}
+
 </style>
 </head>
+
 <body>
 
 <div class="container">
-  <h1>🏡 Survival Działki — BSCMC.PL</h1>
 
-  <p>Tryb <span class="highlight">Survival Działki</span> pozwala graczom na tworzenie własnych działek, rozwijanie ich, współpracę z innymi oraz korzystanie z ekonomii serwera w bezpiecznym i kontrolowanym środowisku.</p>
+<h1>🏡 Survival Działki — BSCMC.PL</h1>
 
-  <h2>🧱 Co oferuje tryb Survival Działki?</h2>
-  <ul>
-    <li>Tworzenie i posiadanie własnej działki z możliwością zapraszania znajomych.</li>
-    <li>Bezpieczna strefa do budowania bez obaw o griefing.</li>
-    <li>Rozwój ekonomiczny i handel przedmiotami między graczami.</li>
-    <li>Możliwość włączenia PvP lub pozostawienia działki bezpiecznej.</li>
-    <li>Eventy serwerowe i nagrody za aktywność na działkach.</li>
-  </ul>
+<p>Tryb <span class="highlight">Survival Działki</span> pozwala graczom na tworzenie własnych działek, rozwijanie ich oraz współpracę z innymi w bezpiecznym środowisku z rozwiniętą ekonomią serwera.</p>
 
-  <h2>🛠️ Co można robić na działkach?</h2>
-  <ul>
-    <li>Budować swoje domy, farmy, dekoracje i unikalne konstrukcje.</li>
-    <li>Zarządzać dostępem gości do działki i współpracować z innymi graczami.</li>
-    <li>Tworzyć farmy, automatyczne systemy i przyjazną infrastrukturę.</li>
-    <li>Eksperymentować w trybie survival bez ryzyka utraty zasobów przez innych graczy.</li>
-    <li>Handlować, sprzedawać i kupować przedmioty w systemie serwera.</li>
-  </ul>
+<h2>🧱 Co oferuje tryb Survival Działki?</h2>
 
-  <h2>⚔️ PvP i bezpieczeństwo</h2>
-  <ul>
-    <li>Właściciel działki decyduje o włączeniu PvP.</li>
-    <li>Zabronione jest niszczenie cudzych działek, budowli lub zasobów.</li>
-    <li>Administracja reaguje na oszustwa, griefing lub nadużycia.</li>
-  </ul>
+<ul>
+<li>Tworzenie i posiadanie własnej działki.</li>
+<li>Możliwość zapraszania znajomych.</li>
+<li>Bezpieczna strefa budowania.</li>
+<li>Handel między graczami.</li>
+<li>Eventy serwerowe i nagrody.</li>
+</ul>
 
-  <h2>💰 Ekonomia</h2>
-  <ul>
-    <li>Handel między graczami w systemie /ah i /shop.</li>
-    <li>Zakaz oszustw, scamowania i wykorzystywania bugów ekonomii.</li>
-    <li>Sprzedaż lub wymiana przedmiotów za prawdziwe pieniądze jest zabroniona.</li>
-  </ul>
+<h2>🛠️ Co można robić na działkach?</h2>
 
-  <h2>🧑‍🤝‍🧑 Społeczność i współpraca</h2>
-  <ul>
-    <li>Współpraca z gośćmi na działkach.</li>
-    <li>Tworzenie małych społeczności i wspólnych projektów.</li>
-    <li>Uczestnictwo w serwerowych eventach i konkursach.</li>
-  </ul>
+<ul>
+<li>Budować domy, farmy i dekoracje.</li>
+<li>Tworzyć automatyczne systemy.</li>
+<li>Współpracować z innymi graczami.</li>
+<li>Handlować przedmiotami.</li>
+</ul>
 
-  <h2>📜 Regulamin i zasady</h2>
-  <p>Grając na trybie Survival Działki, każdy gracz zobowiązuje się przestrzegać regulaminu serwera. Naruszenia zasad mogą skutkować ostrzeżeniem, kickiem, tymczasowym lub stałym banem.</p>
+<h2>⚔️ PvP i bezpieczeństwo</h2>
 
-  <a href="index.html" class="back-button">← Powrót</a>
+<ul>
+<li>Właściciel działki decyduje o włączeniu PvP.</li>
+<li>Zakaz niszczenia cudzych działek.</li>
+<li>Administracja reaguje na griefing.</li>
+</ul>
+
+<h2>💰 Ekonomia</h2>
+
+<ul>
+<li>Handel między graczami w /ah i /shop.</li>
+<li>Zakaz scamowania i wykorzystywania bugów.</li>
+<li>Zakaz sprzedaży itemów za prawdziwe pieniądze.</li>
+</ul>
+
+<h2>🧑‍🤝‍🧑 Społeczność</h2>
+
+<ul>
+<li>Współpraca z innymi graczami.</li>
+<li>Tworzenie wspólnych projektów.</li>
+<li>Udział w eventach serwerowych.</li>
+</ul>
+
+<h2>📜 Funkcje Serwera</h2>
+
+<h3>🎮 Podstawowe</h3>
+
+<ul>
+<li>🎁 <span class="highlight">Nagroda za dołączenie na DC</span> – wejdź w kanał <b>🏆・nagroda-za-dołączenie</b>, wpisz <b>/nagroda</b> i wypełnij ankietę.</li>
+<li>⚫ <span class="highlight">Otchłań</span> – wyciągnij itemy które przepadły lub są niepotrzebne.</li>
+<li>📅 <span class="highlight">Daily</span> – codzienne bonusy za logowanie.</li>
+</ul>
+
+<h3>🏝 Rozgrywka</h3>
+
+<ul>
+<li>🏝 <span class="highlight">Działki</span> – twórz i rozwijaj własną przestrzeń.</li>
+<li>🎲 <span class="highlight">Losowe TP</span> – teleport w losowe miejsce.</li>
+<li>⛏ <span class="highlight">Prace</span> – wybierz profesję i zarabiaj.</li>
+<li>✨ <span class="highlight">Talenty</span> – rozwijaj postać komendą <b>/talent</b>.</li>
+</ul>
+
+<h3>📦 Przedmioty</h3>
+
+<ul>
+<li>🔮 <span class="highlight">Enderchest</span> – dodatkowe miejsce na itemy.</li>
+<li>🛒 <span class="highlight">ItemShop</span> – zakup rang, kluczy i fly.</li>
+<li>🔥 <span class="highlight">Przepustki Nether / End</span> – dostęp do wymiarów.</li>
+<li>⏰ <span class="highlight">Sklep za czas</span> – wymieniaj tokeny.</li>
+</ul>
+
+<h3>⚙ Mechaniki</h3>
+
+<ul>
+<li>⚰ <span class="highlight">Groby</span> – itemy trafiają do grobu.</li>
+<li>🐟 <span class="highlight">Chest Fish</span> – łowienie skrzynek.</li>
+<li>🪑 <span class="highlight">Sit</span> – siadanie na schodach.</li>
+<li>🖼 <span class="highlight">Niewidzialne ramki</span>.</li>
+</ul>
+
+<h3>💰 Handel</h3>
+
+<ul>
+<li>🏪 <span class="highlight">Sklep aukcyjny</span>.</li>
+<li>👷 <span class="highlight">ShopNPC</span>.</li>
+<li>🚪 <span class="highlight">Warpy</span>.</li>
+</ul>
+
+<h3>⚔ Tryby dodatkowe</h3>
+
+<ul>
+<li>🗺 <span class="highlight">Quests</span> – zadania z nagrodami.</li>
+<li>⚔ <span class="highlight">Tower PvP</span>.</li>
+<li>📚 <span class="highlight">Stacker</span> – stakowanie mobów.</li>
+</ul>
+
+<h2>📜 Regulamin</h2>
+
+<p>Grając na trybie Survival Działki zgadzasz się przestrzegać regulaminu serwera. Naruszenia mogą skutkować ostrzeżeniem, kickiem lub banem.</p>
+
+<a href="index.html" class="back-button">← Powrót</a>
+
 </div>
 
 <script>
-  // Tworzenie cząsteczek w tle
-  for(let i=0; i<50; i++){
-    const p = document.createElement('div');
-    p.className = 'particle';
-    p.style.left = Math.random() * window.innerWidth + 'px';
-    p.style.top = Math.random() * window.innerHeight + 'px';
-    p.style.width = p.style.height = (3 + Math.random()*6) + 'px';
-    p.style.animationDuration = (5 + Math.random()*10) + 's';
-    document.body.appendChild(p);
-  }
+
+/* cząsteczki */
+
+for(let i=0;i<50;i++){
+
+const p=document.createElement('div');
+p.className='particle';
+
+p.style.left=Math.random()*window.innerWidth+'px';
+p.style.top=Math.random()*window.innerHeight+'px';
+
+p.style.width=p.style.height=(3+Math.random()*6)+'px';
+p.style.animationDuration=(5+Math.random()*10)+'s';
+
+document.body.appendChild(p);
+
+}
+
 </script>
 
 </body>
 </html>
-
-
