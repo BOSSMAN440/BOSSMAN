@@ -5,240 +5,211 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cennik Tworzenia Serwera | BSCMC.PL</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+/* --- Body --- */
+body {
+  font-family:'Segoe UI', Tahoma, sans-serif;
+  background:url("https://wallpapercave.com/wp/wp6005486.jpg") no-repeat center center fixed;
+  background-size:cover;
+  margin:0;
+  padding:20px;
+  color:#fff;
+  display:flex;
+  justify-content:flex-start;
+  min-height:100vh;
+  position:relative;
+}
 
-  body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    background: url("https://wallpapercave.com/wp/wp6005486.jpg") no-repeat center center fixed;
-    background-size: cover;
-    color: #fff;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    position: relative;
-    overflow-x: hidden;
-  }
+/* --- Nagłówek --- */
+h1 {
+  font-size:2.5em;
+  text-align:center;
+  background:linear-gradient(90deg,#00ffff,#ff00ff,#00ffff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:20px;
+}
 
-  body::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: url("https://www.transparenttextures.com/patterns/stardust.png");
-    opacity: 0.25;
-    z-index: 0;
-  }
+/* --- Kontener główny --- */
+.container {
+  flex:1;
+  max-width:800px;
+  margin-right:20px;
+}
 
-  h1 {
-    font-size: 3em;
-    text-transform: uppercase;
-    letter-spacing: 6px;
-    background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff);
-    background-size: 300%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: titleGradient 6s infinite linear;
-    margin-bottom: 20px;
-    z-index: 1;
-    text-align: center;
-  }
+/* --- Tabela cennika --- */
+.pricing-table {
+  width:100%;
+  background:rgba(20,20,20,0.9);
+  padding:20px;
+  border-radius:15px;
+  box-shadow:0 0 30px #ff00ff;
+  margin-bottom:30px;
+}
 
-  @keyframes titleGradient {
-    0% { background-position: 0%; }
-    100% { background-position: 300%; }
-  }
+.pricing-table table {
+  width:100%;
+  border-collapse:collapse;
+}
 
-  .subtitle {
-    font-size: 1.5em;
-    color: #00ccff;
-    margin-bottom: 40px;
-    text-align: center;
-    z-index: 1;
-  }
+.pricing-table th, .pricing-table td {
+  padding:12px 10px;
+  border-bottom:1px solid #444;
+}
 
-  .pricing-table {
-    width: 100%;
-    max-width: 1200px;
-    background: rgba(20, 20, 20, 0.9);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 0 30px #ff00ff;
-    z-index: 1;
-    table-layout: fixed;
-    word-wrap: break-word;
-    margin-bottom: 50px;
-    transition: all 0.3s;
-  }
+.pricing-table th {
+  font-size:1.1em;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background:linear-gradient(90deg,#00ffff,#ff00ff);
+}
 
-  .pricing-table h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #ff00ff;
-    font-size: 2em;
-    text-shadow: 0 0 10px #ff00ff;
-  }
+tr:hover {
+  background: rgba(255,255,255,0.05);
+}
 
-  .pricing-table p {
-    text-align:center;
-    color:#ff9900;
-    font-style: italic;
-    font-size:1.2em;
-    margin-bottom: 25px;
-  }
+/* --- Sidebar / Kalkulator --- */
+.sidebar {
+  width:250px;
+  background:rgba(20,20,20,0.95);
+  padding:15px;
+  border-radius:15px;
+  position:fixed;
+  right:-260px;
+  top:50px;
+  height:auto;
+  box-shadow:0 0 30px #ff00ff;
+  transition:right 0.3s;
+  z-index:2;
+}
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
-  }
+.sidebar.open { right:10px; }
 
-  th, td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #444;
-    font-size: 1em;
-    word-wrap: break-word;
-  }
+.sidebar h2 {
+  text-align:center;
+  margin-bottom:15px;
+  color:#ff00ff;
+}
 
-  th {
-    background: linear-gradient(90deg, #00ffff, #ff00ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 1.1em;
-  }
+.option {
+  padding:10px;
+  margin:5px 0;
+  background:rgba(255,255,255,0.1);
+  border-radius:8px;
+  cursor:pointer;
+  transition:all 0.3s;
+}
 
-  tr:hover {
-    background: rgba(255, 255, 255, 0.08);
-    transition: background 0.3s;
-  }
+.option.selected {
+  background:linear-gradient(90deg,#00ffcc,#00ccff);
+  color:#000;
+  font-weight:bold;
+}
 
-  /* CTA Section */
-  .cta-section {
-    text-align: center;
-    margin-bottom: 50px;
-    z-index: 2;
-    position: relative;
-  }
+#total {
+  text-align:center;
+  margin-top:15px;
+  font-size:1.3em;
+  color:#ff9900;
+  font-weight:bold;
+}
 
-  .cta-section p {
-    font-size: 1.2em;
-    color: #00ccff;
-    margin-bottom: 15px;
-  }
+/* --- Przycisk wysuwania --- */
+.toggle-sidebar {
+  position:fixed;
+  top:50px;
+  right:10px;
+  padding:10px 15px;
+  background:linear-gradient(90deg,#ff9900,#ff3300);
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  z-index:3;
+}
 
-  .cta-section button {
-    padding: 15px 35px;
-    font-size: 1.2em;
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    background: linear-gradient(90deg, #ff9900, #ff3300);
-    color: #fff;
-    transition: all 0.3s;
-    margin: 5px;
-  }
+.toggle-sidebar:hover {
+  transform:scale(1.05);
+  box-shadow:0 0 15px #ff9900,0 0 25px #ff3300;
+}
 
-  .cta-section button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px #ff9900, 0 0 40px #ff3300;
-  }
-
-  /* Responsywność */
-  @media (max-width: 900px) {
-    table { font-size: 0.9em; }
-  }
-  @media (max-width: 600px) {
-    .pricing-table { padding: 10px; }
-    table { font-size: 0.8em; }
-  }
+/* --- Responsywność --- */
+@media (max-width:900px) {
+  .pricing-table table { font-size:0.85em; }
+}
+@media (max-width:600px) {
+  .container { max-width:100%; margin-right:0; }
+  .sidebar { width:200px; }
+  .pricing-table table { font-size:0.8em; }
+}
 </style>
 </head>
 <body>
 
-<h1>CENNIK TWORZENIA SERWERA</h1>
-<div class="subtitle">Wybierz usługę najlepiej dopasowaną do Twojego projektu!</div>
+<div class="container">
+  <h1>Cennik Tworzenia Serwera</h1>
 
-<div class="pricing-table">
-  <h2>Usługi i ceny</h2>
-  <p>Po zgłoszeniu i potwierdzeniu zamówienia przechodzimy do realizacji. Czas wykonania pełnego serwera: max 36h. Pojedyncze usługi mogą być szybsze.</p>
-  <table>
-    <tr>
-      <th>Usługa</th>
-      <th>Opis</th>
-      <th>Cena</th>
-      <th>Czas realizacji</th>
-    </tr>
-    <tr>
-      <td>Pełne przygotowanie środowiska serwera</td>
-      <td>Instalacja silnika + wgranie podstawowych i dodatkowych pluginów + konfiguracja + testy działania</td>
-      <td>165 zł</td>
-      <td>do 36 h</td>
-    </tr>
-    <tr>
-      <td>Wgranie silnika</td>
-      <td>Instalacja silnika serwera (działa na pluginach)</td>
-      <td>1 zł</td>
-      <td>do 10 min</td>
-    </tr>
-    <tr>
-      <td>Wgranie podstawowych pluginów</td>
-      <td>Zestaw podstawowych pluginów (max 10)</td>
-      <td>20 zł</td>
-      <td>do 60 min</td>
-    </tr>
-    <tr>
-      <td>Konfiguracja podstawowych pluginów</td>
-      <td>Podstawowa konfiguracja wgranych pluginów</td>
-      <td>20 zł</td>
-      <td>do 60 min</td>
-    </tr>
-    <tr>
-      <td>Wgranie kolejnych pluginów</td>
-      <td>Cena za każdy dodatkowy plugin powyżej podstawowego pakietu</td>
-      <td>5,50 zł / plugin</td>
-      <td>5-10 min / plugin</td>
-    </tr>
-    <tr>
-      <td>Konfiguracja kolejnych pluginów</td>
-      <td>Konfiguracja dodatkowych pluginów powyżej podstawowego pakietu</td>
-      <td>5,50 zł / plugin</td>
-      <td>5-10 min / plugin</td>
-    </tr>
-    <tr>
-      <td>Backup serwera</td>
-      <td>Tworzenie kopii zapasowej po konfiguracji</td>
-      <td>22 zł</td>
-      <td>10-15 min</td>
-    </tr>
-    <tr>
-      <td>Instalacja mapy / świata</td>
-      <td>Dodanie własnej mapy lub świata klienta</td>
-      <td>33 zł</td>
-      <td>30-60 min</td>
-    </tr>
-    <tr>
-      <td>Wsparcie techniczne / konfiguracja 2 tygodnie</td>
-      <td>Gwarancja poprawek i wsparcia 2 tygodnie</td>
-      <td>50 zł</td>
-      <td>2 tygodnie</td>
-    </tr>
-    <tr>
-      <td>Wsparcie techniczne / konfiguracja 4 tygodnie</td>
-      <td>Gwarancja poprawek i wsparcia 4 tygodnie</td>
-      <td>85 zł</td>
-      <td>4 tygodnie</td>
-    </tr>
-  </table>
+  <div class="pricing-table">
+    <h2>Usługi i ceny</h2>
+    <p>Pełny projekt trwa max 36h. Pojedyncze usługi realizowane są szybciej.</p>
+    <table>
+      <tr>
+        <th>Usługa</th>
+        <th>Cena</th>
+      </tr>
+      <tr><td>Pełne przygotowanie środowiska serwera</td><td>165 zł</td></tr>
+      <tr><td>Wgranie silnika</td><td>1 zł</td></tr>
+      <tr><td>Wgranie podstawowych pluginów</td><td>20 zł</td></tr>
+      <tr><td>Konfiguracja podstawowych pluginów</td><td>20 zł</td></tr>
+      <tr><td>Wgranie kolejnych pluginów</td><td>5,50 zł / plugin</td></tr>
+      <tr><td>Konfiguracja kolejnych pluginów</td><td>5,50 zł / plugin</td></tr>
+      <tr><td>Backup serwera</td><td>22 zł</td></tr>
+      <tr><td>Instalacja mapy / świata</td><td>33 zł</td></tr>
+      <tr><td>Wsparcie techniczne 2 tygodnie</td><td>50 zł</td></tr>
+      <tr><td>Wsparcie techniczne 4 tygodnie</td><td>85 zł</td></tr>
+    </table>
+  </div>
 </div>
 
-<div class="cta-section">
-  <p>Chcesz zamówić serwer? Kliknij poniżej, aby zrobić TICKET:</p>
-  <button onclick="window.location.href='https://discord.gg/uek2nZQr9k'">TICKET ZAKUP</button>
-  <button onclick="window.location.href='regulamin,platnoscusugi.html'">REGULAMIN</button>
-  <button onclick="window.location.href='index.html'">POWRÓT DO STRONY GŁÓWNEJ</button>
+<button class="toggle-sidebar">Opcje / Kalkulator</button>
+
+<div class="sidebar" id="sidebar">
+  <h2>Wybierz usługi</h2>
+  <div class="option" data-price="1">Wgranie silnika (1 zł)</div>
+  <div class="option" data-price="20">Wgranie podstawowych pluginów (20 zł)</div>
+  <div class="option" data-price="20">Konfiguracja podstawowych pluginów (20 zł)</div>
+  <div class="option" data-price="5.5">Wgranie kolejnych pluginów (5,50 zł / plugin)</div>
+  <div class="option" data-price="5.5">Konfiguracja kolejnych pluginów (5,50 zł / plugin)</div>
+  <div class="option" data-price="22">Backup serwera (22 zł)</div>
+  <div class="option" data-price="33">Instalacja mapy / świata (33 zł)</div>
+  <div class="option" data-price="50">Wsparcie techniczne 2 tygodnie (50 zł)</div>
+  <div class="option" data-price="85">Wsparcie techniczne 4 tygodnie (85 zł)</div>
+  <div id="total">Suma: 0 zł</div>
 </div>
+
+<script>
+const toggleBtn = document.querySelector('.toggle-sidebar');
+const sidebar = document.getElementById('sidebar');
+const options = document.querySelectorAll('.option');
+const totalDisplay = document.getElementById('total');
+let total = 0;
+
+toggleBtn.addEventListener('click', () => {
+  sidebar.classList.toggle('open');
+});
+
+options.forEach(option => {
+  option.addEventListener('click', () => {
+    const price = parseFloat(option.dataset.price);
+    if(option.classList.contains('selected')){
+      option.classList.remove('selected');
+      total -= price;
+    } else {
+      option.classList.add('selected');
+      total += price;
+    }
+    totalDisplay.textContent = "Suma: " + total.toFixed(2) + " zł";
+  });
+});
+</script>
 
 </body>
 </html>
