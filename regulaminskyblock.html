@@ -4,179 +4,138 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Regulamin SkyBlock — BSCMC.PL</title>
+  
 <style>
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    background: url("https://wallpapercave.com/wp/wp6005486.jpg") no-repeat center center fixed;
-    background-size: cover;
-    color: #333;
-    min-height: 100vh;
-    overflow-x: hidden;
-    position: relative;
-  }
 
-  .particle {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.8);
-    animation: float 10s linear infinite;
-  }
+body{
+margin:0;
+font-family:'Segoe UI',Tahoma,sans-serif;
+background:url("https://wallpapercave.com/wp/wp6005486.jpg") no-repeat center center fixed;
+background-size:cover;
+color:#333;
+min-height:100vh;
+overflow-x:hidden;
+position:relative;
+}
 
-  @keyframes float {
-    0% { transform: translateY(0) translateX(0); opacity: 0.8; }
-    50% { opacity: 1; }
-    100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
-  }
+/* particles */
 
-  .container {
-    max-width: 900px;
-    margin: 60px auto;
-    background: rgba(255,255,255,0.95);
-    padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    position: relative;
-    z-index: 1;
-  }
+.particle{
+position:absolute;
+width:6px;
+height:6px;
+border-radius:50%;
+background:rgba(255,255,255,0.8);
+animation:float 10s linear infinite;
+}
 
-  h1 {
-    text-align: center;
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    color: #222;
-  }
+@keyframes float{
+0%{transform:translateY(0) translateX(0);opacity:.8;}
+50%{opacity:1;}
+100%{transform:translateY(-100vh) translateX(100px);opacity:0;}
+}
 
-  h2 {
-    font-size: 1.7em;
-    margin-top: 30px;
-    margin-bottom: 10px;
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 5px;
-  }
+.container{
+max-width:800px;
+margin:50px auto;
+background:rgba(255,255,255,0.95);
+color:#222;
+padding:40px;
+border-radius:12px;
+box-shadow:0 0 25px rgba(0,0,0,0.3);
+line-height:1.6;
+position:relative;
+z-index:1;
+}
 
-  p {
-    line-height: 1.6;
-    margin-bottom: 12px;
-  }
+h1{
+text-align:center;
+font-size:2.5em;
+margin-bottom:30px;
+}
 
-  ul {
-    list-style-type: disc;
-    padding-left: 20px;
-  }
+h2{
+font-size:1.5em;
+margin-top:30px;
+margin-bottom:10px;
+border-bottom:2px solid #ccc;
+padding-bottom:5px;
+}
 
-  li {
-    margin: 6px 0;
-  }
+ul{
+list-style:disc;
+padding-left:20px;
+}
 
-  .highlight {
-    font-weight: bold;
-    color: #2980b9;
-  }
+li{
+margin:6px 0;
+}
 
-  .warning {
-    font-weight: bold;
-    color: #d35400;
-  }
+.important{
+font-weight:bold;
+color:#d35400;
+}
 
-  a.back-button {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 10px 25px;
-    background: #3498db;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background 0.3s;
-  }
+.back-button{
+display:inline-block;
+margin-top:30px;
+padding:12px 30px;
+background:#3498db;
+color:#fff;
+text-decoration:none;
+border-radius:8px;
+transition:.3s;
+}
 
-  a.back-button:hover {
-    background: #2980b9;
-  }
+.back-button:hover{
+background:#2980b9;
+}
 
-  @media (max-width: 600px) {
-    .container {
-      padding: 20px;
-    }
-    h1 {
-      font-size: 2em;
-    }
-    h2 {
-      font-size: 1.4em;
-    }
-  }
+@media (max-width:600px){
+
+.container{
+padding:20px;
+}
+
+h1{
+font-size:2em;
+}
+
+h2{
+font-size:1.3em;
+}
+
+}
+
 </style>
 </head>
+
 <body>
 
 <div class="container">
-  <h1>🏝️ Regulamin SkyBlock — BSCMC.PL</h1>
 
-  <p>Grając na trybie <span class="highlight">SkyBlock</span> akceptujesz zasady niniejszego regulaminu. 
-  <span class="warning">Nieznajomość regulaminu nie zwalnia z odpowiedzialności.</span></p>
+<h1>📜 Regulamin Trybu SkyBlock (2026) — BSCMC.PL</h1>
 
-  <h2>🔰 1. Postanowienia ogólne</h2>
-  <ul>
-    <li>SkyBlock polega na rozwijaniu własnej wyspy w powietrzu.</li>
-    <li>Każdy gracz odpowiada za swoją wyspę i osoby na niej przebywające.</li>
-    <li>Administracja ma prawo interpretować regulamin i reagować w sprawach nieopisanych.</li>
-    <li>Regulamin może być zmieniany w dowolnym momencie.</li>
-    <li>Gracz odpowiada za bezpieczeństwo swojego konta.</li>
-  </ul>
+<p>Regulamin obowiązuje wszystkich graczy. Gra na serwerze oznacza akceptację zasad. 
+<span class="important">Nieznajomość regulaminu nie zwalnia z odpowiedzialności.</span></p>
+  
+<h2>🔰 1. Postanowienia ogólne</h2>
+<ul>
+<li>1.1 Grając na trybie SkyBlock akceptujesz niniejszy regulamin.</li>
+<li>1.2 Zakaz sprzedaży kont lub przekazywania konta innym osobom.</li>
+<li>1.3 Zakaz spamowania /report lub innych komend administracyjnych bez powodu.</li>
+<li>1.4 Administracja może zmienić regulamin w dowolnym momencie.</li>
+<li>1.5 Nieznajomość regulaminu nie zwalnia z jego przestrzegania.</li>
+<li>1.6 Tryb opiera się na uczciwej grze, współpracy i rozwijaniu wyspy.</li>
+<li>1.7 Gracz – osoba posiadająca konto na serwerze BSCMC.PL.</li>
+</ul>
 
-  <h2>🧱 2. Zasady ogólne gry</h2>
-  <ul>
-    <li>Zakaz używania cheatów, hacków lub exploitów (np. X-Ray, KillAura, Freecam, AutoClicker).</li>
-    <li>Dozwolone mody poprawiające wydajność gry (np. OptiFine).</li>
-    <li>Zakaz wykorzystywania bugów i duplikacji przedmiotów.</li>
-    <li>Zakaz spamowania, obrażania, mowy nienawiści oraz reklam innych serwerów.</li>
-    <li>Zakaz podszywania się pod administrację lub innych graczy.</li>
-    <li>Gracz odpowiada za swoje konto i nie może przekazywać go innym.</li>
-    <li>Multikonta dozwolone tylko w celach zgodnych z regulaminem.</li>
-  </ul>
+<h2>🧱 2. Zasady ogólne gry</h2>
+<ul>
+<li>2.1 Zakazane są cheaty, hacki i mody dające przewagę (X-Ray, KillAura, Fly, AutoClicker itp.).</li>
+<li>2.2 Wykorzystywanie bugów gry lub duplikacji jest zabronione.</li>
+<li>2.3 Zakaz spamu, obrażania, reklam innych serwerów oraz treści 18+.</li>
 
-  <h2>🏝️ 3. Wyspy i farmy</h2>
-  <ul>
-    <li>Gracz odpowiada za swoją wyspę oraz dodanych gości.</li>
-    <li>Zakaz budowania farm lub mechanizmów powodujących lag lub przeciążenie serwera.</li>
-    <li>Administracja może usuwać konstrukcje powodujące lag.</li>
-    <li>Zakaz tworzenia farm AFK lub nielegalnego używania minionków.</li>
-    <li>Gracz ponosi ryzyko przy dodawaniu innych graczy do wyspy.</li>
-  </ul>
-
-  <h2>⚔️ 4. PvP</h2>
-  <ul>
-    <li>PvP dozwolone tylko w wyznaczonych strefach lub za zgodą obu graczy.</li>
-    <li>Zakaz teleport-pułapek oraz trapów na warpach i w miejscach publicznych.</li>
-    <li>Przy zgłoszeniach wymagane dowody (nagrania).</li>
-  </ul>
-
-  <h2>💰 5. Handel i ekonomia</h2>
-  <ul>
-    <li>Zakaz scamowania, oszustw finansowych oraz manipulacji rynkiem.</li>
-    <li>Zakaz wykorzystywania bugów ekonomii lub duplikacji do zysku.</li>
-    <li>Handel za prawdziwe pieniądze (RMT) jest zabroniony.</li>
-    <li>Administracja może usuwać przedmioty zdobyte nieuczciwie.</li>
-    <li>Rekomendowane korzystanie z /ah lub /shop dla bezpieczeństwa transakcji.</li>
-  </ul>
-
-  <h2>🤖 6. Systemy nagród i AFK</h2>
-  <ul>
-    <li>Zakaz obchodzenia systemów anty-AFK.</li>
-    <li>Zakaz używania makr lub autoklikerów do symulowania aktywności.</li>
-    <li>System nagród (daily, questy, chest fish) wymaga obecności gracza na serwerze.</li>
-  </ul>
-
-  <h2>🛒 7. Sklepy i itemy</h2>
-  <ul>
-    <li>Zakaz kupowania, sprzedawania lub wymiany przedmiotów za prawdziwe pieniądze.</li>
-    <li>Zakupy w /shop oraz /itemshop są ostateczne — brak zwrotów.</li>
-    <li>Klucze i nagrody eventowe należy odbierać będąc online na serwerze.</li>
-  </ul>
-
-  <h2>🚫 8. Kary</h2>
 <li>
 <span class="important">KARY ZA REKLAMY:</span><br>
 1 reklama – ban 1 dzień<br>
@@ -189,29 +148,116 @@
 1 BAN – 1 dzień<br>
 2 BAN – 3 dni<br>
 3 BAN – 7 dni<br>
-4 BAN I KAŻDY KOLEJNY – nawet do 2 tygodni oraz czyszczenie EQ
+4 BAN i każdy kolejny – nawet do 2 tygodni oraz czyszczenie ekwipunku
 </li>
 
-  <h2>📜 9. Postanowienia końcowe</h2>
-  <ul>
-    <li>Administracja ma prawo zmieniać regulamin w dowolnym czasie.</li>
-    <li>Gracz ma obowiązek sprawdzać aktualną wersję regulaminu.</li>
-    <li>Nieprzestrzeganie regulaminu skutkuje sankcjami administracyjnymi.</li>
-    <li>Decyzje administracji są ostateczne. Wątpliwości można zgłaszać do właściciela serwera.</li>
-  </ul>
+<li>2.4 Zakaz podszywania się pod innych graczy lub administrację.</li>
+<li>2.5 Gracz odpowiada za swoje konto i bezpieczeństwo postaci.</li>
+<li>2.6 Multikonta dozwolone tylko w zgodzie z regulaminem.</li>
+<li>2.7 Zakaz celowego lagowania serwera.</li>
+<li>2.8 Wymagana kultura wobec innych graczy.</li>
+<li>2.9 Szansa na drop z farm lub spawnerów zależy od ustawień serwera.</li>
+</ul>
 
-  <a href="index.html" class="back-button">← Powrót</a>
+<h2>🏝️ 3. Wyspy</h2>
+<ul>
+<li>3.1 Każdy gracz może posiadać wyspę, ilość zależy od rangi i uprawnień.</li>
+<li>3.2 Dodanie gracza do wyspy odbywa się na własną odpowiedzialność właściciela.</li>
+<li>3.3 Administracja nie odpowiada za kradzieże ani zniszczenia na wyspach przez innych graczy.</li>
+<li>3.4 Właściciel wyspy odpowiada za osoby, którym nadał dostęp.</li>
+<li>3.5 W przypadku kradzieży lub griefingu administracja może odmówić interwencji.</li>
+<li>3.6 Właściciel nie może zgłaszać osoby, którą sam dodał do wyspy.</li>
+<li>3.7 Dodając gracza akceptujesz ryzyko utraty przedmiotów lub zniszczenia budowli.</li>
+<li>3.8 Zakaz budowy obraźliwych konstrukcji lub farm powodujących lagi serwera.</li>
+<li>3.9 PvP na wyspie zależy od ustawień właściciela.</li>
+</ul>
+
+<h2>⚔️ 4. PvP</h2>
+<ul>
+<li>4.1 PvP tylko w wyznaczonych miejscach lub za zgodą obu graczy.</li>
+<li>4.2 Zakaz teleport-pułapek i trapów na warpach/publicznych strefach.</li>
+<li>4.3 Zakaz campienia przy spawnach i eventowych lokacjach.</li>
+<li>4.4 Przy zgłoszeniach wymagane dowody (nagranie lub screenshot).</li>
+</ul>
+
+<h2>💰 5. Handel</h2>
+<ul>
+<li>5.1 Handel między graczami odbywa się na własne ryzyko.</li>
+<li>5.2 Zaleca się korzystanie z /ah, /shop lub GUI dla bezpieczeństwa transakcji.</li>
+<li>5.3 Zakaz wystawiania fałszywych lub oszukujących przedmiotów.</li>
+<li>5.4 Zakaz wszelkich oszustw handlowych i wyłudzeń.</li>
+<li>5.5 Zakaz manipulowania rynkiem lub cenami przedmiotów.</li>
+<li>5.6 Handel za prawdziwe pieniądze (RMT) jest zabroniony.</li>
+<li>5.7 Administracja nie odpowiada za utratę przedmiotów w wyniku błędów gracza.</li>
+<li>5.8 Zakaz wykorzystywania exploitów lub duplikacji w celach zarobkowych.</li>
+</ul>
+
+<h2>⚖️ 6. Administracja</h2>
+<ul>
+<li>6.1 Administracja może interweniować w każdej sytuacji związanej z łamaniem regulaminu.</li>
+<li>6.2 Zgłoszenia naruszeń należy przesyłać przez /report lub Discord.</li>
+<li>6.3 Decyzje administracji są ostateczne.</li>
+<li>W przypadku niezgody z karą możliwe odwołanie przez ticket do właściciela serwera.</li>
+<li>6.4 Obrażanie, grożenie lub próby przekupienia administracji będą surowo karane.</li>
+</ul>
+
+<h2>🚫 7. Bany</h2>
+<ul>
+<li>7.1 Każde naruszenie regulaminu może skutkować karą.</li>
+<li>7.2 Obchodzenie bana multikontem skutkuje podwójną karą.</li>
+<li>7.3 Zakaz używania VPN lub proxy w celu ukrycia tożsamości po otrzymaniu kary.</li>
+<li>7.4 Współpraca z cheaterami skutkuje karą.</li>
+<li>7.5 Możliwość odwołania się poprzez ticket zależy od rodzaju przewinienia.</li>
+</ul>
+
+<h2>🔨 8. Rodzaje kar</h2>
+<ul>
+<li>8.1 Ostrzeżenie – informacja o naruszeniu regulaminu.</li>
+<li>8.2 Mute – czasowe zablokowanie czatu.</li>
+<li>8.3 Kick – wyrzucenie z serwera.</li>
+<li>8.4 Ban czasowy – tymczasowe zablokowanie dostępu do serwera.</li>
+<li>8.5 Ban permanentny – stałe zablokowanie konta.</li>
+<li>8.6 Czyszczenie ekwipunku lub wyspy – w przypadku poważnych naruszeń.</li>
+</ul>
+
+<h2>🛡️ 9. Postanowienia końcowe</h2>
+<ul>
+<li>9.1 Regulamin może ulec zmianie w dowolnym momencie.</li>
+<li>9.2 Każdy gracz ma obowiązek sprawdzać aktualną wersję regulaminu.</li>
+<li>9.3 W sprawach nieujętych w regulaminie ostateczne decyzje podejmuje administracja serwera.</li>
+</ul>
+
+<h2>🔑 10. Klucze i sklep</h2>
+<ul>
+<li>10.1 Klucze i nagrody eventowe są rozdawane według zasad serwera.</li>
+<li>10.2 Brak obecności podczas rozdania kluczy skutkuje ich utratą.</li>
+<li>10.3 Zakupy w /shop lub /itemshop są ostateczne – brak zwrotów.</li>
+<li>10.4 Zakaz kupowania, sprzedawania lub wymiany przedmiotów za prawdziwe pieniądze.</li>
+<li>10.5 Wsparcie finansowe serwera (PLN) nie podlega zwrotom ani reklamacji.</li>
+<li>10.6 Zakaz wykorzystywania sufitu w Netherze lub innych exploitów do nieuczciwych działań.</li>
+</ul>
+
+<h2>📜 Oświadczenie gracza</h2>
+<ul>
+<li>Każdy gracz korzystający z serwera BSCMC.PL potwierdza, że przeczytał, zrozumiał i akceptuje regulamin.</li>
+<li>Nieznajomość regulaminu nie zwalnia z odpowiedzialności.</li>
+<li>Gracz zobowiązuje się przestrzegać wszystkich zasad i stosować decyzje administracji serwera.</li>
+<li>Łamanie regulaminu może skutkować ostrzeżeniem, banem czasowym lub permanentnym oraz innymi karami.</li>
+</ul>
+
+<a href="index.html" class="back-button">← Powrót</a>
+
 </div>
 
 <script>
-for(let i=0; i<50; i++){
-  const p = document.createElement('div');
-  p.className = 'particle';
-  p.style.left = Math.random() * window.innerWidth + 'px';
-  p.style.top = Math.random() * window.innerHeight + 'px';
-  p.style.width = p.style.height = (3 + Math.random()*6) + 'px';
-  p.style.animationDuration = (5 + Math.random()*10) + 's';
-  document.body.appendChild(p);
+for(let i=0;i<50;i++){
+const p=document.createElement('div');
+p.className='particle';
+p.style.left=Math.random()*window.innerWidth+'px';
+p.style.top=Math.random()*window.innerHeight+'px';
+p.style.width=p.style.height=(3+Math.random()*6)+'px';
+p.style.animationDuration=(5+Math.random()*10)+'s';
+document.body.appendChild(p);
 }
 </script>
 
