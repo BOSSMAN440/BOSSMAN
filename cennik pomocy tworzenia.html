@@ -36,6 +36,24 @@ h1 {
   margin-right:20px;
 }
 
+/* --- Styl przycisku regulaminu --- */
+.regulamin-btn {
+  display:inline-block;
+  margin-bottom:20px;
+  padding:12px 25px;
+  font-size:1.1em;
+  background:linear-gradient(90deg,#00ccff,#ff00ff);
+  color:#fff;
+  text-decoration:none;
+  border-radius:10px;
+  box-shadow:0 0 15px #00ccff,0 0 25px #ff00ff;
+  transition:0.3s;
+}
+.regulamin-btn:hover {
+  transform:scale(1.05);
+  box-shadow:0 0 20px #00ccff,0 0 40px #ff00ff;
+}
+
 /* --- Tabela cennika --- */
 .pricing-table {
   width:100%;
@@ -57,14 +75,11 @@ h1 {
 }
 
 .pricing-table th {
-  color: #ff00ff; /* albo biały: #fff */
-  background: none;
-  -webkit-background-clip: unset;
-  -webkit-text-fill-color: unset;
+  color:#ff00ff;
 }
 
 tr:hover {
-  background: rgba(255,255,255,0.05);
+  background:rgba(255,255,255,0.05);
 }
 
 /* --- Sidebar / Kalkulator --- */
@@ -147,15 +162,17 @@ tr:hover {
 <div class="container">
   <h1>Cennik Tworzenia Serwera</h1>
 
+  <!-- 🔥 Dodany przycisk regulaminu -->
+  <a href="regulamin,platnoscusugi.html" class="regulamin-btn">
+    📜 Regulamin płatności usług
+  </a>
+
   <div class="pricing-table">
     <h2>Usługi i ceny</h2>
     <p>Pełny projekt trwa max 36h. Pojedyncze usługi realizowane są szybciej.</p>
     <table>
-      <tr>
-        <th>Usługa</th>
-        <th>Cena</th>
-      </tr>
-      <tr><td>Pełne przygotowanie środowiska serwera bez Wsparcie technicznego</td><td>157 zł  do 36h</td></tr>
+      <tr><th>Usługa</th><th>Cena</th></tr>
+      <tr><td>Pełne przygotowanie środowiska serwera bez Wsparcie technicznego</td><td>157 zł do 36h</td></tr>
       <tr><td>Wgranie silnika</td><td>1 zł  do 15 min</td></tr>
       <tr><td>Wgranie podstawowych pluginów</td><td>20 zł  30-60 min</td></tr>
       <tr><td>Konfiguracja podstawowych pluginów</td><td>20 zł  1-2 h</td></tr>
