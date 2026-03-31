@@ -6,7 +6,6 @@
 <title>BSCMC.PL - Kosmiczny Panel</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 <style>
-  /* Reset i bazowe */
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
   body {
@@ -18,7 +17,6 @@
     position: relative;
   }
 
-  /* Gwiezdne tło */
   body::before {
     content:"";
     position:absolute;
@@ -30,7 +28,6 @@
     pointer-events:none;
   }
 
-  /* Header */
   header {
     text-align:center;
     padding:60px 20px 20px 20px;
@@ -51,7 +48,6 @@
     color:#00ffff;
   }
 
-  /* Menu */
   nav {
     display:flex;
     justify-content:center;
@@ -91,17 +87,24 @@
     z-index:-1;
   }
 
-  /* Button styles */
   .action-buttons {
     display:flex;
-    justify-content:center;
+    flex-direction:column;
     gap:20px;
+    justify-content:center;
+    align-items:center;
     flex-wrap:wrap;
     margin:40px 0;
     z-index:1;
     position:relative;
   }
-  .action-buttons button {
+  .top-row {
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .top-row button, .bottom-row button {
     padding:20px 40px;
     font-size:1.2em;
     border:none;
@@ -113,12 +116,13 @@
     box-shadow:0 0 20px #00ffff,0 0 40px #ff00ff;
     transition: all 0.3s;
   }
-  .action-buttons button:hover {
+  .top-row button:hover, .bottom-row button:hover {
     transform: scale(1.1);
     box-shadow:0 0 40px #00ffff,0 0 80px #ff00ff;
   }
 
-  /* Features section */
+  .bottom-row { margin-top:0; }
+
   .features {
     max-width:1000px;
     margin:80px auto;
@@ -156,7 +160,6 @@
   }
   .feature p { color:#ccc; line-height:1.5em; font-size:1em; }
 
-  /* Leaderboard */
   .leaderboard {
     max-width:500px;
     margin:60px auto;
@@ -200,7 +203,7 @@
 
   @media(max-width:768px) {
     nav { flex-direction:column; }
-    .action-buttons { flex-direction:column; }
+    .top-row { flex-direction:column; }
   }
 
 </style>
@@ -212,7 +215,6 @@
   <p>IP: <strong>BSCMC.PL</strong> | Wersja: <strong>1.21.10</strong> | 🟢 Online: <span id="online-players">...</span></p>
 </header>
 
-<!-- Menu -->
 <nav>
   <a href="survival.html">🏡 SURVIVAL</a>
   <a href="skyblock.html">☁️ SKYBLOCK</a>
@@ -220,14 +222,19 @@
   <a href="cennik pomocy tworzenia.html">💰 CENNIK</a>
 </nav>
 
-<!-- Action Buttons -->
 <div class="action-buttons">
-  <button onclick="copyIP(this)">📋 Kopiuj IP: BSCMC.PL</button>
-  <button onclick="window.location.href='https://discord.gg/qHUxfMuYs2'">💬 Dołącz do Discord</button>
-  <button onclick="window.location.href='https://www.twitch.tv/98bossman98'">🎥 Twitch</button>
+  <!-- Górny wiersz: Discord i Twitch -->
+  <div class="top-row">
+    <button onclick="window.location.href='https://discord.gg/qHUxfMuYs2'">💬 Dołącz do Discord</button>
+    <button onclick="window.location.href='https://www.twitch.tv/98bossman98'">🎥 Twitch</button>
+  </div>
+  
+  <!-- Dolny wiersz: Kopiuj IP -->
+  <div class="bottom-row">
+    <button onclick="copyIP(this)">📋 Kopiuj IP: BSCMC.PL</button>
+  </div>
 </div>
 
-<!-- Features -->
 <section class="features">
   <h2>🔥 Dlaczego warto wybrać BSCMC.PL?</h2>
   <div class="features-grid">
@@ -240,7 +247,6 @@
   </div>
 </section>
 
-<!-- Leaderboard -->
 <section class="leaderboard">
   <h3>🏆 Najlepsi gracze</h3>
   <div class="player gold"><span>🥇 SalatkaOwocowa</span><span>120 zł</span></div>
@@ -256,7 +262,6 @@
 </footer>
 
 <script>
-  // Kopiowanie IP
   function copyIP(btn){
     navigator.clipboard.writeText("BSCMC.PL").then(()=>{
       const original = btn.innerHTML;
@@ -265,7 +270,6 @@
     }).catch(()=> alert("Błąd kopiowania IP."));
   }
 
-  // Online players co 10s
   async function fetchOnline(){
     try{
       const res = await fetch("https://api.mcsrvstat.us/2/BSCMC.PL");
