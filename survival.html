@@ -28,7 +28,7 @@
     pointer-events:none;
   }
 
-  /* Header */
+  /* Header / Kontener */
   .container {
     max-width:900px;
     margin:60px auto;
@@ -73,14 +73,13 @@
   }
 
   ul { padding-left:20px; }
-
   li { margin:6px 0; }
-
   .highlight { font-weight:bold; color:#ff00ff; }
 
   .back-button {
     display:inline-block;
-    margin-top:30px;
+    margin-top:20px;
+    margin-bottom:20px;
     padding:12px 30px;
     background: linear-gradient(135deg,#00ffff,#ff00ff);
     color:#fff;
@@ -91,6 +90,7 @@
     box-shadow:0 0 20px #00ffff,0 0 40px #ff00ff;
     position:relative;
     overflow:hidden;
+    cursor:pointer;
   }
   .back-button:hover {
     transform: scale(1.1);
@@ -130,6 +130,9 @@
 <h1>🏡 Survival Działki — BSCMC.PL</h1>
 
 <p>Tryb <span class="highlight">Survival Działki</span> pozwala graczom na tworzenie własnych działek, rozwijanie ich oraz współpracę z innymi w bezpiecznym środowisku z rozwiniętą ekonomią serwera.</p>
+
+<!-- NOWY PRZYCISK -->
+<button class="back-button" onclick="window.location.href='DZIALKI_DROP_Z_RYB.html'">🎣 Działki Drop z Ryb</button>
 
 <h2>🧱 Co oferuje tryb Survival Działki?</h2>
 <ul>
