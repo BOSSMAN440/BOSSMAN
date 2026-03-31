@@ -4,53 +4,84 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Regulaminy BSCMC.PL</title>
+
 <style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
   body {
-    margin: 0;
     font-family: 'Segoe UI', Tahoma, sans-serif;
-    background: url("https://wallpapercave.com/wp/wp6005486.jpg") no-repeat center center fixed;
-    background-size: cover;
+    background: radial-gradient(circle at center, #000010 0%, #020020 100%);
     color: #fff;
     min-height: 100vh;
-    overflow-x: hidden;
     position: relative;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 80px;
   }
 
-  /* Cząsteczki w tle */
-  .particle {
+  /* Delikatna tekstura gwiezdna */
+  body::before {
+    content: "";
     position: absolute;
-    width: 6px;
-    height: 6px;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: url("https://www.transparenttextures.com/patterns/stardust.png");
+    opacity: 0.2;
+    z-index: 0;
+  }
+
+  /* ✨ NEON FLOAT PARTICLES – identyczne jak na stronie głównej */
+  .float-star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #00ffff;
     border-radius: 50%;
-    background: rgba(255,255,255,0.8);
-    animation: float 10s linear infinite;
+    opacity: 0.7;
+    filter: blur(0.8px);
+    animation: drift 12s linear infinite;
+    pointer-events: none;
+    z-index: 0;
   }
 
-  @keyframes float {
-    0% { transform: translateY(0) translateX(0); opacity: 0.8; }
-    50% { opacity: 1; }
-    100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+  @keyframes drift {
+    0%   { transform: translateY(0) translateX(0); opacity: 0.7; }
+    50%  { opacity: 1; }
+    100% { transform: translateY(-200px) translateX(80px); opacity: 0; }
   }
 
+  /* --- KARTA --- */
   .container {
     max-width: 700px;
-    margin: 80px auto;
-    background: rgba(255,255,255,0.95);
-    color: #333;
-    padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    background: rgba(0, 0, 25, 0.85);
+    padding: 35px 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 35px #00ffff88, 0 0 80px #ff00ff44;
     text-align: center;
     position: relative;
     z-index: 1;
+    backdrop-filter: blur(5px);
   }
 
   h1 {
-    font-size: 2.5em;
-    margin-bottom: 40px;
-    color: #222;
+    font-size: 2.6em;
+    margin-bottom: 35px;
+    background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 6s linear infinite;
+    text-shadow: 0 0 20px #00ffff55;
   }
 
+  @keyframes glow {
+    0% { background-position: 0%; }
+    100% { background-position: 300%; }
+  }
+
+  /* --- Przyciski --- */
   .button {
     display: inline-block;
     margin: 15px;
@@ -59,49 +90,61 @@
     font-weight: bold;
     color: #fff;
     text-decoration: none;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #00ccff, #ff00ff);
-    box-shadow: 0 0 10px #00ccff, 0 0 20px #ff00ff;
-    transition: transform 0.2s, box-shadow 0.3s;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #00ffff, #ff00ff);
+    box-shadow: 0 0 20px #00ffff88, 0 0 40px #ff00ff66;
+    transition: 0.3s;
   }
 
   .button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px #00ccff, 0 0 40px #ff00ff;
+    transform: scale(1.1);
+    box-shadow: 0 0 40px #00ffff, 0 0 80px #ff00ff;
   }
 
-  /* Przyciski powrotu mają inny kolor */
+  /* Przyciski powrotu */
   .back-button {
-    background: #3498db;
-    box-shadow: 0 0 10px #2980b9, 0 0 20px #3498db;
+    background: linear-gradient(135deg, #0066ff, #00ccff);
+    box-shadow: 0 0 20px #00aaff88, 0 0 40px #0088ff66;
   }
+
 </style>
 </head>
+
 <body>
 
 <div class="container">
   <h1>📜 Wybierz regulamin</h1>
-  
-  <!-- Przycisk Działki -->
+
   <a href="regulaminsurvivaldzialki.html" class="button">🏡 Działki</a>
-  <a href="regulaminskyblock.html" class="button">☁️ Sky block</a>
-  
-  <!-- Przycisk Powrotu pod przyciskami -->
+  <a href="regulaminskyblock.html" class="button">☁️ SkyBlock</a>
+
   <br>
+
   <a href="index.html" class="button back-button">← Powrót</a>
 </div>
 
 <script>
-  // Tworzenie cząsteczek w tle
-  for(let i=0; i<50; i++){
-    const p = document.createElement('div');
-    p.className = 'particle';
-    p.style.left = Math.random() * window.innerWidth + 'px';
-    p.style.top = Math.random() * window.innerHeight + 'px';
-    p.style.width = p.style.height = (3 + Math.random()*6) + 'px';
-    p.style.animationDuration = (5 + Math.random()*10) + 's';
-    document.body.appendChild(p);
+/* GENEROWANIE NEONOWYCH CZĄSTEK IDENTYCZNYCH JAK NA STRONIE GŁÓWNEJ */
+function spawnFloatingParticles() {
+  for (let i = 0; i < 80; i++) {
+    const s = document.createElement("div");
+    s.className = "float-star";
+
+    const size = Math.random() * 3 + 2;
+    s.style.width = size + "px";
+    s.style.height = size + "px";
+
+    s.style.left = Math.random() * window.innerWidth + "px";
+    s.style.top = Math.random() * window.innerHeight + "px";
+
+    s.style.animationDuration = (10 + Math.random() * 12) + "s";
+    s.style.opacity = Math.random() * 0.6 + 0.3;
+
+    document.body.appendChild(s);
   }
+}
+
+spawnFloatingParticles();
 </script>
 
 </body>
