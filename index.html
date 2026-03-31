@@ -17,6 +17,7 @@
     position: relative;
   }
 
+  /* Gwiezdne tło */
   body::before {
     content:"";
     position:absolute;
@@ -28,6 +29,7 @@
     pointer-events:none;
   }
 
+  /* Header */
   header {
     text-align:center;
     padding:60px 20px 20px 20px;
@@ -40,14 +42,17 @@
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
     animation:gradientAnim 6s linear infinite;
+    text-shadow:0 0 20px #00ffff,0 0 40px #ff00ff;
   }
   @keyframes gradientAnim {0%{background-position:0%}100%{background-position:300%}}
   header p {
     font-size:1.5em;
     margin-top:10px;
     color:#00ffff;
+    text-shadow:0 0 10px #00ffff;
   }
 
+  /* Menu */
   nav {
     display:flex;
     justify-content:center;
@@ -72,21 +77,10 @@
   }
   nav a:hover {
     transform: scale(1.1);
-    box-shadow:0 0 30px #00ffff,0 0 60px #ff00ff;
-  }
-  nav a::after {
-    content:"";
-    position:absolute;
-    top:0; left:0;
-    width:100%; height:100%;
-    border-radius:20px;
-    background: linear-gradient(45deg,#ff00ff,#00ffff,#ff00ff,#00ffff);
-    opacity:0.3;
-    filter:blur(20px);
-    transition: all 0.3s;
-    z-index:-1;
+    box-shadow:0 0 50px #00ffff,0 0 100px #ff00ff;
   }
 
+  /* Akcja przycisków */
   .action-buttons {
     display:flex;
     flex-direction:column;
@@ -115,20 +109,50 @@
     background: linear-gradient(135deg,#00ffff,#ff00ff);
     box-shadow:0 0 20px #00ffff,0 0 40px #ff00ff;
     transition: all 0.3s;
+    position:relative;
   }
+  /* Neon hover i particles */
   .top-row button:hover, .bottom-row button:hover {
     transform: scale(1.1);
-    box-shadow:0 0 40px #00ffff,0 0 80px #ff00ff;
+    box-shadow:0 0 60px #00ffff,0 0 120px #ff00ff;
+  }
+  /* Particle container */
+  .particle {
+    position:absolute;
+    width:6px;
+    height:6px;
+    background:#00ffff;
+    border-radius:50%;
+    pointer-events:none;
+    opacity:0;
+    z-index:2;
+    animation:particleAnim 0.8s forwards;
+  }
+  @keyframes particleAnim {
+    0%{opacity:1; transform:translate(0,0) scale(1);}
+    100%{opacity:0; transform:translate(var(--x), var(--y)) scale(0);}
   }
 
   .bottom-row { margin-top:0; }
 
+  /* Features z animowanym gradientem */
   .features {
     max-width:1000px;
     margin:80px auto;
     text-align:center;
     position:relative; z-index:1;
+    background: linear-gradient(270deg,#00001a,#000022);
+    background-size:600% 600%;
+    animation:sectionGradient 20s ease infinite;
+    border-radius:20px;
+    padding:50px 20px;
   }
+  @keyframes sectionGradient{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+
   .features h2 {
     font-size:2.5em;
     background: linear-gradient(90deg,#00ffff,#ff00ff,#00ffff);
@@ -136,6 +160,7 @@
     -webkit-text-fill-color:transparent;
     animation:gradientAnim 6s linear infinite;
     margin-bottom:40px;
+    text-shadow:0 0 15px #00ffff,0 0 30px #ff00ff;
   }
   .features-grid {
     display:grid;
@@ -143,7 +168,7 @@
     gap:30px;
   }
   .feature {
-    background: rgba(0,0,20,0.8);
+    background: rgba(0,0,20,0.7);
     padding:30px 20px;
     border-radius:20px;
     box-shadow:0 0 20px #00ffff;
@@ -151,29 +176,33 @@
   }
   .feature:hover {
     transform: scale(1.05);
-    box-shadow:0 0 40px #ff00ff,0 0 60px #00ffff;
+    box-shadow:0 0 60px #ff00ff,0 0 80px #00ffff;
   }
   .feature h3 {
     color:#00ffff;
     font-size:1.5em;
     margin-bottom:15px;
+    text-shadow:0 0 10px #00ffff;
   }
   .feature p { color:#ccc; line-height:1.5em; font-size:1em; }
 
+  /* Leaderboard */
   .leaderboard {
     max-width:500px;
     margin:60px auto;
-    background: rgba(0,0,30,0.9);
+    background: rgba(0,0,30,0.85);
     border-radius:25px;
     padding:30px;
-    box-shadow:0 0 40px #ff00ff,0 0 80px #00ffff;
+    box-shadow:0 0 60px #ff00ff,0 0 120px #00ffff;
     position:relative; z-index:1;
+    animation:sectionGradient 20s ease infinite;
   }
   .leaderboard h3 {
     text-align:center;
     color:#00ffff;
     font-size:2em;
     margin-bottom:25px;
+    text-shadow:0 0 20px #00ffff,0 0 40px #ff00ff;
   }
   .player {
     display:flex;
@@ -206,6 +235,9 @@
     .top-row { flex-direction:column; }
   }
 
+  /* Ikony animacje */
+  .icon-hover:hover { transform: rotate(10deg) scale(1.1); transition:0.3s; }
+
 </style>
 </head>
 <body>
@@ -223,13 +255,10 @@
 </nav>
 
 <div class="action-buttons">
-  <!-- Górny wiersz: Discord i Twitch -->
   <div class="top-row">
-    <button onclick="window.location.href='https://discord.gg/qHUxfMuYs2'">💬 Dołącz do Discord</button>
-    <button onclick="window.location.href='https://www.twitch.tv/98bossman98'">🎥 Twitch</button>
+    <button class="icon-hover" onclick="window.location.href='https://discord.gg/qHUxfMuYs2'">💬 Dołącz do Discord</button>
+    <button class="icon-hover" onclick="window.location.href='https://www.twitch.tv/98bossman98'">🎥 Twitch</button>
   </div>
-  
-  <!-- Dolny wiersz: Kopiuj IP -->
   <div class="bottom-row">
     <button onclick="copyIP(this)">📋 Kopiuj IP: BSCMC.PL</button>
   </div>
@@ -262,14 +291,34 @@
 </footer>
 
 <script>
+  // Kopiowanie IP + particle effect
   function copyIP(btn){
     navigator.clipboard.writeText("BSCMC.PL").then(()=>{
       const original = btn.innerHTML;
       btn.innerHTML = "✅ Skopiowano!";
+      
+      // Particle efekt
+      for(let i=0;i<15;i++){
+        const p = document.createElement("div");
+        p.className="particle";
+        p.style.left = btn.offsetLeft + btn.offsetWidth/2 + "px";
+        p.style.top = btn.offsetTop + btn.offsetHeight/2 + "px";
+        p.style.setProperty("--x",(Math.random()-0.5)*200+"px");
+        p.style.setProperty("--y",(Math.random()-0.5)*200+"px");
+        document.body.appendChild(p);
+        setTimeout(()=>p.remove(),800);
+      }
+      
+      // Dźwięk
+      const audio = new Audio('https://www.soundjay.com/button/sounds/button-16.mp3');
+      audio.volume = 0.2;
+      audio.play();
+      
       setTimeout(()=> btn.innerHTML = original, 2000);
     }).catch(()=> alert("Błąd kopiowania IP."));
   }
 
+  // Online players co 10s
   async function fetchOnline(){
     try{
       const res = await fetch("https://api.mcsrvstat.us/2/BSCMC.PL");
@@ -280,5 +329,6 @@
   fetchOnline();
   setInterval(fetchOnline,10000);
 </script>
+
 </body>
 </html>
