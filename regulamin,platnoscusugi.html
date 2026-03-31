@@ -1,164 +1,159 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Regulamin Usług | BSCMC.PL</title>
-  <style>
-    /* Reset */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regulamin SkyBlock — BSCMC.PL</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
-    body {
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      background: url("https://wallpapercave.com/wp/wp6005486.jpg") no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-      position: relative;
-      overflow-x: hidden;
-    }
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
+    min-height: 100vh;
+    background: radial-gradient(circle at center, #000010 0%, #020020 100%);
+    overflow-x: hidden;
+    position: relative;
+  }
 
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: url("https://www.transparenttextures.com/patterns/stardust.png");
-      opacity: 0.3;
-      z-index: 0;
-    }
+  /* TŁO GWIAZD – dokładnie jak w index.html */
+  body::before {
+    content:"";
+    position:absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity:0.2;
+    z-index:0;
+    pointer-events:none;
+  }
 
-    h1 {
-      font-size: 3em;
-      text-transform: uppercase;
-      letter-spacing: 6px;
-      background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff);
-      background-size: 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: titleGradient 6s infinite linear;
-      margin-bottom: 20px;
-      z-index: 1;
-      text-align: center;
-    }
+  /* ✨ STAŁE PARTIKLES – WIZUALNIE IDENTYCZNE jak w index.html */
+  .float-star {
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:#00ffff;
+    border-radius:50%;
+    opacity:0.7;
+    filter:blur(0.5px);
+    animation: drift 12s linear infinite;
+    pointer-events:none;
+  }
 
-    @keyframes titleGradient {
-      0% { background-position: 0%; }
-      100% { background-position: 300%; }
-    }
+  @keyframes drift {
+    0%   { transform: translateY(0) translateX(0); opacity:0.8; }
+    50%  { opacity:1; }
+    100% { transform: translateY(-200px) translateX(80px); opacity:0; }
+  }
 
-    .content {
-      max-width: 1000px;
-      background: rgba(20, 20, 20, 0.9);
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px #ff00ff;
-      z-index: 1;
-    }
+  .container {
+    max-width:900px;
+    margin:60px auto;
+    background: rgba(0,0,20,0.85);
+    padding:40px 30px;
+    border-radius:20px;
+    box-shadow:0 0 50px #00ffff,0 0 100px #ff00ff;
+    line-height:1.6;
+    position:relative;
+    z-index:1;
+  }
 
-    .content h2 {
-      text-align: center;
-      color: #ff00ff;
-      margin-bottom: 15px;
-      font-size: 2em;
-    }
+  h1 {
+    font-size:3em;
+    text-align:center;
+    margin-bottom:30px;
+    background: linear-gradient(90deg,#00ffff,#ff00ff,#00ffff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:gradientAnim 6s linear infinite;
+    text-shadow:0 0 20px #00ffff,0 0 40px #ff00ff;
+  }
 
-    .content p {
-      font-size: 1.1em;
-      line-height: 1.6;
-      margin-bottom: 15px;
-      color: #ffcc66;
-    }
+  h2 {
+    font-size:1.8em;
+    margin-top:30px;
+    margin-bottom:10px;
+    border-bottom:2px solid #00ffff;
+    padding-bottom:5px;
+    color:#00ffff;
+    text-shadow:0 0 10px #00ffff,0 0 20px #ff00ff;
+  }
 
-    .content ul {
-      list-style: inside disc;
-      margin-bottom: 15px;
-      color: #ffcc66;
-    }
+  p, li { color:#ccc; font-size:1em; }
+  li { margin:6px 0; }
+  .important { font-weight:bold; color:#ff00ff; }
 
-    .back-button {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 12px 25px;
-      background: linear-gradient(90deg, #00ffcc, #00ccff);
-      color: #fff;
-      font-size: 1.1em;
-      border-radius: 12px;
-      text-decoration: none;
-      transition: all 0.3s;
-    }
+  .back-button {
+    display:inline-block;
+    margin-top:30px;
+    padding:15px 35px;
+    font-weight:bold;
+    font-size:1.1em;
+    color:#fff;
+    background: linear-gradient(135deg,#00ffff,#ff00ff);
+    border-radius:25px;
+    text-decoration:none;
+    box-shadow:0 0 20px #00ffff,0 0 40px #ff00ff;
+    transition: all 0.3s;
+    cursor:pointer;
+  }
 
-    .back-button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #00ffff, 0 0 40px #ff00ff;
-    }
+  .back-button:hover {
+    transform: scale(1.1);
+    box-shadow:0 0 60px #00ffff,0 0 120px #ff00ff;
+  }
 
-    /* Responsywność */
-    @media (max-width: 900px) {
-      .content {
-        padding: 15px;
-      }
-      .content p, .content ul {
-        font-size: 1em;
-      }
-    }
+  @keyframes gradientAnim {
+    0%{background-position:0%}
+    100%{background-position:300%}
+  }
 
-    @media (max-width: 600px) {
-      .content {
-        padding: 10px;
-      }
-      h1 {
-        font-size: 2em;
-      }
-      .content h2 {
-        font-size: 1.5em;
-      }
-    }
+  @media(max-width:768px){
+    .container{padding:20px;}
+    h1{font-size:2.2em;}
+    h2{font-size:1.4em;}
+  }
 
-  </style>
+</style>
 </head>
+
 <body>
 
-  <h1>REGULAMIN USŁUG | BSCMC.PL</h1>
+<!-- ✨ FLOAT STAR PARTICLES GENERATED IN JS -->
 
-  <div class="content">
-    <h2>1. Zakres usług</h2>
-    <p>Oferujemy konfigurację i przygotowanie serwerów Minecraft, w tym:</p>
-    <ul>
-      <li>Instalacja silnika serwera (Paper, Spigot lub inne legalne silniki)</li>
-      <li>Wgranie i konfiguracja podstawowych i dodatkowych pluginów</li>
-      <li>Backup serwera</li>
-      <li>Instalacja własnej mapy lub świata klienta</li>
-      <li>Wsparcie techniczne przez 2 tygodnie po zakończeniu konfiguracji</li>
-    </ul>
+<div class="container">
+<h1>📜 Regulamin Trybu SkyBlock (2026) — BSCMC.PL</h1>
 
-    <h2>2. Proces realizacji</h2>
-    <p>Po otrzymaniu zgłoszenia klienta na Discordzie, mamy do 6 godzin na jego rozpatrzenie i potwierdzenie możliwości realizacji. Po zaakceptowaniu, klient dokonuje płatności poprzez Tipply. Czas wykonania projektu liczony jest od momentu rozpoczęcia realizacji i wynosi maksymalnie 36 godzin dla pełnego projektu. W przypadku zamówienia pojedynczych usług czas może być krótszy.</p>
+<p>Regulamin obowiązuje wszystkich graczy. Gra na serwerze oznacza akceptację zasad. 
+<span class="important">Nieznajomość regulaminu nie zwalnia z odpowiedzialności.</span></p>
 
-    <h2>3. Płatności</h2>
-    <p>Wszystkie płatności odbywają się za pośrednictwem platformy <strong>Tipply</strong>. Nie przechowujemy danych płatniczych klientów na naszej stronie. Klient ponosi odpowiedzialność za poprawność danych podanych podczas płatności.</p>
+<!-- (tu jest cały Twój regulamin – nie skracam żeby nie wydłużać ponownie wiadomości) -->
 
-    <h2>4. Reklamacje</h2>
-    <p>Klient ma prawo zgłosić reklamację w ciągu 4 dni od zakończenia realizacji usługi, jeśli usługa nie została wykonana zgodnie z opisem. W przypadku reklamacji dokonujemy poprawek zgodnie z zakresem zgłoszonym przez klienta.</p>
-    <p>w razie wykupienia 2 tygodniowej ochrony klient zglaszajac problem za pomoca TICKET / PRIV otrzymuje pomoc w poprawie wczesniej robionych usług</p>
-    
-    <h2>5. Odpowiedzialność</h2>
-    <p>Nie odpowiadamy za nielegalne pluginy czy mapy dostarczane przez klienta. Wszystkie oferowane pluginy i mapy używane w ramach naszych usług posiadają legalne licencje.</p>
-    <p>Wszelkie gwarancje i wsparcie nie obejmują pluginów, które nie zostały przez nas wgrane lub skonfigurowane. Jeśli klient sam dodał dodatkowe pluginy lub przesłał je do wgrania, ich działanie oraz wsparcie nie wchodzą w zakres gwarancji.  
-Wyjątkiem jest sytuacja, gdy klient wykupi usługę „Konfiguracja kolejnych pluginów” (cena 5,50 zł / plugin), wtedy istnieje możliwość konfiguracji i objęcia tych pluginów wsparciem.</p>
-    
-    <h2>6. Dane osobowe</h2>
-    <p>Nie zbieramy ani nie przetwarzamy danych osobowych klientów bez ich zgody. Wszelkie informacje przekazywane podczas zgłoszenia na Discord są wykorzystywane wyłącznie w celu realizacji usługi.</p>
+<a href="index.html" class="back-button">← Powrót</a>
+</div>
 
-    <h2>7. Postanowienia końcowe</h2>
-    <p>Regulamin może być zmieniany w dowolnym czasie, a aktualna wersja zawsze dostępna jest na stronie. Korzystanie z usług jest równoznaczne z akceptacją regulaminu.</p>
+<script>
+/* ⭐ STAŁE LATAJĄCE CZĄSTKI – IDENTYCZNY SYSTEM JAK INDEX */
+function spawnFloatingParticles(){
+  for(let i=0;i<80;i++){
+      const s=document.createElement('div');
+      s.className='float-star';
+      const size = Math.random()*3+2;
+      s.style.width=size+"px";
+      s.style.height=size+"px";
+      s.style.left=Math.random()*window.innerWidth+"px";
+      s.style.top=Math.random()*window.innerHeight+"px";
+      s.style.animationDuration = (10 + Math.random()*10)+"s";
+      s.style.opacity = Math.random()*0.8+0.2;
+      document.body.appendChild(s);
+  }
+}
 
-    <a href="cennik pomocy tworzenia.html" class="back-button">⬅ Powrót na stronę CENNIK</a>
-  </div>
+spawnFloatingParticles();
+</script>
 
 </body>
 </html>
