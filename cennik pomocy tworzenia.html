@@ -4,97 +4,154 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cennik Tworzenia Serwera | BSCMC.PL</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
 <style>
-/* --- Body --- */
+/* -------------------------------------- */
+/* GLOBAL STYLING – JAK NA STRONIE GŁÓWNEJ */
+/* -------------------------------------- */
+* { margin:0; padding:0; box-sizing:border-box; }
+
 body {
-  font-family:'Segoe UI', Tahoma, sans-serif;
-  background:url("https://wallpapercave.com/wp/wp6005486.jpg") no-repeat center center fixed;
-  background-size:cover;
-  margin:0;
-  padding:20px;
+  font-family:'Orbitron', sans-serif;
+  background: radial-gradient(circle at center, #000010 0%, #020020 100%);
   color:#fff;
-  display:flex;
-  justify-content:flex-start;
+  padding:20px;
   min-height:100vh;
+  overflow-x:hidden;
   position:relative;
 }
 
-/* --- Nagłówek --- */
+/* Stardust overlay jak w index.html */
+body::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:url('https://www.transparenttextures.com/patterns/stardust.png');
+  opacity:0.2;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* LATAJĄCE PARTICLES – IDENTYCZNIE JAK INDEX */
+.float-star {
+  position:absolute;
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:#00ffff;
+  opacity:0.7;
+  filter:blur(1px);
+  animation: drift 12s linear infinite;
+  pointer-events:none;
+}
+@keyframes drift {
+  0% { transform: translateY(0) translateX(0); opacity:0.7; }
+  50% { opacity:1; }
+  100% { transform: translateY(-200px) translateX(120px); opacity:0; }
+}
+
+/* -------------------------------------- */
+/* NAGŁÓWEK */
+/* -------------------------------------- */
 h1 {
-  font-size:2.5em;
+  font-size:3em;
   text-align:center;
+  margin-bottom:25px;
   background:linear-gradient(90deg,#00ffff,#ff00ff,#00ffff);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  margin-bottom:20px;
+  animation: gradientMove 6s linear infinite;
+  text-shadow:0 0 15px #00ffff;
+}
+@keyframes gradientMove {
+  0%{background-position:0%;}
+  100%{background-position:300%;}
 }
 
-/* --- Kontener główny --- */
-.container {
-  flex:1;
-  max-width:800px;
-  margin-right:20px;
-}
-
-/* --- Styl przycisku regulaminu --- */
-.regulamin-btn {
+/* -------------------------------------- */
+/* PRZYCISKI REGULAMINU */
+/* -------------------------------------- */
+.menu-btn {
   display:inline-block;
   margin-bottom:20px;
+  margin-right:15px;
   padding:12px 25px;
   font-size:1.1em;
-  background:linear-gradient(90deg,#00ccff,#ff00ff);
+  background:linear-gradient(135deg,#00ffff,#ff00ff);
   color:#fff;
   text-decoration:none;
   border-radius:10px;
-  box-shadow:0 0 15px #00ccff,0 0 25px #ff00ff;
+  box-shadow:0 0 20px #00ffff,0 0 40px #ff00ff;
   transition:0.3s;
 }
-.regulamin-btn:hover {
-  transform:scale(1.05);
-  box-shadow:0 0 20px #00ccff,0 0 40px #ff00ff;
+.menu-btn:hover {
+  transform:scale(1.08);
+  box-shadow:0 0 30px #00ffff,0 0 60px #ff00ff;
 }
 
-/* --- Tabela cennika --- */
+/* -------------------------------------- */
+/* KONTENER CENNIKA (NEON CARD) */
+/* -------------------------------------- */
+.container {
+  max-width:850px;
+  margin:auto;
+  background:rgba(0,0,20,0.85);
+  padding:25px;
+  border-radius:20px;
+  box-shadow:0 0 40px #00ffff,0 0 60px #ff00ff;
+  position:relative;
+  z-index:2;
+}
+
+/* -------------------------------------- */
+/* TABELA */
+/* -------------------------------------- */
 .pricing-table {
-  width:100%;
-  background:rgba(20,20,20,0.9);
+  background:rgba(0,0,30,0.8);
   padding:20px;
   border-radius:15px;
   box-shadow:0 0 30px #ff00ff;
-  margin-bottom:30px;
+}
+
+.pricing-table h2 {
+  text-align:center;
+  font-size:1.8em;
+  margin-bottom:10px;
+  background: linear-gradient(90deg,#00ffff,#ff00ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
 .pricing-table table {
   width:100%;
   border-collapse:collapse;
 }
-
 .pricing-table th, .pricing-table td {
-  padding:12px 10px;
-  border-bottom:1px solid #444;
+  padding:12px;
+  border-bottom:1px solid #333;
 }
-
 .pricing-table th {
-  color:#ff00ff;
+  color:#00ffff;
+  text-shadow:0 0 10px #00ffff;
 }
+tr:hover { background:rgba(255,255,255,0.05); }
 
-tr:hover {
-  background:rgba(255,255,255,0.05);
-}
-
-/* --- Sidebar / Kalkulator --- */
+/* -------------------------------------- */
+/* SIDEBAR KALKULATOR */
+/* -------------------------------------- */
 .sidebar {
-  width:250px;
-  background:rgba(20,20,20,0.95);
+  width:260px;
+  background:rgba(0,0,30,0.95);
   padding:15px;
   border-radius:15px;
   position:fixed;
-  right:-260px;
+  right:-280px;
   top:50px;
-  height:auto;
   box-shadow:0 0 30px #ff00ff;
-  transition:right 0.3s;
-  z-index:2;
+  transition: right 0.3s;
+  z-index:3;
 }
 
 .sidebar.open { right:10px; }
@@ -102,7 +159,8 @@ tr:hover {
 .sidebar h2 {
   text-align:center;
   margin-bottom:15px;
-  color:#ff00ff;
+  color:#00ffff;
+  text-shadow:0 0 10px #00ffff;
 }
 
 .option {
@@ -111,119 +169,152 @@ tr:hover {
   background:rgba(255,255,255,0.1);
   border-radius:8px;
   cursor:pointer;
-  transition:all 0.3s;
+  transition:.3s;
 }
-
 .option.selected {
-  background:linear-gradient(90deg,#00ffcc,#00ccff);
+  background:linear-gradient(90deg,#00ffcc,#00aaff);
   color:#000;
-  font-weight:bold;
 }
 
 #total {
   text-align:center;
-  margin-top:15px;
+  margin-top:10px;
   font-size:1.3em;
-  color:#ff9900;
-  font-weight:bold;
+  color:#ffcc00;
+  text-shadow:0 0 10px #ffcc00;
 }
 
-/* --- Przycisk wysuwania --- */
+/* Przycisk otwierający */
 .toggle-sidebar {
   position:fixed;
   top:50px;
   right:10px;
-  padding:10px 15px;
-  background:linear-gradient(90deg,#ff9900,#ff3300);
+  padding:10px 20px;
+  background:linear-gradient(135deg,#ff9900,#ff3300);
   border:none;
-  border-radius:8px;
+  border-radius:10px;
   cursor:pointer;
-  z-index:3;
+  font-family:'Orbitron';
+  color:#fff;
+  font-size:1em;
+  box-shadow:0 0 20px #ff6600;
+  transition:.3s;
+  z-index:4;
 }
-
 .toggle-sidebar:hover {
   transform:scale(1.05);
-  box-shadow:0 0 15px #ff9900,0 0 25px #ff3300;
+  box-shadow:0 0 35px #ff7700;
 }
 
-/* --- Responsywność --- */
-@media (max-width:900px) {
-  .pricing-table table { font-size:0.85em; }
-}
-@media (max-width:600px) {
-  .container { max-width:100%; margin-right:0; }
-  .sidebar { width:200px; }
-  .pricing-table table { font-size:0.8em; }
+/* -------------------------------------- */
+/* RESPONSYWNOŚĆ */
+/* -------------------------------------- */
+@media(max-width:700px){
+  .toggle-sidebar { top:10px; }
+  .sidebar { top:10px; }
+  .container { padding:15px; }
+  h1 { font-size:2.3em; }
 }
 </style>
 </head>
+
 <body>
 
+<!-- ------------------------- -->
+<!-- PARTICLE SPAWNER          -->
+<!-- ------------------------- -->
+<script>
+function spawnFloatingParticles(){
+  for(let i=0;i<80;i++){
+    const s=document.createElement("div");
+    s.className="float-star";
+    const size=Math.random()*3+2;
+    s.style.width=size+"px";
+    s.style.height=size+"px";
+    s.style.left=Math.random()*window.innerWidth+"px";
+    s.style.top=Math.random()*window.innerHeight+"px";
+    s.style.animationDuration=(10+Math.random()*10)+"s";
+    s.style.opacity=Math.random()*0.8+0.2;
+    document.body.appendChild(s);
+  }
+}
+spawnFloatingParticles();
+</script>
+
+<!-- ------------------------- -->
+<!-- TREŚĆ STRONY              -->
+<!-- ------------------------- -->
 <div class="container">
+
   <h1>Cennik Tworzenia Serwera</h1>
 
-  <!-- 🔥 Dodany przycisk regulaminu -->
-  <a href="regulamin,platnoscusugi.html" class="regulamin-btn">
-    📜 Regulamin płatności usług
-  </a>
+  <!-- PRZYCISKI -->
+  <a href="regulamin.html" class="menu-btn">📜 Regulamin</a>
+  <a href="regulamin,platnoscusugi.html" class="menu-btn">💳 Regulamin płatności usług</a>
 
   <div class="pricing-table">
     <h2>Usługi i ceny</h2>
-    <p>Pełny projekt trwa max 36h. Pojedyncze usługi realizowane są szybciej.</p>
+    <p style="text-align:center; margin-bottom:10px;">Pełny projekt trwa max 36h. Pojedyncze usługi realizowane są szybciej.</p>
+
     <table>
       <tr><th>Usługa</th><th>Cena</th></tr>
-      <tr><td>Pełne przygotowanie środowiska serwera bez Wsparcie technicznego</td><td>157 zł do 36h</td></tr>
-      <tr><td>Wgranie silnika</td><td>1 zł  do 15 min</td></tr>
-      <tr><td>Wgranie podstawowych pluginów</td><td>20 zł  30-60 min</td></tr>
-      <tr><td>Konfiguracja podstawowych pluginów</td><td>20 zł  1-2 h</td></tr>
-      <tr><td>Wgranie kolejnych pluginów</td><td>5,50 zł / plugin  5-15 min</td></tr>
-      <tr><td>Konfiguracja kolejnych pluginów</td><td>5,50 zł / plugin  10-20 min</td></tr>
-      <tr><td>Backup serwera</td><td>22 zł  20-30 min</td></tr>
-      <tr><td>Instalacja mapy / świata</td><td>33 zł  30-60 min</td></tr>
+      <tr><td>Pełne przygotowanie środowiska serwera</td><td>157 zł</td></tr>
+      <tr><td>Wgranie silnika</td><td>1 zł</td></tr>
+      <tr><td>Wgranie podstawowych pluginów</td><td>20 zł</td></tr>
+      <tr><td>Konfiguracja podstawowych pluginów</td><td>20 zł</td></tr>
+      <tr><td>Wgranie kolejnych pluginów</td><td>5,50 zł</td></tr>
+      <tr><td>Konfiguracja kolejnych pluginów</td><td>5,50 zł</td></tr>
+      <tr><td>Backup serwera</td><td>22 zł</td></tr>
+      <tr><td>Instalacja mapy / świata</td><td>33 zł</td></tr>
       <tr><td>Wsparcie techniczne 2 tygodnie</td><td>50 zł</td></tr>
       <tr><td>Wsparcie techniczne 4 tygodnie</td><td>85 zł</td></tr>
     </table>
   </div>
 </div>
 
+<!-- ------------------------- -->
+<!-- SIDEBAR KALKULATOR        -->
+<!-- ------------------------- -->
 <button class="toggle-sidebar">Opcje / Kalkulator</button>
 
 <div class="sidebar" id="sidebar">
   <h2>Wybierz usługi</h2>
+
   <div class="option" data-price="1">Wgranie silnika (1 zł)</div>
   <div class="option" data-price="20">Wgranie podstawowych pluginów (20 zł)</div>
   <div class="option" data-price="20">Konfiguracja podstawowych pluginów (20 zł)</div>
-  <div class="option" data-price="5.5">Wgranie kolejnych pluginów (5,50 zł / plugin)</div>
-  <div class="option" data-price="5.5">Konfiguracja kolejnych pluginów (5,50 zł / plugin)</div>
+  <div class="option" data-price="5.5">Wgranie dodatkowych pluginów (5,50 zł)</div>
+  <div class="option" data-price="5.5">Konfiguracja dodatkowych pluginów (5,50 zł)</div>
   <div class="option" data-price="22">Backup serwera (22 zł)</div>
   <div class="option" data-price="33">Instalacja mapy / świata (33 zł)</div>
-  <div class="option" data-price="50">Wsparcie techniczne 2 tygodnie (50 zł)</div>
-  <div class="option" data-price="85">Wsparcie techniczne 4 tygodnie (85 zł)</div>
+  <div class="option" data-price="50">Wsparcie 2 tygodnie (50 zł)</div>
+  <div class="option" data-price="85">Wsparcie 4 tygodnie (85 zł)</div>
+
   <div id="total">Suma: 0 zł</div>
 </div>
 
 <script>
-const toggleBtn = document.querySelector('.toggle-sidebar');
-const sidebar = document.getElementById('sidebar');
-const options = document.querySelectorAll('.option');
-const totalDisplay = document.getElementById('total');
+const sidebar = document.getElementById("sidebar");
+const toggleBtn = document.querySelector(".toggle-sidebar");
+const options = document.querySelectorAll(".option");
+const totalDisplay = document.getElementById("total");
 let total = 0;
 
-toggleBtn.addEventListener('click', () => {
-  sidebar.classList.toggle('open');
+toggleBtn.addEventListener("click", ()=> {
+  sidebar.classList.toggle("open");
 });
 
-options.forEach(option => {
-  option.addEventListener('click', () => {
-    const price = parseFloat(option.dataset.price);
-    if(option.classList.contains('selected')){
-      option.classList.remove('selected');
-      total -= price;
+options.forEach(opt=>{
+  opt.addEventListener("click",()=>{
+    const price=parseFloat(opt.dataset.price);
+    if(opt.classList.contains("selected")){
+      opt.classList.remove("selected");
+      total-=price;
     } else {
-      option.classList.add('selected');
-      total += price;
+      opt.classList.add("selected");
+      total+=price;
     }
-    totalDisplay.textContent = "Suma: " + total.toFixed(2) + " zł";
+    totalDisplay.textContent="Suma: "+total.toFixed(2)+" zł";
   });
 });
 </script>
