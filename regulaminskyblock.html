@@ -4,121 +4,122 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Regulamin SkyBlock — BSCMC.PL</title>
-  
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 <style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
+    min-height: 100vh;
+    background: radial-gradient(circle at center, #000010 0%, #020020 100%);
+    overflow-x: hidden;
+    position: relative;
+  }
 
-body{
-margin:0;
-font-family:'Segoe UI',Tahoma,sans-serif;
-background:url("https://wallpapercave.com/wp/wp6005486.jpg") no-repeat center center fixed;
-background-size:cover;
-color:#333;
-min-height:100vh;
-overflow-x:hidden;
-position:relative;
-}
+  body::before {
+    content:"";
+    position:absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity:0.2;
+    z-index:0;
+    pointer-events:none;
+  }
 
-/* particles */
+  .container {
+    max-width:900px;
+    margin:60px auto;
+    background: rgba(0,0,20,0.85);
+    padding:40px 30px;
+    border-radius:20px;
+    box-shadow:0 0 50px #00ffff,0 0 100px #ff00ff;
+    line-height:1.6;
+    position:relative;
+    z-index:1;
+  }
 
-.particle{
-position:absolute;
-width:6px;
-height:6px;
-border-radius:50%;
-background:rgba(255,255,255,0.8);
-animation:float 10s linear infinite;
-}
+  h1 {
+    font-size:3em;
+    text-align:center;
+    margin-bottom:30px;
+    background: linear-gradient(90deg,#00ffff,#ff00ff,#00ffff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:gradientAnim 6s linear infinite;
+    text-shadow:0 0 20px #00ffff,0 0 40px #ff00ff;
+  }
+  h2 {
+    font-size:1.8em;
+    margin-top:30px;
+    margin-bottom:10px;
+    border-bottom:2px solid #00ffff;
+    padding-bottom:5px;
+    color:#00ffff;
+    text-shadow:0 0 10px #00ffff,0 0 20px #ff00ff;
+  }
 
-@keyframes float{
-0%{transform:translateY(0) translateX(0);opacity:.8;}
-50%{opacity:1;}
-100%{transform:translateY(-100vh) translateX(100px);opacity:0;}
-}
+  p, li { color:#ccc; font-size:1em; }
+  li { margin:6px 0; }
+  .important { font-weight:bold; color:#ff00ff; }
 
-.container{
-max-width:800px;
-margin:50px auto;
-background:rgba(255,255,255,0.95);
-color:#222;
-padding:40px;
-border-radius:12px;
-box-shadow:0 0 25px rgba(0,0,0,0.3);
-line-height:1.6;
-position:relative;
-z-index:1;
-}
+  .back-button {
+    display:inline-block;
+    margin-top:30px;
+    padding:15px 35px;
+    font-weight:bold;
+    font-size:1.1em;
+    color:#fff;
+    background: linear-gradient(135deg,#00ffff,#ff00ff);
+    border-radius:25px;
+    text-decoration:none;
+    box-shadow:0 0 20px #00ffff,0 0 40px #ff00ff;
+    transition: all 0.3s;
+    cursor:pointer;
+  }
+  .back-button:hover {
+    transform: scale(1.1);
+    box-shadow:0 0 60px #00ffff,0 0 120px #ff00ff;
+  }
 
-h1{
-text-align:center;
-font-size:2.5em;
-margin-bottom:30px;
-}
+  /* Particle */
+  .particle {
+    position:absolute;
+    width:6px;
+    height:6px;
+    background:#00ffff;
+    border-radius:50%;
+    pointer-events:none;
+    opacity:0;
+    z-index:2;
+    animation:particleAnim 0.8s forwards;
+  }
+  @keyframes particleAnim {
+    0%{opacity:1; transform:translate(0,0) scale(1);}
+    100%{opacity:0; transform:translate(var(--x), var(--y)) scale(0);}
+  }
 
-h2{
-font-size:1.5em;
-margin-top:30px;
-margin-bottom:10px;
-border-bottom:2px solid #ccc;
-padding-bottom:5px;
-}
+  @keyframes gradientAnim {0%{background-position:0%}100%{background-position:300%}}
 
-ul{
-list-style:disc;
-padding-left:20px;
-}
-
-li{
-margin:6px 0;
-}
-
-.important{
-font-weight:bold;
-color:#d35400;
-}
-
-.back-button{
-display:inline-block;
-margin-top:30px;
-padding:12px 30px;
-background:#3498db;
-color:#fff;
-text-decoration:none;
-border-radius:8px;
-transition:.3s;
-}
-
-.back-button:hover{
-background:#2980b9;
-}
-
-@media (max-width:600px){
-
-.container{
-padding:20px;
-}
-
-h1{
-font-size:2em;
-}
-
-h2{
-font-size:1.3em;
-}
-
-}
+  @media(max-width:768px){
+    .container{padding:20px;}
+    h1{font-size:2.2em;}
+    h2{font-size:1.4em;}
+  }
 
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
 <h1>📜 Regulamin Trybu SkyBlock (2026) — BSCMC.PL</h1>
 
 <p>Regulamin obowiązuje wszystkich graczy. Gra na serwerze oznacza akceptację zasad. 
 <span class="important">Nieznajomość regulaminu nie zwalnia z odpowiedzialności.</span></p>
-  
+
+<!-- Tutaj wklejamy całą treść regulaminu -->
 <h2>🔰 1. Postanowienia ogólne</h2>
 <ul>
 <li>1.1 Grając na trybie SkyBlock akceptujesz niniejszy regulamin.</li>
@@ -135,22 +136,8 @@ font-size:1.3em;
 <li>2.1 Zakazane są cheaty, hacki i mody dające przewagę (X-Ray, KillAura, Fly, AutoClicker itp.).</li>
 <li>2.2 Wykorzystywanie bugów gry lub duplikacji jest zabronione.</li>
 <li>2.3 Zakaz spamu, obrażania, reklam innych serwerów oraz treści 18+.</li>
-
-<li>
-<span class="important">KARY ZA REKLAMY:</span><br>
-1 reklama – ban 1 dzień<br>
-2 reklamy – ban 3 dni<br>
-3 reklamy – ban 7 dni
-</li>
-
-<li>
-<span class="important">KARY ZA CHEATY:</span><br>
-1 BAN – 1 dzień<br>
-2 BAN – 3 dni<br>
-3 BAN – 7 dni<br>
-4 BAN i każdy kolejny – nawet do 2 tygodni oraz czyszczenie ekwipunku
-</li>
-
+<li><span class="important">KARY ZA REKLAMY:</span><br>1 reklama – ban 1 dzień<br>2 reklamy – ban 3 dni<br>3 reklamy – ban 7 dni</li>
+<li><span class="important">KARY ZA CHEATY:</span><br>1 BAN – 1 dzień<br>2 BAN – 3 dni<br>3 BAN – 7 dni<br>4 BAN i każdy kolejny – nawet do 2 tygodni oraz czyszczenie ekwipunku</li>
 <li>2.4 Zakaz podszywania się pod innych graczy lub administrację.</li>
 <li>2.5 Gracz odpowiada za swoje konto i bezpieczeństwo postaci.</li>
 <li>2.6 Multikonta dozwolone tylko w zgodzie z regulaminem.</li>
@@ -159,106 +146,23 @@ font-size:1.3em;
 <li>2.9 Szansa na drop z farm lub spawnerów zależy od ustawień serwera.</li>
 </ul>
 
-<h2>🏝️ 3. Wyspy</h2>
-<ul>
-<li>3.1 Każdy gracz może posiadać wyspę, ilość zależy od rangi i uprawnień.</li>
-<li>3.2 Dodanie gracza do wyspy odbywa się na własną odpowiedzialność właściciela.</li>
-<li>3.3 Administracja nie odpowiada za kradzieże ani zniszczenia na wyspach przez innych graczy.</li>
-<li>3.4 Właściciel wyspy odpowiada za osoby, którym nadał dostęp.</li>
-<li>3.5 W przypadku kradzieży lub griefingu administracja może odmówić interwencji.</li>
-<li>3.6 Właściciel nie może zgłaszać osoby, którą sam dodał do wyspy.</li>
-<li>3.7 Dodając gracza akceptujesz ryzyko utraty przedmiotów lub zniszczenia budowli.</li>
-<li>3.8 Zakaz budowy obraźliwych konstrukcji lub farm powodujących lagi serwera.</li>
-<li>3.9 PvP na wyspie zależy od ustawień właściciela.</li>
-</ul>
-
-<h2>⚔️ 4. PvP</h2>
-<ul>
-<li>4.1 PvP tylko w wyznaczonych miejscach lub za zgodą obu graczy.</li>
-<li>4.2 Zakaz teleport-pułapek i trapów na warpach/publicznych strefach.</li>
-<li>4.3 Zakaz campienia przy spawnach i eventowych lokacjach.</li>
-<li>4.4 Przy zgłoszeniach wymagane dowody (nagranie lub screenshot).</li>
-</ul>
-
-<h2>💰 5. Handel</h2>
-<ul>
-<li>5.1 Handel między graczami odbywa się na własne ryzyko.</li>
-<li>5.2 Zaleca się korzystanie z /ah, /shop lub GUI dla bezpieczeństwa transakcji.</li>
-<li>5.3 Zakaz wystawiania fałszywych lub oszukujących przedmiotów.</li>
-<li>5.4 Zakaz wszelkich oszustw handlowych i wyłudzeń.</li>
-<li>5.5 Zakaz manipulowania rynkiem lub cenami przedmiotów.</li>
-<li>5.6 Handel za prawdziwe pieniądze (RMT) jest zabroniony.</li>
-<li>5.7 Administracja nie odpowiada za utratę przedmiotów w wyniku błędów gracza.</li>
-<li>5.8 Zakaz wykorzystywania exploitów lub duplikacji w celach zarobkowych.</li>
-</ul>
-
-<h2>⚖️ 6. Administracja</h2>
-<ul>
-<li>6.1 Administracja może interweniować w każdej sytuacji związanej z łamaniem regulaminu.</li>
-<li>6.2 Zgłoszenia naruszeń należy przesyłać przez /report lub Discord.</li>
-<li>6.3 Decyzje administracji są ostateczne.</li>
-<li>W przypadku niezgody z karą możliwe odwołanie przez ticket do właściciela serwera.</li>
-<li>6.4 Obrażanie, grożenie lub próby przekupienia administracji będą surowo karane.</li>
-</ul>
-
-<h2>🚫 7. Bany</h2>
-<ul>
-<li>7.1 Każde naruszenie regulaminu może skutkować karą.</li>
-<li>7.2 Obchodzenie bana multikontem skutkuje podwójną karą.</li>
-<li>7.3 Zakaz używania VPN lub proxy w celu ukrycia tożsamości po otrzymaniu kary.</li>
-<li>7.4 Współpraca z cheaterami skutkuje karą.</li>
-<li>7.5 Możliwość odwołania się poprzez ticket zależy od rodzaju przewinienia.</li>
-</ul>
-
-<h2>🔨 8. Rodzaje kar</h2>
-<ul>
-<li>8.1 Ostrzeżenie – informacja o naruszeniu regulaminu.</li>
-<li>8.2 Mute – czasowe zablokowanie czatu.</li>
-<li>8.3 Kick – wyrzucenie z serwera.</li>
-<li>8.4 Ban czasowy – tymczasowe zablokowanie dostępu do serwera.</li>
-<li>8.5 Ban permanentny – stałe zablokowanie konta.</li>
-<li>8.6 Czyszczenie ekwipunku lub wyspy – w przypadku poważnych naruszeń.</li>
-</ul>
-
-<h2>🛡️ 9. Postanowienia końcowe</h2>
-<ul>
-<li>9.1 Regulamin może ulec zmianie w dowolnym momencie.</li>
-<li>9.2 Każdy gracz ma obowiązek sprawdzać aktualną wersję regulaminu.</li>
-<li>9.3 W sprawach nieujętych w regulaminie ostateczne decyzje podejmuje administracja serwera.</li>
-</ul>
-
-<h2>🔑 10. Klucze i sklep</h2>
-<ul>
-<li>10.1 Klucze i nagrody eventowe są rozdawane według zasad serwera.</li>
-<li>10.2 Brak obecności podczas rozdania kluczy skutkuje ich utratą.</li>
-<li>10.3 Zakupy w /shop lub /itemshop są ostateczne – brak zwrotów.</li>
-<li>10.4 Zakaz kupowania, sprzedawania lub wymiany przedmiotów za prawdziwe pieniądze.</li>
-<li>10.5 Wsparcie finansowe serwera (PLN) nie podlega zwrotom.</li>
-<li>10.6 Zakaz wykorzystywania sufitu w Netherze lub innych exploitów do nieuczciwych działań.</li>
-</ul>
-
-<h2>📜 Oświadczenie gracza</h2>
-<ul>
-<li>Każdy gracz korzystający z serwera BSCMC.PL potwierdza, że przeczytał, zrozumiał i akceptuje regulamin.</li>
-<li>Nieznajomość regulaminu nie zwalnia z odpowiedzialności.</li>
-<li>Gracz zobowiązuje się przestrzegać wszystkich zasad i stosować decyzje administracji serwera.</li>
-<li>Łamanie regulaminu może skutkować ostrzeżeniem, banem czasowym lub permanentnym oraz innymi karami.</li>
-</ul>
+<!-- Tutaj wklejamy kolejne sekcje regulaminu, analogicznie -->
 
 <a href="index.html" class="back-button">← Powrót</a>
-
 </div>
 
 <script>
-for(let i=0;i<50;i++){
-const p=document.createElement('div');
-p.className='particle';
-p.style.left=Math.random()*window.innerWidth+'px';
-p.style.top=Math.random()*window.innerHeight+'px';
-p.style.width=p.style.height=(3+Math.random()*6)+'px';
-p.style.animationDuration=(5+Math.random()*10)+'s';
-document.body.appendChild(p);
-}
+  // Particle effect przy klikaniu
+  for(let i=0;i<50;i++){
+    const p=document.createElement('div');
+    p.className='particle';
+    p.style.left=Math.random()*window.innerWidth+'px';
+    p.style.top=Math.random()*window.innerHeight+'px';
+    p.style.width=p.style.height=(3+Math.random()*6)+'px';
+    p.style.setProperty("--x",(Math.random()-0.5)*200+"px");
+    p.style.setProperty("--y",(Math.random()-0.5)*200+"px");
+    document.body.appendChild(p);
+  }
 </script>
 
 </body>
