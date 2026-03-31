@@ -4,94 +4,124 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SkyBlock — BSCMC.PL</title>
-
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 <style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(circle at center, #000010 0%, #020020 100%);
+    color:#fff;
+    min-height:100vh;
+    overflow-x:hidden;
+    position:relative;
+  }
 
-body{
-margin:0;
-font-family:'Segoe UI',Tahoma,sans-serif;
-background:url("https://wallpapercave.com/wp/wp6005486.jpg") no-repeat center center fixed;
-background-size:cover;
-color:#333;
-min-height:100vh;
-overflow-x:hidden;
-position:relative;
-}
+  /* Gwiezdne tło */
+  body::before {
+    content:"";
+    position:absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity:0.2;
+    z-index:0;
+    pointer-events:none;
+  }
 
-.container{
-max-width:900px;
-margin:60px auto;
-background:rgba(255,255,255,0.95);
-padding:30px 40px;
-border-radius:12px;
-box-shadow:0 0 20px rgba(0,0,0,0.3);
-position:relative;
-z-index:1;
-}
+  /* Container */
+  .container {
+    max-width:900px;
+    margin:60px auto;
+    background: rgba(0,0,20,0.85);
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 0 40px #00ffff,0 0 80px #ff00ff;
+    position:relative;
+    z-index:1;
+  }
 
-h1{
-text-align:center;
-font-size:2.5em;
-margin-bottom:20px;
-color:#222;
-}
+  /* Nagłówki */
+  h1 {
+    text-align:center;
+    font-size:3em;
+    margin-bottom:20px;
+    background: linear-gradient(90deg,#00ffff,#ff00ff,#00ffff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:gradientAnim 6s linear infinite;
+    text-shadow:0 0 20px #00ffff,0 0 40px #ff00ff;
+  }
 
-h2{
-font-size:1.7em;
-margin-top:30px;
-margin-bottom:10px;
-border-bottom:2px solid #ccc;
-padding-bottom:5px;
-}
+  h2 {
+    font-size:2em;
+    margin-top:30px;
+    margin-bottom:10px;
+    border-bottom:2px solid #00ffff;
+    padding-bottom:5px;
+    text-shadow:0 0 10px #00ffff;
+  }
 
-h3{
-margin-top:20px;
-color:#444;
-}
+  h3 {
+    margin-top:20px;
+    color:#00ffff;
+    text-shadow:0 0 10px #00ffff;
+  }
 
-p{
-line-height:1.6;
-margin-bottom:12px;
-}
+  p, li {
+    line-height:1.6;
+    margin-bottom:12px;
+    color:#ccc;
+  }
 
-ul{
-list-style-type:disc;
-padding-left:20px;
-}
+  ul { padding-left:20px; }
+  li { margin:6px 0; }
+  .highlight { font-weight:bold; color:#ff00ff; }
 
-li{
-margin:6px 0;
-}
+  /* Back button */
+  .back-button {
+    display:inline-block;
+    margin-top:30px;
+    padding:12px 30px;
+    background: linear-gradient(135deg,#00ffff,#ff00ff);
+    color:#fff;
+    text-decoration:none;
+    border-radius:25px;
+    font-weight:bold;
+    transition: all 0.3s;
+    box-shadow:0 0 20px #00ffff,0 0 40px #ff00ff;
+    position:relative;
+    overflow:hidden;
+  }
+  .back-button:hover {
+    transform: scale(1.1);
+    box-shadow:0 0 60px #00ffff,0 0 120px #ff00ff;
+  }
 
-.highlight{
-font-weight:bold;
-color:#2980b9;
-}
+  /* Particle effects tła */
+  .particle {
+    position:absolute;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#00ffff;
+    opacity:0.8;
+    animation:float 10s linear infinite;
+  }
+  @keyframes float {
+    0%{transform:translateY(0) translateX(0);}
+    50%{opacity:1;}
+    100%{transform:translateY(-100vh) translateX(100px);opacity:0;}
+  }
 
-.back-button{
-display:inline-block;
-margin-top:30px;
-padding:10px 25px;
-background:#3498db;
-color:#fff;
-text-decoration:none;
-border-radius:5px;
-transition:background 0.3s;
-}
+  @keyframes gradientAnim {0%{background-position:0%}100%{background-position:300%}}
 
-.back-button:hover{
-background:#2980b9;
-}
-
-@media (max-width:600px){
-.container{padding:20px;}
-h1{font-size:2em;}
-h2{font-size:1.4em;}
-}
-
+  @media (max-width:768px) {
+    .container { padding:20px; }
+    h1 { font-size:2.2em; }
+    h2 { font-size:1.6em; }
+  }
 </style>
 </head>
-
 <body>
 
 <div class="container">
@@ -101,7 +131,6 @@ h2{font-size:1.4em;}
 <p>SkyBlock to jeden z najpopularniejszych trybów Minecraft, w którym zaczynasz grę na małej wyspie unoszącej się w powietrzu. Twoim zadaniem jest rozwijanie wyspy, zdobywanie surowców, budowanie farm i współpraca z innymi graczami.</p>
 
 <h2>🏝️ Co oferuje tryb SkyBlock?</h2>
-
 <ul>
 <li>Start na własnej wyspie w powietrzu.</li>
 <li>System zadań i questów.</li>
@@ -112,7 +141,6 @@ h2{font-size:1.4em;}
 </ul>
 
 <h2>🛠️ Co można robić na SkyBlock?</h2>
-
 <ul>
 <li>Budować i rozwijać swoją wyspę.</li>
 <li>Tworzyć automatyczne farmy surowców.</li>
@@ -123,11 +151,9 @@ h2{font-size:1.4em;}
 </ul>
 
 <h2>⚔️ PvP i bezpieczeństwo</h2>
-
 <p>PvP na SkyBlock jest ograniczone i zależy od ustawień wyspy lub specjalnych stref PvP. Griefing, kradzieże i wykorzystywanie bugów są zabronione.</p>
 
 <h2>💰 Ekonomia</h2>
-
 <ul>
 <li>Handel poprzez /ah, /trade oraz /shop.</li>
 <li>Sprzedaż surowców i przedmiotów.</li>
@@ -136,7 +162,6 @@ h2{font-size:1.4em;}
 </ul>
 
 <h2>🧑‍🤝‍🧑 Współpraca</h2>
-
 <ul>
 <li>Twórz wyspy ze znajomymi.</li>
 <li>Zapraszaj graczy do pomocy przy budowie.</li>
@@ -147,15 +172,13 @@ h2{font-size:1.4em;}
 <h2>📜 SkyBlock — Funkcje Serwera</h2>
 
 <h3>🎮 Podstawowe</h3>
-
 <ul>
-<li>🎁 <span class="highlight">Nagroda za dołączenie na DC</span> – wejdź w kanał Discorda i wpisz <b>/nagroda</b>, następnie wypełnij ankietę aby otrzymać nagrodę.</li>
+<li>🎁 <span class="highlight">Nagroda za dołączenie na DC</span> – wpisz <b>/nagroda</b>.</li>
 <li>⚫ <span class="highlight">Otchłań</span> – odzyskaj lub oddaj niepotrzebne itemy.</li>
 <li>📅 <span class="highlight">Daily</span> – codzienne nagrody za logowanie.</li>
 </ul>
 
 <h3>🏝 Rozgrywka</h3>
-
 <ul>
 <li>⛏ <span class="highlight">Prace</span> – zarabiaj wykonując profesje.</li>
 <li>🔮 <span class="highlight">Powiększony Enderchest</span> – więcej miejsca na przedmioty.</li>
@@ -164,7 +187,6 @@ h2{font-size:1.4em;}
 </ul>
 
 <h3>💰 Ekonomia</h3>
-
 <ul>
 <li>🛒 <span class="highlight">ItemShop</span> – zakup rang, kluczy i fly.</li>
 <li>⏰ <span class="highlight">Sklep za czas</span> – nagrody za aktywność.</li>
@@ -173,7 +195,6 @@ h2{font-size:1.4em;}
 </ul>
 
 <h3>⚙ Mechaniki</h3>
-
 <ul>
 <li>⚰ <span class="highlight">Groby</span> – itemy po śmierci trafiają do grobu.</li>
 <li>❓ <span class="highlight">Quizy</span> – odpowiadaj na pytania na czacie.</li>
@@ -182,14 +203,12 @@ h2{font-size:1.4em;}
 </ul>
 
 <h3>🎣 Eventy</h3>
-
 <ul>
 <li>🐟 <span class="highlight">Chest Fish</span> – łowienie skrzynek.</li>
 <li>🎣 <span class="highlight">GUI Fish</span> – eventowy system łowienia.</li>
 </ul>
 
 <h3>🏪 Handel</h3>
-
 <ul>
 <li>🏪 <span class="highlight">Sklep aukcyjny</span>.</li>
 <li>📦 <span class="highlight">ChestShop</span> – własne sklepy skrzynkowe.</li>
@@ -198,19 +217,30 @@ h2{font-size:1.4em;}
 </ul>
 
 <h3>📈 Postęp</h3>
-
 <ul>
 <li>🗺 <span class="highlight">Quests</span> – ponad 2000 zadań.</li>
 <li>📚 <span class="highlight">Stacker</span> – stakowanie mobów i itemów.</li>
 </ul>
 
 <h2>📜 Regulamin</h2>
-
 <p>Grając na SkyBlock zgadzasz się przestrzegać regulaminu serwera. Naruszenia zasad mogą skutkować ostrzeżeniem lub banem.</p>
 
 <a href="index.html" class="back-button">← Powrót</a>
 
 </div>
+
+<script>
+/* Tworzenie gwiazd-cząsteczek w tle */
+for(let i=0;i<50;i++){
+  const p = document.createElement('div');
+  p.className='particle';
+  p.style.left = Math.random()*window.innerWidth+'px';
+  p.style.top = Math.random()*window.innerHeight+'px';
+  p.style.width = p.style.height = (3+Math.random()*6)+'px';
+  p.style.animationDuration = (5+Math.random()*10)+'s';
+  document.body.appendChild(p);
+}
+</script>
 
 </body>
 </html>
