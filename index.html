@@ -266,36 +266,36 @@
 </div>
 
 <section class="features">
-  <h2>🔥 Dlaczego warto wybrać BSCMC.PL?</h2>
+  <h2>:fire: Dlaczego warto wybrać BSCMC.PL?</h2>
   <div class="features-grid">
   
     <div class="feature">
-      <h3>👑 Miła Administracja</h3>
+      <h3>:crown: Miła Administracja</h3>
       <p>Nasza administracja jest zawsze gotowa pomóc i zadbać o komfort graczy. Szybko reagujemy na problemy, dbamy o fair play i wspieramy społeczność dzięki systemom AfteroweBany i PlayerReport.</p>
     </div>
     
     <div class="feature">
-      <h3>⚡ Nowatorskie Mechaniki</h3>
+      <h3>:zap: Nowatorskie Mechaniki</h3>
       <p>BSCMC.PL oferuje autorskie systemy i pluginy, które wyróżniają nas spośród innych serwerów. Znajdziesz tu customowe biomy, unikatowe moby, talenty, działki oraz specjalne mechaniki jak AfterowaFabryka czy AfterowePrace.</p>
     </div>
     
     <div class="feature">
-      <h3>🎉 Eventy i Turnieje</h3>
+      <h3>:tada: Eventy i Turnieje</h3>
       <p>Organizujemy regularne konkursy, mini-gry i turnieje (TNTRun, TowerClash, HideAndSeek) z nagrodami. Dzięki ChatQuiz, AxCalendar i AfterowaNagrodaDiscord każdy aktywny gracz może zdobywać unikatowe przedmioty i bonusy.</p>
     </div>
     
     <div class="feature">
-      <h3>🛡️ Stabilność i Bezpieczeństwo</h3>
+      <h3>:shield: Stabilność i Bezpieczeństwo</h3>
       <p>Serwer działa 24/7 i jest zabezpieczony przed cheaterami oraz awariami. Pluginy AfteroweBackupy, ExploitFixer i LagFixer dbają o bezpieczeństwo danych i płynność rozgrywki.</p>
     </div>
     
     <div class="feature">
-      <h3>🎁 Codzienne Nagrody i Bonusy</h3>
+      <h3>:gift: Codzienne Nagrody i Bonusy</h3>
       <p>Loguj się codziennie i odbieraj bonusy dzięki AfteroweSkrzynki, AfteroweVouchery i FishRewards. Dodatkowo możesz zdobywać nagrody za głosowanie na serwer oraz za dołączenie do naszego Discorda – to świetny sposób, aby być nagradzanym za aktywność!</p>
     </div>
     
     <div class="feature">
-      <h3>💬 Silna Społeczność</h3>
+      <h3>:speech_balloon: Silna Społeczność</h3>
       <p>BSCMC.PL to miejsce, gdzie poznasz nowych graczy, stworzysz drużyny i wspólnie odkryjesz serwer. NPC, skórki, LootChest i interaktywne eventy sprawiają, że każdy może aktywnie uczestniczyć w życiu społeczności.</p>
     </div>
 
@@ -303,8 +303,12 @@
 </section>
 
 <section class="leaderboard">
-  <h3>🏆 Najwięcej czasu gry</h3>
-  <div id="top-players"></div>
+  <h3>🏆 Najlepsi gracze</h3>
+  <div class="player gold"><span>🥇 SalatkaOwocowa</span><span>120 zł</span></div>
+  <div class="player gold"><span>🥇 michalek</span><span>120 zł</span></div>
+  <div class="player silver"><span>🥈 BloomFire000</span><span>104 zł</span></div>
+  <div class="player bronze"><span>🥉 Robocik_TV</span><span>81 zł</span></div>
+  <div class="player bronze"><span>🍒 Wicia i Dany</span><span>50 zł</span></div>
 </section>
 
 <footer>
@@ -318,7 +322,8 @@
     navigator.clipboard.writeText("BSCMC.PL").then(()=>{
       const original = btn.innerHTML;
       btn.innerHTML = "✅ Skopiowano!";
-
+      
+      // Particle efekt
       for(let i=0;i<15;i++){
         const p = document.createElement("div");
         p.className="particle";
@@ -329,11 +334,12 @@
         document.body.appendChild(p);
         setTimeout(()=>p.remove(),800);
       }
-
+      
+      // Dźwięk
       const audio = new Audio('https://www.soundjay.com/button/sounds/button-16.mp3');
       audio.volume = 0.2;
       audio.play();
-
+      
       setTimeout(()=> btn.innerHTML = original, 2000);
     }).catch(()=> alert("Błąd kopiowania IP."));
   }
@@ -348,7 +354,6 @@
   }
   fetchOnline();
   setInterval(fetchOnline,10000);
-
 </script>
 
 </body>
