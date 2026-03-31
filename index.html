@@ -349,31 +349,6 @@
   fetchOnline();
   setInterval(fetchOnline,10000);
 
-  // Top 3 graczy wg czasu gry z pluginu Playtimes
-  async function fetchTopPlaytime() {
-    try {
-      const response = await fetch("https://twójserwer.pl/api/playtimes"); // <- Twój endpoint z Playtimes
-      const data = await response.json(); // [{nick:"Gracz",time:12345},...]
-      data.sort((a,b)=>b.time - a.time);
-      const top3 = data.slice(0,3);
-      const container = document.getElementById("top-players");
-      container.innerHTML = "";
-      top3.forEach((p,i)=>{
-        const div = document.createElement("div");
-        div.className = "player " + (i===0?"gold":i===1?"silver":"bronze");
-        const hours = Math.floor(p.time/60);
-        const minutes = p.time%60;
-        div.innerHTML = `<span>${["🥇","🥈","🥉"][i]} ${p.nick}</span><span>${hours}h ${minutes}m</span>`;
-        container.appendChild(div);
-      });
-    } catch(err){
-      console.error("Błąd pobierania top graczy:", err);
-      document.getElementById("top-players").textContent = "Brak danych";
-    }
-  }
-  fetchTopPlaytime();
-  setInterval(fetchTopPlaytime,10000);
-
 </script>
 
 </body>
