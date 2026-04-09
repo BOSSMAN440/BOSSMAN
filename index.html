@@ -52,7 +52,7 @@
     text-shadow:0 0 10px #00ffff;
   }
 
-  /* Menu */
+  /* NAV */
   nav {
     display:flex;
     justify-content:center;
@@ -61,7 +61,17 @@
     flex-wrap:wrap;
     z-index:1;
     position:relative;
+    flex-direction:column;
+    align-items:center;
   }
+
+  .nav-row {
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
   nav a {
     position:relative;
     padding:15px 30px;
@@ -80,7 +90,15 @@
     box-shadow:0 0 50px #00ffff,0 0 100px #ff00ff;
   }
 
-  /* Akcja przycisków */
+  .social-label {
+    margin-top:12px;
+    font-size:1.4em;
+    color:#00ffff;
+    text-shadow:0 0 10px #00ffff;
+    letter-spacing:3px;
+  }
+
+  /* Action buttons */
   .action-buttons {
     display:flex;
     flex-direction:column;
@@ -111,12 +129,11 @@
     transition: all 0.3s;
     position:relative;
   }
-  /* Neon hover i particles */
   .top-row button:hover, .bottom-row button:hover {
     transform: scale(1.1);
     box-shadow:0 0 60px #00ffff,0 0 120px #ff00ff;
   }
-  /* Particle container */
+
   .particle {
     position:absolute;
     width:6px;
@@ -135,7 +152,7 @@
 
   .bottom-row { margin-top:0; }
 
-  /* Features z animowanym gradientem */
+  /* Features */
   .features {
     max-width:1000px;
     margin:80px auto;
@@ -162,11 +179,13 @@
     margin-bottom:40px;
     text-shadow:0 0 15px #00ffff,0 0 30px #ff00ff;
   }
+
   .features-grid {
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
     gap:30px;
   }
+
   .feature {
     background: rgba(0,0,20,0.7);
     padding:30px 20px;
@@ -178,6 +197,7 @@
     transform: scale(1.05);
     box-shadow:0 0 60px #ff00ff,0 0 80px #00ffff;
   }
+
   .feature h3 {
     color:#00ffff;
     font-size:1.5em;
@@ -197,6 +217,7 @@
     position:relative; z-index:1;
     animation:sectionGradient 20s ease infinite;
   }
+
   .leaderboard h3 {
     text-align:center;
     color:#00ffff;
@@ -204,6 +225,7 @@
     margin-bottom:25px;
     text-shadow:0 0 20px #00ffff,0 0 40px #ff00ff;
   }
+
   .player {
     display:flex;
     justify-content:space-between;
@@ -231,13 +253,9 @@
   }
 
   @media(max-width:768px) {
-    nav { flex-direction:column; }
+    .nav-row { flex-direction:column; }
     .top-row { flex-direction:column; }
   }
-
-  /* Ikony animacje */
-  .icon-hover:hover { transform: rotate(10deg) scale(1.1); transition:0.3s; }
-
 </style>
 </head>
 <body>
@@ -248,120 +266,14 @@
 </header>
 
 <nav>
-  <a href="survival.html">🏡 SURVIVAL</a>
-  <a href="skyblock.html">☁️ SKYBLOCK</a>
-  <a href="klikanyregulamin.html">📜 REGULAMIN</a>
-  <a href="cennik pomocy tworzenia.html">💰 CENNIK</a>
+  <div class="nav-row">
+    <a href="survival.html">🏡 SURVIVAL</a>
+    <a href="skyblock.html">☁️ SKYBLOCK</a>
+    <a href="klikanyregulamin.html">📜 REGULAMIN</a>
+    <a href="cennik pomocy tworzenia.html">💰 CENNIK</a>
+  </div>
+  <div class="social-label">SPOŁECZNOŚĆ</div>
 </nav>
-
-<div class="action-buttons">
-  <div class="top-row">
-    <button class="icon-hover" onclick="window.location.href='https://discord.gg/xD85Yw3KCM'">💬 Dołącz do Discord</button>
-    <button class="icon-hover" onclick="window.location.href='https://www.tiktok.com/@streetbosspl'">🎵 TikTok</button> 
-    <button class="icon-hover" onclick="window.location.href='https://kick.com/bossman-ml'">🟢 Kick</button>
-  </div>
-  <div class="bottom-row">
-    <button onclick="copyIP(this)">📋 Kopiuj IP: BSCMC.PL</button>
-    <button onclick="window.location.href='https://yshop.pl/shop/bossman'">🛒 Sklep Serverowy</button>
-  </div>
-</div>
-
-<section class="features">
-  <h2> DLACZEGO WARTO WYBRAĆ BSCMC.PL?</h2>
-  <div class="features-grid">
-
-    <div class="feature">
-        <h3>Aktywna Administracja</h3>
-        <p>Nasza administracja działa błyskawicznie – reagujemy na zgłoszenia graczy, uwzględniamy ich propozycje i dbamy o uczciwą oraz przyjemną rozgrywkę dla wszystkich.  
-  Jesteśmy obecni 24/7, odpowiadamy na Discordzie i w grze, monitorujemy fair play i zawsze wspieramy społeczność.</p>
-    </div>
-   
-    <div class="feature">
-      <h3> Miła Administracja</h3>
-      <p>Nasza administracja jest zawsze gotowa pomóc i zadbać o komfort graczy. Szybko reagujemy na problemy, dbamy o fair play i wspieramy społeczność dzięki systemowi PlayerReport.</p>
-    </div>
-    
-    <div class="feature">
-      <h3> Nowatorskie Mechaniki</h3>
-      <p>BSCMC.PL oferuje autorskie systemy i pluginy, które wyróżniają nas spośród innych serwerów. Znajdziesz tu customowe biomy, unikatowe moby, talenty, działki oraz specjalne mechaniki jak Fabryka czy Prace.</p>
-    </div>
-    
-    <div class="feature">
-      <h3> Eventy i Turnieje</h3>
-      <p>Organizujemy regularne konkursy, mini-gry i turnieje (TNTRun, TowerClash, HideAndSeek) z nagrodami. Dzięki ChatQuiz, AxCalendar i NagrodaDiscord każdy aktywny gracz może zdobywać unikatowe przedmioty i bonusy.</p>
-    </div>
-    
-    <div class="feature">
-      <h3> Stabilność i Bezpieczeństwo</h3>
-      <p>Serwer działa 24/7 i jest zabezpieczony przed cheaterami oraz awariami. Pluginy dbają o bezpieczeństwo danych i płynność rozgrywki.</p>
-    </div>
-    
-    <div class="feature">
-      <h3> Codzienne Nagrody i Bonusy</h3>
-      <p>Loguj się codziennie i odbieraj bonusy dzięki Skrzynkom oraz na łowieniu ryb. Dodatkowo możesz zdobywać nagrody za głosowanie na serwer oraz za dołączenie do naszego Discorda – to świetny sposób, aby być nagradzanym za aktywność!</p>
-    </div>
-    
-    <div class="feature">
-      <h3> Silna Społeczność</h3>
-      <p>BSCMC.PL to miejsce, gdzie poznasz nowych graczy, stworzysz drużyny i wspólnie odkryjesz serwer. NPC, skórki, LootChest i interaktywne eventy sprawiają, że każdy może aktywnie uczestniczyć w życiu społeczności.</p>
-    </div>
-
-  </div>
-</section>
-
-<section class="leaderboard">
-  <h3>🏆 Najlepsi gracze</h3>
-  <div class="player gold"><span>🥇 SalatkaOwocowa</span><span>120 zł</span></div>
-  <div class="player gold"><span>🥇 michalek</span><span>120 zł</span></div>
-  <div class="player silver"><span>🥈 BloomFire000</span><span>104 zł</span></div>
-  <div class="player bronze"><span>🥉 Robocik_TV</span><span>81 zł</span></div>
-  <div class="player bronze"><span>🍒 Wicia i Dany</span><span>50 zł</span></div>
-</section>
-
-<footer>
-  © 2026 BSCMC.PL | Wszystkie prawa zastrzeżone.<br>
-  Korzystając z serwera akceptujesz regulamin i zobowiązujesz się do jego przestrzegania.
-</footer>
-
-<script>
-  // Kopiowanie IP + particle effect
-  function copyIP(btn){
-    navigator.clipboard.writeText("BSCMC.PL").then(()=>{
-      const original = btn.innerHTML;
-      btn.innerHTML = "✅ Skopiowano!";
-      
-      // Particle efekt
-      for(let i=0;i<15;i++){
-        const p = document.createElement("div");
-        p.className="particle";
-        p.style.left = btn.offsetLeft + btn.offsetWidth/2 + "px";
-        p.style.top = btn.offsetTop + btn.offsetHeight/2 + "px";
-        p.style.setProperty("--x",(Math.random()-0.5)*200+"px");
-        p.style.setProperty("--y",(Math.random()-0.5)*200+"px");
-        document.body.appendChild(p);
-        setTimeout(()=>p.remove(),800);
-      }
-      
-      // Dźwięk
-      const audio = new Audio('https://www.soundjay.com/button/sounds/button-16.mp3');
-      audio.volume = 0.2;
-      audio.play();
-      
-      setTimeout(()=> btn.innerHTML = original, 2000);
-    }).catch(()=> alert("Błąd kopiowania IP."));
-  }
-
-  // Online players co 10s
-  async function fetchOnline(){
-    try{
-      const res = await fetch("https://api.mcsrvstat.us/2/BSCMC.PL");
-      const data = await res.json();
-      document.getElementById("online-players").textContent = data.players ? data.players.online : 0;
-    }catch(e){ document.getElementById("online-players").textContent = "offline"; }
-  }
-  fetchOnline();
-  setInterval(fetchOnline,10000);
-</script>
 
 </body>
 </html>
