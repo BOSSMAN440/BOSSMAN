@@ -1,1 +1,168 @@
-qeasd
+<script>
+  // Kopiowanie IP + particle effect
+  function copyIP(btn){
+    navigator.clipboard.writeText("BSCMC.PL").then(()=>{
+      const original = btn.innerHTML;
+      btn.innerHTML = "✅ Skopiowano!";
+      
+      // Particle efekt
+      for(let i=0;i<15;i++){
+        const p = document.createElement("div");
+        p.className="particle";
+        p.style.left = btn.offsetLeft + btn.offsetWidth/2 + "px";
+        p.style.top = btn.offsetTop + btn.offsetHeight/2 + "px";
+        p.style.setProperty("--x",(Math.random()-0.5)*200+"px");
+        p.style.setProperty("--y",(Math.random()-0.5)*200+"px");
+        document.body.appendChild(p);
+        setTimeout(()=>p.remove(),800);
+      }
+      
+      // Dźwięk
+      const audio = new Audio('https://www.soundjay.com/button/sounds/button-16.mp3');
+      audio.volume = 0.2;
+      audio.play();
+      
+      setTimeout(()=> btn.innerHTML = original, 2000);
+    }).catch(()=> alert("Błąd kopiowania IP."));
+  }
+
+  // Online players co 10s
+  async function fetchOnline(){
+    try{
+      const res = await fetch("https://api.mcsrvstat.us/2/BSCMC.PL");
+      const data = await res.json();
+      document.getElementById("online-players").textContent = data.players ? data.players.online : 0;
+    }catch(e){ document.getElementById("online-players").textContent = "offline"; }
+  }
+  fetchOnline();
+  setInterval(fetchOnline,10000);
+</script>
+
+
+ <section class="opinie-section">
+  <h2>⭐ DODAJ SWOJĄ OPINIĘ</h2>
+
+  <form id="opinia-form">
+    <input type="text" id="nick" placeholder="Nick w grze" required>
+    <input type="number" id="wiek" placeholder="Wiek" min="1" required>
+
+    <select id="gwiazdki" required>
+      <option value="">Ilość gwiazdek</option>
+      <option value="1">⭐ 1</option>
+      <option value="2">⭐⭐ 2</option>
+      <option value="3">⭐⭐⭐ 3</option>
+      <option value="4">⭐⭐⭐⭐ 4</option>
+      <option value="5">⭐⭐⭐⭐⭐ 5</option>
+    </select>
+
+    <textarea id="opis" placeholder="Opisz swoje wrażenia..." required></textarea>
+
+    <button type="submit">📨 Wyślij opinię</button>
+  </form>
+
+  <div id="opinie-list"></div>
+</section>
+
+<style>
+  .opinie-section {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 40px;
+    background: rgba(0,0,30,0.85);
+    border-radius: 25px;
+    box-shadow: 0 0 40px #00ffff, 0 0 80px #ff00ff;
+    text-align:center;
+  }
+  .opinie-section h2 {
+    font-size: 2.2em;
+    background: linear-gradient(90deg,#00ffff,#ff00ff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom: 25px;
+  }
+  #opinia-form input,
+  #opinia-form select,
+  #opinia-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border:none;
+    border-radius:15px;
+    background:#111;
+    color:#fff;
+    box-shadow:0 0 10px #00ffff;
+  }
+  #opinia-form textarea {
+    height:120px;
+    resize:none;
+  }
+  #opinia-form button {
+    padding:15px 30px;
+    border:none;
+    border-radius:20px;
+    background:linear-gradient(135deg,#00ffff,#ff00ff);
+    color:#fff;
+    font-size:1.2em;
+    cursor:pointer;
+    transition:0.3s;
+  }
+  #opinia-form button:hover {
+    transform:scale(1.1);
+    box-shadow:0 0 40px #00ffff,0 0 80px #ff00ff;
+  }
+  #opinie-list {
+    margin-top:30px;
+    text-align:left;
+  }
+  .opinia-box {
+    background:rgba(0,0,20,0.7);
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:20px;
+    box-shadow:0 0 20px #00ffff;
+  }
+  .opinia-box h4 { color:#00ffff; margin-bottom:5px; }
+  .opinia-box .stars { color:#FFD700; margin-bottom:10px; }
+  .opinia-box p { color:#ccc; }
+</style>
+
+<script>
+  // Załaduj istniejące opinie
+  function loadOpinions() {
+    const list = document.getElementById("opinie-list");
+    list.innerHTML = "";
+    const opinions = JSON.parse(localStorage.getItem("opinie") || "[]");
+
+    opinions.forEach(op => {
+      const div = document.createElement("div");
+      div.className = "opinia-box";
+      div.innerHTML = `
+        <h4>${op.nick} (${op.wiek} lat)</h4>
+        <div class="stars">${"⭐".repeat(op.gwiazdki)}</div>
+        <p>${op.opis}</p>
+      `;
+      list.appendChild(div);
+    });
+  }
+
+  // Dodawanie opinii
+  document.getElementById("opinia-form").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const nick = document.getElementById("nick").value;
+    const wiek = document.getElementById("wiek").value;
+    const gwiazdki = document.getElementById("gwiazdki").value;
+    const opis = document.getElementById("opis").value;
+
+    const newOpinion = { nick, wiek, gwiazdki, opis };
+
+    const opinions = JSON.parse(localStorage.getItem("opinie") || "[]");
+    opinions.push(newOpinion);
+    localStorage.setItem("opinie", JSON.stringify(opinions));
+
+    loadOpinions();
+    this.reset();
+  });
+
+  loadOpinions();
+</script>
