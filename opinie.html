@@ -69,13 +69,6 @@ img.avatar{
 
 .stars{color:gold;}
 
-.admin-bar{
-  background:#111;
-  padding:10px;
-  margin-bottom:10px;
-  border-radius:10px;
-}
-
 .like{color:#00ff88;}
 .dislike{color:#ff4444;}
 
@@ -86,7 +79,6 @@ img.avatar{
   background:orange;
   margin-left:5px;
 }
-
 </style>
 </head>
 
@@ -136,23 +128,20 @@ img.avatar{
 
 let admin=false;
 
-/* LOGIN ADMIN */
+/* 🔐 LOGIN */
 function login(){
   let pass=prompt("Hasło admina:");
   if(pass==="Gimnazjalista1998"){
     admin=true;
     document.getElementById("adminStatus").innerHTML="🟢 ADMIN AKTYWNY";
     load();
-  }else{
-    alert("Błędne hasło!");
-  }
+  }else alert("Błędne hasło!");
 }
 
-/* LOAD */
+/* 📦 LOAD */
 function load(){
   let data=JSON.parse(localStorage.getItem("opinie")||"[]");
 
-  // SORT (najlepsze na górze)
   data.sort((a,b)=>b.stars-a.stars);
 
   document.getElementById("list").innerHTML="";
@@ -167,18 +156,17 @@ function load(){
     div.innerHTML=`
       <img class="avatar" src="${avatar}">
       <b>${op.nick}</b> (${op.wiek})
-      <span class="badge">✔ zweryfikowana</span>
+      <span class="badge">✔ opinia</span>
 
       <div class="stars">${"⭐".repeat(op.stars)}</div>
 
       <p>${op.text}</p>
 
-      👍 ${op.likes||0} | 👎 ${op.dislikes||0}
+      👍 ${op.likes||0}
 
       <br>
 
       <button onclick="like(${i})">👍</button>
-      <button onclick="dislike(${i})">👎</button>
 
       ${admin ? `<button onclick="del(${i})">❌ Usuń</button>` : ""}
     `;
@@ -187,61 +175,61 @@ function load(){
   });
 }
 
-/* ADD */
-document.getElementById("form").addEventListener("submit",e=>{
+/* ➕ ADD + DISCORD */
+document.getElementById("form").addEventListener("submit",async(e)=>{
   e.preventDefault();
 
   let data=JSON.parse(localStorage.getItem("opinie")||"[]");
 
-  data.push({
-    nick:nick.value,
-    wiek:wiek.value,
-    stars:stars.value,
-    text:text.value,
-    likes:0,
-    dislikes:0
-  });
+  const nick=document.getElementById("nick").value;
+  const wiek=document.getElementById("wiek").value;
+  const stars=document.getElementById("stars").value;
+  const text=document.getElementById("text").value;
+
+  data.push({nick,wiek,stars,text,likes:0});
 
   localStorage.setItem("opinie",JSON.stringify(data));
+
+  /* 🔴 DISCORD WEBHOOK */
+  const webhook="WKLEJ_TUTAJ_SWÓJ_WEBHOOK";
+
+  const payload={
+    content:"📝 Nowa opinia BSCMC.PL",
+    embeds:[{
+      title:"Nowa opinia",
+      color:5814783,
+      fields:[
+        {name:"Nick",value:nick,inline:true},
+        {name:"Wiek",value:wiek,inline:true},
+        {name:"Ocena",value:"⭐".repeat(stars),inline:true},
+        {name:"Treść",value:text}
+      ]
+    }]
+  };
+
+  try{
+    await fetch(webhook,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(payload)
+    });
+  }catch(err){
+    console.log("Webhook error",err);
+  }
+
   form.reset();
   load();
 });
 
-/* LIKE */
+/* 👍 LIKE */
 function like(i){
   let data=JSON.parse(localStorage.getItem("opinie"));
-
-  if(data[i].reaction==="like"){
-    data[i].likes--;
-    data[i].reaction=null;
-  }else{
-    if(data[i].reaction==="dislike") data[i].dislikes--;
-    data[i].likes++;
-    data[i].reaction="like";
-  }
-
+  data[i].likes=(data[i].likes||0)+1;
   localStorage.setItem("opinie",JSON.stringify(data));
   load();
 }
 
-/* DISLIKE */
-function dislike(i){
-  let data=JSON.parse(localStorage.getItem("opinie"));
-
-  if(data[i].reaction==="dislike"){
-    data[i].dislikes--;
-    data[i].reaction=null;
-  }else{
-    if(data[i].reaction==="like") data[i].likes--;
-    data[i].dislikes++;
-    data[i].reaction="dislike";
-  }
-
-  localStorage.setItem("opinie",JSON.stringify(data));
-  load();
-}
-
-/* DELETE */
+/* ❌ DELETE */
 function del(i){
   let data=JSON.parse(localStorage.getItem("opinie"));
   data.splice(i,1);
@@ -249,10 +237,9 @@ function del(i){
   load();
 }
 
-/* SEARCH */
+/* 🔍 SEARCH */
 document.getElementById("search").addEventListener("input",function(){
   let v=this.value.toLowerCase();
-
   document.querySelectorAll(".opinia").forEach(e=>{
     e.style.display=e.innerText.toLowerCase().includes(v)?"block":"none";
   });
