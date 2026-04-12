@@ -12,7 +12,6 @@ body{
   background: radial-gradient(circle,#000010,#020020);
   color:white;
   margin:0;
-  padding:0;
 }
 
 section{
@@ -25,9 +24,9 @@ section{
   text-align:center;
 }
 
-h2{ color:#00ffff; }
+h2{color:#00ffff;}
 
-input, select, textarea{
+input,select,textarea{
   width:100%;
   padding:10px;
   margin:10px 0;
@@ -39,18 +38,18 @@ input, select, textarea{
 
 button{
   padding:10px 15px;
+  margin:5px;
   border:none;
   border-radius:10px;
   background:linear-gradient(135deg,#00ffff,#ff00ff);
   color:white;
   cursor:pointer;
-  margin:5px;
 }
 
-.opinia-box{
+.opinia{
   background:rgba(0,0,0,0.6);
-  margin:15px 0;
   padding:15px;
+  margin:15px 0;
   border-radius:15px;
   text-align:left;
   animation:fadeIn 0.3s ease;
@@ -61,23 +60,32 @@ button{
   to{opacity:1; transform:translateY(0);}
 }
 
-.stars{ color:gold; }
-
 img.avatar{
   width:40px;
   border-radius:50%;
-  vertical-align:middle;
   margin-right:10px;
+  vertical-align:middle;
 }
 
-.stats{
-  display:flex;
-  justify-content:space-around;
-  margin-bottom:20px;
+.stars{color:gold;}
+
+.admin-bar{
+  background:#111;
+  padding:10px;
+  margin-bottom:10px;
+  border-radius:10px;
 }
 
-.like{ color:#00ff88; }
-.dislike{ color:#ff4444; }
+.like{color:#00ff88;}
+.dislike{color:#ff4444;}
+
+.badge{
+  font-size:12px;
+  padding:2px 6px;
+  border-radius:5px;
+  background:orange;
+  margin-left:5px;
+}
 
 </style>
 </head>
@@ -88,70 +96,84 @@ img.avatar{
 
 <h2>⭐ OPINIE GRACZY</h2>
 
-<div class="stats">
-  <p>📊 Opinie: <span id="count">0</span></p>
-  <p>⭐ Średnia: <span id="avg">0</span></p>
-</div>
-
 <input id="search" placeholder="🔍 Szukaj opinii...">
+
+<br>
+
+<button onclick="login()">🔐 Admin Panel</button>
+
+<div id="adminStatus">🔴 Brak dostępu</div>
 
 <hr>
 
 <h3>➕ Dodaj opinię</h3>
 
 <form id="form">
-  <input id="nick" placeholder="Nick" required>
-  <input id="wiek" type="number" placeholder="Wiek" required>
+<input id="nick" placeholder="Nick" required>
+<input id="wiek" type="number" placeholder="Wiek" required>
 
-  <select id="stars" required>
-    <option value="">Ocena</option>
-    <option value="1">⭐</option>
-    <option value="2">⭐⭐</option>
-    <option value="3">⭐⭐⭐</option>
-    <option value="4">⭐⭐⭐⭐</option>
-    <option value="5">⭐⭐⭐⭐⭐</option>
-  </select>
+<select id="stars" required>
+<option value="">Ocena</option>
+<option value="1">⭐</option>
+<option value="2">⭐⭐</option>
+<option value="3">⭐⭐⭐</option>
+<option value="4">⭐⭐⭐⭐</option>
+<option value="5">⭐⭐⭐⭐⭐</option>
+</select>
 
-  <textarea id="text" placeholder="Twoja opinia..." required></textarea>
+<textarea id="text" placeholder="Twoja opinia" required></textarea>
 
-  <button type="submit">📨 Wyślij</button>
+<button type="submit">📨 Wyślij</button>
 </form>
 
 <hr>
-
-<button onclick="adminLogin()">🔐 Admin</button>
 
 <div id="list"></div>
 
 </section>
 
 <script>
+
 let admin=false;
+
+/* LOGIN ADMIN */
+function login(){
+  let pass=prompt("Hasło admina:");
+  if(pass==="Gimnazjalista1998"){
+    admin=true;
+    document.getElementById("adminStatus").innerHTML="🟢 ADMIN AKTYWNY";
+    load();
+  }else{
+    alert("Błędne hasło!");
+  }
+}
 
 /* LOAD */
 function load(){
-  let data = JSON.parse(localStorage.getItem("opinie") || "[]");
+  let data=JSON.parse(localStorage.getItem("opinie")||"[]");
 
-  let sum=0;
+  // SORT (najlepsze na górze)
+  data.sort((a,b)=>b.stars-a.stars);
+
   document.getElementById("list").innerHTML="";
 
   data.forEach((op,i)=>{
-    sum += Number(op.stars);
 
-    let avatar = `https://mc-heads.net/avatar/${op.nick}`;
+    let avatar=`https://mc-heads.net/avatar/${op.nick}`;
 
-    let div = document.createElement("div");
-    div.className="opinia-box";
+    let div=document.createElement("div");
+    div.className="opinia";
 
     div.innerHTML=`
       <img class="avatar" src="${avatar}">
-      <b>${op.nick}</b> (${op.wiek} lat)
+      <b>${op.nick}</b> (${op.wiek})
+      <span class="badge">✔ zweryfikowana</span>
 
       <div class="stars">${"⭐".repeat(op.stars)}</div>
+
       <p>${op.text}</p>
 
-      <span class="like">👍 ${op.likes||0}</span>
-      <span class="dislike"> 👎 ${op.dislikes||0}</span>
+      👍 ${op.likes||0} | 👎 ${op.dislikes||0}
 
       <br>
 
@@ -163,9 +185,6 @@ function load(){
 
     document.getElementById("list").appendChild(div);
   });
-
-  document.getElementById("count").innerText=data.length;
-  document.getElementById("avg").innerText=data.length?(sum/data.length).toFixed(1):0;
 }
 
 /* ADD */
@@ -180,8 +199,7 @@ document.getElementById("form").addEventListener("submit",e=>{
     stars:stars.value,
     text:text.value,
     likes:0,
-    dislikes:0,
-    reaction:null
+    dislikes:0
   });
 
   localStorage.setItem("opinie",JSON.stringify(data));
@@ -193,16 +211,12 @@ document.getElementById("form").addEventListener("submit",e=>{
 function like(i){
   let data=JSON.parse(localStorage.getItem("opinie"));
 
-  if(!data[i].reaction) data[i].reaction=null;
-
   if(data[i].reaction==="like"){
-    data[i].likes=Math.max((data[i].likes||0)-1,0);
+    data[i].likes--;
     data[i].reaction=null;
-  } else {
-    if(data[i].reaction==="dislike"){
-      data[i].dislikes=Math.max((data[i].dislikes||0)-1,0);
-    }
-    data[i].likes=(data[i].likes||0)+1;
+  }else{
+    if(data[i].reaction==="dislike") data[i].dislikes--;
+    data[i].likes++;
     data[i].reaction="like";
   }
 
@@ -214,16 +228,12 @@ function like(i){
 function dislike(i){
   let data=JSON.parse(localStorage.getItem("opinie"));
 
-  if(!data[i].reaction) data[i].reaction=null;
-
   if(data[i].reaction==="dislike"){
-    data[i].dislikes=Math.max((data[i].dislikes||0)-1,0);
+    data[i].dislikes--;
     data[i].reaction=null;
-  } else {
-    if(data[i].reaction==="like"){
-      data[i].likes=Math.max((data[i].likes||0)-1,0);
-    }
-    data[i].dislikes=(data[i].dislikes||0)+1;
+  }else{
+    if(data[i].reaction==="like") data[i].likes--;
+    data[i].dislikes++;
     data[i].reaction="dislike";
   }
 
@@ -242,23 +252,15 @@ function del(i){
 /* SEARCH */
 document.getElementById("search").addEventListener("input",function(){
   let v=this.value.toLowerCase();
-  document.querySelectorAll(".opinia-box").forEach(b=>{
-    b.style.display=b.innerText.toLowerCase().includes(v)?"block":"none";
+
+  document.querySelectorAll(".opinia").forEach(e=>{
+    e.style.display=e.innerText.toLowerCase().includes(v)?"block":"none";
   });
 });
 
-/* ADMIN */
-function adminLogin(){
-  let p=prompt("Hasło:");
-  if(p==="admin123"){
-    admin=true;
-    alert("Admin aktywny");
-    load();
-  }
-}
-
 /* START */
 load();
+
 </script>
 
 </body>
