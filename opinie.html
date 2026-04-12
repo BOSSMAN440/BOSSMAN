@@ -25,11 +25,8 @@ section{
   text-align:center;
 }
 
-h2{
-  color:#00ffff;
-}
+h2{ color:#00ffff; }
 
-/* FORM */
 input, select, textarea{
   width:100%;
   padding:10px;
@@ -41,7 +38,7 @@ input, select, textarea{
 }
 
 button{
-  padding:10px 20px;
+  padding:10px 15px;
   border:none;
   border-radius:10px;
   background:linear-gradient(135deg,#00ffff,#ff00ff);
@@ -50,14 +47,13 @@ button{
   margin:5px;
 }
 
-/* BOX */
 .opinia-box{
   background:rgba(0,0,0,0.6);
   margin:15px 0;
   padding:15px;
   border-radius:15px;
   text-align:left;
-  animation:fadeIn 0.4s ease;
+  animation:fadeIn 0.3s ease;
 }
 
 @keyframes fadeIn{
@@ -65,7 +61,7 @@ button{
   to{opacity:1; transform:translateY(0);}
 }
 
-.stars{color:gold;}
+.stars{ color:gold; }
 
 img.avatar{
   width:40px;
@@ -79,6 +75,9 @@ img.avatar{
   justify-content:space-around;
   margin-bottom:20px;
 }
+
+.like{ color:#00ff88; }
+.dislike{ color:#ff4444; }
 
 </style>
 </head>
@@ -120,33 +119,29 @@ img.avatar{
 
 <hr>
 
-<button onclick="approveMode()">🔐 Panel admina</button>
+<button onclick="adminLogin()">🔐 Admin</button>
 
 <div id="list"></div>
 
 </section>
 
 <script>
-let admin = false;
+let admin=false;
 
 /* LOAD */
 function load(){
   let data = JSON.parse(localStorage.getItem("opinie") || "[]");
 
-  // sort najlepsze
-  data.sort((a,b)=> (b.likes||0)+(b.stars||0) - (a.likes||0)-(a.stars||0));
-
+  let sum=0;
   document.getElementById("list").innerHTML="";
-
-  let sum = 0;
 
   data.forEach((op,i)=>{
     sum += Number(op.stars);
 
+    let avatar = `https://mc-heads.net/avatar/${op.nick}`;
+
     let div = document.createElement("div");
     div.className="opinia-box";
-
-    let avatar = `https://mc-heads.net/avatar/${op.nick}`;
 
     div.innerHTML=`
       <img class="avatar" src="${avatar}">
@@ -155,7 +150,8 @@ function load(){
       <div class="stars">${"⭐".repeat(op.stars)}</div>
       <p>${op.text}</p>
 
-      👍 ${op.likes||0} | 👎 ${op.dislikes||0}
+      <span class="like">👍 ${op.likes||0}</span>
+      <span class="dislike"> 👎 ${op.dislikes||0}</span>
 
       <br>
 
@@ -168,57 +164,76 @@ function load(){
     document.getElementById("list").appendChild(div);
   });
 
-  document.getElementById("count").innerText = data.length;
-  document.getElementById("avg").innerText = data.length ? (sum/data.length).toFixed(1) : 0;
+  document.getElementById("count").innerText=data.length;
+  document.getElementById("avg").innerText=data.length?(sum/data.length).toFixed(1):0;
 }
 
 /* ADD */
 document.getElementById("form").addEventListener("submit",e=>{
   e.preventDefault();
 
-  let data = JSON.parse(localStorage.getItem("opinie") || "[]");
-
-  let nick = nick.value;
-  let exists = data.find(x=>x.nick===nick);
-  if(exists){
-    alert("Już dodałeś opinię!");
-    return;
-  }
+  let data=JSON.parse(localStorage.getItem("opinie")||"[]");
 
   data.push({
-    nick: nick.value,
-    wiek: wiek.value,
-    stars: stars.value,
-    text: text.value,
+    nick:nick.value,
+    wiek:wiek.value,
+    stars:stars.value,
+    text:text.value,
     likes:0,
-    dislikes:0
+    dislikes:0,
+    reaction:null
   });
 
   localStorage.setItem("opinie",JSON.stringify(data));
-
   form.reset();
   load();
 });
 
 /* LIKE */
 function like(i){
-  let data = JSON.parse(localStorage.getItem("opinie"));
-  data[i].likes = (data[i].likes||0)+1;
+  let data=JSON.parse(localStorage.getItem("opinie"));
+
+  if(!data[i].reaction) data[i].reaction=null;
+
+  if(data[i].reaction==="like"){
+    data[i].likes=Math.max((data[i].likes||0)-1,0);
+    data[i].reaction=null;
+  } else {
+    if(data[i].reaction==="dislike"){
+      data[i].dislikes=Math.max((data[i].dislikes||0)-1,0);
+    }
+    data[i].likes=(data[i].likes||0)+1;
+    data[i].reaction="like";
+  }
+
   localStorage.setItem("opinie",JSON.stringify(data));
   load();
 }
 
 /* DISLIKE */
 function dislike(i){
-  let data = JSON.parse(localStorage.getItem("opinie"));
-  data[i].dislikes = (data[i].dislikes||0)+1;
+  let data=JSON.parse(localStorage.getItem("opinie"));
+
+  if(!data[i].reaction) data[i].reaction=null;
+
+  if(data[i].reaction==="dislike"){
+    data[i].dislikes=Math.max((data[i].dislikes||0)-1,0);
+    data[i].reaction=null;
+  } else {
+    if(data[i].reaction==="like"){
+      data[i].likes=Math.max((data[i].likes||0)-1,0);
+    }
+    data[i].dislikes=(data[i].dislikes||0)+1;
+    data[i].reaction="dislike";
+  }
+
   localStorage.setItem("opinie",JSON.stringify(data));
   load();
 }
 
 /* DELETE */
 function del(i){
-  let data = JSON.parse(localStorage.getItem("opinie"));
+  let data=JSON.parse(localStorage.getItem("opinie"));
   data.splice(i,1);
   localStorage.setItem("opinie",JSON.stringify(data));
   load();
@@ -226,25 +241,24 @@ function del(i){
 
 /* SEARCH */
 document.getElementById("search").addEventListener("input",function(){
-  let val=this.value.toLowerCase();
+  let v=this.value.toLowerCase();
   document.querySelectorAll(".opinia-box").forEach(b=>{
-    b.style.display = b.innerText.toLowerCase().includes(val)?"block":"none";
+    b.style.display=b.innerText.toLowerCase().includes(v)?"block":"none";
   });
 });
 
 /* ADMIN */
-function approveMode(){
-  let pass = prompt("Hasło admina:");
-  if(pass==="Gimnazjalista1998"){
+function adminLogin(){
+  let p=prompt("Hasło:");
+  if(p==="admin123"){
     admin=true;
-    alert("Tryb admin aktywny!");
+    alert("Admin aktywny");
     load();
   }
 }
 
 /* START */
 load();
-
 </script>
 
 </body>
