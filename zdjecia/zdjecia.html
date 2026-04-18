@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BSCMC.PL - Galerie</title>
+<title>BSCMC.PL - Galeria</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
@@ -12,10 +12,11 @@
 
 body {
   font-family: 'Orbitron', sans-serif;
-  color: #fff;
-  min-height: 100vh;
+  color:#fff;
+  min-height:100vh;
   background: radial-gradient(circle at center, #000010 0%, #020020 100%);
-  overflow-x: hidden;
+  overflow-x:hidden;
+  padding:40px 20px;
 }
 
 /* gwiazdy */
@@ -29,109 +30,84 @@ body::before {
   pointer-events:none;
 }
 
-/* HEADER */
+/* tytuły sekcji */
+.section-title {
+  text-align:center;
+  font-size:2em;
+  margin:60px 0 20px;
+  color:#00ffff;
+  text-shadow:0 0 15px #00ffff;
+}
+
+/* galeria */
+.gallery {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+  gap:20px;
+  max-width:1100px;
+  margin:0 auto;
+  position:relative;
+  z-index:1;
+}
+
+.gallery img {
+  width:100%;
+  border-radius:18px;
+  box-shadow:0 0 20px #00ffff, 0 0 40px #ff00ff;
+  transition:0.3s ease;
+}
+
+.gallery img:hover {
+  transform:scale(1.05);
+  box-shadow:0 0 60px #00ffff, 0 0 80px #ff00ff;
+}
+
+/* glow header */
 header {
   text-align:center;
-  padding:50px 20px 20px;
+  margin-bottom:30px;
   position:relative;
   z-index:1;
 }
 
 header h1 {
-  font-size:4em;
+  font-size:3.5em;
   background: linear-gradient(90deg,#00ffff,#ff00ff,#00ffff);
   background-size:300%;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   animation:gradientAnim 6s linear infinite;
-  text-shadow:0 0 20px #00ffff;
+  text-shadow:0 0 20px #00ffff,0 0 40px #ff00ff;
 }
 
 @keyframes gradientAnim {
   0%{background-position:0%}
   100%{background-position:300%}
 }
-
-.section {
-  max-width:1100px;
-  margin:60px auto;
-  padding:20px;
-  position:relative;
-  z-index:1;
-}
-
-.section h2 {
-  text-align:center;
-  font-size:2em;
-  margin-bottom:25px;
-  color:#00ffff;
-  text-shadow:0 0 15px #00ffff;
-}
-
-/* GALERIA */
-.gallery {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-}
-
-.gallery img {
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  border-radius:15px;
-  box-shadow:0 0 20px #00ffff;
-  transition:0.3s;
-}
-
-.gallery img:hover {
-  transform:scale(1.05);
-  box-shadow:0 0 40px #ff00ff,0 0 60px #00ffff;
-}
-
-/* FOOTER */
-footer {
-  text-align:center;
-  padding:20px;
-  font-size:0.8em;
-  color:#aaa;
-  margin-top:60px;
-  position:relative;
-  z-index:1;
-}
-
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>BSCMC.PL</h1>
+  <h1>GALERIA BSCMC.PL</h1>
 </header>
 
 <!-- SURVIVAL -->
-<section class="section">
-  <h2>🏠 SURVIVAL DZIAŁKI</h2>
-  <div class="gallery">
-    <img src="https://i.postimg.cc/3J5vFHyy/E9D582E9-5C3C-4A6A-AEFB-EFAD5657CCDA.png">
-    <img src="https://i.postimg.cc/fbr3t4nM/4CC364F5-2CE9-42FE-BD2C-B7532E99B0C2.png">
-    <img src="https://i.postimg.cc/QN5Btn6H/46C5FC9A-EF18-46AD-AB45-B2799E5F92A4.png">
-    <img src="https://i.postimg.cc/SKJRpZ2N/DC2B6B6C-C301-4B57-915C-DAC4F3CD2725.png">
-  </div>
-</section>
+<div class="section-title">SURVIVAL – DZIAŁKI</div>
+<div class="gallery">
+  <img src="https://i.postimg.cc/3J5vFHyy/E9D582E9-5C3C-4A6A-AEFB-EFAD5657CCDA.png">
+  <img src="https://i.postimg.cc/fbr3t4nM/4CC364F5-2CE9-42FE-BD2C-B7532E99B0C2.png">
+  <img src="https://i.postimg.cc/QN5Btn6H/46C5FC9A-EF18-46AD-AB45-B2799E5F92A4.png">
+  <img src="https://i.postimg.cc/SKJRpZ2N/DC2B6B6C-C301-4B57-915C-DAC4F3CD2725.png">
+</div>
 
 <!-- CHUNKLOCK -->
-<section class="section">
-  <h2>🌍 CHUNKLOCK</h2>
-  <div class="gallery">
-    <img src="https://i.postimg.cc/pXRddVhf/A6125AA4-9420-42F1-A406-DAE5541D54F6.png">
-    <img src="https://i.postimg.cc/8znkwhyX/887B4DCE-AF4B-43BB-82A7-408BFFDA278B.png">
-  </div>
-</section>
-
-<footer>
-  © 2026 BSCMC.PL
-</footer>
+<div class="section-title">CHUNKLOCK</div>
+<div class="gallery">
+  <img src="https://i.postimg.cc/pXRddVhf/A6125AA4-9420-42F1-A406-DAE5541D54F6.png">
+  <img src="https://i.postimg.cc/8znkwhyX/887B4DCE-AF4B-43BB-82A7-408BFFDA278B.png">
+</div>
 
 </body>
 </html>
