@@ -75,7 +75,6 @@ header h1 {
   z-index:1;
 }
 
-/* ZDJĘCIA */
 .gallery img {
   width:100%;
   height:350px;
@@ -84,12 +83,30 @@ header h1 {
   box-shadow:0 0 25px #00ffff, 0 0 50px #ff00ff;
   transition:0.35s ease;
   border:2px solid rgba(0,255,255,0.2);
+  cursor:pointer;
 }
 
-/* HOVER */
 .gallery img:hover {
   transform:scale(1.05);
   box-shadow:0 0 70px #00ffff, 0 0 100px #ff00ff;
+}
+
+/* LIGHTBOX */
+#lightbox {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.92);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+#lightbox img {
+  max-width:90%;
+  max-height:90%;
+  border-radius:20px;
+  box-shadow:0 0 80px #00ffff;
 }
 
 /* MOBILE */
@@ -106,7 +123,6 @@ header h1 {
     font-size:2.5em;
   }
 }
-
 </style>
 </head>
 
@@ -116,7 +132,6 @@ header h1 {
   <h1>GALERIA BSCMC.PL</h1>
 </header>
 
-<!-- SURVIVAL -->
 <div class="section-title">SURVIVAL – DZIAŁKI</div>
 <div class="gallery">
   <img src="https://i.postimg.cc/tJdcSPrY/C4D0BA76-580F-4906-9794-E87E477D4186.png">
@@ -126,12 +141,29 @@ header h1 {
   <img src="https://i.postimg.cc/SKJRpZ2N/DC2B6B6C-C301-4B57-915C-DAC4F3CD2725.png">
 </div>
 
-<!-- CHUNKLOCK -->
 <div class="section-title">CHUNKLOCK</div>
 <div class="gallery">
   <img src="https://i.postimg.cc/pXRddVhf/A6125AA4-9420-42F1-A406-DAE5541D54F6.png">
   <img src="https://i.postimg.cc/8znkwhyX/887B4DCE-AF4B-43BB-82A7-408BFFDA278B.png">
 </div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="this.style.display='none'">
+  <img id="lightbox-img">
+</div>
+
+<script>
+const images = document.querySelectorAll('.gallery img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+
+images.forEach(img => {
+  img.addEventListener('click', () => {
+    lightbox.style.display = 'flex';
+    lightboxImg.src = img.src;
+  });
+});
+</script>
 
 </body>
 </html>
