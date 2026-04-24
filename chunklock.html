@@ -1,10 +1,9 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ChunkLock — BSCMC.PL</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
@@ -61,6 +60,12 @@
     text-shadow:0 0 10px #00ffff;
   }
 
+  h3 {
+    margin-top:20px;
+    color:#00ffff;
+    text-shadow:0 0 10px #00ffff;
+  }
+
   p, li {
     line-height:1.6;
     margin-bottom:12px;
@@ -68,6 +73,8 @@
   }
 
   ul { padding-left:20px; }
+
+  li { margin:6px 0; }
 
   .highlight { font-weight:bold; color:#ff00ff; }
 
@@ -101,9 +108,20 @@
 
   @keyframes float {
     0%{transform:translateY(0) translateX(0);}
+    50%{opacity:1;}
     100%{transform:translateY(-100vh) translateX(100px);opacity:0;}
   }
 
+  @keyframes gradientAnim {
+    0%{background-position:0%}
+    100%{background-position:300%}
+  }
+
+  @media (max-width:768px) {
+    .container { padding:20px; }
+    h1 { font-size:2.2em; }
+    h2 { font-size:1.6em; }
+  }
 </style>
 </head>
 
@@ -113,35 +131,94 @@
 
 <h1>🟫 ChunkLock — BSCMC.PL</h1>
 
-<p>
-ChunkLock to unikalny tryb Minecraft, w którym świat nie jest w pełni otwarty. 
-Gracze zaczynają z jednym chunkem i muszą odblokowywać kolejne obszary, zbierając surowce i rozwijając się.
-</p>
+<p>ChunkLock to unikalny tryb Minecraft, w którym świat nie jest w pełni otwarty. Gracze zaczynają z jednym chunkem i muszą <b>odblokowywać kolejne obszary</b>, zbierając surowce, planując ekspansję i współpracując z innymi.</p>
 
-<!-- 🔽 PRZYCISK JEST TUTAJ (POD TEKSTEM) -->
-<a href="dropy krysztal.html" class="back-button">
+
+ <a href="dropy krysztal.html" class="back-button">
 💀 Drop z Mobów - Kryształ Wymian 💎
 </a>
 
+ 
 <h2>🟫 Co oferuje tryb ChunkLock?</h2>
 <ul>
-<li>Start na jednym chunku.</li>
-<li>System progresji świata.</li>
-<li>Odblokowywanie kolejnych terenów.</li>
-<li>System drużyn.</li>
-<li>Strategiczne budowanie świata.</li>
+<li>Start na jednym odblokowanym chunku.</li>
+<li>System progresji i odblokowywania świata.</li>
+<li>Dynamiczne koszty chunków (biom, dystans, trudność).</li>
+<li>System drużyn i wspólnej ekspansji.</li>
+<li>Strategiczne planowanie rozwoju terenu.</li>
+<li>GUI do odblokowywania chunków.</li>
 </ul>
 
 <h2>🧱 Jak działa ChunkLock?</h2>
 <ul>
-<li>Startujesz z 1 chunkiem.</li>
-<li>Kolejne chunki kupujesz lub odblokowujesz.</li>
-<li>Możesz rozwijać tylko sąsiednie chunki.</li>
-<li>Cena zależy od biomu i progresu.</li>
+<li>Gracz zaczyna z 1 chunkem (16x16).</li>
+<li>Kolejne chunki trzeba odblokować przez zasoby lub kasę.</li>
+<li>Można odblokowywać tylko sąsiednie chunki.</li>
+<li>Cena zależy od biomu i progresji gracza.</li>
+<li>Drużyny mogą współdzielić postęp.</li>
+</ul>
+
+<h2>⚔️ PvP i bezpieczeństwo</h2>
+<p>PvP zależy od regionów chunków. Niektóre obszary są bezpieczne, inne rywalizacyjne. Griefing i exploitowanie progresji jest zabronione.</p>
+
+<h2>💰 Ekonomia</h2>
+<ul>
+<li>Odblokowywanie chunków za pieniądze lub itemy.</li>
+<li>System Vault + economy plugin.</li>
+<li>Handel zasobami między graczami.</li>
+<li>Dynamiczne ceny zależne od świata.</li>
+</ul>
+
+<h2>🧑‍🤝‍🧑 Współpraca</h2>
+<ul>
+<li>Twórz drużyny i rozwijaj wspólny teren.</li>
+<li>Koordynuj ekspansję chunków.</li>
+<li>Udostępniaj zasoby i strategie.</li>
+<li>Rywalizuj o największy teren.</li>
+</ul>
+
+<h2>📜 ChunkLock — Funkcje Serwera</h2>
+
+<h3>🎮 Podstawowe</h3>
+<ul>
+<li>📦 <span class="highlight">/chunklock</span> – zaczynasz z 1 chunkem.</li>
+<li>🧭 <span class="highlight">/chunklock upgrade</span> – rozwój przez ulepszenia</li>
+<li>📊 <span class="highlight">/chunklock help</span> – wyswietla podstawowe info</li>
+</ul>
+
+<h3>🟫 Rozgrywka</h3>
+<ul>
+<li>🤝 <span class="highlight">Teams</span> – wspólna progresja.</li>
+<li>⚙️ <span class="highlight">Dynamic Economy</span> – zmienne ceny chunków.</li>
+<li>🔮 <span class="highlight">Biome Pricing</span> – różne koszty biomów.</li>
+</ul>
+
+<h3>💰 Ekonomia</h3>
+<ul>
+<li>💰 System Vault / item payment.</li>
+<li>📈 Rosnące koszty ekspansji.</li>
+<li>🪙 Nagrody za progresję chunków.</li>
+<li>🏦 Handel między graczami.</li>
+</ul>
+
+<h3>⚙ Mechaniki</h3>
+<ul>
+<li>🧠 Strategiczne planowanie mapy.</li>
+<li>🧱 Ograniczony świat na start.</li>
+<li>⚡ Dynamiczne odblokowywanie terenu.</li>
+<li>👥 System drużyn i rang.</li>
+</ul>
+
+<h3>📈 Postęp</h3>
+<ul>
+<li>🟫 <span class="highlight">Chunk Progression</span> – rozwój świata.</li>
+<li>📊 Statystyki kopania i eksploracji.</li>
+<li>🏆 Achievementy i milestone’y.</li>
+<li>📜 Zadania i cele serwerowe.</li>
 </ul>
 
 <h2>📜 Regulamin</h2>
-<p>Zakaz exploitów, bugów i nieuczciwej gry.</p>
+<p>Grając na ChunkLock zgadzasz się przestrzegać zasad serwera. Wykorzystywanie bugów progresji i exploitów chunków jest zabronione.</p>
 
 <a href="index.html" class="back-button">← Powrót</a>
 
