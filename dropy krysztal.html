@@ -2,66 +2,135 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<title>Ankieta Discord</title>
+<title>Kryształ Wymian - Drop</title>
+
+<!-- Minecraftowa czcionka -->
+<link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
+
 <style>
-body {font-family:Arial; background:#222; color:white; text-align:center;}
-input, select, textarea, button {margin:10px; padding:8px; width:300px;}
-button {cursor:pointer; background:#7289da; color:white; border:none;}
+    body {
+        background: #0f0f0f;
+        color: white;
+        font-family: 'Minecraftia', monospace;
+        margin: 0;
+        padding: 30px;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: auto;
+        background: #1a1a1a;
+        border: 3px solid #2a2a2a;
+        padding: 20px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.8);
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .green { color: #55ff55; font-weight: bold; }
+    .blue { color: #55ffff; font-weight: bold; }
+
+    .category {
+        margin-top: 25px;
+        padding: 10px;
+        border-left: 4px solid #55ff55;
+        background: #141414;
+    }
+
+    .mob {
+        display: flex;
+        justify-content: space-between;
+        padding: 6px 10px;
+        margin: 4px 0;
+        background: #1f1f1f;
+        border: 1px solid #2a2a2a;
+    }
+
+    .chance {
+        color: #55ffff;
+    }
 </style>
 </head>
+
 <body>
-<h1>📝 Ankieta</h1>
 
-<form id="surveyForm">
-  <p>Jak masz na imię?</p>
-  <input type="text" name="name" required>
+<div class="container">
 
-  <p>Twój wiek:</p>
-  <input type="number" name="age" min="1" max="120" required>
+    <h1>
+        <span class="green">KRYSZTAŁ</span> 
+        <span class="blue">WYMIAN</span>
+    </h1>
 
-  <p>Twoja ulubiona gra:</p>
-  <select name="game">
-    <option value="Minecraft">Minecraft</option>
-    <option value="Fortnite">Fortnite</option>
-    <option value="Valorant">Valorant</option>
-    <option value="Inna">Inna</option>
-  </select>
+    <!-- FARMOWALNE -->
+    <div class="category">
+        <h3>Farmowalne Moby</h3>
+        <div class="mob"><span>Chicken</span><span class="chance">1.5%</span></div>
+        <div class="mob"><span>Cow</span><span class="chance">1.5%</span></div>
+        <div class="mob"><span>Pig</span><span class="chance">1.5%</span></div>
+        <div class="mob"><span>Sheep</span><span class="chance">1.5%</span></div>
+        <div class="mob"><span>Cod</span><span class="chance">1%</span></div>
+        <div class="mob"><span>Salmon</span><span class="chance">1%</span></div>
+    </div>
 
-  <p>Dodatkowe uwagi:</p>
-  <textarea name="comments" rows="3"></textarea><br>
+    <!-- ŁATWE -->
+    <div class="category">
+        <h3>Łatwe Moby</h3>
+        <div class="mob"><span>Zombie</span><span class="chance">2.5%</span></div>
+        <div class="mob"><span>Skeleton</span><span class="chance">2.5%</span></div>
+        <div class="mob"><span>Spider</span><span class="chance">2%</span></div>
+        <div class="mob"><span>Bee</span><span class="chance">1.5%</span></div>
+    </div>
 
-  <button type="submit">Wyślij ankietę</button>
-</form>
+    <!-- ŚREDNIE -->
+    <div class="category">
+        <h3>Średnie Moby</h3>
+        <div class="mob"><span>Creeper</span><span class="chance">4%</span></div>
+        <div class="mob"><span>Enderman</span><span class="chance">5%</span></div>
+        <div class="mob"><span>Guardian</span><span class="chance">5%</span></div>
+    </div>
 
-<script>
-// URL Twojego webhooka
-const webhookURL = "TU_WKLEJ_SWÓJ_WEBHOOK";
+    <!-- TRUDNE -->
+    <div class="category">
+        <h3>Trudne Moby</h3>
+        <div class="mob"><span>Blaze</span><span class="chance">7%</span></div>
+        <div class="mob"><span>Witch</span><span class="chance">8%</span></div>
+    </div>
 
-document.getElementById("surveyForm").addEventListener("submit", async function(e){
-  e.preventDefault();
-  const formData = new FormData(this);
-  const data = {
-    content: `📊 Nowa ankieta:\n**Imię:** ${formData.get("name")}\n**Wiek:** ${formData.get("age")}\n**Ulubiona gra:** ${formData.get("game")}\n**Uwagi:** ${formData.get("comments")}`
-  };
+    <!-- RZADKIE -->
+    <div class="category">
+        <h3>Rzadkie Moby</h3>
+        <div class="mob"><span>Piglin Brute</span><span class="chance">10%</span></div>
+        <div class="mob"><span>Evoker</span><span class="chance">12%</span></div>
+    </div>
 
-  try {
-    const response = await fetch(webhookURL, {
-      method: "POST",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify(data)
-    });
-    if(response.ok){
-      alert("Ankieta wysłana! Dziękujemy 👍");
-      this.reset();
-    } else {
-      alert("Błąd przy wysyłaniu ankiety.");
-    }
-  } catch(err){
-    console.error(err);
-    alert("Nie udało się wysłać ankiety.");
-  }
-});
-</script>
+    <!-- CUSTOM -->
+    <div class="category">
+        <h3>Custom Balance</h3>
+        <div class="mob"><span>Squid</span><span class="chance">11%</span></div>
+        <div class="mob"><span>Glow Squid</span><span class="chance">11%</span></div>
+        <div class="mob"><span>Wolf</span><span class="chance">16%</span></div>
+        <div class="mob"><span>Fox</span><span class="chance">15%</span></div>
+        <div class="mob"><span>Turtle</span><span class="chance">13%</span></div>
+        <div class="mob"><span>Bat</span><span class="chance">7%</span></div>
+        <div class="mob"><span>Rabbit</span><span class="chance">9%</span></div>
+        <div class="mob"><span>Horse</span><span class="chance">9%</span></div>
+        <div class="mob"><span>Phantom</span><span class="chance">10%</span></div>
+        <div class="mob"><span>Dolphin</span><span class="chance">16%</span></div>
+        <div class="mob"><span>Warden</span><span class="chance">24%</span></div>
+    </div>
+
+    <!-- BOSSY -->
+    <div class="category">
+        <h3>Bossy</h3>
+        <div class="mob"><span>Wither</span><span class="chance">22%</span></div>
+        <div class="mob"><span>Elder Guardian</span><span class="chance">18%</span></div>
+        <div class="mob"><span>Ender Dragon</span><span class="chance">30%</span></div>
+    </div>
+
+</div>
 
 </body>
 </html>
