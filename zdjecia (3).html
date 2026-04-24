@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BSCMC.PL - Galeria</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  color:#fff;
+  min-height:100vh;
+  background: radial-gradient(circle at center, #000010 0%, #020020 100%);
+  overflow-x:hidden;
+  padding:40px 20px;
+}
+
+/* gwiazdy */
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  background:url('https://www.transparenttextures.com/patterns/stardust.png');
+  opacity:0.2;
+  z-index:0;
+  pointer-events:none;
+}
+
+/* HEADER */
+header {
+  text-align:center;
+  margin-bottom:40px;
+  position:relative;
+  z-index:1;
+}
+
+header h1 {
+  font-size:3.5em;
+  background: linear-gradient(90deg,#00ffff,#ff00ff,#00ffff);
+  background-size:300%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:gradientAnim 6s linear infinite;
+  text-shadow:0 0 20px #00ffff,0 0 40px #ff00ff;
+}
+
+@keyframes gradientAnim {
+  0%{background-position:0%}
+  100%{background-position:300%}
+}
+
+/* SEKCJE */
+.section-title {
+  text-align:center;
+  font-size:2.2em;
+  margin:70px 0 25px;
+  color:#00ffff;
+  text-shadow:0 0 15px #00ffff;
+  position:relative;
+  z-index:1;
+}
+
+/* GALERIA */
+.gallery {
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:30px;
+  max-width:1100px;
+  margin:0 auto;
+  position:relative;
+  z-index:1;
+}
+
+/* ZDJĘCIA */
+.gallery img {
+  width:100%;
+  height:350px;
+  object-fit:cover;
+  border-radius:22px;
+  box-shadow:0 0 25px #00ffff, 0 0 50px #ff00ff;
+  transition:0.35s ease;
+  border:2px solid rgba(0,255,255,0.2);
+}
+
+/* HOVER */
+.gallery img:hover {
+  transform:scale(1.05);
+  box-shadow:0 0 70px #00ffff, 0 0 100px #ff00ff;
+}
+
+/* MOBILE */
+@media (max-width:768px) {
+  .gallery {
+    grid-template-columns:1fr;
+  }
+
+  .gallery img {
+    height:260px;
+  }
+
+  header h1 {
+    font-size:2.5em;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>GALERIA BSCMC.PL</h1>
+</header>
+
+<!-- SURVIVAL -->
+<div class="section-title">SURVIVAL – DZIAŁKI</div>
+<div class="gallery">
+  <img src="https://i.postimg.cc/3J5vFHyy/E9D582E9-5C3C-4A6A-AEFB-EFAD5657CCDA.png">
+  <img src="https://i.postimg.cc/fbr3t4nM/4CC364F5-2CE9-42FE-BD2C-B7532E99B0C2.png">
+  <img src="https://i.postimg.cc/QN5Btn6H/46C5FC9A-EF18-46AD-AB45-B2799E5F92A4.png">
+  <img src="https://i.postimg.cc/SKJRpZ2N/DC2B6B6C-C301-4B57-915C-DAC4F3CD2725.png">
+</div>
+
+<!-- CHUNKLOCK -->
+<div class="section-title">CHUNKLOCK</div>
+<div class="gallery">
+  <img src="https://i.postimg.cc/pXRddVhf/A6125AA4-9420-42F1-A406-DAE5541D54F6.png">
+  <img src="https://i.postimg.cc/8znkwhyX/887B4DCE-AF4B-43BB-82A7-408BFFDA278B.png">
+</div>
+
+</body>
+</html>
