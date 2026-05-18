@@ -9,53 +9,41 @@
 
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
 
 body {
   font-family: 'Orbitron', sans-serif;
   color: #fff;
   min-height: 100vh;
   background: radial-gradient(circle at center, #000010 0%, #020020 100%);
-  overflow-x: hidden;
-  position: relative;
+  overflow:hidden;
 }
 
-/* ⭐ ANIMOWANE TŁO OBRAZKÓW */
-.bg-animation {
+/* ⭐ TŁO ANIMOWANE */
+.bg {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  inset: 0;
   z-index: 0;
 }
 
-.bg-animation img {
+.bg img {
   position: absolute;
-  width: 120px;
-  opacity: 0.6;
+  width: 140px;
+  height: auto;
+  opacity: 0.7;
   pointer-events: none;
   filter: drop-shadow(0 0 10px #00ffff);
 }
 
-/* gwiazdy */
-body::before {
-  content:"";
-  position:absolute;
-  inset:0;
-  background:url('https://www.transparenttextures.com/patterns/stardust.png');
-  opacity:0.2;
-  z-index:0;
-  pointer-events:none;
+/* wszystko na wierzchu */
+.content {
+  position: relative;
+  z-index: 2;
 }
 
 /* HEADER */
 header {
   text-align:center;
   padding:60px 20px 20px;
-  position:relative;
-  z-index:2;
 }
 
 header h1 {
@@ -65,7 +53,6 @@ header h1 {
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   animation:gradientAnim 6s linear infinite;
-  text-shadow:0 0 20px #00ffff,0 0 40px #ff00ff;
 }
 
 @keyframes gradientAnim {
@@ -75,24 +62,14 @@ header h1 {
 
 header p {
   font-size:1.5em;
-  margin-top:10px;
   color:#00ffff;
-  text-shadow:0 0 10px #00ffff;
 }
 
-/* wszystko nad tłem */
-section, div, header, footer {
-  position: relative;
-  z-index: 2;
-}
-
-/* reszta Twojego stylu bez zmian */
+/* BUTTONY */
 .section-title {
   text-align:center;
-  font-size:1.8em;
   margin:40px 0 15px;
   color:#00ffff;
-  text-shadow:0 0 15px #00ffff;
 }
 
 .btn-row {
@@ -100,101 +77,61 @@ section, div, header, footer {
   justify-content:center;
   gap:15px;
   flex-wrap:wrap;
-  margin-bottom:20px;
 }
 
 .btn {
-  display:inline-block;
   padding:14px 28px;
   border-radius:18px;
   text-decoration:none;
-  font-weight:bold;
   color:#fff;
-  font-size:1.1em;
   background: linear-gradient(135deg,#00ffff,#ff00ff);
   box-shadow:0 0 15px #00ffff,0 0 30px #ff00ff;
-  transition:0.3s ease;
 }
 
-.btn:hover {
-  transform:scale(1.1);
-  box-shadow:0 0 50px #00ffff,0 0 100px #ff00ff;
-}
-
+/* FEATURES */
 .features {
   max-width:1000px;
-  margin:80px auto;
-  text-align:center;
-  background: linear-gradient(270deg,#00001a,#000022);
-  background-size:600% 600%;
-  animation:sectionGradient 20s ease infinite;
+  margin:60px auto;
+  padding:40px;
+  background: rgba(0,0,20,0.6);
   border-radius:20px;
-  padding:50px 20px;
-}
-
-@keyframes sectionGradient {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
 }
 
 .features-grid {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:30px;
+  gap:20px;
 }
 
 .feature {
-  background: rgba(0,0,20,0.7);
-  padding:30px 20px;
-  border-radius:20px;
+  background: rgba(0,0,30,0.7);
+  padding:20px;
+  border-radius:15px;
   box-shadow:0 0 20px #00ffff;
-  transition:0.3s;
 }
 
-.feature:hover {
-  transform:scale(1.05);
-  box-shadow:0 0 60px #ff00ff,0 0 80px #00ffff;
-}
-
+/* LEADERBOARD */
 .leaderboard {
   max-width:500px;
   margin:60px auto;
-  background: rgba(0,0,30,0.85);
-  border-radius:25px;
-  padding:30px;
-  box-shadow:0 0 60px #ff00ff,0 0 120px #00ffff;
+  padding:20px;
+  background: rgba(0,0,30,0.8);
+  border-radius:20px;
 }
 
-.player {
-  display:flex;
-  justify-content:space-between;
-  padding:15px;
-  margin-bottom:10px;
-  border-radius:15px;
-}
-
-.gold { background: linear-gradient(90deg,#FFD700,#FFA500); color:#000; }
-.silver { background: linear-gradient(90deg,#C0C0C0,#A9A9A9); color:#000; }
-.bronze { background: linear-gradient(90deg,#CD7F32,#8B4513); color:#fff; }
-
+/* FOOTER */
 footer {
   text-align:center;
   padding:20px;
-  font-size:0.85em;
-  background: rgba(0,0,20,0.8);
   color:#aaa;
-  margin-top:80px;
 }
-
-/* żeby canvas/animacja była pod wszystkim */
 </style>
 </head>
 
 <body>
 
-<!-- ⭐ TŁO Z OBRAZKAMI -->
-<div class="bg-animation">
+<!-- ⭐ TŁO -->
+<div class="bg">
   <img src="https://i.postimg.cc/7h4t7tRc/8D3B7206-9D1C-4BCA-A73F-B2083468965C.png">
   <img src="https://i.postimg.cc/Rh3LGnVR/6E324A66-BD7A-4575-BCAA-57A532873B52.png">
   <img src="https://i.postimg.cc/Cx06Mmxt/3358C661-FE24-4F3A-9FF0-E7A2C478B492.png">
@@ -206,40 +143,69 @@ footer {
   <img src="https://i.postimg.cc/bJwdNHnP/267F0CE7-4E91-4E43-9ECA-BAFD7207CBEC.png">
 </div>
 
+<div class="content">
+
 <header>
   <h1>BSCMC.PL</h1>
-  <p>Wersja: <strong>1.21.10</strong></p>
+  <p>Wersja: 1.21.10</p>
 </header>
 
-<!-- (RESZTA TWOJEJ STRONY ZOSTAJE BEZ ZMIAN) -->
+<div class="section-title">TRYBY</div>
+<div class="btn-row">
+  <a class="btn" href="survival.html">SURVIVAL</a>
+  <a class="btn" href="chunklock.html">CHUNKLOCK</a>
+</div>
+
+<section class="features">
+  <h2 style="text-align:center;color:#00ffff;margin-bottom:20px;">DLACZEGO MY?</h2>
+  <div class="features-grid">
+    <div class="feature">Aktywna administracja</div>
+    <div class="feature">Eventy</div>
+    <div class="feature">Custom systemy</div>
+    <div class="feature">Bezpieczeństwo</div>
+  </div>
+</section>
+
+<footer>
+  © 2026 BSCMC.PL
+</footer>
+
+</div>
 
 <script>
-const images = document.querySelectorAll(".bg-animation img");
+const images = document.querySelectorAll(".bg img");
 
-const data = Array.from(images).map(img => ({
-  el: img,
-  x: Math.random() * window.innerWidth,
-  y: Math.random() * window.innerHeight,
-  vx: (Math.random() - 0.5) * 2,
-  vy: (Math.random() - 0.5) * 2
-}));
+const items = [];
+
+images.forEach(img => {
+  const size = 120;
+
+  const obj = {
+    el: img,
+    x: Math.random() * (window.innerWidth - size),
+    y: Math.random() * (window.innerHeight - size),
+    vx: (Math.random() * 2 + 1) * (Math.random() > 0.5 ? 1 : -1),
+    vy: (Math.random() * 2 + 1) * (Math.random() > 0.5 ? 1 : -1),
+    size
+  };
+
+  img.style.width = size + "px";
+  items.push(obj);
+});
 
 function animate() {
   const w = window.innerWidth;
   const h = window.innerHeight;
 
-  data.forEach(obj => {
-    obj.x += obj.vx;
-    obj.y += obj.vy;
+  items.forEach(o => {
+    o.x += o.vx;
+    o.y += o.vy;
 
-    const rect = obj.el.getBoundingClientRect();
-    const size = 120;
+    if (o.x <= 0 || o.x + o.size >= w) o.vx *= -1;
+    if (o.y <= 0 || o.y + o.size >= h) o.vy *= -1;
 
-    if (obj.x <= 0 || obj.x + size >= w) obj.vx *= -1;
-    if (obj.y <= 0 || obj.y + size >= h) obj.vy *= -1;
-
-    obj.el.style.left = obj.x + "px";
-    obj.el.style.top = obj.y + "px";
+    o.el.style.left = o.x + "px";
+    o.el.style.top = o.y + "px";
   });
 
   requestAnimationFrame(animate);
