@@ -9,41 +9,34 @@
 
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
 
 body {
   font-family: 'Orbitron', sans-serif;
   color: #fff;
   min-height: 100vh;
   background: radial-gradient(circle at center, #000010 0%, #020020 100%);
-  overflow:hidden;
-}
-
-/* ⭐ TŁO ANIMOWANE */
-.bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-}
-
-.bg img {
-  position: absolute;
-  width: 140px;
-  height: auto;
-  opacity: 0.7;
-  pointer-events: none;
-  filter: drop-shadow(0 0 10px #00ffff);
-}
-
-/* wszystko na wierzchu */
-.content {
+  overflow-x: hidden;
   position: relative;
-  z-index: 2;
+}
+
+/* gwiazdy */
+body::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:url('https://www.transparenttextures.com/patterns/stardust.png');
+  opacity:0.2;
+  z-index:0;
+  pointer-events:none;
 }
 
 /* HEADER */
 header {
   text-align:center;
   padding:60px 20px 20px;
+  position:relative;
+  z-index:1;
 }
 
 header h1 {
@@ -53,6 +46,7 @@ header h1 {
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   animation:gradientAnim 6s linear infinite;
+  text-shadow:0 0 20px #00ffff,0 0 40px #ff00ff;
 }
 
 @keyframes gradientAnim {
@@ -62,14 +56,21 @@ header h1 {
 
 header p {
   font-size:1.5em;
+  margin-top:10px;
   color:#00ffff;
+  text-shadow:0 0 10px #00ffff;
 }
 
-/* BUTTONY */
+/* ===== NOWY SYSTEM PRZYCISKÓW ===== */
+
 .section-title {
   text-align:center;
+  font-size:1.8em;
   margin:40px 0 15px;
   color:#00ffff;
+  text-shadow:0 0 15px #00ffff;
+  position:relative;
+  z-index:1;
 }
 
 .btn-row {
@@ -77,141 +78,217 @@ header p {
   justify-content:center;
   gap:15px;
   flex-wrap:wrap;
+  margin-bottom:20px;
+  position:relative;
+  z-index:1;
 }
 
 .btn {
+  display:inline-block;
   padding:14px 28px;
   border-radius:18px;
   text-decoration:none;
+  font-weight:bold;
   color:#fff;
+  font-size:1.1em;
+
   background: linear-gradient(135deg,#00ffff,#ff00ff);
   box-shadow:0 0 15px #00ffff,0 0 30px #ff00ff;
+
+  transition:0.3s ease;
+}
+
+.btn:hover {
+  transform:scale(1.1);
+  box-shadow:0 0 50px #00ffff,0 0 100px #ff00ff;
 }
 
 /* FEATURES */
 .features {
   max-width:1000px;
-  margin:60px auto;
-  padding:40px;
-  background: rgba(0,0,20,0.6);
+  margin:80px auto;
+  text-align:center;
+  position:relative;
+  z-index:1;
+  background: linear-gradient(270deg,#00001a,#000022);
+  background-size:600% 600%;
+  animation:sectionGradient 20s ease infinite;
   border-radius:20px;
+  padding:50px 20px;
+}
+
+@keyframes sectionGradient {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.features h2 {
+  font-size:2.5em;
+  background: linear-gradient(90deg,#00ffff,#ff00ff,#00ffff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:40px;
 }
 
 .features-grid {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
+  gap:30px;
 }
 
 .feature {
-  background: rgba(0,0,30,0.7);
-  padding:20px;
-  border-radius:15px;
+  background: rgba(0,0,20,0.7);
+  padding:30px 20px;
+  border-radius:20px;
   box-shadow:0 0 20px #00ffff;
+  transition:0.3s;
+}
+
+.feature:hover {
+  transform:scale(1.05);
+  box-shadow:0 0 60px #ff00ff,0 0 80px #00ffff;
 }
 
 /* LEADERBOARD */
 .leaderboard {
   max-width:500px;
   margin:60px auto;
-  padding:20px;
-  background: rgba(0,0,30,0.8);
-  border-radius:20px;
+  background: rgba(0,0,30,0.85);
+  border-radius:25px;
+  padding:30px;
+  box-shadow:0 0 60px #ff00ff,0 0 120px #00ffff;
+  position:relative;
+  z-index:1;
 }
+
+.player {
+  display:flex;
+  justify-content:space-between;
+  padding:15px;
+  margin-bottom:10px;
+  border-radius:15px;
+}
+
+.gold { background: linear-gradient(90deg,#FFD700,#FFA500); color:#000; }
+.silver { background: linear-gradient(90deg,#C0C0C0,#A9A9A9); color:#000; }
+.bronze { background: linear-gradient(90deg,#CD7F32,#8B4513); color:#fff; }
 
 /* FOOTER */
 footer {
   text-align:center;
   padding:20px;
+  font-size:0.85em;
+  background: rgba(0,0,20,0.8);
   color:#aaa;
+  margin-top:80px;
+  position:relative;
+  z-index:1;
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- ⭐ TŁO -->
-<div class="bg">
-  <img src="https://i.postimg.cc/7h4t7tRc/8D3B7206-9D1C-4BCA-A73F-B2083468965C.png">
-  <img src="https://i.postimg.cc/Rh3LGnVR/6E324A66-BD7A-4575-BCAA-57A532873B52.png">
-  <img src="https://i.postimg.cc/Cx06Mmxt/3358C661-FE24-4F3A-9FF0-E7A2C478B492.png">
-  <img src="https://i.postimg.cc/R0RyLwD7/1851A854-A4A1-4B9E-93C2-00472FFFE47A.png">
-  <img src="https://i.postimg.cc/tJdcSPrY/C4D0BA76-580F-4906-9794-E87E477D4186.png">
-  <img src="https://i.postimg.cc/cCJ32Ghc/93FF200E-98A7-4853-9B07-3CCDFA13F10A.png">
-  <img src="https://i.postimg.cc/5tMC1Cp1/8FB102E7-024C-4980-B03B-893FE7E9C3F3.png">
-  <img src="https://i.postimg.cc/j5BtbTLq/A9B0B6D0-CC80-48BA-B205-EF5D1127C151.png">
-  <img src="https://i.postimg.cc/bJwdNHnP/267F0CE7-4E91-4E43-9ECA-BAFD7207CBEC.png">
-</div>
-
-<div class="content">
-
 <header>
   <h1>BSCMC.PL</h1>
-  <p>Wersja: 1.21.10</p>
+  <p>Wersja: <strong>1.21.10</span></p>
 </header>
 
+<!-- TRYBY -->
 <div class="section-title">TRYBY</div>
 <div class="btn-row">
-  <a class="btn" href="survival.html">SURVIVAL</a>
-  <a class="btn" href="chunklock.html">CHUNKLOCK</a>
+  <a class="btn" href="survival.html">🏠 SURVIVAL</a>
+  <a class="btn" href="chunklock.html">🌍 CHUNKLOCK</a>
 </div>
 
+<!-- INFORMACJE -->
+<div class="section-title">INFORMACJE</div>
+<div class="btn-row">
+  <a class="btn" href="klikanyregulamin.html">📜 REGULAMIN</a>
+  <a class="btn" href="cennik pomocy tworzenia.html">💰 CENNIK</a>
+  <a class="btn" href="zdjecia.html">📸 GALERIA SERVERA</a>
+</div>
+
+<!-- SPOŁECZNOŚĆ -->
+<div class="section-title">SPOŁECZNOŚĆ</div>
+<div class="btn-row">
+  <a class="btn" href="https://discord.gg/xD85Yw3KCM">Discord</a>
+  <a class="btn" href="https://www.tiktok.com/@streetbosspl">TikTok</a>
+  <a class="btn" href="https://kick.com/bossman-ml">Kick</a>
+  <a class="btn" href="https://serwery-minecraft.pl/serwer/8593-bscmc-pl">GŁOS 1</a>
+  <a class="btn" href="https://www.mclist.pl/serwer/bscmc.pl">GŁOS 2</a>
+</div>
+
+<!-- SERVER -->
+<div class="section-title">SERVER</div>
+<div class="btn-row">
+  <a class="btn" onclick="copyIP()">📋 Kopiuj IP: BSCMC.PL</a>
+  <a class="btn" href="https://www.bscmc.pl/#servers">🛒 Sklep</a>
+  <a class="btn" href="regulamin_sklepu_servera_vpln.html">📜 Regulamin sklepu</a>
+</div>
+
+<!-- FEATURES -->
 <section class="features">
-  <h2 style="text-align:center;color:#00ffff;margin-bottom:20px;">DLACZEGO MY?</h2>
+  <h2> DLACZEGO WARTO WYBRAĆ BSCMC.PL?</h2>
   <div class="features-grid">
-    <div class="feature">Aktywna administracja</div>
-    <div class="feature">Eventy</div>
-    <div class="feature">Custom systemy</div>
-    <div class="feature">Bezpieczeństwo</div>
-  </div>
+
+    <div class="feature">
+        <h3>Aktywna Administracja</h3>
+        <p>Nasza administracja działa błyskawicznie – reagujemy na zgłoszenia graczy, uwzględniamy ich propozycje i dbamy o uczciwą oraz przyjemną rozgrywkę dla wszystkich.  
+  Jesteśmy obecni 24/7, odpowiadamy na Discordzie i w grze, monitorujemy fair play i zawsze wspieramy społeczność.</p>
+    </div>
+   
+    <div class="feature">
+      <h3> Miła Administracja</h3>
+      <p>Nasza administracja jest zawsze gotowa pomóc i zadbać o komfort graczy. Szybko reagujemy na problemy, dbamy o fair play i wspieramy społeczność dzięki systemowi PlayerReport.</p>
+    </div>
+    
+    <div class="feature">
+      <h3> Nowatorskie Mechaniki</h3>
+      <p>BSCMC.PL oferuje autorskie systemy i pluginy, które wyróżniają nas spośród innych serwerów. Znajdziesz tu customowe biomy, unikatowe moby, talenty, działki oraz specjalne mechaniki jak Fabryka czy Prace.</p>
+    </div>
+    
+    <div class="feature">
+      <h3> Eventy i Turnieje</h3>
+      <p>Organizujemy regularne konkursy, mini-gry i turnieje (TNTRun, TowerClash, HideAndSeek) z nagrodami. Dzięki ChatQuiz, AxCalendar i NagrodaDiscord każdy aktywny gracz może zdobywać unikatowe przedmioty i bonusy.</p>
+    </div>
+    
+    <div class="feature">
+      <h3> Stabilność i Bezpieczeństwo</h3>
+      <p>Serwer działa 24/7 i jest zabezpieczony przed cheaterami oraz awariami. Pluginy dbają o bezpieczeństwo danych i płynność rozgrywki.</p>
+    </div>
+    
+    <div class="feature">
+      <h3> Codzienne Nagrody i Bonusy</h3>
+      <p>Loguj się codziennie i odbieraj bonusy dzięki Skrzynkom oraz na łowieniu ryb. Dodatkowo możesz zdobywać nagrody za głosowanie na serwer oraz za dołączenie do naszego Discorda – to świetny sposób, aby być nagradzanym za aktywność!</p>
+    </div>
+    
+    <div class="feature">
+      <h3> Silna Społeczność</h3>
+      <p>BSCMC.PL to miejsce, gdzie poznasz nowych graczy, stworzysz drużyny i wspólnie odkryjesz serwer. NPC, skórki, LootChest i interaktywne eventy sprawiają, że każdy może aktywnie uczestniczyć w życiu społeczności.</p>
+    </div>
+</section>
+
+<!-- LEADERBOARD -->
+<section class="leaderboard">
+  <h3>🏆 Najlepsi gracze</h3>
+  <div class="player gold"><span>🥇 SalatkaOwocowa</span><span>120 zł</span></div>
+  <div class="player gold"><span>🥇 michalek</span><span>120 zł</span></div>
+  <div class="player silver"><span>🥈 BloomFire000</span><span>104 zł</span></div>
+  <div class="player bronze"><span>🥉 ogonek6564</span><span>74 zł</span></div>
 </section>
 
 <footer>
   © 2026 BSCMC.PL
 </footer>
 
-</div>
-
 <script>
-const images = document.querySelectorAll(".bg img");
-
-const items = [];
-
-images.forEach(img => {
-  const size = 120;
-
-  const obj = {
-    el: img,
-    x: Math.random() * (window.innerWidth - size),
-    y: Math.random() * (window.innerHeight - size),
-    vx: (Math.random() * 2 + 1) * (Math.random() > 0.5 ? 1 : -1),
-    vy: (Math.random() * 2 + 1) * (Math.random() > 0.5 ? 1 : -1),
-    size
-  };
-
-  img.style.width = size + "px";
-  items.push(obj);
-});
-
-function animate() {
-  const w = window.innerWidth;
-  const h = window.innerHeight;
-
-  items.forEach(o => {
-    o.x += o.vx;
-    o.y += o.vy;
-
-    if (o.x <= 0 || o.x + o.size >= w) o.vx *= -1;
-    if (o.y <= 0 || o.y + o.size >= h) o.vy *= -1;
-
-    o.el.style.left = o.x + "px";
-    o.el.style.top = o.y + "px";
-  });
-
-  requestAnimationFrame(animate);
+function copyIP() {
+  navigator.clipboard.writeText("BSCMC.PL");
+  alert("Skopiowano IP: BSCMC.PL");
 }
-
-animate();
 </script>
 
 </body>
