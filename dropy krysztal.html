@@ -57,19 +57,6 @@
     text-shadow:0 0 20px #00ffff,0 0 40px #ff00ff;
   }
 
-  h2 {
-    font-size:1.8em;
-    margin-top:30px;
-    margin-bottom:10px;
-    border-bottom:2px solid #00ffff;
-    padding-bottom:5px;
-    text-shadow:0 0 10px #00ffff;
-  }
-
-  .category {
-    margin-top:20px;
-  }
-
   .mob {
     display:flex;
     justify-content:space-between;
@@ -98,7 +85,6 @@
     font-weight:bold;
   }
 
-  /* PARTICLES */
   .particle {
     position:absolute;
     width:6px;
@@ -110,15 +96,8 @@
   }
 
   @keyframes float {
-    0% {
-      transform:translateY(0) translateX(0);
-      opacity:1;
-    }
-
-    100% {
-      transform:translateY(-100vh) translateX(100px);
-      opacity:0;
-    }
+    0% { transform:translateY(0) translateX(0); opacity:1; }
+    100% { transform:translateY(-100vh) translateX(100px); opacity:0; }
   }
 
 </style>
@@ -131,125 +110,34 @@
 <h1>💀 Drop z Mobów — <span class="highlight">Kryształ Wymian</span> 💎</h1>
 
 <p style="text-align:center; margin-bottom:20px;">
-Lista mobów oraz szansa na drop specjalnego przedmiotu:
+Jedna pełna lista wszystkich mobów i ich szans na drop:
 <span class="highlight">KRYSZTAŁ WYMIAN</span>
 </p>
 
-<!-- FARMOWALNE -->
-<h2>🐖 Moby Farmowalne</h2>
-<div class="category">
-  <div class="mob">
-    <span>Świnia</span>
-    <span class="chance">1.5%</span>
-  </div>
-
-  <div class="mob">
-    <span>Łosoś</span>
-    <span class="chance">1%</span>
-  </div>
-</div>
-
-<!-- ŁATWE -->
-<h2>🐝 Łatwe Moby</h2>
-<div class="category">
-  <div class="mob">
-    <span>Pszczoła</span>
-    <span class="chance">1.5%</span>
-  </div>
-</div>
-
-<!-- ŚREDNIE -->
-<h2>🛡️ Średnie Moby</h2>
-<div class="category">
-  <div class="mob">
-    <span>Guardian</span>
-    <span class="chance">5%</span>
-  </div>
-</div>
-
-<!-- RZADKIE -->
-<h2>💎 Rzadkie Moby</h2>
-<div class="category">
-  <div class="mob">
-    <span>Przywoływacz (Evoker)</span>
-    <span class="chance">12%</span>
-  </div>
-</div>
-
-<!-- CUSTOM -->
-<h2>🌊 Moby Specjalne</h2>
+<!-- JEDNA LISTA -->
 <div class="category">
 
-  <div class="mob">
-    <span>Kałamarnica</span>
-    <span class="chance">11%</span>
-  </div>
+  <div class="mob"><span>Świnia</span><span class="chance">1.5%</span></div>
+  <div class="mob"><span>Łosoś</span><span class="chance">1%</span></div>
+  <div class="mob"><span>Pszczoła</span><span class="chance">1.5%</span></div>
+  <div class="mob"><span>Guardian</span><span class="chance">5%</span></div>
+  <div class="mob"><span>Evoker (Przywoływacz)</span><span class="chance">12%</span></div>
 
-  <div class="mob">
-    <span>Świecąca Kałamarnica</span>
-    <span class="chance">11%</span>
-  </div>
+  <div class="mob"><span>Kałamarnica</span><span class="chance">11%</span></div>
+  <div class="mob"><span>Świecąca Kałamarnica</span><span class="chance">11%</span></div>
+  <div class="mob"><span>Wilk</span><span class="chance">16%</span></div>
+  <div class="mob"><span>Lis</span><span class="chance">15%</span></div>
+  <div class="mob"><span>Żółw</span><span class="chance">13%</span></div>
 
-  <div class="mob">
-    <span>Wilk</span>
-    <span class="chance">16%</span>
-  </div>
+  <div class="mob"><span>Nietoperz</span><span class="chance">7%</span></div>
+  <div class="mob"><span>Królik</span><span class="chance">9%</span></div>
+  <div class="mob"><span>Koń</span><span class="chance">9%</span></div>
+  <div class="mob"><span>Delfin</span><span class="chance">16%</span></div>
+  <div class="mob"><span>Warden</span><span class="chance">24%</span></div>
 
-  <div class="mob">
-    <span>Lis</span>
-    <span class="chance">15%</span>
-  </div>
-
-  <div class="mob">
-    <span>Żółw</span>
-    <span class="chance">13%</span>
-  </div>
-
-  <div class="mob">
-    <span>Nietoperz</span>
-    <span class="chance">7%</span>
-  </div>
-
-  <div class="mob">
-    <span>Królik</span>
-    <span class="chance">9%</span>
-  </div>
-
-  <div class="mob">
-    <span>Koń</span>
-    <span class="chance">9%</span>
-  </div>
-
-  <div class="mob">
-    <span>Delfin</span>
-    <span class="chance">16%</span>
-  </div>
-
-  <div class="mob">
-    <span>Warden</span>
-    <span class="chance">24%</span>
-  </div>
-
-</div>
-
-<!-- BOSSY -->
-<h2>👑 Bossy</h2>
-<div class="category">
-
-  <div class="mob">
-    <span>Wither</span>
-    <span class="chance">22%</span>
-  </div>
-
-  <div class="mob">
-    <span>Starszy Strażnik</span>
-    <span class="chance">18%</span>
-  </div>
-
-  <div class="mob">
-    <span>Smok Kresu</span>
-    <span class="chance">30%</span>
-  </div>
+  <div class="mob"><span>Wither</span><span class="chance">22%</span></div>
+  <div class="mob"><span>Starszy Strażnik</span><span class="chance">18%</span></div>
+  <div class="mob"><span>Smok Kresu</span><span class="chance">30%</span></div>
 
 </div>
 
@@ -257,20 +145,12 @@ Lista mobów oraz szansa na drop specjalnego przedmiotu:
 
 <script>
 for(let i = 0; i < 50; i++) {
-
   const p = document.createElement('div');
-
   p.className = 'particle';
-
   p.style.left = Math.random() * window.innerWidth + 'px';
   p.style.top = Math.random() * window.innerHeight + 'px';
-
-  p.style.width =
-  p.style.height = (3 + Math.random() * 6) + 'px';
-
-  p.style.animationDuration =
-  (5 + Math.random() * 10) + 's';
-
+  p.style.width = p.style.height = (3 + Math.random() * 6) + 'px';
+  p.style.animationDuration = (5 + Math.random() * 10) + 's';
   document.body.appendChild(p);
 }
 </script>
