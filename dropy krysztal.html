@@ -8,60 +8,119 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; }
+  * {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+  }
 
   body {
-    font-family:'Orbitron',sans-serif;
-    background: radial-gradient(circle at center,#000010 0%,#020020 100%);
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(circle at center, #000010 0%, #020020 100%);
     color:#fff;
     min-height:100vh;
     overflow-x:hidden;
+    position:relative;
+  }
+
+  body::before {
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity:0.2;
+    z-index:0;
+    pointer-events:none;
   }
 
   .container {
     max-width:900px;
     margin:60px auto;
-    background:rgba(0,0,20,0.85);
+    background: rgba(0,0,20,0.85);
     padding:40px;
     border-radius:20px;
     box-shadow:0 0 40px #00ffff,0 0 80px #ff00ff;
+    position:relative;
+    z-index:1;
   }
 
   h1 {
     text-align:center;
     font-size:3em;
     margin-bottom:20px;
-    background:linear-gradient(90deg,#00ffff,#ff00ff,#00ffff);
+    background: linear-gradient(90deg,#00ffff,#ff00ff,#00ffff);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
+    text-shadow:0 0 20px #00ffff,0 0 40px #ff00ff;
+  }
+
+  h2 {
+    font-size:1.8em;
+    margin-top:30px;
+    margin-bottom:10px;
+    border-bottom:2px solid #00ffff;
+    padding-bottom:5px;
+    text-shadow:0 0 10px #00ffff;
+  }
+
+  .category {
+    margin-top:20px;
   }
 
   .mob {
     display:flex;
     justify-content:space-between;
+    align-items:center;
     padding:12px;
     margin:8px 0;
-    background:rgba(255,255,255,0.05);
+    background: rgba(255,255,255,0.05);
     border-left:3px solid #00ffff;
     border-radius:10px;
+    transition:0.3s;
   }
 
-  .chance { color:#00ffff; font-weight:bold; }
+  .mob:hover {
+    transform:scale(1.02);
+    background: rgba(255,255,255,0.08);
+    box-shadow:0 0 15px rgba(0,255,255,0.5);
+  }
 
+  .chance {
+    color:#00ffff;
+    font-weight:bold;
+  }
+
+  .highlight {
+    color:#ff00ff;
+    font-weight:bold;
+  }
+
+  /* PARTICLES */
   .particle {
     position:absolute;
-    width:5px;
-    height:5px;
+    width:6px;
+    height:6px;
     border-radius:50%;
     background:#00ffff;
-    opacity:0.6;
-    animation:float 12s linear infinite;
+    opacity:0.8;
+    animation:float 10s linear infinite;
   }
 
   @keyframes float {
-    0% { transform:translateY(0); opacity:1; }
-    100% { transform:translateY(-100vh); opacity:0; }
+    0% {
+      transform:translateY(0) translateX(0);
+      opacity:1;
+    }
+
+    100% {
+      transform:translateY(-100vh) translateX(100px);
+      opacity:0;
+    }
   }
+
 </style>
 </head>
 
@@ -69,39 +128,149 @@
 
 <div class="container">
 
-<h1>💀 Kryształ Wymian 💎</h1>
+<h1>💀 Drop z Mobów — <span class="highlight">Kryształ Wymian</span> 💎</h1>
 
-<div class="mob"><span>Świnia</span><span class="chance">1.5%</span></div>
-<div class="mob"><span>Łosoś</span><span class="chance">1%</span></div>
-<div class="mob"><span>Pszczoła</span><span class="chance">1.5%</span></div>
-<div class="mob"><span>Guardian</span><span class="chance">5%</span></div>
-<div class="mob"><span>Evoker</span><span class="chance">12%</span></div>
-<div class="mob"><span>Kałamarnica</span><span class="chance">11%</span></div>
-<div class="mob"><span>Świecąca Kałamarnica</span><span class="chance">11%</span></div>
-<div class="mob"><span>Wilk</span><span class="chance">16%</span></div>
-<div class="mob"><span>Lis</span><span class="chance">15%</span></div>
-<div class="mob"><span>Żółw</span><span class="chance">13%</span></div>
-<div class="mob"><span>Nietoperz</span><span class="chance">7%</span></div>
-<div class="mob"><span>Królik</span><span class="chance">9%</span></div>
-<div class="mob"><span>Koń</span><span class="chance">9%</span></div>
-<div class="mob"><span>Delfin</span><span class="chance">16%</span></div>
-<div class="mob"><span>Warden</span><span class="chance">24%</span></div>
-<div class="mob"><span>Wither</span><span class="chance">22%</span></div>
-<div class="mob"><span>Starszy Strażnik</span><span class="chance">18%</span></div>
-<div class="mob"><span>Smok Kresu</span><span class="chance">30%</span></div>
+<p style="text-align:center; margin-bottom:20px;">
+Lista mobów oraz szansa na drop specjalnego przedmiotu:
+<span class="highlight">KRYSZTAŁ WYMIAN</span>
+</p>
+
+<!-- FARMOWALNE -->
+<h2>🐖 Moby Farmowalne</h2>
+<div class="category">
+  <div class="mob">
+    <span>Świnia</span>
+    <span class="chance">1.5%</span>
+  </div>
+
+  <div class="mob">
+    <span>Łosoś</span>
+    <span class="chance">1%</span>
+  </div>
+</div>
+
+<!-- ŁATWE -->
+<h2>🐝 Łatwe Moby</h2>
+<div class="category">
+  <div class="mob">
+    <span>Pszczoła</span>
+    <span class="chance">1.5%</span>
+  </div>
+</div>
+
+<!-- ŚREDNIE -->
+<h2>🛡️ Średnie Moby</h2>
+<div class="category">
+  <div class="mob">
+    <span>Guardian</span>
+    <span class="chance">5%</span>
+  </div>
+</div>
+
+<!-- RZADKIE -->
+<h2>💎 Rzadkie Moby</h2>
+<div class="category">
+  <div class="mob">
+    <span>Przywoływacz (Evoker)</span>
+    <span class="chance">12%</span>
+  </div>
+</div>
+
+<!-- CUSTOM -->
+<h2>🌊 Moby Specjalne</h2>
+<div class="category">
+
+  <div class="mob">
+    <span>Kałamarnica</span>
+    <span class="chance">11%</span>
+  </div>
+
+  <div class="mob">
+    <span>Świecąca Kałamarnica</span>
+    <span class="chance">11%</span>
+  </div>
+
+  <div class="mob">
+    <span>Wilk</span>
+    <span class="chance">16%</span>
+  </div>
+
+  <div class="mob">
+    <span>Lis</span>
+    <span class="chance">15%</span>
+  </div>
+
+  <div class="mob">
+    <span>Żółw</span>
+    <span class="chance">13%</span>
+  </div>
+
+  <div class="mob">
+    <span>Nietoperz</span>
+    <span class="chance">7%</span>
+  </div>
+
+  <div class="mob">
+    <span>Królik</span>
+    <span class="chance">9%</span>
+  </div>
+
+  <div class="mob">
+    <span>Koń</span>
+    <span class="chance">9%</span>
+  </div>
+
+  <div class="mob">
+    <span>Delfin</span>
+    <span class="chance">16%</span>
+  </div>
+
+  <div class="mob">
+    <span>Warden</span>
+    <span class="chance">24%</span>
+  </div>
+
+</div>
+
+<!-- BOSSY -->
+<h2>👑 Bossy</h2>
+<div class="category">
+
+  <div class="mob">
+    <span>Wither</span>
+    <span class="chance">22%</span>
+  </div>
+
+  <div class="mob">
+    <span>Starszy Strażnik</span>
+    <span class="chance">18%</span>
+  </div>
+
+  <div class="mob">
+    <span>Smok Kresu</span>
+    <span class="chance">30%</span>
+  </div>
+
+</div>
 
 </div>
 
 <script>
-const count = 25; // mniej = stabilniej
+for(let i = 0; i < 50; i++) {
 
-for(let i=0;i<count;i++){
   const p = document.createElement('div');
-  p.className='particle';
-  p.style.left = Math.random()*window.innerWidth+'px';
-  p.style.top = Math.random()*window.innerHeight+'px';
-  p.style.width = p.style.height = (3+Math.random()*5)+'px';
-  p.style.animationDuration = (6+Math.random()*8)+'s';
+
+  p.className = 'particle';
+
+  p.style.left = Math.random() * window.innerWidth + 'px';
+  p.style.top = Math.random() * window.innerHeight + 'px';
+
+  p.style.width =
+  p.style.height = (3 + Math.random() * 6) + 'px';
+
+  p.style.animationDuration =
+  (5 + Math.random() * 10) + 's';
+
   document.body.appendChild(p);
 }
 </script>
