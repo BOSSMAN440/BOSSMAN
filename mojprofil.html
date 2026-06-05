@@ -24,38 +24,58 @@ body{
     flex-direction:column;
     color:white;
     background:radial-gradient(circle at center,#000010 0%,#020020 100%);
-    overflow:hidden;
     position:relative;
+    overflow:hidden;
 }
 
-/* Gwiazdy */
+/* Tło gwiazd */
 body::before{
     content:"";
     position:absolute;
     inset:0;
     background:url('https://www.transparenttextures.com/patterns/stardust.png');
-    opacity:.2;
+    opacity:.25;
     pointer-events:none;
 }
 
-/* Główna karta */
+/* Panel */
 .panel{
     position:relative;
-    z-index:1;
+    z-index:2;
     text-align:center;
     background:rgba(0,0,30,.75);
-    padding:50px;
-    border-radius:30px;
-    backdrop-filter:blur(10px);
+    padding:45px;
+    border-radius:35px;
+    backdrop-filter:blur(12px);
     box-shadow:
         0 0 40px #00ffff,
-        0 0 80px #ff00ff;
-    width:min(90%,700px);
+        0 0 90px #ff00ff;
+    width:min(92%,700px);
+    animation:floatPanel 5s ease-in-out infinite;
 }
 
+@keyframes floatPanel{
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+/* Avatar */
+.avatar{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #00ffff;
+    box-shadow:
+        0 0 30px #00ffff,
+        0 0 70px #ff00ff;
+    margin-bottom:25px;
+}
+
+/* Logo */
 h1{
     font-size:4rem;
-    margin-bottom:35px;
     background:linear-gradient(90deg,#00ffff,#ff00ff,#00ffff);
     background-size:300%;
     -webkit-background-clip:text;
@@ -68,27 +88,76 @@ h1{
     to{background-position:300%;}
 }
 
-/* Przyciski jeden pod drugim */
+/* Podpis */
+.subtitle{
+    margin-top:10px;
+    color:#00ffff;
+    text-shadow:0 0 10px #00ffff;
+    margin-bottom:20px;
+}
+
+/* Status */
+.live{
+    display:inline-block;
+    margin-bottom:30px;
+    padding:10px 20px;
+    border-radius:20px;
+    background:rgba(255,0,0,.15);
+    border:1px solid #ff4444;
+    color:#ff6666;
+    box-shadow:0 0 15px #ff4444;
+    animation:pulse 1.2s infinite;
+}
+
+@keyframes pulse{
+    50%{
+        opacity:.5;
+    }
+}
+
+/* Przyciski */
 .buttons{
     display:flex;
     flex-direction:column;
-    align-items:center;
     gap:18px;
+    align-items:center;
 }
 
 .btn{
+    position:relative;
+    overflow:hidden;
+    width:320px;
+    text-align:center;
     text-decoration:none;
     color:white;
-    padding:15px 28px;
+    font-weight:bold;
+    padding:16px 28px;
     border-radius:18px;
     background:linear-gradient(135deg,#00ffff,#ff00ff);
-    font-weight:bold;
-    transition:.3s;
     box-shadow:
         0 0 20px #00ffff,
         0 0 40px #ff00ff;
-    width:300px;
-    text-align:center;
+    transition:.3s;
+}
+
+.btn::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.3),
+        transparent
+    );
+    transition:.6s;
+}
+
+.btn:hover::before{
+    left:100%;
 }
 
 .btn:hover{
@@ -98,12 +167,12 @@ h1{
         0 0 80px #ff00ff;
 }
 
+/* Stopka */
 footer{
-    position:absolute;
-    bottom:20px;
+    margin-top:25px;
     color:#888;
+    z-index:2;
     font-size:.9rem;
-    z-index:1;
 }
 </style>
 </head>
@@ -111,19 +180,36 @@ footer{
 
 <div class="panel">
 
+    <!-- Podmień avatar.jpg na własne zdjęcie -->
+    <img src="avatar.jpg" alt="Bossman" class="avatar">
+
     <h1>BOSSMAN</h1>
+
+    <p class="subtitle">
+        Streamer • Minecraft • TikTok
+    </p>
+
+    <div class="live">
+        🔴 AKTUALNIE ONLINE
+    </div>
 
     <div class="buttons">
 
-        <a href="https://www.tiktok.com/@streetbosspl" class="btn" target="_blank">
+        <a href="https://www.tiktok.com/@streetbosspl"
+           target="_blank"
+           class="btn">
             🎵 TIKTOK
         </a>
 
-        <a href="https://discord.gg/rkZHFWjqhn" class="btn" target="_blank">
+        <a href="https://discord.gg/rkZHFWjqhn"
+           target="_blank"
+           class="btn">
             💬 DISCORD
         </a>
 
-        <a href="https://tipply.pl/@BSCMC.PL" class="btn" target="_blank">
+        <a href="https://tipply.pl/@BSCMC.PL"
+           target="_blank"
+           class="btn">
             ☕ WSPARCIE
         </a>
 
