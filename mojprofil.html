@@ -55,7 +55,7 @@ body::before{
 
 h1{
     font-size:4rem;
-    margin-bottom:15px;
+    margin-bottom:35px;
     background:linear-gradient(90deg,#00ffff,#ff00ff,#00ffff);
     background-size:300%;
     -webkit-background-clip:text;
@@ -68,18 +68,12 @@ h1{
     to{background-position:300%;}
 }
 
-.version{
-    color:#00ffff;
-    font-size:1.2rem;
-    margin-bottom:35px;
-    text-shadow:0 0 15px #00ffff;
-}
-
+/* Przyciski jeden pod drugim */
 .buttons{
     display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:15px;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
 }
 
 .btn{
@@ -93,10 +87,12 @@ h1{
     box-shadow:
         0 0 20px #00ffff,
         0 0 40px #ff00ff;
+    width:300px;
+    text-align:center;
 }
 
 .btn:hover{
-    transform:translateY(-4px) scale(1.05);
+    transform:scale(1.05);
     box-shadow:
         0 0 40px #00ffff,
         0 0 80px #ff00ff;
@@ -115,20 +111,36 @@ footer{
 
 <div class="panel">
 
-    <h1>BSCMC.PL</h1>
+    <h1>BOSSMAN</h1>
 
     <div class="buttons">
-        <a href="mojprofil.html" class="btn">👤 MÓJ PROFIL</a>
-        <a href="survival.html" class="btn">🏠 SURVIVAL</a>
-        <a href="chunklock.html" class="btn">🌍 CHUNKLOCK</a>
-        <a href="https://discord.gg/xD85Yw3KCM" class="btn">💬 DISCORD</a>
-        <a href="#" class="btn" onclick="copyIP()">📋 KOPIUJ IP</a>
+
+        <a href="mojprofil.html" class="btn">
+            👤 MÓJ PROFIL
+        </a>
+
+        <a href="survival.html" class="btn">
+            🏠 SURVIVAL
+        </a>
+
+        <a href="chunklock.html" class="btn">
+            🌍 CHUNKLOCK
+        </a>
+
+        <a href="https://discord.gg/xD85Yw3KCM" class="btn" target="_blank">
+            💬 DISCORD
+        </a>
+
+        <a href="#" class="btn" onclick="copyIP()">
+            📋 KOPIUJ IP
+        </a>
+
     </div>
 
 </div>
 
 <footer>
-    © 2026 BSCMC.PL
+    © 2026 BOSSMAN
 </footer>
 
 <script>
