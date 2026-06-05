@@ -1,1 +1,146 @@
-mojprofil.html
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BSCMC.PL</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Orbitron',sans-serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    color:white;
+    background:radial-gradient(circle at center,#000010 0%,#020020 100%);
+    overflow:hidden;
+    position:relative;
+}
+
+/* Gwiazdy */
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity:.2;
+    pointer-events:none;
+}
+
+/* Główna karta */
+.panel{
+    position:relative;
+    z-index:1;
+    text-align:center;
+    background:rgba(0,0,30,.75);
+    padding:50px;
+    border-radius:30px;
+    backdrop-filter:blur(10px);
+    box-shadow:
+        0 0 40px #00ffff,
+        0 0 80px #ff00ff;
+    width:min(90%,700px);
+}
+
+h1{
+    font-size:4rem;
+    margin-bottom:15px;
+    background:linear-gradient(90deg,#00ffff,#ff00ff,#00ffff);
+    background-size:300%;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:gradientMove 6s linear infinite;
+}
+
+@keyframes gradientMove{
+    from{background-position:0%;}
+    to{background-position:300%;}
+}
+
+.version{
+    color:#00ffff;
+    font-size:1.2rem;
+    margin-bottom:35px;
+    text-shadow:0 0 15px #00ffff;
+}
+
+.buttons{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+}
+
+.btn{
+    text-decoration:none;
+    color:white;
+    padding:15px 28px;
+    border-radius:18px;
+    background:linear-gradient(135deg,#00ffff,#ff00ff);
+    font-weight:bold;
+    transition:.3s;
+    box-shadow:
+        0 0 20px #00ffff,
+        0 0 40px #ff00ff;
+}
+
+.btn:hover{
+    transform:translateY(-4px) scale(1.05);
+    box-shadow:
+        0 0 40px #00ffff,
+        0 0 80px #ff00ff;
+}
+
+footer{
+    position:absolute;
+    bottom:20px;
+    color:#888;
+    font-size:.9rem;
+    z-index:1;
+}
+</style>
+</head>
+<body>
+
+<div class="panel">
+
+    <h1>BSCMC.PL</h1>
+
+    <div class="version">
+        Wersja: <strong>1.21.10</strong>
+    </div>
+
+    <div class="buttons">
+        <a href="mojprofil.html" class="btn">👤 MÓJ PROFIL</a>
+        <a href="survival.html" class="btn">🏠 SURVIVAL</a>
+        <a href="chunklock.html" class="btn">🌍 CHUNKLOCK</a>
+        <a href="https://discord.gg/xD85Yw3KCM" class="btn">💬 DISCORD</a>
+        <a href="#" class="btn" onclick="copyIP()">📋 KOPIUJ IP</a>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 BSCMC.PL
+</footer>
+
+<script>
+function copyIP() {
+    navigator.clipboard.writeText("BSCMC.PL");
+    alert("Skopiowano IP: BSCMC.PL");
+}
+</script>
+
+</body>
+</html>
