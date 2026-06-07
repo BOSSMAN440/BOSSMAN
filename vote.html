@@ -592,58 +592,6 @@
 
 
 
-        <!-- FAQ Section -->
-        <section class="max-w-4xl mx-auto mb-stack-lg">
-            <div class="text-center mb-8">
-                <h2 class="text-xl md:text-2xl font-black text-white uppercase tracking-widest italic font-minecraft">
-                    Voting FAQ</h2>
-            </div>
-
-            <div class="space-y-4">
-                <div class="glass-panel p-6 rounded-xl border-white/5 group">
-                    <div class="flex items-start gap-4">
-                        <span
-                            class="material-symbols-outlined text-zinc-500 group-hover:text-primary transition-colors mt-1">help</span>
-                        <div>
-                            <h4 class="text-base font-bold text-white mb-2 font-tech uppercase tracking-wide">I voted
-                                but didn't receive my rewards?</h4>
-                            <p class="text-sm text-zinc-400 font-tech leading-relaxed">Make sure you entered your
-                                Minecraft username EXACTLY as it appears, including capitalization. Also ensure you are
-                                typing <code class="text-primary bg-primary/10 px-1 rounded">/reward</code> in-game. If
-                                issues persist, the voting site API might be delayed by a few minutes.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="glass-panel p-6 rounded-xl border-white/5 group">
-                    <div class="flex items-start gap-4">
-                        <span
-                            class="material-symbols-outlined text-zinc-500 group-hover:text-primary transition-colors mt-1">help</span>
-                        <div>
-                            <h4 class="text-base font-bold text-white mb-2 font-tech uppercase tracking-wide">How often
-                                can I vote?</h4>
-                            <p class="text-sm text-zinc-400 font-tech leading-relaxed">You can vote on all 4 sites once
-                                every 24 hours. The timer resets based on the time you cast your vote on that specific
-                                website.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="glass-panel p-6 rounded-xl border-white/5 group">
-                    <div class="flex items-start gap-4">
-                        <span
-                            class="material-symbols-outlined text-zinc-500 group-hover:text-primary transition-colors mt-1">help</span>
-                        <div>
-                            <h4 class="text-base font-bold text-white mb-2 font-tech uppercase tracking-wide">Do offline
-                                votes count?</h4>
-                            <p class="text-sm text-zinc-400 font-tech leading-relaxed">Yes! You can vote while at school
-                                or work. Your rewards will be saved in our database safely until you log in and claim
-                                them.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- Final CTA Section matching the index -->
         <section
@@ -668,7 +616,7 @@
                     <button onclick="copyToClipboard('BSCMC.PL')"
                         class="button-shine w-full sm:w-auto bg-primary text-on-primary px-10 py-5 rounded-xl font-tech font-black text-lg flex items-center justify-center gap-3 active:scale-95 transition-transform shadow-[0_0_20px_rgba(242,202,80,0.4)]">
                         <span class="material-symbols-outlined">bolt</span>
-                        JOIN NETWORK
+                        DOLACZ JUZ DZIS
                     </button>
                     <button
                         class="w-full sm:w-auto px-10 py-5 glass-panel hover:bg-white/10 rounded-xl font-bold text-lg text-white border-white/20 transition-all font-tech flex items-center justify-center gap-3 active:scale-95">
@@ -801,7 +749,7 @@
         // Copy IP logic
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
-                showNotification("Success", "IP Copied to clipboard", "content_copy");
+                showNotification("Success", "SKOPIOWANO IP - WERSJA 1.21.10", "content_copy");
             }).catch(err => {
                 console.error('Failed to copy: ', err);
             });
