@@ -376,23 +376,30 @@
     </div>
 </section>
             <!-- Pre-Vote Username Helper -->
-            <div
-                class="mb-8 glass-panel p-4 rounded-2xl border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div class="flex items-center gap-3 w-full">
-                    <div
-                        class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-zinc-400 shrink-0">
-                        <span class="material-symbols-outlined">person</span>
-                    </div>
-                    <input type="text" id="vote-username" placeholder="Type your username to copy easily..."
-                        class="bg-transparent border-none text-white font-tech text-base md:text-lg focus:ring-0 w-full placeholder-zinc-600 outline-none p-0">
-                </div>
-                <button onclick="copyUsername()"
-                    class="bg-white/10 hover:bg-white/20 text-white px-6 py-2 rounded-xl font-tech font-bold uppercase tracking-widest text-xs transition-colors whitespace-nowrap border border-white/10 shrink-0 flex items-center gap-2">
-                    <span class="material-symbols-outlined text-sm">content_copy</span> Copy
-                </button>
-            </div>
+<div class="mb-8 glass-panel p-6 rounded-2xl border-white/10">
+    <h3 class="text-white font-tech text-lg mb-4">🎁 Nagrody za Głosowanie</h3>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="space-y-6">
+        <div>
+            <h4 class="text-white font-bold mb-2">Pierwszy głos</h4>
+            <ul class="space-y-2 text-zinc-400">
+                <li>💎 3 Diamenty</li>
+                <li>🔑 1 Klucz Diamentowy</li>
+                <li>🔑 5 Złotych Kluczy</li>
+                <li>💰 1000 Monet</li>
+            </ul>
+        </div>
+
+        <div class="border-t border-white/10 pt-4">
+            <h4 class="text-white font-bold mb-2">Każdy kolejny głos</h4>
+            <ul class="space-y-2 text-zinc-400">
+                <li>💎 3 Diamenty</li>
+                <li>🔑 5 Złotych Kluczy</li>
+                <li>💰 1000 Monet</li>
+            </ul>
+        </div>
+    </div>
+</div>
                 <!-- Vote Link 1 -->
                 <div
                     class="vote-card glass-panel rounded-3xl p-6 border-white/10 flex flex-col items-center text-center relative overflow-hidden group">
