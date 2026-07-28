@@ -2,209 +2,237 @@
 <html class="dark" lang="pl">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Regulamin Serwera | Brace Network</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta name="theme-color" content="#f2ca50" />
-    <link rel="icon" type="image/x-icon" href="logo.png">
+<title>Regulamin Serwera | Brace Network</title>
 
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<meta name="theme-color" content="#f2ca50" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=Inter:wght@400;500;600;700&family=Press+Start+2P&family=Orbitron:wght@700;900&family=Rajdhani:wght@500;700&display=block"
-        rel="stylesheet">
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block"
-        rel="stylesheet" />
+<link rel="icon" type="image/x-icon" href="logo.png">
 
 
-<script id="tailwind-config">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=Inter:wght@400;500;600;700&family=Press+Start+2P&family=Orbitron:wght@700;900&family=Rajdhani:wght@500;700&display=block"
+rel="stylesheet">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block"
+rel="stylesheet">
+
+
+<script>
+
 tailwind.config = {
-darkMode: "class",
-theme: {
-extend: {
 
-colors: {
+darkMode:"class",
+
+theme:{
+extend:{
+
+
+colors:{
+
 primary:"#f2ca50",
 background:"#131314",
 surface:"#131314",
-on-background:"#e5e2e3",
-on-surface:"#e5e2e3"
+on-background:"#e5e2e3"
+
 },
 
+
 fontFamily:{
+
 body:["Inter"],
 minecraft:["Orbitron","sans-serif"],
-pixel:["Press Start 2P","monospace"],
-tech:["Rajdhani","sans-serif"]
+tech:["Rajdhani","sans-serif"],
+pixel:["Press Start 2P","monospace"]
+
+}
+
+
 }
 
 }
+
 }
-}
+
 </script>
+
 
 
 <style>
 
-.nav-link {
+
+.nav-link{
+
 position:relative;
 transition:.3s;
+
 }
 
-.nav-link::after {
+
+.nav-link::after{
+
 content:'';
+
 position:absolute;
+
 bottom:-4px;
+
 left:50%;
+
 width:0;
+
 height:2px;
+
 background:#f2ca50;
+
 transform:translateX(-50%);
+
 transition:.3s;
+
 }
+
 
 .nav-link:hover::after,
-.nav-link.active::after {
+.nav-link.active::after{
+
 width:100%;
+
 }
 
 
-.header-gradient {
-background:linear-gradient(to bottom,rgba(19,19,20,.8),transparent);
+
+.header-gradient{
+
+background:linear-gradient(
+to bottom,
+rgba(19,19,20,.85),
+transparent
+);
+
 }
 
 
-.glass-panel {
+
+.glass-panel{
 
 backdrop-filter:blur(20px);
+
 background:rgba(20,20,21,.6);
+
 border:1px solid rgba(255,255,255,.1);
+
 position:relative;
+
 overflow:hidden;
 
 }
 
 
-.minecraft-heading {
+
+.minecraft-heading{
 
 font-family:'Orbitron',sans-serif;
 
 text-shadow:
+
 3px 3px 0 rgba(0,0,0,.8),
 0 0 30px rgba(242,202,80,.5);
 
 }
 
 
-.font-minecraft {
-font-family:'Orbitron',sans-serif;
-}
-
-
-.font-tech {
-font-family:'Rajdhani',sans-serif;
-}
-
 
 </style>
+
 
 </head>
 
 
 
-<body class="bg-background text-on-background font-body overflow-x-hidden pb-20 md:pb-0">
+<body class="bg-background text-on-background font-body overflow-x-hidden pb-20">
 
 
-<div class="fixed inset-0 z-[-1] pointer-events-none">
 
-<div class="absolute inset-0 bg-gradient-to-b from-transparent via-background/90 to-background"></div>
+<div class="fixed inset-0 -z-10">
+
+<img src="https://i.postimg.cc/R0HHpfWz/044F82Ed-UL-g-M8uv-Cib-V0HWi-qp-ZP6Yft-DSRq72Zvhbf-g-Lc-Nxnq-Xy4r-X26QIn6dl-On-r-Sn-Bu8J-Mj-Z75k-K-k.jpg"
+class="w-full h-full object-cover"
+alt="Background">
 
 </div>
+
 
 
 
 <header class="fixed top-0 left-0 right-0 z-50">
 
 
-<div class="absolute inset-0 h-32 header-gradient pointer-events-none"></div>
+<div class="absolute inset-0 h-32 header-gradient"></div>
+
 
 
 <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 relative">
 
 
-<nav class="glass-panel flex items-center justify-between px-4 md:px-6 py-3 rounded-2xl border-white/5 shadow-2xl">
+<nav class="glass-panel flex items-center justify-between px-5 py-3 rounded-2xl">
 
 
-<a href="index.html" class="flex items-center gap-3">
+<a href="index.html">
 
-<img loading="lazy" src="nav-logo.png" class="h-8 md:h-10" alt="Logo">
+<img src="https://i.postimg.cc/59kgx6x3/nowelogo.png"
+class="h-10"
+alt="Brace Network">
 
 </a>
 
 
 
-<div class="hidden xl:flex items-center gap-6">
+<div class="hidden xl:flex gap-6">
 
 
 <a href="index.html"
-class="nav-link text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase">
+class="nav-link text-white/70 font-tech uppercase tracking-widest">
 Home
 </a>
 
 
 <a href="store.html"
-class="nav-link text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase">
+class="nav-link text-white/70 font-tech uppercase tracking-widest">
 Store
 </a>
 
 
 <a href="features.html"
-class="nav-link text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase">
+class="nav-link text-white/70 font-tech uppercase tracking-widest">
 Play
 </a>
 
 
 <a href="vote.html"
-class="nav-link text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase">
+class="nav-link text-white/70 font-tech uppercase tracking-widest">
 Vote
 </a>
 
 
 <a href="forums.html"
-class="nav-link text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase">
+class="nav-link text-white/70 font-tech uppercase tracking-widest">
 Forums
 </a>
 
 
 <a href="wiki.html"
-class="nav-link text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase">
+class="nav-link text-white/70 font-tech uppercase tracking-widest">
 Wiki
-</a>
-
-
-</div>
-
-
-
-<div class="hidden lg:flex items-center gap-3">
-
-
-<a href="login.html"
-class="px-4 py-2 text-zinc-400 hover:text-white font-tech font-bold text-xs tracking-widest uppercase">
-Login
-</a>
-
-
-<a href="register.html"
-class="px-4 py-2 bg-white/5 text-white border border-white/10 rounded-xl text-xs font-tech font-bold tracking-widest uppercase">
-Register
 </a>
 
 
@@ -221,52 +249,83 @@ Register
 
 
 
+
+
 <main class="pt-32 px-4 md:px-6 pb-20 max-w-5xl mx-auto">
 
 
-<section class="glass-panel rounded-[2rem] p-8 md:p-12 border-white/10 shadow-2xl mt-10">
+<section class="glass-panel rounded-[2rem] p-8 md:p-12 mt-10">
 
 
 <span class="text-xs uppercase tracking-[0.3em] text-primary font-tech">
-Regulamin Serwera
+
+Regulamin
+
 </span>
+
 
 
 <h1 class="minecraft-heading text-4xl md:text-5xl text-white font-black mt-4 mb-6">
 
-Regulamin Survival + Działki
+Regulamin Serwera Survival + Działki
 
 </h1>
 
 
-<p class="text-zinc-400 text-sm md:text-base font-tech leading-relaxed mb-8">
 
-Dołączenie do serwera Brace Network oznacza automatyczną akceptację poniższego regulaminu.
-Każdy gracz zobowiązany jest przestrzegać zasad oraz dbać o dobrą atmosferę społeczności.
+<p class="text-zinc-400 font-tech leading-relaxed mb-10">
+
+Dołączenie do serwera Brace Network oznacza automatyczną akceptację niniejszego regulaminu.
+Każdy gracz zobowiązuje się przestrzegać zasad oraz dbać o dobrą atmosferę społeczności.
 
 </p>
+
 
 
 
 <div class="space-y-6">
 
 
-<div class="glass-panel rounded-3xl p-6 border-white/10">
 
 
-<h2 class="text-xl font-bold text-white font-minecraft mb-3">
+
+<div class="glass-panel rounded-3xl p-6">
+
+
+<h2 class="text-xl text-white font-bold font-minecraft mb-4">
 
 §1. Postanowienia ogólne
 
 </h2>
 
 
-<p class="text-zinc-300 text-sm font-tech leading-relaxed">
 
-1. Dołączenie do serwera oznacza automatyczną akceptację niniejszego regulaminu.<br>
-2. Każdy gracz zobowiązany jest zapoznać się z regulaminem przed rozpoczęciem gry.<br>
-3. Nieznajomość regulaminu nie zwalnia z odpowiedzialności.<br>
-4. Administracja ma prawo interpretować regulamin oraz podejmować decyzje w sytuacjach nieopisanych.
+<p class="text-zinc-300 font-tech leading-relaxed">
+
+
+1. Dołączenie do serwera oznacza automatyczną akceptację niniejszego regulaminu.<br><br>
+
+
+2. Każdy gracz zobowiązany jest zapoznać się z regulaminem przed rozpoczęciem gry.<br><br>
+
+
+3. Nieznajomość regulaminu nie zwalnia z odpowiedzialności.<br><br>
+
+
+4. Administracja ma prawo interpretować regulamin oraz podejmować decyzje w sytuacjach nieopisanych.<br><br>
+
+
+5. Administracja zastrzega sobie prawo do zmiany regulaminu.<br><br>
+
+
+6. Próby obchodzenia regulaminu traktowane są jako jego złamanie.<br><br>
+
+
+7. Wszystkie błędy, exploity oraz problemy techniczne należy zgłaszać administracji.<br><br>
+
+
+8. Zabrania się wykorzystywania błędów serwera w celu uzyskania przewagi.
+
 
 </p>
 
@@ -274,211 +333,798 @@ Każdy gracz zobowiązany jest przestrzegać zasad oraz dbać o dobrą atmosfer�
 </div>
 <!-- §2 -->
 
-<div class="glass-panel rounded-3xl p-6 border-white/10">
+<div class="glass-panel rounded-3xl p-6">
 
-<h2 class="text-xl font-bold text-white font-minecraft mb-3">
+
+<h2 class="text-xl text-white font-bold font-minecraft mb-4">
+
 §2. Kultura i zachowanie
+
 </h2>
 
-<p class="text-zinc-300 text-sm font-tech leading-relaxed">
 
-Każdy gracz zobowiązany jest zachowywać kulturę osobistą.<br><br>
 
-Zabrania się:<br>
+<p class="text-zinc-300 font-tech leading-relaxed">
+
+
+1. Każdy gracz zobowiązany jest zachowywać kulturę osobistą.<br><br>
+
+
+2. Zabrania się:<br><br>
+
+
 - obrażania innych graczy,<br>
-- wyzywania,<br>
-- prowokowania konfliktów,<br>
-- nękania użytkowników,<br>
-- gróźb,<br>
-- spamowania i floodowania,<br>
-- nadmiernego używania wielkich liter,<br>
-- publikowania nieodpowiednich treści.<br><br>
 
-Zabrania się podszywania pod innych graczy oraz administrację.
-Zakazane jest publikowanie cudzych danych osobowych oraz reklamowanie innych serwerów bez zgody administracji.
+- wyzywania,<br>
+
+- prowokowania konfliktów,<br>
+
+- nękania innych użytkowników,<br>
+
+- gróźb,<br>
+
+- spamowania,<br>
+
+- floodowania,<br>
+
+- nadmiernego używania wielkich liter,<br>
+
+- publikowania treści nieodpowiednich.<br><br>
+
+
+
+3. Zabrania się podszywania pod innych graczy oraz administrację.<br><br>
+
+
+4. Zakazane jest publikowanie cudzych danych osobowych.<br><br>
+
+
+5. Zabrania się reklamowania innych serwerów bez zgody administracji.
+
 
 </p>
 
+
 </div>
+
+
 
 
 
 <!-- §3 -->
 
-<div class="glass-panel rounded-3xl p-6 border-white/10">
+<div class="glass-panel rounded-3xl p-6">
 
-<h2 class="text-xl font-bold text-white font-minecraft mb-3">
+
+<h2 class="text-xl text-white font-bold font-minecraft mb-4">
+
 §3. Cheaty oraz niedozwolone modyfikacje
+
 </h2>
 
-<p class="text-zinc-300 text-sm font-tech leading-relaxed">
 
-Zabrania się używania wszelkich modyfikacji dających przewagę.<br><br>
 
-Zakazane są między innymi:<br>
+<p class="text-zinc-300 font-tech leading-relaxed">
 
-X-Ray, KillAura, Reach, Fly, SpeedHack, AutoClicker,
-FreeCam, ChestESP, Tracery, Nuker, Scaffold,
-makra oraz automaty.<br><br>
 
-Administracja ma prawo przeprowadzić kontrolę gracza.
-Odmowa kontroli może skutkować karą.<br><br>
+1. Zabrania się używania wszelkich modyfikacji dających przewagę.<br><br>
 
-Posiadanie niedozwolonych programów może skutkować karą,
-nawet jeżeli nie były aktywnie używane.
+
+2. Zakazane są między innymi:<br><br>
+
+
+- X-Ray,<br>
+
+- KillAura,<br>
+
+- Reach,<br>
+
+- Fly,<br>
+
+- SpeedHack,<br>
+
+- AutoClicker,<br>
+
+- FreeCam,<br>
+
+- ChestESP,<br>
+
+- Tracery,<br>
+
+- Nuker,<br>
+
+- Scaffold,<br>
+
+- makra,<br>
+
+- automaty.<br><br>
+
+
+
+3. Administracja ma prawo przeprowadzić kontrolę gracza.<br><br>
+
+
+3.1 Posiadanie niedozwolonych modyfikacji, cheatów lub programów dających nieuczciwą przewagę może skutkować karą, nawet jeżeli w momencie wykrycia nie były one aktywnie używane.<br><br>
+
+
+Administracja może podjąć decyzję na podstawie dowodów, historii działań oraz okoliczności sprawy.<br><br>
+
+
+4. Odmowa kontroli może skutkować karą.
+
 
 </p>
 
+
 </div>
+
+
+
 
 
 
 <!-- §4 -->
 
-<div class="glass-panel rounded-3xl p-6 border-white/10">
+<div class="glass-panel rounded-3xl p-6">
 
-<h2 class="text-xl font-bold text-white font-minecraft mb-3">
+
+<h2 class="text-xl text-white font-bold font-minecraft mb-4">
+
 §4. Działki
+
 </h2>
 
-<p class="text-zinc-300 text-sm font-tech leading-relaxed">
 
-Każdy gracz odpowiada za swoją działkę.<br><br>
 
-Dodanie innej osoby odbywa się na własną odpowiedzialność.<br><br>
+<p class="text-zinc-300 font-tech leading-relaxed">
 
-Właściciel działki odpowiada za:<br>
+
+1. Każdy gracz odpowiada za swoją działkę.<br><br>
+
+
+2. Dodanie innej osoby do działki odbywa się na własną odpowiedzialność.<br><br>
+
+
+3. Właściciel działki odpowiada za:<br><br>
+
 
 - osoby z dostępem,<br>
+
 - ustawienia działki,<br>
+
 - budowle,<br>
+
 - przedmioty znajdujące się na działce.<br><br>
 
-Administracja nie odpowiada za szkody wykonane przez osoby posiadające dostęp.
+
+
+4. Administracja nie odpowiada za szkody wykonane przez osoby posiadające dostęp.
+
 
 </p>
 
+
 </div>
+
+
+
+
 
 
 
 <!-- §4.1 -->
 
-<div class="glass-panel rounded-3xl p-6 border-white/10">
+<div class="glass-panel rounded-3xl p-6">
 
-<h2 class="text-xl font-bold text-white font-minecraft mb-3">
+
+<h2 class="text-xl text-white font-bold font-minecraft mb-4">
+
 §4.1 Griefowanie działek i terenów
+
 </h2>
 
-<p class="text-zinc-300 text-sm font-tech leading-relaxed">
 
-Zabrania się niszczenia cudzych działek.<br><br>
 
-Zakazane jest:<br>
+<p class="text-zinc-300 font-tech leading-relaxed">
+
+
+1. Zabrania się niszczenia cudzych działek.<br><br>
+
+
+2. Zakazane jest:<br><br>
+
 
 - niszczenie budowli,<br>
-- zabieranie bloków,<br>
-- niszczenie dekoracji,<br>
-- zalewanie wodą lub lawą,<br>
-- tworzenie pułapek,<br>
-- blokowanie wejścia,<br>
-- utrudnianie gry innym osobom.<br><br>
 
-Administracja może nakazać naprawienie szkód lub usunąć naruszenia.
+- zabieranie bloków,<br>
+
+- niszczenie dekoracji,<br>
+
+- zalewanie terenu wodą lub lawą,<br>
+
+- tworzenie pułapek,<br>
+
+- blokowanie wejścia,<br>
+
+- celowe przeszkadzanie właścicielowi działki.<br><br>
+
+
+
+3. Zabrania się niszczenia terenu wokół cudzych działek.<br><br>
+
+
+4. Zakazane jest:<br><br>
+
+
+- kopanie ogromnych dziur,<br>
+
+- niszczenie krajobrazu,<br>
+
+- pozostawianie śmieciowych konstrukcji,<br>
+
+- stawianie przeszkód przy granicy działki,<br>
+
+- utrudnianie rozbudowy sąsiadom.<br><br>
+
+
+
+5. Administracja może nakazać naprawienie szkód lub samodzielnie usunąć naruszenia.
+
 
 </p>
 
+
 </div>
+<!-- §5 -->
+
+<div class="glass-panel rounded-3xl p-6">
 
 
+<h2 class="text-xl text-white font-bold font-minecraft mb-4">
 
-<!-- §5-16 -->
+§5. Teren poza działkami
 
-<div class="glass-panel rounded-3xl p-6 border-white/10">
-
-<h2 class="text-xl font-bold text-white font-minecraft mb-3">
-§5-16. Pozostałe zasady
 </h2>
 
-<p class="text-zinc-300 text-sm font-tech leading-relaxed">
-
-<strong>§5. Teren poza działkami</strong><br>
-Teren poza działkami jest ogólnodostępny.
-Przedmioty pozostawione poza zabezpieczonym terenem nie są chronione.<br><br>
 
 
-<strong>§6. Budowanie oraz obciążanie serwera</strong><br>
-Zakazuje się tworzenia konstrukcji powodujących lagi,
-nadmiernych farm oraz maszyn obciążających serwer.<br><br>
+<p class="text-zinc-300 font-tech leading-relaxed">
 
 
-<strong>§7. PvP</strong><br>
-PvP jest dozwolone tylko w miejscach wyznaczonych przez administrację.
-Zakazane jest wykorzystywanie błędów podczas walki.<br><br>
+1. Teren poza działkami jest ogólnodostępny.<br><br>
 
 
-<strong>§8. Handel i ekonomia</strong><br>
-Wszystkie transakcje odbywają się na odpowiedzialność graczy.
-Zakazane są oszustwa oraz bug abuse ekonomii.<br><br>
+2. Gracze mogą:<br><br>
 
 
-<strong>§9. Bug Abuse</strong><br>
-Każdy znaleziony błąd należy zgłosić administracji.
-Wykorzystywanie exploitów skutkuje karą.<br><br>
+- wydobywać surowce,<br>
+
+- ścinać drzewa,<br>
+
+- eksplorować świat.<br><br>
 
 
-<strong>§10. Alternatywne konta</strong><br>
-Multikonta służące do omijania kar lub zdobywania korzyści są zabronione.<br><br>
+
+3. Przedmioty pozostawione poza działką nie są chronione.<br><br>
 
 
-<strong>§11. AFK oraz automatyzacja</strong><br>
-Zakazane są autoclickery, makra oraz programy automatyzujące.<br><br>
+4. Administracja nie odpowiada za utracone przedmioty poza zabezpieczonym terenem.
 
-
-<strong>§12. Śmierć i utrata przedmiotów</strong><br>
-Gracz odpowiada za swoje rzeczy.
-Administracja nie zwraca przedmiotów utraconych z winy gracza.<br><br>
-
-
-<strong>§13. Eventy i nagrody</strong><br>
-Nielegalnie zdobyte nagrody mogą zostać odebrane.<br><br>
-
-
-<strong>§14. Administracja</strong><br>
-Administracja może usuwać obiekty powodujące problemy
-oraz podejmować decyzje dla dobra serwera.<br><br>
-
-
-<strong>§15. Kary</strong><br>
-Administracja może zastosować:
-ostrzeżenie, wyciszenie, kick, czasową lub permanentną blokadę,
-usunięcie działki albo przedmiotów.<br><br>
-
-
-<strong>§16. Postanowienia końcowe</strong><br>
-Regulamin obowiązuje każdego gracza niezależnie od rangi.
-Sprawy nieopisane rozstrzyga administracja.
 
 </p>
 
+
+</div>
+
+
+
+
+
+
+
+<!-- §6 -->
+
+<div class="glass-panel rounded-3xl p-6">
+
+
+<h2 class="text-xl text-white font-bold font-minecraft mb-4">
+
+§6. Budowanie oraz obciążanie serwera
+
+</h2>
+
+
+
+<p class="text-zinc-300 font-tech leading-relaxed">
+
+
+1. Zabrania się tworzenia konstrukcji powodujących lagi.<br><br>
+
+
+2. Zakazane są:<br><br>
+
+
+- ogromne farmy mobów,<br>
+
+- nadmierna liczba lejków,<br>
+
+- maszyny redstone działające bez potrzeby,<br>
+
+- farmy generujące tysiące przedmiotów,<br>
+
+- pozostawianie tysięcy itemów na ziemi.<br><br>
+
+
+
+3. Administracja może usunąć konstrukcję powodującą problemy.
+
+
+</p>
+
+
 </div>
 
 
 
+
+
+
+
+
+<!-- §7 -->
+
+<div class="glass-panel rounded-3xl p-6">
+
+
+<h2 class="text-xl text-white font-bold font-minecraft mb-4">
+
+§7. PvP
+
+</h2>
+
+
+
+<p class="text-zinc-300 font-tech leading-relaxed">
+
+
+1. PvP jest dozwolone tylko w miejscach wyznaczonych przez administrację.<br><br>
+
+
+2. Zabrania się:<br><br>
+
+
+- zabijania graczy wykorzystując błędy,<br>
+
+- teleportowania graczy w celu zabicia,<br>
+
+- tworzenia pułapek bez zgody,<br>
+
+- wykorzystywania lagów podczas walki.<br><br>
+
+
+
+3. Administracja nie zwraca przedmiotów utraconych podczas legalnego PvP.
+
+
+</p>
+
+
 </div>
+
+
+
+
+
+
+
+<!-- §8 -->
+
+<div class="glass-panel rounded-3xl p-6">
+
+
+<h2 class="text-xl text-white font-bold font-minecraft mb-4">
+
+§8. Handel i ekonomia
+
+</h2>
+
+
+
+<p class="text-zinc-300 font-tech leading-relaxed">
+
+
+1. Wszystkie transakcje odbywają się na odpowiedzialność graczy.<br><br>
+
+
+2. Administracja nie zwraca pieniędzy ani przedmiotów utraconych przez błędny handel.<br><br>
+
+
+3. Zabrania się:<br><br>
+
+
+- oszustw,<br>
+
+- wykorzystywania bugów ekonomii,<br>
+
+- duplikowania przedmiotów,<br>
+
+- tworzenia fałszywych ofert.<br><br>
+
+
+
+4. Wykorzystywanie błędów ekonomii skutkuje karą.
+
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- §9 -->
+
+<div class="glass-panel rounded-3xl p-6">
+
+
+<h2 class="text-xl text-white font-bold font-minecraft mb-4">
+
+§9. Bug Abuse oraz exploity
+
+</h2>
+
+
+
+<p class="text-zinc-300 font-tech leading-relaxed">
+
+
+1. Każdy znaleziony błąd należy zgłosić administracji.<br><br>
+
+
+2. Zabrania się:<br><br>
+
+
+- wykorzystywania bugów,<br>
+
+- ukrywania exploitów,<br>
+
+- przekazywania exploitów innym osobom.<br><br>
+
+
+
+3. Gracz korzystający z błędów może otrzymać karę oraz utracić zdobyte korzyści.
+
+
+</p>
+
+
+</div>
+<!-- §10 -->
+
+<div class="glass-panel rounded-3xl p-6">
+
+
+<h2 class="text-xl text-white font-bold font-minecraft mb-4">
+
+§10. Alternatywne konta
+
+</h2>
+
+
+<p class="text-zinc-300 font-tech leading-relaxed">
+
+
+1. Zabrania się używania multikont do:<br><br>
+
+
+- omijania kar,<br>
+
+- zdobywania dodatkowych nagród,<br>
+
+- obchodzenia ograniczeń.<br><br>
+
+
+2. Administracja może ukarać wszystkie konta powiązane.
+
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<!-- §11 -->
+
+<div class="glass-panel rounded-3xl p-6">
+
+
+<h2 class="text-xl text-white font-bold font-minecraft mb-4">
+
+§11. AFK oraz automatyzacja
+
+</h2>
+
+
+<p class="text-zinc-300 font-tech leading-relaxed">
+
+
+1. Zabrania się używania niedozwolonych metod nabijania czasu gry.<br><br>
+
+
+2. Zakazane są:<br><br>
+
+
+- autoclickery,<br>
+
+- makra,<br>
+
+- programy automatyzujące.<br><br>
+
+
+3. Administracja może usuwać nieuczciwie zdobyte nagrody.
+
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<!-- §12 -->
+
+<div class="glass-panel rounded-3xl p-6">
+
+
+<h2 class="text-xl text-white font-bold font-minecraft mb-4">
+
+§12. Śmierć i utrata przedmiotów
+
+</h2>
+
+
+<p class="text-zinc-300 font-tech leading-relaxed">
+
+
+1. Każdy gracz odpowiada za swoje przedmioty.<br><br>
+
+
+2. Administracja nie zwraca rzeczy utraconych przez:<br><br>
+
+
+- śmierć,<br>
+
+- moby,<br>
+
+- lawę,<br>
+
+- upadek,<br>
+
+- nieuwagę gracza.<br><br>
+
+
+3. Gracz powinien sam zabezpieczać swoje rzeczy.
+
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<!-- §13 -->
+
+<div class="glass-panel rounded-3xl p-6">
+
+
+<h2 class="text-xl text-white font-bold font-minecraft mb-4">
+
+§13. Eventy i nagrody
+
+</h2>
+
+
+<p class="text-zinc-300 font-tech leading-relaxed">
+
+
+1. Nagrody z eventów są własnością gracza po ich otrzymaniu.<br><br>
+
+
+2. Zabrania się:<br><br>
+
+
+- sprzedawania nagród w sposób sprzeczny z zasadami eventu,<br>
+
+- wykorzystywania błędów podczas eventów.<br><br>
+
+
+3. Administracja może odebrać nagrody zdobyte nielegalnie.
+
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<!-- §14 -->
+
+<div class="glass-panel rounded-3xl p-6">
+
+
+<h2 class="text-xl text-white font-bold font-minecraft mb-4">
+
+§14. Administracja
+
+</h2>
+
+
+<p class="text-zinc-300 font-tech leading-relaxed">
+
+
+1. Administracja ma prawo reagować w sytuacjach zagrażających serwerowi.<br><br>
+
+
+2. Administracja może usuwać:<br><br>
+
+
+- obiekty powodujące lagi,<br>
+
+- budowle łamiące regulamin,<br>
+
+- nielegalnie zdobyte przedmioty.<br><br>
+
+
+3. Administracja nie ma obowiązku zwracania przedmiotów utraconych z winy gracza.<br><br>
+
+
+4. Decyzje administracji mogą być ostateczne.
+
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<!-- §15 -->
+
+<div class="glass-panel rounded-3xl p-6">
+
+
+<h2 class="text-xl text-white font-bold font-minecraft mb-4">
+
+§15. Kary
+
+</h2>
+
+
+<p class="text-zinc-300 font-tech leading-relaxed">
+
+
+Administracja może zastosować:<br><br>
+
+
+- ostrzeżenie,<br>
+
+- wyciszenie,<br>
+
+- kick,<br>
+
+- czasową blokadę,<br>
+
+- permanentną blokadę,<br>
+
+- usunięcie działki,<br>
+
+- usunięcie nielegalnych przedmiotów.<br><br>
+
+
+Kara zależy od:<br><br>
+
+
+- rodzaju przewinienia,<br>
+
+- historii gracza,<br>
+
+- skali szkody.
+
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- §16 -->
+
+<div class="glass-panel rounded-3xl p-6">
+
+
+<h2 class="text-xl text-white font-bold font-minecraft mb-4">
+
+§16. Postanowienia końcowe
+
+</h2>
+
+
+<p class="text-zinc-300 font-tech leading-relaxed">
+
+
+1. Regulamin obowiązuje każdego gracza niezależnie od posiadanej rangi.<br><br>
+
+
+2. Każdy gracz zobowiązuje się do uczciwej gry.<br><br>
+
+
+3. Sprawy nieopisane w regulaminie rozstrzyga administracja.<br><br>
+
+
+4. Celem regulaminu jest zapewnienie uczciwej oraz przyjemnej rozgrywki.<br><br>
+
+
+Życzymy miłej gry!<br><br>
+
+
+Administracja serwera.
+
+
+</p>
+
+
+</div>
+
+
+
+
+</div>
+
 
 </section>
+
 
 </main>
 
 
 
+
+
 <footer class="w-full border-t border-white/10 mt-10 bg-zinc-950/80 backdrop-blur-3xl">
+
 
 <div class="px-6 md:px-16 py-10 flex flex-col md:flex-row justify-between items-center gap-8">
 
 
 <div class="text-center md:text-left">
+
 
 <img src="nav-logo.png"
 class="h-10 mx-auto md:mx-0 mb-4"
@@ -491,11 +1137,15 @@ alt="Logo">
 
 </p>
 
+
 </div>
 
 
 
+
+
 <div class="flex flex-wrap justify-center gap-6">
+
 
 <a href="privacy.html"
 class="text-zinc-500 hover:text-yellow-500 font-tech text-xs uppercase">
@@ -515,15 +1165,24 @@ Support
 </a>
 
 
+<a href="staff.html"
+class="text-zinc-500 hover:text-yellow-500 font-tech text-xs uppercase">
+Staff
+</a>
+
+
 <a href="contact.html"
 class="text-zinc-500 hover:text-yellow-500 font-tech text-xs uppercase">
 Kontakt
 </a>
 
+
 </div>
 
 
+
 </div>
+
 
 </footer>
 
