@@ -173,29 +173,16 @@ alt="Background">
 
 
 
-<header class="fixed top-0 left-0 right-0 z-50">
-
-
-<div class="absolute inset-0 h-32 header-gradient"></div>
-
-
-
-<div class="max-w-7xl mx-auto px-4 md:px-6 py-4 relative">
-
-
-<nav class="glass-panel flex items-center justify-between px-5 py-3 rounded-2xl">
-
-
-<a href="index.html">
-
-<img src="https://i.postimg.cc/59kgx6x3/nowelogo.png"
-class="h-10"
-alt="Brace Network">
-
-</a>
-
-
-
+  <!-- ========================================== -->
+  <!-- DESKTOP / MAIN HEADER NAVBAR               -->
+  <!-- ========================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+        <div class="absolute inset-0 h-32 header-gradient pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 relative">
+            <nav class="glass-panel flex items-center justify-between px-4 md:px-6 py-3 rounded-2xl border-white/5 shadow-2xl">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img loading="lazy" src="https://i.postimg.cc/59kgx6x3/nowelogo.png" class="h-8 md:h-10" alt="Logo">
+                </a>
                 <div class="hidden xl:flex items-center gap-6 header-nav">
                     <a href="index.html" class="nav-link text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase">MINECRAFT</a>
                     <a href="reg_surv_dzialki.html" class="nav-link text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase">REGULAMIN SURVIVAL+DZIAŁKI</a>
@@ -213,15 +200,43 @@ alt="Brace Network">
                     <a href="vote.html" class="nav-link text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase">EVENTY / NAGRODY</a>
                     <a href="mojprofil.html" class="nav-link text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase">MOJ PROFIL</a>
                 </div>
+            </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const menu = document.getElementById('mobile-menu');
+                    const toggle = document.getElementById('mobile-menu-toggle');
+                    if (toggle && menu) {
+                        toggle.addEventListener('click', function () {
+                            menu.classList.toggle('hidden');
+                        });
+                    }
 
+                    const path = window.location.pathname.split('/').pop().toLowerCase() || 'index.html';
+                    const current = {
+                        '': 'index.html',
+                        'index.html': 'index.html',
+                        'mojprofil.html': 'mojprofil.html',
+                        'vote.html': 'vote.html',
+                        'login.html': 'login.html',
+                        'register.html': 'register.html'
+                    }[path] || path;
 
-</nav>
+                    document.querySelectorAll('.header-nav a.nav-link, #mobile-menu a.nav-link').forEach(function (link) {
+                        if (link.getAttribute('href') === current) {
+                            link.classList.add('active', 'text-primary');
+                            link.classList.remove('text-white/70');
+                        } else {
+                            link.classList.remove('active', 'text-primary');
+                            link.classList.add('text-white/70');
+                        }
+                    });
+                });
+            </script>
+        </div>
+    </header>
 
+  <main class="pt-32 px-4 md:px-gutter pb-stack-lg max-w-7xl mx-auto">
 
-</div>
-
-
-</header>
 
 
 
