@@ -1,1710 +1,192 @@
-<!DOCTYPE html>
-<html lang="pl">
+<main class="pt-32 px-4 md:px-gutter pb-stack-lg max-w-7xl mx-auto">
 
-<head>
+<section class="glass-panel rounded-[2rem] p-8 md:p-12 border-white/10 shadow-2xl mt-10">
 
-<title>BSCMC.PL | Cennik usług Minecraft</title>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta name="description" content="Profesjonalna konfiguracja serwerów Minecraft, pluginów, botów Discord oraz stron internetowych.">
-
-<link rel="icon" href="logo.png">
-
-<script src="https://cdn.tailwindcss.com"></script>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-
-
-<script>
-
-tailwind.config = {
-
-theme:{
-extend:{
-
-colors:{
-primary:"#f2ca50",
-dark:"#111111",
-card:"#1b1b1d"
-},
-
-fontFamily:{
-body:["Inter"],
-title:["Orbitron"]
-}
-
-}
-
-}
-
-}
-
-</script>
-
-
-<style>
-
-body{
-background:#111;
-color:white;
-font-family:Inter,sans-serif;
-}
-
-
-.title{
-font-family:Orbitron,sans-serif;
-}
-
-
-.card{
-
-background:#1b1b1d;
-border:1px solid rgba(255,255,255,.08);
-border-radius:18px;
-padding:25px;
-
-transition:.3s;
-
-}
-
-
-.card:hover{
-
-transform:translateY(-5px);
-
-border-color:#f2ca50;
-
-box-shadow:0 0 25px rgba(242,202,80,.20);
-
-}
-
-
-.price{
-
-color:#f2ca50;
-font-size:24px;
-font-weight:900;
-
-}
-
-
-.category{
-
-font-family:Orbitron;
-font-size:28px;
-color:#f2ca50;
-
-}
-
-
-</style>
-
-
-</head>
-
-
-<body>
-
-
-
-<!-- NAVBAR -->
-
-<header class="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-xl">
-
-<nav class="max-w-6xl mx-auto px-5 py-5 flex justify-between items-center">
-
-
-<a href="index.html">
-
-<img src="https://i.postimg.cc/59kgx6x3/nowelogo.png"
-class="h-12">
-
-</a>
-
-
-<div class="hidden md:flex gap-6 uppercase text-sm">
-
-<a href="index.html" class="hover:text-yellow-400">
-Minecraft
-</a>
-
-<a href="wiki.html" class="hover:text-yellow-400">
-Regulamin
-</a>
-
-<a href="vote.html" class="hover:text-yellow-400">
-Nagrody
-</a>
-
-<a href="cennik.html" class="text-yellow-400">
-Cennik
-</a>
-
-
-</div>
-
-
-</nav>
-
-</header>
-
-
-
-
-
-<main class="max-w-7xl mx-auto px-5 pt-32 pb-20">
-
-
-
-<!-- HEADER -->
-
-
-<section class="text-center mb-20">
-
-
-<h1 class="title text-5xl md:text-7xl">
-
-CENNIK
-
-<br>
-
-<span class="text-yellow-400">
-
-USŁUG MINECRAFT
-
+<span class="text-xs uppercase tracking-[0.3em] text-primary font-tech">
+Minecraft Services Pricing
 </span>
 
+<h1 class="minecraft-heading text-4xl md:text-6xl text-white font-black mt-4 mb-6">
+Cennik usług Minecraft
 </h1>
 
-
-<p class="text-gray-400 mt-6 text-lg">
-
-Profesjonalne tworzenie, konfiguracja oraz rozwój serwerów Minecraft.
-
+<p class="text-zinc-400 text-sm md:text-base font-tech leading-relaxed mb-10">
+Profesjonalna konfiguracja serwerów Minecraft, pluginów, Discorda oraz stron internetowych.
 </p>
 
 
-</section>
+<div class="grid md:grid-cols-2 gap-6">
 
 
+<!-- PODSTAWY -->
 
+<div class="glass-panel rounded-3xl p-6 border-white/10">
 
-
-<!-- SERWER PODSTAWY -->
-
-
-<section class="mb-20">
-
-
-<h2 class="category mb-8">
-
+<h2 class="text-xl font-bold text-yellow-400 font-minecraft mb-5">
 🖥️ SERWER MINECRAFT – PODSTAWY
-
 </h2>
 
+<div class="space-y-2 text-zinc-300 text-sm font-tech">
 
+<p>Instalacja serwera Minecraft <span class="float-right text-yellow-400">30 PLN</span></p>
+<p>Instalacja Paper <span class="float-right text-yellow-400">20 PLN</span></p>
+<p>Instalacja Purpur <span class="float-right text-yellow-400">20 PLN</span></p>
+<p>Instalacja Spigot <span class="float-right text-yellow-400">20 PLN</span></p>
+<p>Aktualizacja wersji Minecraft <span class="float-right text-yellow-400">50 PLN</span></p>
+<p>Aktualizacja pluginów <span class="float-right text-yellow-400">30 PLN</span></p>
+<p>Przeniesienie serwera na hosting <span class="float-right text-yellow-400">100 PLN</span></p>
+<p>Konfiguracja JVM <span class="float-right text-yellow-400">50 PLN</span></p>
+<p>Optymalizacja serwera <span class="float-right text-yellow-400">100 PLN</span></p>
 
-<div class="grid md:grid-cols-3 gap-6">
-
-
-
-<div class="card">
-
-<h3>Instalacja serwera Minecraft</h3>
-
-<p class="price mt-3">
-30 PLN
-</p>
-
+</div>
 </div>
 
 
 
-<div class="card">
+<!-- PLUGINY -->
 
-<h3>Instalacja Paper</h3>
+<div class="glass-panel rounded-3xl p-6 border-white/10">
 
-<p class="price mt-3">
-20 PLN
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Instalacja Purpur</h3>
-
-<p class="price mt-3">
-20 PLN
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Instalacja Spigot</h3>
-
-<p class="price mt-3">
-20 PLN
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Aktualizacja wersji Minecraft</h3>
-
-<p class="price mt-3">
-50 PLN
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Aktualizacja pluginów</h3>
-
-<p class="price mt-3">
-30 PLN
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Przeniesienie serwera na inny hosting</h3>
-
-<p class="price mt-3">
-100 PLN
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Konfiguracja server.properties</h3>
-
-<p class="price mt-3">
-20 PLN
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Konfiguracja bukkit.yml</h3>
-
-<p class="price mt-3">
-20 PLN
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Konfiguracja spigot.yml</h3>
-
-<p class="price mt-3">
-30 PLN
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Konfiguracja paper.yml</h3>
-
-<p class="price mt-3">
-40 PLN
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Konfiguracja purpur.yml</h3>
-
-<p class="price mt-3">
-50 PLN
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Konfiguracja JVM</h3>
-
-<p class="price mt-3">
-50 PLN
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Optymalizacja serwera</h3>
-
-<p class="price mt-3">
-100 PLN
-</p>
-
-</div>
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<!-- PLUGINI -->
-
-
-<section class="mb-20">
-
-
-<h2 class="category mb-8">
-
+<h2 class="text-xl font-bold text-yellow-400 font-minecraft mb-5">
 🔌 PLUGINY – INSTALACJA
-
 </h2>
 
+<div class="space-y-2 text-zinc-300 text-sm font-tech">
 
+<p>Wgranie jednego pluginu <span class="float-right text-yellow-400">5 PLN</span></p>
+<p>Wgranie 10 pluginów <span class="float-right text-yellow-400">40 PLN</span></p>
+<p>Wgranie 25 pluginów <span class="float-right text-yellow-400">80 PLN</span></p>
+<p>Wgranie 50 pluginów <span class="float-right text-yellow-400">150 PLN</span></p>
+<p>Wyszukanie pluginu <span class="float-right text-yellow-400">15 PLN</span></p>
+<p>Sprawdzenie konfliktów <span class="float-right text-yellow-400">50 PLN</span></p>
 
-<div class="grid md:grid-cols-3 gap-6">
-
-
-
-<div class="card">
-
-<h3>Wgranie jednego pluginu</h3>
-
-<p class="price mt-3">
-5 PLN
-</p>
+</div>
 
 </div>
 
 
 
-<div class="card">
+<!-- KONFIGURACJA -->
 
-<h3>Wgranie 10 pluginów</h3>
+<div class="glass-panel rounded-3xl p-6 border-white/10">
 
-<p class="price mt-3">
-40 PLN
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Wgranie 25 pluginów</h3>
-
-<p class="price mt-3">
-80 PLN
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Wgranie 50 pluginów</h3>
-
-<p class="price mt-3">
-150 PLN
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Wyszukanie pluginu</h3>
-
-<p class="price mt-3">
-15 PLN
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Usunięcie problematycznego pluginu</h3>
-
-<p class="price mt-3">
-20 PLN
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Sprawdzenie konfliktów pluginów</h3>
-
-<p class="price mt-3">
-50 PLN
-</p>
-
-</div>
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<!-- KONFIGURACJA PLUGINÓW -->
-
-
-<section class="mb-20">
-
-
-<h2 class="category mb-8">
-
-⚙️ KONFIGURACJA PLUGINÓW
-
-</h2>
-
-
-
-<div class="grid md:grid-cols-3 gap-6">
-
-
-<div class="card">
-<h3>EssentialsX</h3>
-<p class="price mt-3">40 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>LuckPerms</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Vault</h3>
-<p class="price mt-3">20 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>PlaceholderAPI</h3>
-<p class="price mt-3">30 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>TAB</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Scoreboard</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>BossBar</h3>
-<p class="price mt-3">40 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Hologramy</h3>
-<p class="price mt-3">40 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>WorldEdit</h3>
-<p class="price mt-3">30 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>WorldGuard</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Multiverse-Core</h3>
-<p class="price mt-3">40 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Citizens NPC</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-
-</div>
-
-
-</section>
-<!-- DALSZA KONFIGURACJA PLUGINÓW -->
-
-<section class="mb-20">
-
-<h2 class="category mb-8">
+<h2 class="text-xl font-bold text-yellow-400 font-minecraft mb-5">
 ⚙️ KONFIGURACJA PLUGINÓW
 </h2>
 
 
-<div class="grid md:grid-cols-3 gap-6">
+<div class="space-y-2 text-zinc-300 text-sm font-tech">
 
-
-<div class="card">
-<h3>DiscordSRV</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>AuthMe</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>CoreProtect</h3>
-<p class="price mt-3">30 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>ViaVersion</h3>
-<p class="price mt-3">30 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>ProtocolLib</h3>
-<p class="price mt-3">20 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>AntiCheat</h3>
-<p class="price mt-3">100 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>LiteBans</h3>
-<p class="price mt-3">80 PLN</p>
-</div>
-
+<p>EssentialsX <span class="float-right text-yellow-400">40 PLN</span></p>
+<p>LuckPerms <span class="float-right text-yellow-400">50 PLN</span></p>
+<p>TAB <span class="float-right text-yellow-400">50 PLN</span></p>
+<p>Scoreboard <span class="float-right text-yellow-400">50 PLN</span></p>
+<p>Hologramy <span class="float-right text-yellow-400">40 PLN</span></p>
+<p>WorldGuard <span class="float-right text-yellow-400">50 PLN</span></p>
+<p>DiscordSRV <span class="float-right text-yellow-400">50 PLN</span></p>
+<p>AntiCheat <span class="float-right text-yellow-400">100 PLN</span></p>
+<p>LiteBans <span class="float-right text-yellow-400">80 PLN</span></p>
 
 </div>
-
-</section>
-
-
-
-
-
-<!-- EKONOMIA -->
-
-
-<section class="mb-20">
-
-
-<h2 class="category mb-8">
-
-🛒 EKONOMIA I SKLEPY
-
-</h2>
-
-
-<div class="grid md:grid-cols-3 gap-6">
-
-
-<div class="card">
-<h3>Konfiguracja ekonomii</h3>
-<p class="price mt-3">80 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Ustawienie waluty serwera</h3>
-<p class="price mt-3">30 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Sklep GUI</h3>
-<p class="price mt-3">100 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Dodanie przedmiotów do sklepu</h3>
-<p class="price mt-3">20 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Ustawienie cen przedmiotów</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Balans ekonomii</h3>
-<p class="price mt-3">100 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>System tokenów</h3>
-<p class="price mt-3">100 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>System monet premium</h3>
-<p class="price mt-3">100 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>System kluczy</h3>
-<p class="price mt-3">80 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>System skrzynek</h3>
-<p class="price mt-3">100 PLN</p>
-</div>
-
 
 </div>
 
 
-</section>
 
+<!-- TRYBY -->
 
+<div class="glass-panel rounded-3xl p-6 border-white/10">
 
-
-
-<!-- RANGI -->
-
-
-<section class="mb-20">
-
-
-<h2 class="category mb-8">
-
-🏷️ RANGI I PERMISJE
-
-</h2>
-
-
-<div class="grid md:grid-cols-3 gap-6">
-
-
-<div class="card">
-<h3>Stworzenie rang</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Konfiguracja LuckPerms</h3>
-<p class="price mt-3">100 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Prefixy rang</h3>
-<p class="price mt-3">40 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Suffixy rang</h3>
-<p class="price mt-3">30 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Kolory rang</h3>
-<p class="price mt-3">30 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Hierarchia rang</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Permisje administracji</h3>
-<p class="price mt-3">100 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Permisje graczy</h3>
-<p class="price mt-3">80 PLN</p>
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<!-- ŚWIATY I MAPY -->
-
-
-<section class="mb-20">
-
-
-<h2 class="category mb-8">
-
-🌍 ŚWIATY I MAPY
-
-</h2>
-
-
-<div class="grid md:grid-cols-3 gap-6">
-
-
-<div class="card">
-<h3>Wgranie mapy</h3>
-<p class="price mt-3">30 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Przygotowanie świata</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Generator świata</h3>
-<p class="price mt-3">100 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>WorldBorder</h3>
-<p class="price mt-3">30 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Tworzenie lobby</h3>
-<p class="price mt-3">od 200 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Tworzenie spawnu</h3>
-<p class="price mt-3">od 150 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Konfiguracja działek</h3>
-<p class="price mt-3">150 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Konfiguracja SkyBlock</h3>
-<p class="price mt-3">400 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Konfiguracja OneBlock</h3>
-<p class="price mt-3">400 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Konfiguracja Survival</h3>
-<p class="price mt-3">250 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Konfiguracja Prison</h3>
-<p class="price mt-3">500 PLN</p>
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-<!-- SKRIPTY -->
-
-
-<section class="mb-20">
-
-
-<h2 class="category mb-8">
-
-📜 SKRIPTY I SYSTEMY CUSTOM
-
-</h2>
-
-
-<div class="grid md:grid-cols-3 gap-6">
-
-
-<div class="card">
-<h3>Prosty Skript</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Średni Skript</h3>
-<p class="price mt-3">100 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Zaawansowany Skript</h3>
-<p class="price mt-3">200 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>System GUI</h3>
-<p class="price mt-3">100 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Custom komenda</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>System questów</h3>
-<p class="price mt-3">200 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>System misji</h3>
-<p class="price mt-3">200 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>System osiągnięć</h3>
-<p class="price mt-3">150 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Daily Rewards</h3>
-<p class="price mt-3">150 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Custom mechanika Minecraft</h3>
-<p class="price mt-3">od 300 PLN</p>
-</div>
-
-
-</div>
-
-
-</section>
-<!-- TRYBY MINECRAFT -->
-
-
-<section class="mb-20">
-
-
-<h2 class="category mb-8">
-
+<h2 class="text-xl font-bold text-yellow-400 font-minecraft mb-5">
 🎮 TRYBY MINECRAFT
-
 </h2>
 
 
-<div class="grid md:grid-cols-3 gap-6">
+<div class="space-y-2 text-zinc-300 text-sm font-tech">
 
+<p>Lobby <span class="float-right text-yellow-400">150 PLN</span></p>
+<p>Survival <span class="float-right text-yellow-400">250 PLN</span></p>
+<p>Survival Działki <span class="float-right text-yellow-400">300 PLN</span></p>
+<p>SkyBlock <span class="float-right text-yellow-400">400 PLN</span></p>
+<p>OneBlock <span class="float-right text-yellow-400">400 PLN</span></p>
+<p>BoxPvP <span class="float-right text-yellow-400">350 PLN</span></p>
+<p>Prison <span class="float-right text-yellow-400">500 PLN</span></p>
+<p>Network Minecraft <span class="float-right text-yellow-400">od 1000 PLN</span></p>
 
-<div class="card">
-<h3>Lobby</h3>
-<p class="price mt-3">150 PLN</p>
 </div>
-
-
-<div class="card">
-<h3>Survival</h3>
-<p class="price mt-3">250 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Survival Działki</h3>
-<p class="price mt-3">300 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>SkyBlock</h3>
-<p class="price mt-3">400 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>OneBlock</h3>
-<p class="price mt-3">400 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>BoxPvP</h3>
-<p class="price mt-3">350 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Prison</h3>
-<p class="price mt-3">500 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Lifesteal</h3>
-<p class="price mt-3">400 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>BedWars</h3>
-<p class="price mt-3">500 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Network Minecraft</h3>
-<p class="price mt-3">od 1000 PLN</p>
-</div>
-
 
 </div>
 
 
-</section>
 
+<!-- DISCORD -->
 
+<div class="glass-panel rounded-3xl p-6 border-white/10">
 
-
-
-
-
-<!-- BOTY DISCORD -->
-
-
-<section class="mb-20">
-
-
-<h2 class="category mb-8">
-
+<h2 class="text-xl font-bold text-yellow-400 font-minecraft mb-5">
 🤖 BOTY DISCORD
-
 </h2>
 
 
-<div class="grid md:grid-cols-3 gap-6">
+<div class="space-y-2 text-zinc-300 text-sm font-tech">
 
+<p>Stworzenie bota Discord <span class="float-right text-yellow-400">200 PLN</span></p>
+<p>Status serwera <span class="float-right text-yellow-400">100 PLN</span></p>
+<p>Ticket System <span class="float-right text-yellow-400">100 PLN</span></p>
+<p>System weryfikacji <span class="float-right text-yellow-400">100 PLN</span></p>
+<p>Logi administracyjne <span class="float-right text-yellow-400">80 PLN</span></p>
+<p>DiscordSRV <span class="float-right text-yellow-400">50 PLN</span></p>
 
-<div class="card">
-<h3>Stworzenie bota Discord</h3>
-<p class="price mt-3">200 PLN</p>
 </div>
-
-
-<div class="card">
-<h3>Bot statusu serwera</h3>
-<p class="price mt-3">100 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Ticket System</h3>
-<p class="price mt-3">100 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>System weryfikacji</h3>
-<p class="price mt-3">100 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>System zgłoszeń</h3>
-<p class="price mt-3">100 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Logi administracyjne</h3>
-<p class="price mt-3">80 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Rangi Discord ↔ Minecraft</h3>
-<p class="price mt-3">150 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Komendy administracyjne</h3>
-<p class="price mt-3">100 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Automatyczne wiadomości</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Integracja DiscordSRV</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
 
 </div>
 
 
-</section>
 
+<!-- STRONY -->
 
+<div class="glass-panel rounded-3xl p-6 border-white/10">
 
-
-
-
-
-<!-- STRONY INTERNETOWE -->
-
-
-<section class="mb-20">
-
-
-<h2 class="category mb-8">
-
+<h2 class="text-xl font-bold text-yellow-400 font-minecraft mb-5">
 🌐 STRONY INTERNETOWE
-
 </h2>
 
 
-<div class="grid md:grid-cols-3 gap-6">
+<div class="space-y-2 text-zinc-300 text-sm font-tech">
 
+<p>Prosta strona serwera <span class="float-right text-yellow-400">300 PLN</span></p>
+<p>Landing Page <span class="float-right text-yellow-400">400 PLN</span></p>
+<p>Forum <span class="float-right text-yellow-400">500 PLN</span></p>
+<p>Panel użytkownika <span class="float-right text-yellow-400">800 PLN</span></p>
+<p>Sklep internetowy <span class="float-right text-yellow-400">1000 PLN</span></p>
 
-<div class="card">
-<h3>Prosta strona serwera</h3>
-<p class="price mt-3">300 PLN</p>
+</div>
+
 </div>
 
 
-<div class="card">
-<h3>Landing Page</h3>
-<p class="price mt-3">400 PLN</p>
 </div>
 
 
-<div class="card">
-<h3>Strona regulaminu</h3>
-<p class="price mt-3">200 PLN</p>
-</div>
+<div class="mt-10 glass-panel rounded-3xl p-6">
 
+<h2 class="text-xl text-yellow-400 font-minecraft mb-4">
+⭐ INFORMACJE
+</h2>
 
-<div class="card">
-<h3>Forum</h3>
-<p class="price mt-3">500 PLN</p>
-</div>
+<ul class="text-zinc-300 font-tech text-sm space-y-2">
 
+<li>✔ Płatność przed rozpoczęciem pracy</li>
+<li>✔ Darmowa wycena większych projektów</li>
+<li>✔ Poprawki błędów wykonanych usług GRATIS</li>
+<li>✔ Termin realizacji zależy od wielkości projektu</li>
+<li>✔ Duże projekty - cena ustalana indywidualnie</li>
 
-<div class="card">
-<h3>Panel użytkownika</h3>
-<p class="price mt-3">800 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Sklep internetowy</h3>
-<p class="price mt-3">1000 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Integracja płatności</h3>
-<p class="price mt-3">300 PLN</p>
-</div>
-
+</ul>
 
 </div>
 
 
 </section>
-
-
-
-
-
-
-
-<!-- NAPRAWA -->
-
-
-<section class="mb-20">
-
-
-<h2 class="category mb-8">
-
-🔧 NAPRAWA PROBLEMÓW
-
-</h2>
-
-
-<div class="grid md:grid-cols-3 gap-6">
-
-
-<div class="card">
-<h3>Naprawa błędu pluginu</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Naprawa crasha serwera</h3>
-<p class="price mt-3">100 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Analiza logów</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Usunięcie lagów</h3>
-<p class="price mt-3">150 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Poprawa TPS</h3>
-<p class="price mt-3">150 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Naprawa permisji</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-<div class="card">
-<h3>Naprawa konfiguracji</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<!-- OPIEKA -->
-
-
-<section class="mb-20">
-
-
-<h2 class="category mb-8">
-
-👑 OPIEKA NAD SERWEREM
-
-</h2>
-
-
-<div class="grid md:grid-cols-3 gap-6">
-
-
-<div class="card">
-
-<h3>1 godzina pomocy</h3>
-
-<p class="price mt-3">
-50 PLN
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>5 godzin pomocy</h3>
-
-<p class="price mt-3">
-200 PLN
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>10 godzin pomocy</h3>
-
-<p class="price mt-3">
-350 PLN
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Opieka BASIC</h3>
-
-<p class="price mt-3">
-200 PLN / mies
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Opieka PREMIUM</h3>
-
-<p class="price mt-3">
-500 PLN / mies
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Stały administrator</h3>
-
-<p class="price mt-3">
-od 1000 PLN / mies
-</p>
-
-</div>
-
-
-
-</div>
-
-
-</section>
-<!-- DODATKOWE USŁUGI -->
-
-
-<section class="mb-20">
-
-
-<h2 class="category mb-8">
-
-⭐ DODATKOWE USŁUGI
-
-</h2>
-
-
-<div class="grid md:grid-cols-3 gap-6">
-
-
-
-<div class="card">
-<h3>Konfiguracja Tebex</h3>
-<p class="price mt-3">150 PLN</p>
-</div>
-
-
-
-<div class="card">
-<h3>Konfiguracja ItemShop</h3>
-<p class="price mt-3">100 PLN</p>
-</div>
-
-
-
-<div class="card">
-<h3>Konfiguracja vote</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-
-<div class="card">
-<h3>MCList</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-
-<div class="card">
-<h3>Backup system</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-
-<div class="card">
-<h3>Automatyczne restarty</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-
-<div class="card">
-<h3>Monitoring serwera</h3>
-<p class="price mt-3">100 PLN</p>
-</div>
-
-
-
-<div class="card">
-<h3>Webhook Discord</h3>
-<p class="price mt-3">50 PLN</p>
-</div>
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<!-- INFORMACJE -->
-
-
-<section class="mb-20">
-
-
-<div class="card text-center p-10">
-
-
-<h2 class="title text-3xl text-yellow-400 mb-8">
-
-INFORMACJE O WSPÓŁPRACY
-
-</h2>
-
-
-
-<div class="text-gray-300 text-lg space-y-4">
-
-
-<p>
-✔ Płatność przed rozpoczęciem pracy
-</p>
-
-
-<p>
-✔ Darmowa wycena większych projektów
-</p>
-
-
-<p>
-✔ Poprawki błędów wykonanych usług GRATIS
-</p>
-
-
-<p>
-✔ Termin realizacji zależy od wielkości projektu
-</p>
-
-
-<p>
-✔ Duże projekty - cena ustalana indywidualnie
-</p>
-
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<!-- KONTAKT -->
-
-
-<section class="mb-20">
-
-
-<div class="card text-center p-12">
-
-
-<h2 class="title text-4xl">
-
-STARTUJEMY Z TWOIM SERWEREM
-
-</h2>
-
-
-
-<p class="text-gray-400 mt-5 text-lg">
-
-Masz pomysł na serwer Minecraft?
-
-<br>
-
-Stworzymy dla Ciebie kompletny projekt od podstaw.
-
-</p>
-
-
-
-<a href="https://discord.gg/uek2nZQr9k"
-
-target="_blank"
-
-class="inline-block mt-8 bg-yellow-400 text-black font-bold px-10 py-4 rounded-xl hover:scale-105 transition">
-
-
-OTWÓRZ TICKET DISCORD
-
-
-</a>
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
 
 </main>
-
-
-
-
-
-
-
-<!-- FOOTER -->
-
-
-<footer class="border-t border-white/10 py-10 text-center">
-
-
-<img
-
-src="nav-logo.png"
-
-class="h-12 mx-auto mb-5"
-
-alt="BSCMC.PL">
-
-
-
-<p class="text-gray-500">
-
-© 2026 BSCMC.PL
-
-</p>
-
-
-
-<div class="mt-5 space-x-6">
-
-
-<a href="privacy.html"
-
-class="hover:text-yellow-400">
-
-Privacy
-
-</a>
-
-
-
-<a href="terms.html"
-
-class="hover:text-yellow-400">
-
-Terms
-
-</a>
-
-
-
-<a href="contact.html"
-
-class="hover:text-yellow-400">
-
-Kontakt
-
-</a>
-
-
-
-</div>
-
-
-</footer>
-
-
-
-
-
-
-
-<script>
-
-
-// płynne przewijanie
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-
-
-anchor.addEventListener("click", function(e){
-
-
-e.preventDefault();
-
-
-document.querySelector(this.getAttribute("href"))
-
-.scrollIntoView({
-
-behavior:"smooth"
-
-});
-
-
-});
-
-
-});
-
-
-
-</script>
-
-
-
-
-
-
-</body>
-
-</html>
