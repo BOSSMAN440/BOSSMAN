@@ -6,6 +6,7 @@
 <title>BSCMC.PL | Cennik usług Minecraft</title>
 
 <meta name="title" content="BSCMC.PL | Cennik usług Minecraft">
+
 <meta name="description"
 content="Profesjonalna konfiguracja serwerów Minecraft. Pluginy, tryby, Discord boty, strony internetowe oraz optymalizacja serwerów.">
 
@@ -39,9 +40,7 @@ extend:{
 
 colors:{
 
-
 primary:"#f2ca50",
-
 "primary-container":"#d4af37",
 
 secondary:"#66dd8b",
@@ -56,20 +55,31 @@ surface:"#131314",
 
 tertiary:"#9fd8e4"
 
-
 },
 
 
 fontFamily:{
 
 
-minecraft:["Orbitron","sans-serif"],
+minecraft:[
+"Orbitron",
+"sans-serif"
+],
 
-pixel:["Press Start 2P","monospace"],
+pixel:[
+"Press Start 2P",
+"monospace"
+],
 
-tech:["Rajdhani","sans-serif"],
+tech:[
+"Rajdhani",
+"sans-serif"
+],
 
-body:["Inter","sans-serif"]
+body:[
+"Inter",
+"sans-serif"
+]
 
 
 },
@@ -80,7 +90,6 @@ borderRadius:{
 xl:"0.75rem",
 
 "3xl":"1.5rem"
-
 
 }
 
@@ -155,7 +164,8 @@ width:100%;
 
 .header-gradient{
 
-background:linear-gradient(
+background:
+linear-gradient(
 to bottom,
 rgba(19,19,20,.9),
 rgba(19,19,20,0)
@@ -192,7 +202,8 @@ position:absolute;
 
 inset:0;
 
-background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E");
+background:
+url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E");
 
 opacity:.03;
 
@@ -254,7 +265,6 @@ box-shadow:
 }
 
 
-
 </style>
 
 
@@ -263,10 +273,7 @@ box-shadow:
 
 
 <body>
-
-
-
-<!-- ================================ -->
+  <!-- ================================ -->
 <!-- HEADER -->
 <!-- ================================ -->
 
@@ -274,7 +281,7 @@ box-shadow:
 <header class="fixed top-0 left-0 right-0 z-50">
 
 
-<div class="absolute inset-0 h-32 header-gradient"></div>
+<div class="absolute inset-0 h-32 header-gradient pointer-events-none"></div>
 
 
 <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 relative">
@@ -304,12 +311,14 @@ MINECRAFT
 </a>
 
 
+
 <a href="wiki.html"
 class="nav-link text-white/70 font-tech uppercase tracking-widest font-bold text-sm">
 
 REGULAMIN
 
 </a>
+
 
 
 <a href="vote.html"
@@ -320,12 +329,14 @@ EVENTY / NAGRODY
 </a>
 
 
+
 <a href="cennik.html"
 class="nav-link active text-primary font-tech uppercase tracking-widest font-bold text-sm">
 
 CENNIK
 
 </a>
+
 
 
 <a href="mojprofil.html"
@@ -336,7 +347,6 @@ MÓJ PROFIL
 </a>
 
 
-
 </div>
 
 
@@ -345,9 +355,7 @@ MÓJ PROFIL
 class="xl:hidden text-white">
 
 <span class="material-symbols-outlined">
-
 menu
-
 </span>
 
 </button>
@@ -357,6 +365,9 @@ menu
 </nav>
 
 
+
+
+<!-- MOBILE MENU -->
 
 
 <div id="mobile-menu"
@@ -385,7 +396,7 @@ Regulamin
 <a href="vote.html"
 class="nav-link text-white/70 font-tech uppercase">
 
-Eventy
+Eventy / Nagrody
 
 </a>
 
@@ -394,6 +405,14 @@ Eventy
 class="nav-link active text-primary font-tech uppercase">
 
 Cennik
+
+</a>
+
+
+<a href="mojprofil.html"
+class="nav-link text-white/70 font-tech uppercase">
+
+Mój Profil
 
 </a>
 
@@ -409,17 +428,30 @@ Cennik
 
 
 </header>
+
+
+
+
+
 <!-- ================================ -->
-<!-- MAIN CONTENT - CENNIK -->
+<!-- MAIN CONTENT -->
 <!-- ================================ -->
 
+
 <main class="pt-36 px-4 md:px-8 max-w-7xl mx-auto pb-20">
+
+
+
+
+
+<!-- HERO -->
 
 
 <section class="text-center mb-16 relative">
 
 
 <div class="absolute inset-0 bg-primary/10 blur-[120px] rounded-full"></div>
+
 
 
 <span class="relative inline-block px-5 py-2 rounded-full border border-primary/30 text-primary font-tech uppercase tracking-[0.3em] text-xs bg-primary/5">
@@ -430,9 +462,15 @@ BSCMC SERVICES
 
 
 
+
 <h1 class="minecraft-heading relative text-5xl md:text-7xl mt-6 mb-5">
 
-CENNIK <br>
+
+CENNIK
+
+
+<br>
+
 
 <span class="text-primary">
 
@@ -440,15 +478,19 @@ USŁUG MINECRAFT
 
 </span>
 
+
 </h1>
 
 
-<p class="relative text-zinc-400 font-tech max-w-2xl mx-auto uppercase tracking-widest">
+
+
+<p class="relative text-zinc-400 font-tech max-w-3xl mx-auto uppercase tracking-widest">
 
 Profesjonalna konfiguracja serwerów Minecraft,
-pluginów, systemów oraz stron internetowych.
+pluginów, systemów, stron internetowych oraz Discord botów.
 
 </p>
+
 
 
 </section>
@@ -456,15 +498,13 @@ pluginów, systemów oraz stron internetowych.
 
 
 
-
-<!-- KATEGORIA -->
+<!-- KATEGORIE -->
 
 
 <div class="space-y-12">
-
-
-
-<!-- SERWER -->
+  <!-- ================================ -->
+<!-- SERWER MINECRAFT -->
+<!-- ================================ -->
 
 
 <section>
@@ -484,86 +524,87 @@ pluginów, systemów oraz stron internetowych.
 
 <div class="glass-panel price-card rounded-3xl p-6">
 
-<h3 class="font-bold text-white">
-
+<h3 class="font-bold">
 Instalacja serwera Minecraft
-
 </h3>
 
 <p class="text-primary text-2xl font-minecraft mt-3">
-
 30 PLN
-
 </p>
 
 </div>
 
 
 
+
 <div class="glass-panel price-card rounded-3xl p-6">
 
-<h3>Instalacja Paper</h3>
+<h3>
+Instalacja Paper
+</h3>
 
 <p class="text-primary text-2xl font-minecraft mt-3">
-
 20 PLN
-
 </p>
 
 </div>
 
 
 
+
 <div class="glass-panel price-card rounded-3xl p-6">
 
-<h3>Instalacja Purpur</h3>
+<h3>
+Instalacja Purpur
+</h3>
 
 <p class="text-primary text-2xl font-minecraft mt-3">
-
 20 PLN
-
 </p>
 
 </div>
 
 
 
+
 <div class="glass-panel price-card rounded-3xl p-6">
 
-<h3>Aktualizacja wersji Minecraft</h3>
+<h3>
+Aktualizacja wersji Minecraft
+</h3>
 
 <p class="text-primary text-2xl font-minecraft mt-3">
-
 50 PLN
-
 </p>
 
 </div>
 
 
 
+
 <div class="glass-panel price-card rounded-3xl p-6">
 
-<h3>Optymalizacja serwera</h3>
+<h3>
+Optymalizacja serwera
+</h3>
 
 <p class="text-primary text-2xl font-minecraft mt-3">
-
 100 PLN
-
 </p>
 
 </div>
+
 
 
 
 <div class="glass-panel price-card rounded-3xl p-6">
 
-<h3>Konfiguracja JVM</h3>
+<h3>
+Konfiguracja JVM
+</h3>
 
 <p class="text-primary text-2xl font-minecraft mt-3">
-
 50 PLN
-
 </p>
 
 </div>
@@ -571,6 +612,7 @@ Instalacja serwera Minecraft
 
 
 </div>
+
 
 </section>
 
@@ -580,7 +622,129 @@ Instalacja serwera Minecraft
 
 
 
+<!-- ================================ -->
+<!-- MAPY MINECRAFT -->
+<!-- ================================ -->
+
+
+<section>
+
+
+<h2 class="minecraft-heading text-2xl text-primary mb-6">
+
+🗺️ MAPY MINECRAFT
+
+</h2>
+
+
+
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+
+
+<div class="glass-panel price-card rounded-3xl p-6">
+
+<h3>
+Wgranie gotowej mapy
+</h3>
+
+<p class="text-primary text-2xl font-minecraft mt-3">
+30 PLN
+</p>
+
+</div>
+
+
+
+
+<div class="glass-panel price-card rounded-3xl p-6">
+
+<h3>
+Konfiguracja świata + spawn
+</h3>
+
+<p class="text-primary text-2xl font-minecraft mt-3">
+80 PLN
+</p>
+
+</div>
+
+
+
+
+<div class="glass-panel price-card rounded-3xl p-6">
+
+<h3>
+Wgranie dużej mapy serwera
+</h3>
+
+<p class="text-primary text-2xl font-minecraft mt-3">
+100 PLN
+</p>
+
+</div>
+
+
+
+
+<div class="glass-panel price-card rounded-3xl p-6">
+
+<h3>
+Przygotowanie mapy pod tryb
+</h3>
+
+<p class="text-primary text-2xl font-minecraft mt-3">
+150 PLN
+</p>
+
+</div>
+
+
+
+
+<div class="glass-panel price-card rounded-3xl p-6">
+
+<h3>
+Konfiguracja WorldBorder
+</h3>
+
+<p class="text-primary text-2xl font-minecraft mt-3">
+50 PLN
+</p>
+
+</div>
+
+
+
+
+<div class="glass-panel price-card rounded-3xl p-6">
+
+<h3>
+Import mapy z zabezpieczeniami
+</h3>
+
+<p class="text-primary text-2xl font-minecraft mt-3">
+120 PLN
+</p>
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- ================================ -->
 <!-- PLUGINY -->
+<!-- ================================ -->
 
 
 <section>
@@ -597,9 +761,12 @@ Instalacja serwera Minecraft
 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
 
 
+
 <div class="glass-panel price-card rounded-3xl p-6">
 
-<h3>Wgranie jednego pluginu</h3>
+<h3>
+Wgranie jednego pluginu
+</h3>
 
 <p class="text-primary text-2xl font-minecraft mt-3">
 5 PLN
@@ -609,9 +776,12 @@ Instalacja serwera Minecraft
 
 
 
+
 <div class="glass-panel price-card rounded-3xl p-6">
 
-<h3>Wgranie 10 pluginów</h3>
+<h3>
+Wgranie 10 pluginów
+</h3>
 
 <p class="text-primary text-2xl font-minecraft mt-3">
 40 PLN
@@ -621,9 +791,12 @@ Instalacja serwera Minecraft
 
 
 
+
 <div class="glass-panel price-card rounded-3xl p-6">
 
-<h3>Wgranie 50 pluginów</h3>
+<h3>
+Wgranie 50 pluginów
+</h3>
 
 <p class="text-primary text-2xl font-minecraft mt-3">
 150 PLN
@@ -633,9 +806,12 @@ Instalacja serwera Minecraft
 
 
 
+
 <div class="glass-panel price-card rounded-3xl p-6">
 
-<h3>Wyszukanie pluginu</h3>
+<h3>
+Wyszukanie pluginu
+</h3>
 
 <p class="text-primary text-2xl font-minecraft mt-3">
 15 PLN
@@ -645,9 +821,12 @@ Instalacja serwera Minecraft
 
 
 
+
 <div class="glass-panel price-card rounded-3xl p-6">
 
-<h3>Sprawdzenie konfliktów pluginów</h3>
+<h3>
+Sprawdzenie konfliktów pluginów
+</h3>
 
 <p class="text-primary text-2xl font-minecraft mt-3">
 50 PLN
@@ -656,7 +835,9 @@ Instalacja serwera Minecraft
 </div>
 
 
+
 </div>
+
 
 </section>
 
@@ -666,7 +847,9 @@ Instalacja serwera Minecraft
 
 
 
-<!-- KONFIGURACJA -->
+<!-- ================================ -->
+<!-- KONFIGURACJA PLUGINÓW -->
+<!-- ================================ -->
 
 
 <section>
@@ -679,13 +862,16 @@ Instalacja serwera Minecraft
 </h2>
 
 
+
 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
 
 
 
 <div class="glass-panel price-card rounded-3xl p-6">
 
-<h3>EssentialsX</h3>
+<h3>
+EssentialsX
+</h3>
 
 <p class="text-primary text-2xl font-minecraft mt-3">
 40 PLN
@@ -695,9 +881,12 @@ Instalacja serwera Minecraft
 
 
 
+
 <div class="glass-panel price-card rounded-3xl p-6">
 
-<h3>LuckPerms</h3>
+<h3>
+LuckPerms
+</h3>
 
 <p class="text-primary text-2xl font-minecraft mt-3">
 50 PLN
@@ -707,9 +896,12 @@ Instalacja serwera Minecraft
 
 
 
+
 <div class="glass-panel price-card rounded-3xl p-6">
 
-<h3>TAB</h3>
+<h3>
+TAB
+</h3>
 
 <p class="text-primary text-2xl font-minecraft mt-3">
 50 PLN
@@ -719,9 +911,12 @@ Instalacja serwera Minecraft
 
 
 
+
 <div class="glass-panel price-card rounded-3xl p-6">
 
-<h3>Scoreboard</h3>
+<h3>
+Scoreboard
+</h3>
 
 <p class="text-primary text-2xl font-minecraft mt-3">
 50 PLN
@@ -731,9 +926,12 @@ Instalacja serwera Minecraft
 
 
 
+
 <div class="glass-panel price-card rounded-3xl p-6">
 
-<h3>DiscordSRV</h3>
+<h3>
+DiscordSRV
+</h3>
 
 <p class="text-primary text-2xl font-minecraft mt-3">
 50 PLN
@@ -743,9 +941,12 @@ Instalacja serwera Minecraft
 
 
 
+
 <div class="glass-panel price-card rounded-3xl p-6">
 
-<h3>AntiCheat</h3>
+<h3>
+AntiCheat
+</h3>
 
 <p class="text-primary text-2xl font-minecraft mt-3">
 100 PLN
@@ -759,110 +960,9 @@ Instalacja serwera Minecraft
 
 
 </section>
-
-
-
-
-
-
-<!-- TRYBY -->
-
-
-<section>
-
-
-<h2 class="minecraft-heading text-2xl text-primary mb-6">
-
-🎮 TRYBY MINECRAFT
-
-</h2>
-
-
-
-<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-
-
-
-<div class="glass-panel price-card rounded-3xl p-6">
-
-<h3>Lobby</h3>
-
-<p class="text-primary text-2xl font-minecraft mt-3">
-150 PLN
-</p>
-
-</div>
-
-
-
-<div class="glass-panel price-card rounded-3xl p-6">
-
-<h3>Survival</h3>
-
-<p class="text-primary text-2xl font-minecraft mt-3">
-250 PLN
-</p>
-
-</div>
-
-
-
-<div class="glass-panel price-card rounded-3xl p-6">
-
-<h3>Survival Działki</h3>
-
-<p class="text-primary text-2xl font-minecraft mt-3">
-300 PLN
-</p>
-
-</div>
-
-
-
-<div class="glass-panel price-card rounded-3xl p-6">
-
-<h3>SkyBlock</h3>
-
-<p class="text-primary text-2xl font-minecraft mt-3">
-400 PLN
-</p>
-
-</div>
-
-
-
-<div class="glass-panel price-card rounded-3xl p-6">
-
-<h3>OneBlock</h3>
-
-<p class="text-primary text-2xl font-minecraft mt-3">
-400 PLN
-</p>
-
-</div>
-
-
-
-<div class="glass-panel price-card rounded-3xl p-6">
-
-<h3>Network Minecraft</h3>
-
-<p class="text-primary text-2xl font-minecraft mt-3">
-od 1000 PLN
-</p>
-
-</div>
-
-
-</div>
-
-
-</section>
 <!-- ================================= -->
-<!-- DALSZE KATEGORIE -->
+<!-- BOTY DISCORD -->
 <!-- ================================= -->
-
-
 
 <section>
 
@@ -875,51 +975,101 @@ od 1000 PLN
 
 
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>Stworzenie bota Discord</h3>
+<h3 class="font-bold text-white">
+Stworzenie własnego bota Discord
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 200 PLN
 </p>
-</div>
 
-
-<div class="glass-panel price-card rounded-3xl p-6">
-<h3>Bot statusu serwera</h3>
-<p class="text-primary text-2xl font-minecraft mt-3">
-100 PLN
+<p class="text-zinc-400 text-sm mt-2">
+Bot tworzony pod indywidualne wymagania.
 </p>
 </div>
 
 
+
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>Ticket System</h3>
+
+<h3 class="font-bold text-white">
+Bot statusu serwera Minecraft
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 100 PLN
 </p>
+
+<p class="text-zinc-400 text-sm mt-2">
+Status online, gracze, TPS, informacje.
+</p>
+
 </div>
 
 
+
+
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>System weryfikacji</h3>
+
+<h3 class="font-bold text-white">
+System Ticketów Discord
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 100 PLN
 </p>
+
+<p class="text-zinc-400 text-sm mt-2">
+Automatyczne tickety, logi oraz obsługa administracji.
+</p>
+
 </div>
 
 
+
+
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>Rangi Discord ↔ Minecraft</h3>
+
+<h3 class="font-bold text-white">
+System weryfikacji Discord
+</h3>
+
+<p class="text-primary text-2xl font-minecraft mt-3">
+100 PLN
+</p>
+
+</div>
+
+
+
+
+<div class="glass-panel price-card rounded-3xl p-6">
+
+<h3 class="font-bold text-white">
+Rangi Discord ↔ Minecraft
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 150 PLN
 </p>
+
 </div>
+
+
 
 
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>Integracja DiscordSRV</h3>
+
+<h3 class="font-bold text-white">
+Integracja DiscordSRV
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 50 PLN
 </p>
+
 </div>
+
 
 
 </div>
@@ -929,57 +1079,101 @@ od 1000 PLN
 
 
 
+
+<!-- ================================= -->
+<!-- STRONY INTERNETOWE -->
+<!-- ================================= -->
+
+
 <section>
+
 
 <h2 class="minecraft-heading text-2xl text-primary mb-6">
 🌐 STRONY INTERNETOWE
 </h2>
 
 
+
 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
 
 
+
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>Prosta strona serwera</h3>
+
+<h3 class="font-bold text-white">
+Prosta strona serwera Minecraft
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 300 PLN
 </p>
+
 </div>
 
 
+
+
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>Landing Page</h3>
+
+<h3 class="font-bold text-white">
+Landing Page
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 400 PLN
 </p>
+
 </div>
 
 
+
+
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>Forum Minecraft</h3>
+
+<h3 class="font-bold text-white">
+Forum Minecraft
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 500 PLN
 </p>
+
 </div>
 
 
+
+
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>Panel użytkownika</h3>
+
+<h3 class="font-bold text-white">
+Panel użytkownika
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 800 PLN
 </p>
+
 </div>
+
+
 
 
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>Sklep internetowy</h3>
+
+<h3 class="font-bold text-white">
+Sklep internetowy
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 1000 PLN
 </p>
+
 </div>
 
 
+
 </div>
+
 
 </section>
 
@@ -987,76 +1181,123 @@ od 1000 PLN
 
 
 
+<!-- ================================= -->
+<!-- SKRIPTY I SYSTEMY CUSTOM -->
+<!-- ================================= -->
+
 
 <section>
+
 
 <h2 class="minecraft-heading text-2xl text-primary mb-6">
 📜 SKRIPTY I SYSTEMY CUSTOM
 </h2>
 
 
+
 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
 
 
+
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>Prosty Skript</h3>
+
+<h3 class="font-bold text-white">
+Prosty Skript
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 50 PLN
 </p>
+
 </div>
 
 
+
+
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>Średni Skript</h3>
+
+<h3 class="font-bold text-white">
+Średni Skript
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 100 PLN
 </p>
+
 </div>
 
 
+
+
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>Zaawansowany Skript</h3>
+
+<h3 class="font-bold text-white">
+Zaawansowany Skript
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 200 PLN
 </p>
+
 </div>
 
 
+
+
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>System GUI</h3>
+
+<h3 class="font-bold text-white">
+System GUI
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 100 PLN
 </p>
+
 </div>
 
 
+
+
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>System Questów</h3>
+
+<h3 class="font-bold text-white">
+System Questów
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 200 PLN
 </p>
+
 </div>
 
 
+
+
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>Custom mechanika</h3>
+
+<h3 class="font-bold text-white">
+Custom mechanika Minecraft
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 od 300 PLN
 </p>
+
 </div>
 
 
+
 </div>
+
 
 </section>
-
-
-
-
-
-
+<!-- ================================= -->
+<!-- NAPRAWA PROBLEMÓW -->
+<!-- ================================= -->
 
 <section>
+
 
 <h2 class="minecraft-heading text-2xl text-primary mb-6">
 🔧 NAPRAWA PROBLEMÓW
@@ -1066,44 +1307,83 @@ od 300 PLN
 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
 
 
+
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>Naprawa błędu pluginu</h3>
+
+<h3 class="font-bold text-white">
+Naprawa błędu pluginu
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 50 PLN
 </p>
+
+<p class="text-zinc-400 text-sm mt-2">
+Diagnoza oraz rozwiązanie problemów.
+</p>
+
 </div>
 
 
+
+
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>Naprawa crasha serwera</h3>
+
+<h3 class="font-bold text-white">
+Naprawa crasha serwera
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 100 PLN
 </p>
+
 </div>
 
 
+
+
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>Analiza logów</h3>
+
+<h3 class="font-bold text-white">
+Analiza logów serwera
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 50 PLN
 </p>
+
 </div>
+
+
 
 
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>Usunięcie lagów</h3>
+
+<h3 class="font-bold text-white">
+Usunięcie lagów
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 150 PLN
 </p>
+
 </div>
+
+
 
 
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>Poprawa TPS</h3>
+
+<h3 class="font-bold text-white">
+Poprawa TPS serwera
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 150 PLN
 </p>
+
 </div>
+
 
 
 </div>
@@ -1114,7 +1394,14 @@ od 300 PLN
 
 
 
+
+<!-- ================================= -->
+<!-- OPIEKA NAD SERWEREM -->
+<!-- ================================= -->
+
+
 <section>
+
 
 <h2 class="minecraft-heading text-2xl text-primary mb-6">
 👑 OPIEKA NAD SERWEREM
@@ -1124,28 +1411,54 @@ od 300 PLN
 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
 
 
+
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>1 godzina pomocy</h3>
+
+<h3 class="font-bold text-white">
+1 godzina pomocy technicznej
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 50 PLN
 </p>
+
 </div>
 
 
+
+
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>5 godzin pomocy</h3>
+
+<h3 class="font-bold text-white">
+5 godzin pomocy
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
 200 PLN
 </p>
+
 </div>
+
+
 
 
 <div class="glass-panel price-card rounded-3xl p-6">
-<h3>Opieka PREMIUM</h3>
+
+<h3 class="font-bold text-white">
+Opieka PREMIUM
+</h3>
+
 <p class="text-primary text-2xl font-minecraft mt-3">
-500 PLN / mies
+500 PLN / miesiąc
 </p>
+
+<p class="text-zinc-400 text-sm mt-2">
+Stała pomoc, konfiguracje oraz poprawki.
+</p>
+
 </div>
+
+
 
 
 </div>
@@ -1155,14 +1468,13 @@ od 300 PLN
 
 
 
-</div>
 
 
 
+<!-- ================================= -->
+<!-- CTA DISCORD -->
+<!-- ================================= -->
 
-
-
-<!-- CTA -->
 
 <section class="mt-20 glass-panel rounded-3xl p-10 text-center gold-glow">
 
@@ -1172,17 +1484,23 @@ STARTUJEMY Z TWOIM SERWEREM
 </h2>
 
 
+
 <p class="text-zinc-400 font-tech mb-8">
 Darmowa wycena większych projektów.
+<br>
 Płatność przed rozpoczęciem pracy.
 </p>
+
+
 
 
 <a href="https://discord.gg/uek2nZQr9k"
 target="_blank"
 class="inline-block bg-primary text-black px-8 py-4 rounded-xl font-bold uppercase tracking-widest hover:scale-105 transition">
 
+
 OTWÓRZ TICKET DISCORD
+
 
 </a>
 
@@ -1191,7 +1509,11 @@ OTWÓRZ TICKET DISCORD
 
 
 
+
+
 </main>
+
+
 
 
 
@@ -1213,7 +1535,9 @@ OTWÓRZ TICKET DISCORD
 
 
 <img src="nav-logo.png"
-class="h-10 mb-4">
+class="h-10 mb-4"
+alt="BSCMC Logo">
+
 
 
 <p class="text-xs text-zinc-500 font-tech uppercase tracking-widest">
@@ -1227,22 +1551,36 @@ class="h-10 mb-4">
 
 
 
+
 <div class="flex gap-6 text-xs uppercase font-tech text-zinc-400">
 
 
-<a href="privacy.html">
+<a href="privacy.html"
+class="hover:text-primary transition">
+
 Privacy
+
 </a>
 
 
-<a href="terms.html">
+
+<a href="terms.html"
+class="hover:text-primary transition">
+
 Terms
+
 </a>
 
 
-<a href="contact.html">
+
+
+<a href="contact.html"
+class="hover:text-primary transition">
+
 Kontakt
+
 </a>
+
 
 
 </div>
@@ -1258,29 +1596,39 @@ Kontakt
 
 
 
+
+
+<!-- ================================= -->
 <!-- MOBILE MENU SCRIPT -->
+<!-- ================================= -->
 
 
 <script>
 
 
-const toggle=document.getElementById("mobile-menu-toggle");
+const toggle = document.getElementById("mobile-menu-toggle");
 
-const menu=document.getElementById("mobile-menu");
+const menu = document.getElementById("mobile-menu");
 
 
-if(toggle){
 
-toggle.onclick=()=>{
+if(toggle && menu){
+
+
+toggle.addEventListener("click",()=>{
+
 
 menu.classList.toggle("hidden");
 
-}
+
+});
+
 
 }
 
 
 </script>
+
 
 
 
