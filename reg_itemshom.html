@@ -1,1110 +1,259 @@
 <!DOCTYPE html>
-<html class="dark" lang="pl">
-
+<html lang="pl">
 <head>
-
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<title>Regulamin Serwera | Brace Network</title>
-
-<meta name="theme-color" content="#f2ca50" />
-
-<link rel="icon" type="image/x-icon" href="logo.png">
-
-
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=Inter:wght@400;500;600;700&family=Press+Start+2P&family=Orbitron:wght@700;900&family=Rajdhani:wght@500;700&display=block"
-rel="stylesheet">
-
-
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block"
-rel="stylesheet">
-
-
-<script>
-
-tailwind.config = {
-
-darkMode:"class",
-
-theme:{
-extend:{
-
-
-colors:{
-
-primary:"#f2ca50",
-background:"#131314",
-surface:"#131314",
-on-background:"#e5e2e3"
-
-},
-
-
-fontFamily:{
-
-body:["Inter"],
-minecraft:["Orbitron","sans-serif"],
-tech:["Rajdhani","sans-serif"],
-pixel:["Press Start 2P","monospace"]
-
-}
-
-
-}
-
-}
-
-}
-
-</script>
-
-
-
-<style>
-
-
-.nav-link{
-
-position:relative;
-transition:.3s;
-
-}
-
-
-.nav-link::after{
-
-content:'';
-
-position:absolute;
-
-bottom:-4px;
-
-left:50%;
-
-width:0;
-
-height:2px;
-
-background:#f2ca50;
-
-transform:translateX(-50%);
-
-transition:.3s;
-
-}
-
-
-.nav-link:hover::after,
-.nav-link.active::after{
-
-width:100%;
-
-}
-
-
-
-.header-gradient{
-
-background:linear-gradient(
-to bottom,
-rgba(19,19,20,.85),
-transparent
-);
-
-}
-
-
-
-.glass-panel{
-
-backdrop-filter:blur(20px);
-
-background:rgba(20,20,21,.6);
-
-border:1px solid rgba(255,255,255,.1);
-
-position:relative;
-
-overflow:hidden;
-
-}
-
-
-
-.minecraft-heading{
-
-font-family:'Orbitron',sans-serif;
-
-text-shadow:
-
-3px 3px 0 rgba(0,0,0,.8),
-0 0 30px rgba(242,202,80,.5);
-
-}
-
-
-.nav-link.active {
-    color: #f2ca50 !important;
-}
-
-.nav-link.active::after {
-    width: 100%;
-    background: #f2ca50;
-}
-</style>
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regulamin Sklepu i Waluty VPLN - BSCMC.PL</title>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f111a;
+            --card-bg: #151824;
+            --text-color: #e2e8f0;
+            --text-muted: #94a3b8;
+            --primary-color: #7c3aed;
+            --primary-hover: #6d28d9;
+            --accent-color: #06b6d4;
+            --border-color: #23283d;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, #ffffff, var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .seller-info {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(6, 182, 212, 0.1));
+            border: 1px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        .seller-info h3 {
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .seller-info h3::before {
+            content: "🆔";
+            font-size: 1.2rem;
+        }
+
+        .seller-info ul {
+            list-style: none;
+        }
+
+        .seller-info ul li {
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+
+        .seller-info ul li strong {
+            color: var(--accent-color);
+        }
+
+        .seller-info .badge {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .paragraph-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .paragraph-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(124, 58, 237, 0.4);
+        }
+
+        .paragraph-card h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 12px;
+        }
+
+        .paragraph-card ol {
+            padding-left: 20px;
+        }
+
+        .paragraph-card ol li {
+            margin-bottom: 12px;
+            color: var(--text-color);
+            font-size: 0.95rem;
+            padding-left: 5px;
+        }
+
+        .paragraph-card ol li::marker {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .paragraph-card ul {
+            list-style-type: square;
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        .paragraph-card ul li {
+            margin-bottom: 6px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .paragraph-card ul li::marker {
+            color: var(--accent-color);
+        }
+
+        .legal-notice {
+            background-color: rgba(6, 182, 212, 0.05);
+            border-left: 4px solid var(--accent-color) !important;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            header h1 {
+                font-size: 1.7rem;
+            }
+            .paragraph-card {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
+<body>
 
+    <div class="container">
+        
+        <header>
+            <h1>Regulamin Sklepu i Waluty VPLN</h1>
+            <p>Serwer Minecraft: BSCMC.PL</p>
+        </header>
 
+        <!-- Dane Sprzedawcy wymagane przez polskie prawo i SimPay -->
+        <section class="seller-info">
+            <h3>Dane identyfikacyjne Sprzedawcy</h3>
+            <ul>
+                <li><strong>Sprzedawca:</strong> [Twoje Imię i Nazwisko]</li>
+                <li><strong>Adres zamieszkania:</strong> [Ulica i numer domu/mieszkania]</li>
+                <li><strong>Miejscowość:</strong> [Kod pocztowy, Miejscowość]</li>
+                <li><strong>Kontakt e-mail:</strong> [Twój e-mail, np. kontakt@bscmc.pl]</li>
+            </ul>
+            <span class="badge">Działalność Nierejestrowana</span>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 10px;">
+                Sprzedaż towarów i usług cyfrowych prowadzona jest zgodnie z art. 5 ustawy z dnia 6 marca 2018 r. – Prawo przedsiębiorców.
+            </p>
+        </section>
 
-<body class="text-on-background font-body overflow-x-hidden pb-20">
-
-
-
-<div class="fixed inset-0 -z-10">
-
-<img src="https://i.postimg.cc/R0HHpfWz/044F82Ed-UL-g-M8uv-Cib-V0HWi-qp-ZP6Yft-DSRq72Zvhbf-g-Lc-Nxnq-Xy4r-X26QIn6dl-On-r-Sn-Bu8J-Mj-Z75k-K-k.jpg"
-class="w-full h-full object-cover"
-alt="Background">
-
-</div>
-
-
-
-  <!-- ========================================== -->
-  <!-- DESKTOP / MAIN HEADER NAVBAR               -->
-  <!-- ========================================== -->
-  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
-        <div class="absolute inset-0 h-32 header-gradient pointer-events-none"></div>
-        <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 relative">
-            <nav class="glass-panel flex items-center justify-between px-4 md:px-6 py-3 rounded-2xl border-white/5 shadow-2xl">
-                <a href="index.html" class="flex items-center gap-3">
-                    <img loading="lazy" src="https://i.postimg.cc/59kgx6x3/nowelogo.png" class="h-8 md:h-10" alt="Logo">
-                </a>
-                <div class="hidden xl:flex items-center gap-6 header-nav">
-                    <a href="index.html" class="nav-link text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase">MINECRAFT</a>
-                    <a href="reg_surv_dzialki.html" class="nav-link text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase">REGULAMIN SURVIVAL+DZIAŁKI</a>
-                    <a href="vote.html" class="nav-link text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase">EVENTY / NAGRODY</a>
-                    <a href="mojprofil.html" class="nav-link text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase">MOJ PROFIL</a>
-                </div>
-                <button id="mobile-menu-toggle" class="xl:hidden p-2 rounded-2xl border border-white/10 text-white/80 hover:text-white" aria-label="Toggle navigation">
-                    <span class="material-symbols-outlined">menu</span>
-                </button>
-            </nav>
-            <div id="mobile-menu" class="hidden absolute inset-x-4 top-full mt-3 rounded-3xl glass-panel p-4 border-white/10 shadow-2xl z-50 xl:hidden">
-                <div class="grid gap-2">
-                    <a href="index.html" class="nav-link text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase">MINECRAFT</a>
-                    <a href="reg_surv_dzialki.html" class="nav-link text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase">REGULAMIN SURVIVAL+DZIAŁKI</a>
-                    <a href="vote.html" class="nav-link text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase">EVENTY / NAGRODY</a>
-                    <a href="mojprofil.html" class="nav-link text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase">MOJ PROFIL</a>
-                </div>
-            </div>
-            <script>
-                document.addEventListener('DOMContentLoaded', function () {
-                    const menu = document.getElementById('mobile-menu');
-                    const toggle = document.getElementById('mobile-menu-toggle');
-                    if (toggle && menu) {
-                        toggle.addEventListener('click', function () {
-                            menu.classList.toggle('hidden');
-                        });
-                    }
-
-                    const path = window.location.pathname.split('/').pop().toLowerCase() || 'index.html';
-                    const current = {
-                        '': 'index.html',
-                        'index.html': 'index.html',
-                        'reg_surv_dzialki.html': 'reg_surv_dzialki.html',
-                        'mojprofil.html': 'mojprofil.html',
-                        'vote.html': 'vote.html',
-                        'login.html': 'login.html',
-                        'register.html': 'register.html'
-                    }[path] || path;
-
-                    document.querySelectorAll('.header-nav a.nav-link, #mobile-menu a.nav-link').forEach(function (link) {
-                        if (link.getAttribute('href') === current) {
-                            link.classList.add('active', 'text-primary');
-                            link.classList.remove('text-white/70');
-                        } else {
-                            link.classList.remove('active', 'text-primary');
-                            link.classList.add('text-white/70');
-                        }
-                    });
-                });
-            </script>
+        <!-- §1 -->
+        <div class="paragraph-card">
+            <h2>§1. Postanowienia ogólne</h2>
+            <ol>
+                <li>Niniejszy regulamin określa zasady korzystania ze sklepu internetowego oraz wirtualnej waluty premium VPLN, dostępnej na serwerze Minecraft BSCMC.PL.</li>
+                <li>Zakup lub otrzymanie waluty VPLN oznacza automatyczną akceptację niniejszego regulaminu oraz wszystkich zasad i regulaminów rozgrywki obowiązujących na serwerze.</li>
+                <li>Waluta VPLN jest wyłącznie wirtualnym punktem rozliczeniowym przeznaczonym do wykorzystania wewnętrznego na serwerze BSCMC.PL. Nie stanowi ona prawdziwego środka płatniczego, pieniądza elektronicznego ani instrumentu finansowego.</li>
+                <li>Zakup VPLN stanowi odpłatną usługę cyfrową dostarczaną drogą elektroniczną w ramach serwera Minecraft. Użytkownik otrzymuje dostęp do określonej usługi cyfrowej, nie nabywając żadnych praw własności do VPLN, kodu ani elementów infrastruktury serwera.</li>
+                <li>Głównym celem systemu waluty VPLN jest wspieranie bieżącego utrzymania, stabilności oraz rozwoju serwera, a także zapewnienie graczom opcjonalnych urozmaiceń rozgrywki.</li>
+            </ol>
         </div>
-</header>
 
-<main class="pt-32 px-4 md:px-6 pb-20 max-w-5xl mx-auto">
-
-<section class="glass-panel rounded-[2rem] p-8 md:p-12 mt-10">
-
-
-<span class="text-xs uppercase tracking-[0.3em] text-primary font-tech">
-
-Regulamin
-
-</span>
-
-
-
-<h1 class="minecraft-heading text-4xl md:text-5xl text-white font-black mt-4 mb-6">
-
-Regulamin Serwera Survival + Działki
-
-</h1>
-
-
-
-<p class="text-zinc-400 font-tech leading-relaxed mb-10">
-
-Dołączenie do serwera Brace Network oznacza automatyczną akceptację niniejszego regulaminu.
-Każdy gracz zobowiązuje się przestrzegać zasad oraz dbać o dobrą atmosferę społeczności.
-
-</p>
-
-
-
-
-<div class="space-y-6">
-
-
-
-
-
-<div class="glass-panel rounded-3xl p-6">
-
-
-<h2 class="text-xl text-white font-bold font-minecraft mb-4">
-
-§1. Postanowienia ogólne
-
-</h2>
-
-
-
-<p class="text-zinc-300 font-tech leading-relaxed">
-
-
-1. Dołączenie do serwera oznacza automatyczną akceptację niniejszego regulaminu.<br><br>
-
-
-2. Każdy gracz zobowiązany jest zapoznać się z regulaminem przed rozpoczęciem gry.<br><br>
-
-
-3. Nieznajomość regulaminu nie zwalnia z odpowiedzialności.<br><br>
-
-
-4. Administracja ma prawo interpretować regulamin oraz podejmować decyzje w sytuacjach nieopisanych.<br><br>
-
-
-5. Administracja zastrzega sobie prawo do zmiany regulaminu.<br><br>
-
-
-6. Próby obchodzenia regulaminu traktowane są jako jego złamanie.<br><br>
-
-
-7. Wszystkie błędy, exploity oraz problemy techniczne należy zgłaszać administracji.<br><br>
-
-
-8. Zabrania się wykorzystywania błędów serwera w celu uzyskania przewagi.
-
-
-</p>
-
-
-</div>
-<!-- §2 -->
-
-<div class="glass-panel rounded-3xl p-6">
-
-
-<h2 class="text-xl text-white font-bold font-minecraft mb-4">
-
-§2. Kultura i zachowanie
-
-</h2>
-
-
-
-<p class="text-zinc-300 font-tech leading-relaxed">
-
-
-1. Każdy gracz zobowiązany jest zachowywać kulturę osobistą.<br><br>
-
-
-2. Zabrania się:<br><br>
-
-
-- obrażania innych graczy,<br>
-
-- wyzywania,<br>
-
-- prowokowania konfliktów,<br>
-
-- nękania innych użytkowników,<br>
-
-- gróźb,<br>
-
-- spamowania,<br>
-
-- floodowania,<br>
-
-- nadmiernego używania wielkich liter,<br>
-
-- publikowania treści nieodpowiednich.<br><br>
-
-
-
-3. Zabrania się podszywania pod innych graczy oraz administrację.<br><br>
-
-
-4. Zakazane jest publikowanie cudzych danych osobowych.<br><br>
-
-
-5. Zabrania się reklamowania innych serwerów bez zgody administracji.
-
-
-</p>
-
-
-</div>
-
-
-
-
-
-<!-- §3 -->
-
-<div class="glass-panel rounded-3xl p-6">
-
-
-<h2 class="text-xl text-white font-bold font-minecraft mb-4">
-
-§3. Cheaty oraz niedozwolone modyfikacje
-
-</h2>
-
-
-
-<p class="text-zinc-300 font-tech leading-relaxed">
-
-
-1. Zabrania się używania wszelkich modyfikacji dających przewagę.<br><br>
-
-
-2. Zakazane są między innymi:<br><br>
-
-
-- X-Ray,<br>
-
-- KillAura,<br>
-
-- Reach,<br>
-
-- Fly,<br>
-
-- SpeedHack,<br>
-
-- AutoClicker,<br>
-
-- FreeCam,<br>
-
-- ChestESP,<br>
-
-- Tracery,<br>
-
-- Nuker,<br>
-
-- Scaffold,<br>
-
-- makra,<br>
-
-- automaty.<br><br>
-
-
-
-3. Administracja ma prawo przeprowadzić kontrolę gracza.<br><br>
-
-
-3.1 Posiadanie niedozwolonych modyfikacji, cheatów lub programów dających nieuczciwą przewagę może skutkować karą, nawet jeżeli w momencie wykrycia nie były one aktywnie używane.<br><br>
-
-
-Administracja może podjąć decyzję na podstawie dowodów, historii działań oraz okoliczności sprawy.<br><br>
-
-
-4. Odmowa kontroli może skutkować karą.
-
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-<!-- §4 -->
-
-<div class="glass-panel rounded-3xl p-6">
-
-
-<h2 class="text-xl text-white font-bold font-minecraft mb-4">
-
-§4. Działki
-
-</h2>
-
-
-
-<p class="text-zinc-300 font-tech leading-relaxed">
-
-
-1. Każdy gracz odpowiada za swoją działkę.<br><br>
-
-
-2. Dodanie innej osoby do działki odbywa się na własną odpowiedzialność.<br><br>
-
-
-3. Właściciel działki odpowiada za:<br><br>
-
-
-- osoby z dostępem,<br>
-
-- ustawienia działki,<br>
-
-- budowle,<br>
-
-- przedmioty znajdujące się na działce.<br><br>
-
-
-
-4. Administracja nie odpowiada za szkody wykonane przez osoby posiadające dostęp.
-
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-<!-- §4.1 -->
-
-<div class="glass-panel rounded-3xl p-6">
-
-
-<h2 class="text-xl text-white font-bold font-minecraft mb-4">
-
-§4.1 Griefowanie działek i terenów
-
-</h2>
-
-
-
-<p class="text-zinc-300 font-tech leading-relaxed">
-
-
-1. Zabrania się niszczenia cudzych działek.<br><br>
-
-
-2. Zakazane jest:<br><br>
-
-
-- niszczenie budowli,<br>
-
-- zabieranie bloków,<br>
-
-- niszczenie dekoracji,<br>
-
-- zalewanie terenu wodą lub lawą,<br>
-
-- tworzenie pułapek,<br>
-
-- blokowanie wejścia,<br>
-
-- celowe przeszkadzanie właścicielowi działki.<br><br>
-
-
-
-3. Zabrania się niszczenia terenu wokół cudzych działek.<br><br>
-
-
-4. Zakazane jest:<br><br>
-
-
-- kopanie ogromnych dziur,<br>
-
-- niszczenie krajobrazu,<br>
-
-- pozostawianie śmieciowych konstrukcji,<br>
-
-- stawianie przeszkód przy granicy działki,<br>
-
-- utrudnianie rozbudowy sąsiadom.<br><br>
-
-
-
-5. Administracja może nakazać naprawienie szkód lub samodzielnie usunąć naruszenia.
-
-
-</p>
-
-
-</div>
-<!-- §5 -->
-
-<div class="glass-panel rounded-3xl p-6">
-
-
-<h2 class="text-xl text-white font-bold font-minecraft mb-4">
-
-§5. Teren poza działkami
-
-</h2>
-
-
-
-<p class="text-zinc-300 font-tech leading-relaxed">
-
-
-1. Teren poza działkami jest ogólnodostępny.<br><br>
-
-
-2. Gracze mogą:<br><br>
-
-
-- wydobywać surowce,<br>
-
-- ścinać drzewa,<br>
-
-- eksplorować świat.<br><br>
-
-
-
-3. Przedmioty pozostawione poza działką nie są chronione.<br><br>
-
-
-4. Administracja nie odpowiada za utracone przedmioty poza zabezpieczonym terenem.
-
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-<!-- §6 -->
-
-<div class="glass-panel rounded-3xl p-6">
-
-
-<h2 class="text-xl text-white font-bold font-minecraft mb-4">
-
-§6. Budowanie oraz obciążanie serwera
-
-</h2>
-
-
-
-<p class="text-zinc-300 font-tech leading-relaxed">
-
-
-1. Zabrania się tworzenia konstrukcji powodujących lagi.<br><br>
-
-
-2. Zakazane są:<br><br>
-
-
-- ogromne farmy mobów,<br>
-
-- nadmierna liczba lejków,<br>
-
-- maszyny redstone działające bez potrzeby,<br>
-
-- farmy generujące tysiące przedmiotów,<br>
-
-- pozostawianie tysięcy itemów na ziemi.<br><br>
-
-
-
-3. Administracja może usunąć konstrukcję powodującą problemy.
-
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-
-<!-- §7 -->
-
-<div class="glass-panel rounded-3xl p-6">
-
-
-<h2 class="text-xl text-white font-bold font-minecraft mb-4">
-
-§7. PvP
-
-</h2>
-
-
-
-<p class="text-zinc-300 font-tech leading-relaxed">
-
-
-1. PvP jest dozwolone tylko w miejscach wyznaczonych przez administrację.<br><br>
-
-
-2. Zabrania się:<br><br>
-
-
-- zabijania graczy wykorzystując błędy serwera<br>
-
-- teleportowania graczy w celu ich zabicia,<br>
-
-- wykorzystywania lagów podczas walki<br>
-
-- tworzenia trapów, TPA trapów oraz innych pułapek mających na celu celowe zwabienie i zabicie gracza<br><br>
-
-
-
-3. Administracja nie zwraca przedmiotów utraconych podczas legalnego PvP.
-
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-<!-- §8 -->
-
-<div class="glass-panel rounded-3xl p-6">
-
-
-<h2 class="text-xl text-white font-bold font-minecraft mb-4">
-
-§8. Handel i ekonomia
-
-</h2>
-
-
-
-<p class="text-zinc-300 font-tech leading-relaxed">
-
-
-1. Wszystkie transakcje odbywają się na odpowiedzialność graczy.<br><br>
-
-
-2. Administracja nie zwraca pieniędzy ani przedmiotów utraconych przez błędny handel.<br><br>
-
-
-3. Zabrania się:<br><br>
-
-
-- oszustw,<br>
-
-- wykorzystywania bugów ekonomii,<br>
-
-- duplikowania przedmiotów,<br>
-
-- tworzenia fałszywych ofert.<br><br>
-
-
-
-4. Wykorzystywanie błędów ekonomii skutkuje karą.
-
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-<!-- §9 -->
-
-<div class="glass-panel rounded-3xl p-6">
-
-
-<h2 class="text-xl text-white font-bold font-minecraft mb-4">
-
-§9. Bug Abuse oraz exploity
-
-</h2>
-
-
-
-<p class="text-zinc-300 font-tech leading-relaxed">
-
-
-1. Każdy znaleziony błąd należy zgłosić administracji.<br><br>
-
-
-2. Zabrania się:<br><br>
-
-
-- wykorzystywania bugów,<br>
-
-- ukrywania exploitów,<br>
-
-- przekazywania exploitów innym osobom.<br><br>
-
-
-
-3. Gracz korzystający z błędów może otrzymać karę oraz utracić zdobyte korzyści.
-
-
-</p>
-
-
-</div>
-<!-- §10 -->
-
-<div class="glass-panel rounded-3xl p-6">
-
-
-<h2 class="text-xl text-white font-bold font-minecraft mb-4">
-
-§10. Alternatywne konta
-
-</h2>
-
-
-<p class="text-zinc-300 font-tech leading-relaxed">
-
-
-1. Zabrania się używania multikont do:<br><br>
-
-
-- omijania kar,<br>
-
-- zdobywania dodatkowych nagród,<br>
-
-- obchodzenia ograniczeń.<br><br>
-
-
-2. Administracja może ukarać wszystkie konta powiązane.
-
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-<!-- §11 -->
-
-<div class="glass-panel rounded-3xl p-6">
-
-
-<h2 class="text-xl text-white font-bold font-minecraft mb-4">
-
-§11. AFK oraz automatyzacja
-
-</h2>
-
-
-<p class="text-zinc-300 font-tech leading-relaxed">
-
-
-1. Zabrania się używania niedozwolonych metod nabijania czasu gry.<br><br>
-
-
-2. Zakazane są:<br><br>
-
-
-- autoclickery,<br>
-
-- makra,<br>
-
-- programy automatyzujące.<br><br>
-
-
-3. Administracja może usuwać nieuczciwie zdobyte nagrody.
-
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-<!-- §12 -->
-
-<div class="glass-panel rounded-3xl p-6">
-
-
-<h2 class="text-xl text-white font-bold font-minecraft mb-4">
-
-§12. Śmierć i utrata przedmiotów
-
-</h2>
-
-
-<p class="text-zinc-300 font-tech leading-relaxed">
-
-
-1. Każdy gracz odpowiada za swoje przedmioty.<br><br>
-
-
-2. Administracja nie zwraca rzeczy utraconych przez:<br><br>
-
-
-- śmierć,<br>
-
-- moby,<br>
-
-- lawę,<br>
-
-- upadek,<br>
-
-- nieuwagę gracza.<br><br>
-
-
-3. Gracz powinien sam zabezpieczać swoje rzeczy.
-
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-<!-- §13 -->
-
-<div class="glass-panel rounded-3xl p-6">
-
-
-<h2 class="text-xl text-white font-bold font-minecraft mb-4">
-
-§13. Eventy i nagrody
-
-</h2>
-
-
-<p class="text-zinc-300 font-tech leading-relaxed">
-
-
-1. Nagrody z eventów są własnością gracza po ich otrzymaniu.<br><br>
-
-
-2. Zabrania się:<br><br>
-
-
-- sprzedawania nagród w sposób sprzeczny z zasadami eventu,<br>
-
-- wykorzystywania błędów podczas eventów.<br><br>
-
-
-3. Administracja może odebrać nagrody zdobyte nielegalnie.
-
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-<!-- §14 -->
-
-<div class="glass-panel rounded-3xl p-6">
-
-
-<h2 class="text-xl text-white font-bold font-minecraft mb-4">
-
-§14. Administracja
-
-</h2>
-
-
-<p class="text-zinc-300 font-tech leading-relaxed">
-
-
-1. Administracja ma prawo reagować w sytuacjach zagrażających serwerowi.<br><br>
-
-
-2. Administracja może usuwać:<br><br>
-
-
-- obiekty powodujące lagi,<br>
-
-- budowle łamiące regulamin,<br>
-
-- nielegalnie zdobyte przedmioty.<br><br>
-
-
-3. Administracja nie ma obowiązku zwracania przedmiotów utraconych z winy gracza.<br><br>
-
-
-4. Decyzje administracji mogą być ostateczne.
-
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-<!-- §15 -->
-
-<div class="glass-panel rounded-3xl p-6">
-
-
-<h2 class="text-xl text-white font-bold font-minecraft mb-4">
-
-§15. Kary
-
-</h2>
-
-
-<p class="text-zinc-300 font-tech leading-relaxed">
-
-
-Administracja może zastosować:<br><br>
-
-
-- ostrzeżenie,<br>
-
-- wyciszenie,<br>
-
-- kick,<br>
-
-- czasową blokadę,<br>
-
-- permanentną blokadę,<br>
-
-- usunięcie działki,<br>
-
-- usunięcie nielegalnych przedmiotów.<br><br>
-
-
-Kara zależy od:<br><br>
-
-
-- rodzaju przewinienia,<br>
-
-- historii gracza,<br>
-
-- skali szkody.
-
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-<!-- §16 -->
-
-<div class="glass-panel rounded-3xl p-6">
-
-
-<h2 class="text-xl text-white font-bold font-minecraft mb-4">
-
-§16. Postanowienia końcowe
-
-</h2>
-
-
-<p class="text-zinc-300 font-tech leading-relaxed">
-
-
-1. Regulamin obowiązuje każdego gracza niezależnie od posiadanej rangi.<br><br>
-
-
-2. Każdy gracz zobowiązuje się do uczciwej gry.<br><br>
-
-
-3. Sprawy nieopisane w regulaminie rozstrzyga administracja.<br><br>
-
-
-4. Celem regulaminu jest zapewnienie uczciwej oraz przyjemnej rozgrywki.<br><br>
-
-
-Życzymy miłej gry!<br><br>
-
-
-Administracja serwera.
-
-
-</p>
-
-
-</div>
-
-
-
-
-</div>
-
-
-</section>
-
-
-</main>
-
-
-</body>
-
-</html>
+        <!-- §2 -->
+        <div class="paragraph-card">
+            <h2>§2. Zakup i warunki realizacji płatności</h2>
+            <ol>
+                <li>Walutę VPLN można zakupić wyłącznie poprzez oficjalną stronę sklepu zintegrowaną z platformą automatyczną ItemShopSys.</li>
+                <li>Sprzedawca udostępnia bezpieczne metody płatności online, których zewnętrznym operatorem oraz agentem rozliczeniowym jest firma <strong>SimPay (Payments Solution Sp. z o.o.)</strong>:
+                    <ul>
+                        <li>Szybkie przelewy bankowe (Pay-by-link)</li>
+                        <li>Płatności mobilne BLIK</li>
+                        <li>Karty płatnicze i kredytowe</li>
+                        <li>Doładowania SMS Premium oraz Direct Billing</li>
+                        <li>Bony przedpłacone Paysafecard</li>
+                    </ul>
+                </li>
+                <li>Zakupiona waluta VPLN przypisywana jest bezpośrednio do konta Minecraft o nicku podanym przez użytkownika w formularzu zamówienia. Użytkownik ponosi pełną odpowiedzialność za poprawność wpisanego nicku.</li>
+                <li>Podanie błędnego nicku skutkuje brakiem możliwości poprawnej realizacji usługi przez system automatyczny. Sprzedawca nie ponosi odpowiedzialności za straty wynikające z pomyłek użytkownika.</li>
+                <li>Dostarczenie wirtualnej waluty VPLN na konto gracza następuje automatycznie w czasie od kilku sekund do 15 minut od momentu otrzymania przez system sklepu potwierdzenia autoryzacji płatności od operatora SimPay.</li>
+            </ol>
+        </div>
+
+        <!-- §3 -->
+        <div class="paragraph-card">
+            <h2>§3. Otrzymywanie i bonusy VPLN</h2>
+            <ol>
+                <li>Waluta VPLN może trafić na konto użytkownika poprzez bezpośredni zakup w sklepie ItemShopSys, a także w formie nieodpłatnej w ramach konkursów, eventów, promocji lub specjalnych akcji organizowanych przez administrację serwera.</li>
