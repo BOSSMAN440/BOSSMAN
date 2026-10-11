@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regulamin Sklepu i Waluty VPLN - BSCMC.PL</title>
+    <!-- Dołączenie Tailwind CSS oraz ikon, aby Twoje klasy działały poprawnie -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="text-slate-200 antialiased selection:bg-purple-500/30">
+
+    <!-- NAWIGACJA -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+        <div class="absolute inset-0 h-32 header-gradient pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 relative">
+            <nav class="glass-panel flex items-center justify-between px-4 md:px-6 py-3 rounded-2xl border border-white/5 shadow-2xl">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img loading="lazy" src="https://i.postimg.cc/59kgx6x3/nowelogo.png" class="h-8 md:h-10" alt="Logo">
+                </a>
+                <div class="hidden xl:flex items-center gap-6 header-nav">
+                    <a href="index.html" class="nav-link text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase">MINECRAFT</a>
+                    <a href="reg_surv_dzialki.html" class="nav-link text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase">REGULAMIN SURVIVAL+DZIAŁKI</a>
+                    <a href="vote.html" class="nav-link text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase">EVENTY / NAGRODY</a>
+                    <a href="mojprofil.html" class="nav-link text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase">MOJ PROFIL</a>
+                </div>
+                <button id="mobile-menu-toggle" class="xl:hidden p-2 rounded-2xl border border-white/10 text-white/80 hover:text-white flex items-center justify-center" aria-label="Toggle navigation">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </nav>
+            <div id="mobile-menu" class="hidden absolute inset-x-4 top-full mt-3 rounded-3xl glass-panel p-4 border border-white/10 shadow-2xl z-50 xl:hidden">
+                <div class="grid gap-2">
+                    <a href="index.html" class="nav-link p-2 text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase rounded-xl hover:bg-white/5">MINECRAFT</a>
+                    <a href="reg_surv_dzialki.html" class="nav-link p-2 text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase rounded-xl hover:bg-white/5">REGULAMIN SURVIVAL+DZIAŁKI</a>
+                    <a href="vote.html" class="nav-link p-2 text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase rounded-xl hover:bg-white/5">EVENTY / NAGRODY</a>
+                    <a href="mojprofil.html" class="nav-link p-2 text-white/70 hover:text-white font-tech font-bold text-sm tracking-widest uppercase rounded-xl hover:bg-white/5">MOJ PROFIL</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- TREŚĆ REGULAMINU -->
+    <main class="max-w-4xl mx-auto px-4 pt-32 pb-16 relative z-10">
+        
+        <div class="text-center mb-12">
+            <h1 class="font-poppins font-bold text-3xl md:text-4xl text-white uppercase tracking-wider bg-gradient-to-r from-white via-purple-300 to-slate-400 bg-clip-text text-fill-transparent drop-shadow-md">
+                Regulamin Sklepu i Waluty VPLN
+            </h1>
+            <p class="font-tech text-cyan-400 text-sm mt-2 tracking-widest">DOKUMENTACJA TRANSAKCYJNA :: BSCMC.PL</p>
+        </div>
+
+        <!-- SEKCJA PRAWNA WERYFIKACJI -->
+        <section class="glass-panel border border-purple-500/30 rounded-2xl p-6 md:p-8 mb-10 shadow-xl relative overflow-hidden before:absolute before:top-0 before:left-0 before:w-1 before:h-full before:bg-gradient-to-b before:from-purple-500 before:to-cyan-400">
+            <h3 class="font-poppins font-semibold text-lg text-white mb-4 flex items-center gap-2">
+                🆔 Dane identyfikacyjne Sprzedawcy
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                <div class="bg-white/5 p-4 rounded-xl border border-white/5">
+                    <div class="text-xs uppercase text-slate-400 font-semibold tracking-wider mb-1">Nazwa Sprzedawcy</div>
+                    <div class="text-white font-medium">[Twoje Imię i Nazwisko]</div>
+                </div>
+                <div class="bg-white/5 p-4 rounded-xl border border-white/5">
+                    <div class="text-xs uppercase text-slate-400 font-semibold tracking-wider mb-1">Adres Rejestracyjny</div>
+                    <div class="text-white font-medium">[Ulica, numer domu/mieszkania]</div>
+                </div>
+                <div class="bg-white/5 p-4 rounded-xl border border-white/5">
+                    <div class="text-xs uppercase text-slate-400 font-semibold tracking-wider mb-1">Miejscowość i Kod</div>
+                    <div class="text-white font-medium">[Kod pocztowy, Miejscowość]</div>
+                </div>
+                <div class="bg-white/5 p-4 rounded-xl border border-white/5">
+                    <div class="text-xs uppercase text-slate-400 font-semibold tracking-wider mb-1">Kontakt E-mail</div>
+                    <div class="text-white font-medium">[Twój e-mail kontaktowy]</div>
+                </div>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-2 items-center">
+                <span class="inline-block bg-purple-500/20 border border-purple-500/50 text-purple-300 text-xs font-bold font-tech px-3 py-1 rounded-full">
+                    Działalność Nierejestrowana (Art. 5 Prawa Przedsiębiorców)
+                </span>
+            </div>
+        </section>
+
+        <!-- PARAGRAFY -->
+        <div class="space-y-6">
+            
+            <!-- §1 -->
+            <section class="glass-panel border border-white/5 rounded-2xl p-6 md:p-8 hover:border-purple-500/30 transition-all duration-300 group shadow-lg">
+                <h2 class="font-poppins font-semibold text-xl text-white mb-4 flex items-center gap-3">
+                    <span class="font-tech text-xs bg-white/5 text-cyan-400 px-2 py-1 rounded-md border border-white/10 group-hover:border-purple-500/40">§ 01</span>
+                    Postanowienia ogólne
+                </h2>
+                <ul class="rules-list text-slate-300 text-sm md:text-base leading-relaxed">
+                    <li>Niniejszy regulamin precyzuje warunki korzystania ze sklepu zautomatyzowanego oraz zasady nabywania i eksploatacji wirtualnej waluty premium VPLN na serwerze BSCMC.PL.</li>
+                    <li>Nabycie, posiadanie bądź akceptacja wirtualnych punktów VPLN jest równoznaczne z pełnym i bezwarunkowym zatwierdzeniem zapisów tego dokumentu oraz regulaminów rozgrywki.</li>
+                    <li>Waluta VPLN stanowi wewnętrzną, cyfrową jednostkę rozliczeniową sklepu i nie posiada statusu oficjalnego środka płatniczego, waluty fiducjarnej ani pieniądza elektronicznego.</li>
+                    <li>Nabycie wirtualnych punktów VPLN to usługa dostępu do funkcjonalności cyfrowych w grze Minecraft. Gracz nie kupuje kodu źródłowego ani praw majątkowych do infrastruktury serwera.</li>
+                    <li>Środki pozyskiwane ze sprzedaży waluty VPLN są w całości przeznaczane na techniczne utrzymanie infrastruktury sieciowej, opłacenie hostingu, zabezpieczeń anty-DDoS oraz stały rozwój projektu.</li>
+                </ul>
+            </section>
+
+            <!-- §2 -->
+            <section class="glass-panel border border-white/5 rounded-2xl p-6 md:p-8 hover:border-purple-500/30 transition-all duration-300 group shadow-lg">
+                <h2 class="font-poppins font-semibold text-xl text-white mb-4 flex items-center gap-3">
+                    <span class="font-tech text-xs bg-white/5 text-cyan-400 px-2 py-1 rounded-md border border-white/10 group-hover:border-purple-500/40">§ 02</span>
+                    Warunki zakupu i operacje płatnicze
+                </h2>
+                <ul class="rules-list text-slate-300 text-sm md:text-base leading-relaxed">
+                    <li>Dystrybucja waluty VPLN realizowana jest automatycznie i wyłącznie za pośrednictwem oficjalnego panelu sklepu opartego o system ItemShopSys.</li>
+                    <li>Podmiotem świadczącym obsługę bezpiecznych płatności online oraz pełniącym funkcję agenta rozliczeniowego jest system <strong class="text-white">SimPay (Payments Solution Sp. z o.o.)</strong>. Sprzedawca udostępnia następujące formy rozliczeń:
+                        <ul class="list-none mt-3 pl-4 border-l border-white/10 space-y-1 text-slate-400 text-xs md:text-sm">
+                            <li class="flex items-center gap-2"><span class="text-cyan-400">▹</span> Szybkie e-przelewy bankowe (Pay-by-link)</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400">▹</span> System płatności mobilnych BLIK</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400">▹</span> Karty płatnicze (Visa, Mastercard)</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400">▹</span> Mikropłatności SMS Premium oraz Direct Billing</li>
+                            <li class="flex items-center gap-2"><span class="text-cyan-400">▹</span> System kodów przedpłaconych Paysafecard</li>
+                        </ul>
+                    </li>
+                    <li>Zakupiona waluta VPLN jest trwale przypisywana do unikalnego nicku gracza Minecraft podanego podczas zakupu. Klient jest w pełni odpowiedzialny za poprawność wprowadzonego identyfikatora.</li>
+                    <li>Podanie błędnej nazwy użytkownika uniemożliwia automatyczne przypisanie cyfrowej waluty. W takich sytuacjach administracja nie gwarantuje możliwości manualnego odzyskania dóbr.</li>
+                    <li>Przekazanie zakupionych punktów VPLN na konto gracza następuje w czasie rzeczywistym, do 15 minut od potwierdzenia zaksięgowania płatności przez bramkę operatora SimPay.</li>
+                </ul>
+            </section>
+
+            <!-- §3 -->
+            <section class="glass-panel border border-white/5 rounded-2xl p-6 md:p-8 hover:border-purple-500/30 transition-all duration-300 group shadow-lg">
+                <h2 class="font-poppins font-semibold text-xl text-white mb-4 flex items-center gap-3">
+                    <span class="font-tech text-xs bg-white/5 text-cyan-400 px-2 py-1 rounded-md border border-white/10 group-hover:border-purple-500/40">§ 03</span>
+                    Promocje i bezpłatne pakiety VPLN
+                </h2>
+                <ul class="rules-list text-slate-300 text-sm md:text-base leading-relaxed">
+                    <li>Wirtualna waluta VPLN może zostać dodana do konta gracza na drodze zakupu, jak również nieodpłatnie jako nagroda w oficjalnych konkursach, wydarzeniach (eventach) lub akcjach marketingowych.</li>
+                    <li>Właściciel platformy zastrzega sobie uprawnienie do modyfikowania stawek cenowych, tworzenia pakietów łączonych oraz wprowadzania czasowych akcji promocyjnych w dowolnym momencie.</li>
+                    <li>Wszelkie zniżki i promocje posiadają ściśle określone limity czasowe i nie mogą być stosowane wstecznie do transakcji sfinalizowanych przed ich uruchomieniem.</li>
+                    <li>Pozyskanie bezpłatnych punktów VPLN nie kreuje po stronie użytkownika praw roszczeniowych i nie stanowi podstawy do żądania rekompensaty w przypadku restartu edycji.</li>
+                </ul>
+            </section>
+
+            <!-- §4 -->
+            <section class="glass-panel border border-white/5 rounded-2xl p-6 md:p-8 hover:border-purple-500/30 transition-all duration-300 group shadow-lg">
+                <h2 class="font-poppins font-semibold text-xl text-white mb-4 flex items-center gap-3">
+                    <span class="font-tech text-xs bg-white/5 text-cyan-400 px-2 py-1 rounded-md border border-white/10 group-hover:border-purple-500/40">§ 04</span>
+                    Wykorzystanie i obrót wirtualną walutą
+                </h2>
+                <ul class="rules-list text-slate-300 text-sm md:text-base leading-relaxed">
+                    <li>Zgromadzone punkty VPLN użytkownik może wymienić na cyfrowe urozmaicenia wewnątrz gry, takie jak rangi premium (VIP/SVIP), wirtualne klucze, przedmioty kosmetyczne lub inne dodatki.</li>
+                    <li>Katalog produktów oraz ich wycena w punktach VPLN mogą podlegać dynamicznym zmianom w celu stabilizowania balansu wewnętrznej ekonomii serwera Minecraft.</li>
+                    <li>Wymienione rangi oraz waluta VPLN nie zwalniają gracza z przestrzegania norm etycznych. Posiadanie statusu premium nie może być argumentem do omijania blokad lub nakładania kar.</li>
+                    <li>Surowo zabrania się handlu walutą VPLN, rangami oraz kontami w zamian za realne środki płatnicze poza oficjalnym panelem sklepu. Naruszenie tego zakazu wiąże się z kasacją konta bez zwrotu kosztów.</li>
+                    <li>Waluta VPLN jest niezbywalna i powiązana z jednym kontem. Przenoszenie salda między odrębnymi profilami użytkowników jest technicznie zablokowane.</li>
+                </ul>
+            </section>
+
+            <!-- §5 -->
+            <section class="glass-panel border border-amber-500/30 rounded-2xl p-6 md:p-8 hover:border-amber-500/50 transition-all duration-300 group shadow-xl bg-amber-500/5">
+                <h2 class="font-poppins font-semibold text-xl text-white mb-4 flex items-center gap-3">
+                    <span class="font-tech text-xs bg-amber-500/10 text-amber-400 px-2 py-1 rounded-md border border-amber-500/20">§ 05</span>
+                    Prawo do odstąpienia od umowy i zwroty
+                </h2>
+                <ul class="rules-list warning-list text-slate-300 text-sm md:text-base leading-relaxed">
+                    <li>Przedmiotem sprzedaży w sklepie są wyłącznie treści cyfrowe niedostarczane na nośniku materialnym w rozumieniu przepisów prawa.</li>
+                    <li><strong class="text-amber-400">Na podstawie art. 38 pkt 13 ustawy z dnia 30 maja 2014 r. o prawach konsumenta, prawo do odstąpienia od umowy zawartej na odległość w ciągu 14 dni BEZ podania przyczyny NIE przysługuje konsumentowi w przypadku zamówienia treści cyfrowych, jeżeli spełnianie świadczenia rozpoczęło się za jego wyraźną zgodą przed upływem terminu do odstąpienia.</strong></li>
+                    <div class="mt-4 p-4 rounded-xl border border-dashed border-amber-500/40 bg-amber-500/10 text-amber-300 text-xs md:text-sm">
+                        <strong class="text-white block mb-1">Ważny komunikat prawny:</strong>
+                        Zatwierdzając ten regulamin i realizując płatność, użytkownik żąda natychmiastowego rozpoczęcia świadczenia usługi i przyjmuje do wiadomości, że z chwilą pełnego udostępnienia punktów VPLN na koncie w grze, traci on ustawowe prawo do odstąpienia od umowy i zwrotu pieniędzy.
+                    </div>
+                </ul>
+            </section>
+
+            <!-- §6 -->
+            <section class="glass-panel border border-white/5 rounded-2xl p-6 md:p-8 hover:border-purple-500/30 transition-all duration-300 group shadow-lg">
+                <h2 class="font-poppins font-semibold text-xl text-white mb-4 flex items-center gap-3">
+                    <span class="font-tech text-xs bg-white/5 text-cyan-400 px-2 py-1 rounded-md border border-white/10 group-hover:border-purple-500/40">§ 06</span>
+                    Tryb postępowania reklamacyjnego
+                </h2>
+                <ul class="rules-list text-slate-300 text-sm md:text-base leading-relaxed">
+                    <li>Użytkownikowi przysługuje prawo do złożenia reklamacji, jeśli zakupiona usługa nie została zrealizowana poprawnie z przyczyn technicznych (np. brak automatycznego księgowania punktów).</li>
+                    <li>Zgłoszenia reklamacyjne przyjmowane są wyłącznie drogą elektroniczną na oficjalną skrzynkę e-mail wskazaną w sekcji danych sprzedawcy.</li>
+                    <li>W celu przyspieszenia weryfikacji, reklamacja powinna zawierać: dokładny nick z gry Minecraft, czas transakcji, kwotę oraz dowód wpłaty (np. potwierdzenie generowane przez SimPay).</li>
+                    <li>Wszystkie prawidłowo zgłoszone reklamacje zostaną szczegółowo rozpatrzone przez administratora w terminie do <strong class="text-white">14 dni roboczych</strong>.</li>
+                    <li>Decyzja oraz informacja o sposobie rozwiązania problemu zostanie przesłana w wiadomości zwrotnej na e-mail nadawcy. Próby celowego fałszowania potwierdzeń będą ignorowane.</li>
+                </ul>
+            </section>
+
+            <!-- §7 -->
+            <section class="glass-panel border border-white/5 rounded-2xl p-6 md:p-8 hover:border-purple-500/30 transition-all duration-300 group shadow-lg">
+                <h2 class="font-poppins font-semibold text-xl text-white mb-4 flex items-center gap-3">
+                    <span class="font-tech text-xs bg-white/5 text-cyan-400 px-2 py-1 rounded-md border border-white/10 group-hover:border-purple-500/40">§ 07</span>
+                    Błędy systemowe i blokady dyscyplinarne
+                </h2>
+                <ul class="rules-list text-slate-300 text-sm md:text-base leading-relaxed">
+                    <li>Użytkownicy sklepu są zobowiązani do natychmiastowego zgłaszania wszelkich nieprawidłowości w działaniu naliczania płatności lub generowania waluty VPLN.</li>
+                    <li>Wykorzystywanie jakichkolwiek luk, błędów systemu ItemShopSys lub exploitów płatności w celu darmowego pozyskiwania waluty jest przestępstwem komputerowym. Konta osób dopuszczających się nadużyć będą trwale blokowane.</li>
+                    <li>W przypadku permanentnego zablokowania gracza na serwerze (ban) za złamanie regulaminu rozgrywki (np. używanie cheatów), zgromadzone na profilu i niewykorzystane punkty VPLN ani aktywne rangi nie podlegają zwrotowi.</li>
+                </ul>
+            </section>
+
+            <!-- §8 -->
+            <section class="glass-panel border border-white/5 rounded-2xl p-6 md:p-8 hover:border-purple-500/30 transition-all duration-300 group shadow-lg">
+                <h2 class="font-poppins font-semibold text-xl text-white mb-4 flex items-center gap-3">
+                    <span class="font-tech text-xs bg-white/5 text-cyan-400 px-2 py-1 rounded-md border border-white/10 group-hover:border-purple-500/40">§ 08</span>
+                    Procedury Chargeback i wygaśnięcie usługi
+                </h2>
+                <ul class="rules-list text-slate-300 text-sm md:text-base leading-relaxed">
+                    <li>Inicjowanie nieuzasadnionych procedur zwrotu płatności (tzw. chargeback lub zgłaszanie nieautoryzowanej transakcji bankowej) po odebraniu punktów VPLN traktowane jest jako próba wyłudzenia.</li>
+                    <li>Wszczęcie sporu płatniczego skutkuje natychmiastową blokadą adresu IP, konta Minecraft oraz uniemożliwieniem dokonywania dalszych zakupów w systemach obsługiwanych przez SimPay.</li>
+                    <li>Właściciel konta zobowiązany jest do dbania o bezpieczeństwo swoich danych dostępowych. Sklep nie rekompensuje strat punktów wynikających z kradzieży haseł spowodowanych niedbalstwem użytkownika.</li>
+                    <li>W skrajnym przypadku zamknięcia lub trwałego zawieszenia sieci serwerów BSCMC.PL, waluta wirtualna wygasa bez prawa do wymiany na realne środki płatnicze.</li>
+                </ul>
+            </section>
+
+            <!-- §9 -->
+            <section class="glass-panel border border-white/5 rounded-2xl p-6 md:p-8 hover:border-purple-500/30 transition-all duration-300 group shadow-lg">
+                <h2 class="font-poppins font-semibold text-xl text-white mb-4 flex items-center gap-3">
+                    <span class="font-tech text-xs bg-white/5 text-cyan-400 px-2 py-1 rounded-md border border-white/10 group-hover:border-purple-500/40">§ 09</span>
+                    Przepisy końcowe
+                </h2>
+                <ul class="rules-list text-slate-300 text-sm md:text-base leading-relaxed">
+                    <li>Administrator zastrzega sobie pełne prawo do wprowadzania poprawek do niniejszego regulaminu z przyczyn technicznych, modernizacyjnych lub zmian w polskim ustawodawstwie.</li>
+                    <li>Nowy regulamin staje się wiążący z chwilą publikacji na podstronie sklepu. Do zamówień w toku stosuje się przepisy obowiązujące w momencie, w którym użytkownik sfinalizował płatność.</li>
+                    <li>W sprawach, które nie zostały bezpośrednio omówione w tym regulaminie, zastosowanie mają przepisy Kodeksu Cywilnego oraz Ustawy o prawach konsumenta.</li>
+                </ul>
+            </section>
+        </div>
+
+        <footer class="mt-16 pt-8 border-t border-white/5 text-center text-xs text-slate-500 space-y-2">
+            <p>&copy; 2015 - 2026 Oficjalny Sklep Serwera BSCMC.PL. Wszelkie prawa zastrzeżone.</p>
+            <p class="opacity-60">
+                Serwer nie jest oficjalnym produktem Minecraft i nie jest powiązany z firmami Mojang Studios oraz Microsoft. System wspierany przez bramkę płatności SimPay w oparciu o silnik sklepu ItemShopSys.
+            </p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
