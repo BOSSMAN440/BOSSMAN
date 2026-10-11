@@ -1,245 +1,288 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Regulamin Sklepu i Waluty VPLN - BSCMC.PL</title>
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #0f111a;
-            --card-bg: #151824;
-            --text-color: #e2e8f0;
-            --text-muted: #94a3b8;
-            --primary-color: #7c3aed;
-            --primary-hover: #6d28d9;
-            --accent-color: #06b6d4;
-            --border-color: #23283d;
-            --shadow: rgba(0, 0, 0, 0.3);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            padding: 40px 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid var(--border-color);
-        }
-
-        header h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.2rem;
-            color: #ffffff;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background: linear-gradient(to right, #ffffff, var(--text-muted));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        header p {
-            color: var(--accent-color);
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .seller-info {
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(6, 182, 212, 0.1));
-            border: 1px solid var(--primary-color);
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 20px var(--shadow);
-        }
-
-        .seller-info h3 {
-            font-family: 'Poppins', sans-serif;
-            color: #ffffff;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .seller-info h3::before {
-            content: "🆔";
-            font-size: 1.2rem;
-        }
-
-        .seller-info ul {
-            list-style: none;
-        }
-
-        .seller-info ul li {
-            margin-bottom: 8px;
-            color: var(--text-color);
-            font-size: 0.95rem;
-        }
-
-        .seller-info ul li strong {
-            color: var(--accent-color);
-        }
-
-        .seller-info .badge {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: #ffffff;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-top: 10px;
-        }
-
-        .paragraph-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 25px;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-            box-shadow: 0 4px 15px var(--shadow);
-        }
-
-        .paragraph-card:hover {
-            transform: translateY(-2px);
-            border-color: rgba(124, 58, 237, 0.4);
-        }
-
-        .paragraph-card h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.3rem;
-            color: #ffffff;
-            margin-bottom: 15px;
-            border-left: 4px solid var(--primary-color);
-            padding-left: 12px;
-        }
-
-        .paragraph-card ol {
-            padding-left: 20px;
-        }
-
-        .paragraph-card ol li {
-            margin-bottom: 12px;
-            color: var(--text-color);
-            font-size: 0.95rem;
-            padding-left: 5px;
-        }
-
-        .paragraph-card ol li::marker {
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-
-        .paragraph-card ul {
-            list-style-type: square;
-            padding-left: 20px;
-            margin: 10px 0;
-        }
-
-        .paragraph-card ul li {
-            margin-bottom: 6px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .paragraph-card ul li::marker {
-            color: var(--accent-color);
-        }
-
-        .legal-notice {
-            background-color: rgba(6, 182, 212, 0.05);
-            border-left: 4px solid var(--accent-color) !important;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 20px 10px;
-            }
-            header h1 {
-                font-size: 1.7rem;
-            }
-            .paragraph-card {
-                padding: 20px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0f111a">
+<meta name="description" content="Regulamin waluty premium VPLN na serwerze Minecraft BSCMC.PL.">
+<title>Regulamin VPLN — BSCMC.PL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0e17;--card:#141927;--text:#e7eaf3;--muted:#a2abc0;--purple:#8b5cf6;--cyan:#22d3ee;--border:#283047;--shadow:0 18px 45px rgba(0,0,0,.22)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{margin:0;background:radial-gradient(ellipse at 50% -15%,rgba(124,58,237,.22),transparent 45%),var(--bg);color:var(--text);font:16px/1.75 'Inter',sans-serif;padding:42px 20px}
+.container{width:min(920px,100%);margin:0 auto}
+header{position:relative;text-align:center;padding:48px 28px 38px;margin-bottom:28px;border:1px solid var(--border);border-radius:24px;background:linear-gradient(145deg,rgba(124,58,237,.14),rgba(34,211,238,.045)),rgba(20,25,39,.78);box-shadow:var(--shadow);overflow:hidden}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:6px 12px;border:1px solid rgba(34,211,238,.3);border-radius:999px;color:var(--cyan);font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.eyebrow:before{content:"";width:7px;height:7px;background:var(--cyan);border-radius:50%;box-shadow:0 0 14px var(--cyan)}
+h1{font:800 clamp(1.8rem,5vw,2.8rem)/1.2 'Poppins',sans-serif;letter-spacing:-.04em;color:#fff;margin:22px 0 12px}
+header p{margin:0;color:var(--muted);font-size:1.02rem}header p strong{color:var(--cyan)}
+.intro{display:flex;align-items:flex-start;gap:15px;padding:20px 22px;margin:0 0 24px;border:1px solid rgba(139,92,246,.35);border-radius:16px;background:rgba(139,92,246,.08);color:#dfe3f0}
+.intro .symbol{font-size:1.4rem;line-height:1.4}.intro p{margin:0}.intro strong{color:#fff}
+.paragraph-card{padding:28px 30px;margin:0 0 18px;border:1px solid var(--border);border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.018),transparent 55%),var(--card);box-shadow:0 8px 24px rgba(0,0,0,.13);transition:border-color .2s,transform .2s}
+.paragraph-card:hover{border-color:rgba(139,92,246,.55);transform:translateY(-1px)}
+h2{font:600 1.18rem/1.45 'Poppins',sans-serif;color:#fff;margin:0 0 20px;padding:3px 0 3px 15px;border-left:4px solid var(--purple)}
+ol{margin:0;padding-left:25px}ol>li{padding-left:7px;margin:0 0 13px}ol>li:last-child{margin-bottom:0}ol>li::marker{color:#a78bfa;font-weight:700}
+ul{margin:10px 0 3px;padding-left:22px;list-style-type:disc}ul li{margin:5px 0;color:var(--muted)}ul li::marker{color:var(--cyan)}
+.legal-notice{border-left:3px solid var(--cyan);background:linear-gradient(110deg,rgba(34,211,238,.055),transparent 75%),var(--card)}
+footer{text-align:center;color:var(--muted);padding:30px 10px 8px;margin-top:30px;border-top:1px solid var(--border);font-size:.9rem}
+footer strong{display:block;color:#fff;font:600 1.05rem 'Poppins',sans-serif;margin-bottom:5px}
+@media(max-width:600px){body{padding:18px 12px;font-size:15px}header{padding:34px 18px 30px;border-radius:18px}.paragraph-card{padding:22px 18px;border-radius:15px}h2{font-size:1.05rem}.intro{padding:17px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.paragraph-card{transition:none}.paragraph-card:hover{transform:none}}
+</style>
 </head>
 <body>
-
-    <div class="container">
-        
-        <header>
-            <h1>Regulamin Sklepu i Waluty VPLN</h1>
-            <p>Serwer Minecraft: BSCMC.PL</p>
-        </header>
-        </section>
-
-        <!-- §1 -->
-        <div class="paragraph-card">
+<main class="container">
+<header>
+  <span class="eyebrow">Dokument serwera</span>
+  <h1>Regulamin VPLN</h1>
+  <p>Waluta premium serwera Minecraft <strong>BSCMC.PL</strong></p>
+</header>
+<div class="intro"><span class="symbol">✦</span><p><strong>Ważne informacje</strong><br>Regulamin określa zasady korzystania z wirtualnej waluty premium VPLN na serwerze BSCMC.PL. Przed zakupem lub wykorzystaniem waluty zapoznaj się z poniższymi postanowieniami.</p></div>
+        <section class="paragraph-card" id="section-1">
             <h2>§1. Postanowienia ogólne</h2>
             <ol>
-                <li>Niniejszy regulamin określa zasady korzystania ze sklepu internetowego oraz wirtualnej waluty premium VPLN, dostępnej na serwerze Minecraft BSCMC.PL.</li>
-                <li>Zakup lub otrzymanie waluty VPLN oznacza automatyczną akceptację niniejszego regulaminu oraz wszystkich zasad i regulaminów rozgrywki obowiązujących na serwerze.</li>
-                <li>Waluta VPLN jest wyłącznie wirtualnym punktem rozliczeniowym przeznaczonym do wykorzystania wewnętrznego na serwerze BSCMC.PL. Nie stanowi ona prawdziwego środka płatniczego, pieniądza elektronicznego ani instrumentu finansowego.</li>
-                <li>Zakup VPLN stanowi odpłatną usługę cyfrową dostarczaną drogą elektroniczną w ramach serwera Minecraft. Użytkownik otrzymuje dostęp do określonej usługi cyfrowej, nie nabywając żadnych praw własności do VPLN, kodu ani elementów infrastruktury serwera.</li>
-                <li>Głównym celem systemu waluty VPLN jest wspieranie bieżącego utrzymania, stabilności oraz rozwoju serwera, a także zapewnienie graczom opcjonalnych urozmaiceń rozgrywki.</li>
+                <li>Niniejszy regulamin określa zasady korzystania z waluty premium VPLN dostępnej na serwerze BSCMC.PL.</li> <li>Zakup lub otrzymanie VPLN oznacza automatyczną akceptację niniejszego regulaminu oraz wszystkich zasad obowiązujących na serwerze.</li> <li>VPLN jest wirtualną walutą premium przeznaczoną wyłącznie do wykorzystania na serwerze BSCMC.PL.</li> <li>VPLN nie jest prawdziwym środkiem płatniczym, pieniądzem elektronicznym ani przedmiotem posiadającym wartość poza serwerem.</li> <li>Zakup VPLN oznacza uzyskanie dostępu do cyfrowej usługi w ramach serwera Minecraft.</li> <li>Użytkownik nie nabywa prawa własności do VPLN ani innych elementów serwera.</li> <li>Administracja zastrzega sobie prawo do:
+<ul>
+<li>zmiany cen VPLN,</li>
+<li>zmiany dostępnych pakietów,</li>
+<li>organizowania promocji,</li>
+<li>zmiany sposobu wykorzystania VPLN,</li>
+<li>wycofania określonych produktów z oferty.</li>
+</ul></li>
             </ol>
-        </div>
-
-        <!-- §2 -->
-        <div class="paragraph-card">
-            <h2>§2. Zakup i warunki realizacji płatności</h2>
+        </section>
+        <section class="paragraph-card" id="section-2">
+            <h2>§2. Zakup VPLN</h2>
             <ol>
-                <li>Walutę VPLN można zakupić wyłącznie poprzez oficjalną stronę sklepu zintegrowaną z platformą automatyczną ItemShopSys.</li>
-                <li>Sprzedawca udostępnia bezpieczne metody płatności online, których zewnętrznym operatorem oraz agentem rozliczeniowym jest firma <strong>SimPay (Payments Solution Sp. z o.o.)</strong>:
-                    <ul>
-                        <li>Szybkie przelewy bankowe (Pay-by-link)</li>
-                        <li>Płatności mobilne BLIK</li>
-                        <li>Karty płatnicze i kredytowe</li>
-                        <li>Doładowania SMS Premium oraz Direct Billing</li>
-                        <li>Bony przedpłacone Paysafecard</li>
-                    </ul>
-                </li>
-                <li>Zakupiona waluta VPLN przypisywana jest bezpośrednio do konta Minecraft o nicku podanym przez użytkownika w formularzu zamówienia. Użytkownik ponosi pełną odpowiedzialność za poprawność wpisanego nicku.</li>
-                <li>Podanie błędnego nicku skutkuje brakiem możliwości poprawnej realizacji usługi przez system automatyczny. Sprzedawca nie ponosi odpowiedzialności za straty wynikające z pomyłek użytkownika.</li>
-                <li>Dostarczenie wirtualnej waluty VPLN na konto gracza następuje automatycznie w czasie od kilku sekund do 15 minut od momentu otrzymania przez system sklepu potwierdzenia autoryzacji płatności od operatora SimPay.</li>
+                <li>VPLN można zakupić wyłącznie poprzez oficjalne kanały płatności udostępnione przez administrację serwera.</li> <li>Zakup VPLN przypisywany jest do konta Minecraft podanego podczas zakupu.</li> <li>Użytkownik jest odpowiedzialny za poprawność wpisanego nicku.</li> <li>Podanie błędnego nicku może skutkować:
+<ul>
+<li>opóźnieniem realizacji,</li>
+<li>dostarczeniem VPLN na niewłaściwe konto,</li>
+<li>brakiem możliwości odzyskania waluty.</li>
+</ul></li> <li>Administracja nie ponosi odpowiedzialności za błędy wynikające z podania niepoprawnych danych przez użytkownika.</li> <li>Przed zakupem użytkownik powinien sprawdzić:
+<ul>
+<li>poprawność nicku,</li>
+<li>wybrany pakiet,</li>
+<li>ilość otrzymywanych VPLN,</li>
+<li>aktualną ofertę.</li>
+</ul></li>
             </ol>
-        </div>
-
-        <!-- §3 -->
-        <div class="paragraph-card">
-            <h2>§3. Otrzymywanie i bonusy VPLN</h2>
+        </section>
+        <section class="paragraph-card" id="section-3">
+            <h2>§3. Otrzymywanie VPLN</h2>
             <ol>
-                <li>Waluta VPLN może trafić na konto użytkownika poprzez bezpośredni zakup w sklepie ItemShopSys, a także w formie nieodpłatnej w ramach konkursów, eventów, promocji lub specjalnych akcji organizowanych przez administrację serwera.</li>
+                <li>VPLN może zostać przyznane poprzez:
+<ul>
+<li>zakup w ItemShopie,</li>
+<li>promocje administracji,</li>
+<li>konkursy,</li>
+<li>eventy,</li>
+<li>specjalne akcje serwera.</li>
+</ul></li> <li>Administracja może przyznawać dodatkowe bonusy VPLN według własnego uznania.</li> <li>Bonusy promocyjne mogą posiadać osobne zasady.</li> <li>Administracja może zakończyć promocję w dowolnym momencie.</li> <li>Promocje nie muszą działać wstecz.</li> <li>Otrzymanie darmowych VPLN nie daje prawa do żądania ich ponownego przyznania.</li>
+            </ol>
+        </section>
+        <section class="paragraph-card" id="section-4">
+            <h2>§4. Wykorzystanie VPLN</h2>
+            <ol>
+                <li>VPLN może być wykorzystane wyłącznie na serwerze BSCMC.PL.</li> <li>Za VPLN użytkownik może kupować między innymi:
+<ul>
+<li>rangi premium,</li>
+<li>pakiety VIP,</li>
+<li>klucze do skrzynek,</li>
+<li>przedmioty specjalne,</li>
+<li>usługi dostępne w ItemShopie,</li>
+<li>inne produkty cyfrowe.</li>
+</ul></li> <li>Lista dostępnych produktów może ulegać zmianie.</li> <li>Zakup produktu za VPLN oznacza akceptację jego działania oraz warunków.</li> <li>VPLN nie może być wykorzystane do:
+<ul>
+<li>omijania kar,</li>
+<li>kupowania przywilejów łamiących regulamin,</li>
+<li>uzyskania specjalnego traktowania przez administrację,</li>
+<li>wymuszania zmian na serwerze.</li>
+</ul></li>
+            </ol>
+        </section>
+        <section class="paragraph-card" id="section-5">
+            <h2>§5. Handel VPLN</h2>
+            <ol>
+                <li>Zabrania się sprzedaży VPLN za prawdziwe pieniądze poza oficjalnym systemem administracji.</li> <li>Zabrania się wymiany VPLN na:
+<ul>
+<li>przelewy,</li>
+<li>kryptowaluty,</li>
+<li>inne waluty poza systemami zaakceptowanymi przez administrację.</li>
+</ul></li> <li>Administracja nie odpowiada za transakcje wykonane pomiędzy graczami.</li> <li>Próby oszustwa podczas handlu mogą skutkować karą.</li> <li>Administracja ma prawo anulować korzyści uzyskane poprzez nielegalny handel.</li>
+            </ol>
+        </section>
+        <section class="paragraph-card" id="section-6">
+            <h2>§6. Przenoszenie VPLN</h2>
+            <ol>
+                <li>VPLN jest przypisane do konkretnego konta Minecraft.</li> <li>Zabrania się samodzielnego przenoszenia VPLN pomiędzy kontami.</li> <li>Administracja może odmówić przeniesienia VPLN.</li> <li>W przypadku:
+<ul>
+<li>błędnego nicku,</li>
+<li>włamania na konto,</li>
+<li>utraty dostępu,</li>
+</ul></li> <li>Udostępnianie konta innym osobom odbywa się na własną odpowiedzialność użytkownika.</li>
+            </ol>
+        </section>
+        <section class="paragraph-card" id="section-7">
+            <h2>§7. Błędy, problemy techniczne oraz nadużycia VPLN</h2>
+            <ol>
+                <li>Każdy użytkownik zobowiązany jest niezwłocznie zgłosić administracji wszelkie błędy związane z systemem VPLN.</li> <li>Zabrania się wykorzystywania błędów systemu VPLN, w szczególności:
+<ul>
+<li>otrzymywania VPLN bez dokonania prawidłowej płatności,</li>
+<li>powielania VPLN,</li>
+<li>wykorzystywania błędów sklepu,</li>
+<li>wykorzystywania błędów pluginów,</li>
+<li>przekazywania informacji o błędach innym graczom w celu uzyskania korzyści.</li>
+</ul></li> <li>Osoba wykorzystująca błędy systemu może otrzymać karę zgodną z regulaminem serwera.</li> <li>Administracja ma prawo:
+<ul>
+<li>usunąć nielegalnie zdobyte VPLN,</li>
+<li>cofnąć zakupione produkty,</li>
+<li>zablokować konto,</li>
+<li>nałożyć dodatkową karę.</li>
+</ul></li> <li>Brak zgłoszenia znalezionego błędu może zostać potraktowany jako świadome wykorzystanie błędu.</li>
+            </ol>
+        </section>
+        <section class="paragraph-card legal-notice" id="section-8">
+            <h2>§8. Zwroty i reklamacje</h2>
+            <ol>
+                <li>VPLN jest usługą cyfrową dostarczaną drogą elektroniczną.</li> <li>Po prawidłowym dostarczeniu VPLN zwrot środków może nie być możliwy.</li> <li>Reklamacje dotyczące zakupu należy zgłaszać administracji.</li> <li>Zgłoszenie powinno zawierać:
+<ul>
+<li>nick Minecraft,</li>
+<li>datę zakupu,</li>
+<li>numer zamówienia,</li>
+<li>potwierdzenie płatności,</li>
+<li>opis problemu.</li>
+</ul></li> <li>Administracja może odmówić rozpatrzenia reklamacji w przypadku:
+<ul>
+<li>podania fałszywych informacji,</li>
+<li>próby wyłudzenia VPLN,</li>
+<li>wykorzystania zakupionej waluty,</li>
+<li>błędnego nicku podanego przez użytkownika.</li>
+</ul></li> <li>Każda reklamacja rozpatrywana jest indywidualnie.</li>
+            </ol>
+        </section>
+        <section class="paragraph-card legal-notice" id="section-9">
+            <h2>§9. Cofnięcie płatności (Chargeback)</h2>
+            <ol>
+                <li>Zabrania się cofania płatności po otrzymaniu VPLN lub wykorzystaniu zakupionych produktów.</li> <li>Próba odzyskania środków poprzez nieuzasadnione zgłoszenie płatności może skutkować:
+<ul>
+<li>blokadą konta Minecraft,</li>
+<li>odebraniem zakupionych produktów,</li>
+<li>usunięciem zakupionych VPLN,</li>
+<li>ograniczeniem dostępu do ItemShopu.</li>
+</ul></li> <li>Każdy przypadek cofnięcia płatności będzie analizowany indywidualnie.</li> <li>Administracja ma prawo zabezpieczyć konto do czasu wyjaśnienia sprawy.</li>
+            </ol>
+        </section>
+        <section class="paragraph-card" id="section-10">
+            <h2>§10. Bezpieczeństwo konta</h2>
+            <ol>
+                <li>Użytkownik odpowiada za bezpieczeństwo swojego konta Minecraft.</li> <li>Administracja nie ponosi odpowiedzialności za utratę VPLN wynikającą z:
+<ul>
+<li>udostępnienia hasła,</li>
+<li>przekazania konta innej osobie,</li>
+<li>korzystania z niezabezpieczonego konta,</li>
+<li>działań wykonanych przez właściciela konta.</li>
+</ul></li> <li>Zabrania się:
+<ul>
+<li>kupowania VPLN na cudze konto bez zgody właściciela,</li>
+<li>korzystania z cudzych danych płatniczych,</li>
+<li>prób uzyskania dostępu do kont innych graczy.</li>
+</ul></li>
+            </ol>
+        </section>
+        <section class="paragraph-card" id="section-11">
+            <h2>§11. Zmiany wartości oraz działania VPLN</h2>
+            <ol>
+                <li>Administracja ma prawo zmieniać sposób działania VPLN w celu:
+<ul>
+<li>zachowania balansu ekonomii serwera,</li>
+<li>poprawy rozgrywki,</li>
+<li>dostosowania oferty,</li>
+<li>przeciwdziałania nadużyciom.</li>
+</ul></li> <li>Zakup VPLN nie gwarantuje, że ceny produktów lub oferta pozostaną niezmienione.</li> <li>Administracja może:
+<ul>
+<li>dodać nowe produkty,</li>
+<li>usunąć istniejące produkty,</li>
+<li>zmienić ceny,</li>
+<li>wprowadzić promocje.</li>
+</ul></li> <li>Zmiany nie oznaczają utraty wcześniej zakupionych VPLN.</li>
+            </ol>
+        </section>
+        <section class="paragraph-card" id="section-12">
+            <h2>§12. VPLN a regulamin serwera</h2>
+            <ol>
+                <li>Posiadanie VPLN nie daje użytkownikowi specjalnych praw.</li> <li>Gracz posiadający zakupione VPLN nadal musi przestrzegać regulaminu serwera.</li> <li>Administracja może odebrać VPLN lub produkty zakupione za VPLN w przypadku:
+<ul>
+<li>oszustwa,</li>
+<li>wykorzystywania błędów,</li>
+<li>działania na szkodę serwera,</li>
+<li>poważnego łamania regulaminu.</li>
+</ul></li> <li>Zakup VPLN nie chroni przed:
+<ul>
+<li>blokadą konta,</li>
+<li>karami administracyjnymi,</li>
+<li>utratą dostępu do serwera.</li>
+</ul></li>
+            </ol>
+        </section>
+        <section class="paragraph-card" id="section-13">
+            <h2>§13. Promocje VPLN</h2>
+            <ol>
+                <li>Administracja może organizować promocje związane z VPLN.</li> <li>Promocje mogą obejmować:
+<ul>
+<li>dodatkowe VPLN,</li>
+<li>zwiększoną ilość waluty,</li>
+<li>obniżone ceny,</li>
+<li>specjalne pakiety.</li>
+</ul></li> <li>Każda promocja może posiadać własne zasady.</li> <li>Administracja ma prawo:
+<ul>
+<li>zakończyć promocję,</li>
+<li>zmienić jej warunki,</li>
+<li>ograniczyć czas trwania.</li>
+</ul></li> <li>Promocje nie obowiązują wstecz.</li>
+            </ol>
+        </section>
+        <section class="paragraph-card" id="section-14">
+            <h2>§14. Zakończenie działania serwera</h2>
+            <ol>
+                <li>W przypadku zakończenia działania serwera BSCMC.PL VPLN przestaje być możliwe do wykorzystania.</li> <li>Zakup VPLN nie oznacza prawa własności do elementów serwera.</li> <li>Użytkownik otrzymuje jedynie dostęp do cyfrowej waluty w ramach działania serwera.</li> <li>Administracja nie ponosi odpowiedzialności za utratę możliwości wykorzystania VPLN wynikającą z:
+<ul>
+<li>zamknięcia serwera,</li>
+<li>zmian technicznych,</li>
+<li>aktualizacji gry,</li>
+<li>zmian infrastruktury.</li>
+</ul></li>
+            </ol>
+        </section>
+        <section class="paragraph-card" id="section-15">
+            <h2>§15. Kontakt oraz zgłoszenia</h2>
+            <ol>
+                <li>Wszystkie problemy dotyczące VPLN należy zgłaszać poprzez oficjalne kanały kontaktu serwera BSCMC.PL.</li> <li>Zgłoszenie powinno być napisane w sposób:
+<ul>
+<li>kulturalny,</li>
+<li>rzeczowy,</li>
+<li>zawierający wszystkie potrzebne informacje.</li>
+</ul></li> <li>Administracja może odmówić obsługi zgłoszenia zawierającego:
+<ul>
+<li>groźby,</li>
+<li>obraźliwe treści,</li>
+<li>próby wymuszenia,</li>
+<li>fałszywe informacje.</li>
+</ul></li>
+            </ol>
+        </section>
+        <section class="paragraph-card legal-notice" id="section-16">
+            <h2>§16. Postanowienia końcowe</h2>
+            <ol>
+                <li>Zakup lub wykorzystanie VPLN oznacza akceptację niniejszego regulaminu.</li> <li>Regulamin obowiązuje wszystkich użytkowników korzystających z waluty VPLN.</li> <li>Administracja ma prawo podejmować decyzje w sprawach nieopisanych w regulaminie.</li> <li>Właściciel serwera posiada ostateczne prawo do interpretacji regulaminu.</li> <li>Głównym celem systemu VPLN jest wspieranie rozwoju serwera oraz zapewnienie graczom dodatkowych możliwości rozgrywki.</li>
+            </ol>
+        </section>
+<footer><strong>Administracja BSCMC.PL</strong>Regulamin waluty premium VPLN</footer>
+</main>
+</body>
+</html>
